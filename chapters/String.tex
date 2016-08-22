@@ -1,0 +1,1493 @@
+\chapter{String}
+
+
+\section{Add Binary (E)}
+Given two binary strings, return their sum (also a binary string). \\
+
+For example, a = ``11", b = ``1", Return ``100". \\ 
+
+\begin{lstlisting}
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string res = "";
+        int ai, bi, val, carry = 0;
+        int i = a.size() - 1;
+        int j = b.size() - 1;
+        
+        while (i >= 0 || j >= 0 || carry == 1) {
+            if (i >= 0)
+                ai = a[i--] - '0';              // convert char to integer
+            else
+                ai = 0;
+                
+            if (j >= 0)
+                bi = b[j--] - '0';
+            else
+                bi = 0;
+                
+            val = (ai + bi + carry) % 2;
+            carry = (ai + bi + carry) / 2;
+            
+            res = char(val + '0') + res;        // convert integer to char by char(val + '0') 
+            
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Count and Say (E)}
+The count-and-say sequence is the sequence of integers beginning as follows: 1, 11, 21, 1211, 111221, ...\\
+1 is read off as "one 1" or 11.\\
+11 is read off as "two 1s" or 21.\\
+21 is read off as "one 2, then one 1" or 1211.\\
+
+Given an integer n, generate the nth sequence. The sequence of integers will be represented as a string. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string countAndSay(int n) {
+        if (n == 0) return NULL;
+        
+        string res = "1";       // start at 1
+        
+        while (n != 1) {
+            string cur = "";
+            for (int i = 0; i < res.size(); ++i) {
+                int cnt = 1;
+                while ( (i+1) < res.size() && res[i] == res[i+1] ) {        // count res[i]
+                    ++cnt;
+                    ++i;
+                }
+                cur += to_string(cnt) + res[i];                             // count and say res[i]
+            }
+            res = cur;      // update current result
+            --n;            // decrease n until n = 1
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Length of Last Word (E)}
+Given a string s consists of upper/lower-case alphabets and empty space characters ` ', return the length of last word in the string. If the last word does not exist, return 0. A word is defined as a character sequence consists of non-space characters only. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        if (s.empty()) return 0;
+        
+        int cnt = 0, n = s.size() - 1;
+        
+        while (s[n] == ' ' && n >= 0) {
+            --n;
+        }
+        
+        while (s[n] != ' ' && n >= 0) {
+            ++cnt;
+            --n;
+        }
+        
+        return cnt;
+    }
+};
+\end{lstlisting}
+
+
+\section{Longest Common Prefix (E)}
+Write a function to find the longest common prefix string amongst an array of strings. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string longestCommonPrefix(vector<string> &strs) {
+        string prefix = "";                         // define the initial prefix
+        if (strs.size() == 0)   return prefix;
+        
+        int i, j;
+        // iterate different chars in the first string
+        for (i = 0; i < strs[0].size(); ++i) { 
+            
+            // iterate different strings from the second string
+            for (j = 1; j < strs.size() && i < strs[j].size(); ++j) {     
+                if (strs[j][i] != strs[0][i])        // compare each char between the first string and the other strings
+                    return prefix;                  // if no match for the current char, return prefix immediately
+            }
+            
+            if (j == strs.size())                   // if the i-th char in the first string matches all others strings
+                prefix += strs[0][i];               // update prefix
+        }
+        return prefix;
+    }
+};
+\end{lstlisting}
+
+
+\section{Implement strStr() (E)}
+Implement strStr(). Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if (needle.empty()) return 0;
+
+        for (int i = 0; ; ++i) {
+            for (int j = 0; ; ++j) {
+                if (needle[j] == '\0')          // if the current j reaches the end of needle, i is the correct index
+                    return i;
+                if (haystack[i + j] == '\0')    // if i+j reaches the end of haystack, there is no chance to find the needle
+                    return -1;
+                if (haystack[i + j] != needle[j])   // break for each no-match
+                    break;
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{ZigZag Conversion (E)}
+Write the code that will take a string and make this conversion given a number of rows: string convert(string text, int nRows). \\
+convert(``PAYPALISHIRING", 3) should return ``PAHNAPLSIIGYIR". \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if (numRows <= 1)  return s;
+        
+        vector<string> tmp(numRows);
+        string res;
+        int row = 0, flag = 1;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            tmp[row].push_back(s[i]);
+            
+            // perform zigzag
+            if (row == 0)                   // increase row number
+                flag = 1;
+            else if (row == numRows - 1)    // decrease row number
+                flag = -1;
+            row += flag;
+        }
+        
+        for (int i = 0; i < numRows; ++i)
+            res.append(tmp[i]);
+            
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Group Shifted Strings (E)}
+Given a string, we can ``shift" each of its letter to its successive letter, for example: $``abc" -> ``bcd"$. We can keep ``shifting" which forms the sequence: $"abc" -> "bcd" -> ... -> "xyz"$\\
+
+Given a list of strings which contains only lowercase alphabets, group all strings that belong to the same shifting sequence.\\
+For example, given: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"], \\
+Return:
+[
+  ["abc","bcd","xyz"],
+  ["az","ba"],
+  ["acef"],
+  ["a","z"]
+] \\
+
+Note: For the return value, each inner list's elements must follow the lexicographic order.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<string>> groupStrings(vector<string>& strings) {
+        vector<vector<string> > res;
+        unordered_map<string, multiset<string>> m;
+        for (auto a : strings) {
+            string t = "";
+            for (char c : a) {
+                t += to_string((c + 26 - a[0]) % 26) + ",";
+            }
+            m[t].insert(a);
+        }
+        for (auto it = m.begin(); it != m.end(); ++it) {
+            res.push_back(vector<string>(it->second.begin(), it->second.end()));
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Compare Version Numbers (E)}
+Compare two version numbers version1 and version2. If version1 $>$ version2 return 1, if version1 $<$ version2 return -1, otherwise return 0.\\
+
+You may assume that the version strings are non-empty and contain only digits and the . character.
+The . character does not represent a decimal point and is used to separate number sequences.
+For instance, 2.5 is not "two and a half" or "half way to version three", it is the fifth second-level revision of the second first-level revision.\\
+
+Here is an example of version numbers ordering: $0.1 < 1.1 < 1.2 < 13.37$\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        int n1 = version1.size(), n2 = version2.size();
+        int i, j, num1, num2;
+        i = j = num1 = num2 = 0;
+        
+        //first compare the left part before ".", then compare the right part after "."
+        while (i < n1 || j < n2) {
+            while (i < n1 && version1[i] != '.')
+                num1 = num1 * 10 + (version1[i++] - '0');   // string to int
+
+            while (j < n2 && version2[j] != '.')
+                num2 = num2 * 10 + (version2[j++] - '0');
+            
+            if (num1 > num2)
+                return 1;
+            else if (num1 < num2)
+                return -1;
+            
+            num1 = num2 = 0;
+            ++i;
+            ++j;
+        }
+        
+        return 0;
+    }
+};
+\end{lstlisting}
+
+
+\section{Excel Sheet Column Number (E)}
+Given a column title as appear in an Excel sheet, return its corresponding column number.\\
+
+For example:\\
+$
+    A -> 1 \\
+    B -> 2 \\
+    C -> 3 \\
+    ... \\
+    Z -> 26\\
+    AA -> 27\\
+    AB -> 28 $\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int result = 0;
+        
+        for (int i = 0; i < s.size(); ++i)
+            result = result * 26 + (s[i] - 'A' + 1);
+            
+        return result;
+    }
+};
+\end{lstlisting}
+
+
+\section{Excel Sheet Column Title (E)}
+Given a positive integer, return its corresponding column title as appear in an Excel sheet.\\
+
+For example:\\
+$
+    1 -> A\\
+    2 -> B\\
+    3 -> C\\
+    ...\\
+    26 -> Z\\
+    27 -> AA\\
+    28 -> AB \\$
+    
+\begin{lstlisting}
+class Solution {
+public:
+    string convertToTitle(int n) {
+        if (n <= 0)
+            return NULL;
+            
+        string result;
+        char tmp;
+        
+        while (n != 0) {
+            n -= 1;
+            tmp = n % 26 + 'A';
+            result = tmp + result;            
+            n /= 26;
+        }
+        
+        return result;
+    }
+};
+\end{lstlisting}   
+
+
+\section{Roman to Integer (E)}
+Given a roman numeral, convert it to an integer.\\
+
+Input is guaranteed to be within the range from 1 to 3999.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int romanToInt(string s) {
+        int n = s.size();
+        if (n == 0)
+            return 0;
+
+        unordered_map<char, int> roman = {   { 'I' , 1 },
+                                             { 'V' , 5 },
+                                             { 'X' , 10 },
+                                             { 'L' , 50 },
+                                             { 'C' , 100 },
+                                             { 'D' , 500 },
+                                             { 'M' , 1000 } };
+                                         
+        int num = 0;
+        for (int i = 0; i < n-1; ++i) {
+            if (roman[s[i]] < roman[s[i+1]])
+                num -= roman[s[i]];
+            else
+                num += roman[s[i]];
+        }
+    
+        num += roman[s[n-1]];
+    
+        return num;
+    }
+};
+\end{lstlisting}   
+
+
+\section{Integer to Roman (M)}
+Given an integer, convert it to a roman numeral. \\
+
+Input is guaranteed to be within the range from 1 to 3999.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string intToRoman(int num) {
+        int value[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        string symbol[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        string result;
+        int digit, idx = 0;
+        
+        while (num != 0) {
+            digit = num / value[idx];
+            num %= value[idx];
+            while (digit != 0) {
+                result += symbol[idx];
+                --digit;
+            }
+            ++idx;
+        }
+        
+        return result;
+    }
+};
+\end{lstlisting}   
+
+
+\section{String to Integer (atoi) (E)}
+Implement atoi to convert a string to an integer. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int myAtoi(string str) {
+        int sign = 1, base = 0, i = 0;
+        
+        while (str[i] == ' ')           // ignor whitespace
+            ++i;
+        
+        if (str[i] == '-') {            // get the sign
+            sign = -1;
+            ++i;
+        } else if (str[i] == '+'){
+            sign = 1;
+            ++i;
+        }
+        
+        while (str[i] >= '0' && str[i] <= '9') {
+            // catch the max int or min int case
+            if (base > INT_MAX / 10 || (base == INT_MAX / 10 && str[i] - '0' > 7)) {
+                if (sign == 1) 
+                    return INT_MAX;
+                else 
+                    return INT_MIN;
+            }
+            
+            base = 10 * base + (str[i++] - '0');
+        }
+        
+        return base * sign;
+    }
+};
+\end{lstlisting}  
+
+
+\section{Reverse String (E)}
+Write a function that takes a string as input and returns the string reversed. \\
+
+Example: Given s = "hello", return "olleh". \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string reverseString(string s) {
+        int start = 0, end = s.length()-1;
+        char tmp;
+        while (start < end) {
+            tmp = s[start];
+            s[start++] = s[end];
+            s[end--] = tmp;
+        }
+        return s;
+    }
+};
+\end{lstlisting}
+
+
+\section{Reverse Vowels of a String (E)}
+Write a function that takes a string as input and reverse only the vowels of a string. \\
+
+Example 1:
+Given s = "hello", return "holle". \\
+
+Example 2:
+Given s = "leetcode", return "leotcede". \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
+    }
+    
+    string reverseVowels(string s) {
+        int i = 0, j = s.length() - 1;
+        
+        while (i < j) {
+            while (!isVowel(s[i]))
+                ++i;
+            while (!isVowel(s[j]))
+                --j;
+            if (i < j) {
+                swap(s[i], s[j]);
+                ++i;
+                --j;
+            }
+        }
+        
+        return s;
+    }
+};
+\end{lstlisting}
+
+
+\section{Valid Palindrome (E)}
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. \\
+
+For example,\\
+``A man, a plan, a canal: Panama" is a palindrome.\\
+``race a car" is not a palindrome. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        
+        int start = 0, end = s.size()-1;
+        
+        while (start < end) {
+            if (isalnum(s[start]) == false)         // isalnum: checks whether c is an alphanumeric character
+                ++start;
+            else if (isalnum(s[end]) == false)
+                --end;        
+            else if (tolower(s[start++]) != tolower(s[end--]))      // tolower: Converts parameter c to its lowercase equivalent if c is an uppercase letter and has a lowercase equivalent
+                return false;
+        }
+        
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Valid Anagram (E)}
+Given two strings s and t, write a function to determine if t is an anagram of s.\\
+
+For example,\\
+s = ``anagram", t = ``nagaram", return true.\\
+s = ``rat", t = ``car", return false.\\
+
+Note:\\
+You may assume the string contains only lowercase alphabets.\\
+
+Follow up:\\
+What if the inputs contain unicode characters? How would you adapt your solution to such case?\\
+
+\begin{lstlisting}
+// unordered_map<Key,T>::iterator it;
+// (*it).first;             // the key value (of type Key)
+// (*it).second;            // the mapped value (of type T)
+// (*it);                   // the "element value" (of type pair<const Key,T>)
+
+// Sol1: Hash table
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length())
+            return false;
+            
+        unordered_map<char,int> counts;
+        for (int i = 0; i < s.length(); ++i) {
+            ++counts[s[i]];
+            --counts[t[i]];
+        }
+        for (auto count : counts) {
+            if (count.second)
+                return false;
+        }
+        return true;
+    }
+};
+
+Sol2: Optimization by the fix-size array
+class Solution {
+public:
+     bool isAnagram(string s, string t) {
+         if(s.length() != t.length())
+             return false;
+            
+         int counts[26] = {0};
+         for (int i = 0; i < s.length(); ++i) {
+             ++counts[s[i] - 'a'];
+             --counts[t[i] - 'a'];
+         }
+         for (int i = 0; i < 26; ++i) {
+             if (counts[i])
+                 return false;
+         }
+         return true;
+     }
+};
+\end{lstlisting}
+
+
+\section{Group Anagrams (M)}
+Given an array of strings, group anagrams together.\\
+
+For example, given: ["eat", "tea", "tan", "ate", "nat", "bat"],\\
+Return:
+[
+  ["ate", "eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+].\\
+
+Note: All inputs will be in lower-case.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> group;
+
+        for (string s : strs) {
+            string key = s; 
+            sort(key.begin(), key.end());
+            group[key].push_back(s);
+        }
+        
+        vector<vector<string>> anagrams;
+        for (auto g : group)
+            anagrams.push_back(g.second);
+        
+        return anagrams;
+    }
+};
+\end{lstlisting}
+
+
+\section{Palindrome Permutation (E)}
+Given a string, determine if a permutation of the string could form a palindrome.\\
+
+For example, "code" $->$ False, "aab" $->$ True, "carerac" $->$ True.\\
+
+\begin{lstlisting}
+// 1. Hashtable
+class Solution {
+public:
+    bool canPermutePalindrome(string s) {
+        unordered_map<char, int> m;
+        int cnt = 0;
+        
+        for (auto a : s)
+            ++m[a];
+            
+        for (auto it : m) {
+            if (it.second % 2 == 1)
+                ++cnt;
+        }
+        
+        return cnt == 0 || ((cnt == 1) && (s.size() % 2 == 1));
+    }
+};
+
+// 2. Set
+class Solution {
+public:
+    bool canPermutePalindrome(string s) {
+        set<char> t;
+        for (auto a : s) {
+            if (t.find(a) == t.end()) t.insert(a);
+            else t.erase(a);
+        }
+        return t.empty() || t.size() == 1;
+    }
+};
+
+// 3. Bitset
+class Solution {
+public:
+    bool canPermutePalindrome(string s) {
+        bitset<256> b;
+        for (auto a : s) {
+            b.flip(a);
+        }
+        return b.count() < 2;
+    }
+};
+\end{lstlisting}
+
+
+\section{Palindrome Permutation II (M)}
+Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.\\
+
+For example:\\
+Given s =``aabb", return [``abba", ``baab"].\\
+Given s = ``abc", return [].\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> generatePalindromes(string s) {
+        vector<string> res;
+        unordered_map<char, int> m;
+        string t = "", mid = "";
+        
+        for (auto a : s) 
+            ++m[a];
+        
+        for (auto it : m) {
+            if (it.second % 2 == 1) 
+                mid += it.first;
+            t += string(it.second / 2, it.first);   // store the first half of string
+            if (mid.size() > 1)                     // if the string is palindrome, mid size can only be 1
+                return res;
+        }
+        
+        permute(t, 0, mid, res);
+        return res;
+    }
+    
+    void permute(string &t, int start, string mid, vector<string> &res) {
+        // palindrome permutation = permutation of the first half string 
+        //                          + the only char if exists
+        //                          + reverse of the permutation of the first half string
+        if (start >= t.size()) {
+            res.push_back(t + mid + string(t.rbegin(), t.rend()));
+        } 
+        
+        // permutation
+        for (int i = start; i < t.size(); ++i) {
+            if (i != start && t[i] == t[start]) continue;
+            swap(t[i], t[start]);
+            permute(t, start + 1, mid, res);
+            swap(t[i], t[start]);
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Isomorphic Strings (E)}
+Given two strings s and t, determine if they are isomorphic. \\
+
+Two strings are isomorphic if the characters in s can be replaced to get t. All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.\\
+
+For example,\\
+Given ``egg", ``add", return true.\\
+Given ``foo", ``bar", return false.\\
+Given ``paper", ``title", return true.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if (s.size() != t.size())   return false;
+            
+        int m1[128] = {0};
+        int m2[128] = {0};
+        for (int i = 0; i < s.size(); ++i) {
+            if (m1[s[i]] != m2[t[i]])
+                return false;
+            m1[s[i]] = i+1;
+            m2[t[i]] = i+1;
+        }
+        return true;
+    }
+};
+
+
+// intuitive solution  
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if (s.size()== 0)   return true;
+        
+        unordered_map<char, char> map1;
+        unordered_map<char, char> map2;
+        map1.insert(make_pair(s[0], t[0]));
+        map2.insert(make_pair(t[0], s[0]));
+        
+        for (int i = 1; i< s.size(); i++){
+            if (map1.find(s[i])!=map1.end()){
+                if (t[i] != map1.at(s[i])) {
+                    return false;
+                }
+            }
+            
+            if (map2.find(t[i])!=map2.end()){
+                
+                if (s[i] != map2.at(t[i])) {
+                    return false;
+                }
+            }
+            
+            else {
+                map1.insert(make_pair(s[i],t[i]));
+                map2.insert(make_pair(t[i],s[i]));
+            }
+        }
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Word Pattern (E)}
+Given a pattern and a string str, find if str follows the same pattern. Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str. \\
+
+Examples:\\
+    pattern = ``abba", str = ``dog cat cat dog" should return true.\\
+    pattern = ``abba", str = ``dog cat cat fish" should return false.\\
+    pattern = ``aaaa", str = ``dog cat cat dog" should return false.\\
+    pattern = ``abba", str = ``dog dog dog dog" should return false.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+        unordered_map<char, int> p;
+        unordered_map<string, int> w;
+        istringstream in(str);              // read each word from str to in
+        int i = 0;
+        
+        for (string word; in >> word; ++i) {
+            if (p.find(pattern[i]) != p.end() || w.find(word) != w.end()) {
+                if (p[pattern[i]] != w[word]) return false;
+            } else {
+                p[pattern[i]] = w[word] = i + 1;
+            }
+        }
+        return i == pattern.size();
+    }
+};
+\end{lstlisting}
+
+
+\section{Word Pattern II (H)}
+Given a pattern and a string str, find if str follows the same pattern. Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty substring in str.\\
+
+Examples:\\
+    pattern = "abab", str = "redblueredblue" should return true.\\
+    pattern = "aaaa", str = "asdasdasdasd" should return true.\\
+    pattern = "aabb", str = "xyzabcxzyabc" should return false.\\
+
+Notes: You may assume both pattern and str contains only lowercase letters.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool wordPatternMatch(string pattern, string str) {
+        unordered_map<char, string> m;
+        set<string> s;
+        return helper(pattern, 0, str, 0, m, s);
+    }
+    bool helper(string pattern, int p, string str, int r, unordered_map<char, string> &m, set<string> &s) {
+        if (p == pattern.size() && r == str.size()) return true;
+        if (p == pattern.size() || r == str.size()) return false;
+        char c = pattern[p];
+        for (int i = r; i < str.size(); ++i) {
+            string t = str.substr(r, i - r + 1);
+            if (m.count(c) && m[c] == t) {
+                if (helper(pattern, p + 1, str, i + 1, m, s)) return true;
+            } else if (!m.count(c)) {
+                if (s.count(t)) continue;
+                m[c] = t;
+                s.insert(t);
+                if (helper(pattern, p + 1, str, i + 1, m, s)) return true;
+                m.erase(c);
+                s.erase(t);
+            }
+        }
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Valid Parentheses (E)}
+Given a string containing just the characters `(', `)', `\{', `\}', `[' and `]', determine if the input string is valid. The brackets must close in the correct order, ``()" and ``()[]\{\}" are all valid but ``(]" and ``([)]" are not.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> tmp;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+                tmp.push(s[i]);
+            } else if ( (!tmp.empty() && tmp.top() == '(' && s[i] == ')') ||
+                        (!tmp.empty() && tmp.top() == '[' && s[i] == ']') ||                                               
+                        (!tmp.empty() && tmp.top() == '{' && s[i] == '}') ){
+                tmp.pop();
+            } else {
+                return false;
+            }
+        }
+        
+        return tmp.empty();
+    }
+};
+\end{lstlisting}
+
+
+\section{Generate Parentheses (M)}
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. \\
+ 
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        generate(res, "", n, 0);
+        return res;
+    }
+    
+    void generate(vector<string> &res, string str, int left, int right) {
+        if (left == 0 && right == 0) {
+            res.push_back(str);
+            return;
+        }
+            
+        if (right > 0)
+            generate(res, str+")", left, right-1);
+            
+        if (left > 0)
+            generate(res, str+"(", left-1, right+1);
+    }
+};
+\end{lstlisting}
+
+
+\section{Different Ways to Add Parentheses (M)}
+Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.\\
+
+Example: 
+Input: ``2-1-1". \\
+((2-1)-1) = 0\\
+(2-(1-1)) = 2\\
+Output: [0, 2]\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string input) {
+        vector<int> res;
+        int n = input.size();
+        
+        for (int i = 0; i < n; ++i) {
+            char c = input[i];
+            if (c == '+' || c == '-' || c == '*') {
+                vector<int> result1 = diffWaysToCompute(input.substr(0,i));
+                vector<int> result2 = diffWaysToCompute(input.substr(i+1));
+                for (int j = 0; j < result1.size(); ++j) {
+                    for (int k = 0; k < result2.size(); ++k) {
+                        switch (c) {
+                            case '+':
+                                res.push_back(result1[j] + result2[k]);
+                                break;
+                            case '-':
+                                res.push_back(result1[j] - result2[k]);
+                                break;
+                            case '*':
+                                res.push_back(result1[j] * result2[k]);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (res.empty())
+            res.push_back(stoi(input));
+            
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Longest Valid Parentheses (H)}
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring. \\
+
+For "(()", the longest valid parentheses substring is "()", which has length = 2.\\
+
+Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int maxlen = 0, last = -1;
+        stack<int> tmp;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(') {
+                tmp.push(i);                // push the index of '(' to stack
+            } else {
+                if (tmp.empty()) {          // if no match for the current ')'
+                    last = i;               // update last index of '('
+                } else {                    // if find a match for the current ')'
+                    tmp.pop();              // pop the index of '('
+                    if (tmp.empty()) {                              
+                        maxlen = max(maxlen, i - last);
+                    } else {
+                        maxlen = max(maxlen, i - tmp.top());
+                    }
+                }
+            }
+        }
+        
+        return maxlen;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Invalid Parentheses (H)}
+Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results. \\
+
+Note: The input string may contain letters other than the parentheses ( and ). \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> removeInvalidParentheses(string s) {
+        unordered_set<string> result;
+        int left_removed = 0;
+        int right_removed = 0;
+        for(auto c : s) {
+            if(c == '(') {
+                ++left_removed;
+            }
+            if(c == ')') {
+                if(left_removed != 0) {
+                    --left_removed;
+                }
+                else {
+                    ++right_removed;
+                }
+            }
+        }
+        helper(s, 0, left_removed, right_removed, 0, "", result);
+        return vector<string>(result.begin(), result.end());
+    }
+private:
+    void helper(string s, int index, int left_removed, int right_removed, int pair, string path, unordered_set<string>& result) {
+        if(index == s.size()) {
+            if(left_removed == 0 && right_removed == 0 && pair == 0) {
+                result.insert(path);
+            }
+            return;
+        }
+        if(s[index] != '(' && s[index] != ')') {
+            helper(s, index + 1, left_removed, right_removed, pair, path + s[index], result);
+        }
+        else {
+            if(s[index] == '(') {
+                if(left_removed > 0) {
+                    helper(s, index + 1, left_removed - 1, right_removed, pair, path, result);
+                }
+                helper(s, index + 1, left_removed, right_removed, pair + 1, path + s[index], result);
+            }
+            if(s[index] == ')') {
+                if(right_removed > 0) {
+                    helper(s, index + 1, left_removed, right_removed - 1, pair, path, result);
+                }
+                if(pair > 0) {
+                    helper(s, index + 1, left_removed, right_removed, pair - 1, path + s[index], result);
+                }
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Flip Game (E)}
+You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive ``++" into ``- -". The game ends when a person can no longer make a move and therefore the other person will be the winner. Write a function to compute all possible states of the string after one valid move.\\
+
+For example, given s = ``++++", after one move, it may become one of the following states:
+[
+  ``- -++",
+  ``+- -+",
+  ``++- -"
+]
+If there is no valid move, return an empty list [].\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> generatePossibleNextMoves(string s) {
+        vector<string> res;
+        for (int i = 1; i < s.size(); ++i) {
+            if (s[i] == '+' && s[i-1] == '+'){
+                res.push_back(s.substr(0, i-1) + "--" + s.substr(i+1)); // substr(pos, len);
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Flip Game II (M)}
+You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner. Write a function to determine if the starting player can guarantee a win.\\
+
+For example, given s = "++++", return true. The starting player can guarantee a win by flipping the middle "++" to become "+--+".\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool canWin(string s) {
+        for (int i = 1; i < s.size(); ++i) {
+            if (s[i] == '+' && s[i - 1] == '+' && !canWin(s.substr(0, i - 1) + "--" + s.substr(i + 1))) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Shortest Word Distance (E)}
+Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.\\
+
+For example,\\
+Assume that words = [``practice", ``makes", ``perfect", ``coding", ``makes"].\\
+Given word1 = ``coding", word2 = ``practice", return 3.\\
+Given word1 = ``makes", word2 = ``coding", return 1.\\
+
+Note: You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int shortestDistance(vector<string>& words, string word1, string word2) {
+        int p1 = -1, p2 = -1, res = INT_MAX;
+        for (int i = 0; i < words.size(); ++i) {
+            if (words[i] == word1)  p1 = i;
+            if (words[i] == word2)  p2 = i;
+            if (p1 != -1 && p2 != -1)
+                res = min(res, abs(p1 - p2));
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int shortestDistance(vector<string>& words, string word1, string word2) {
+        int idx = -1, res = INT_MAX;
+        for (int i = 0; i < words.size(); ++i) {
+            if (words[i] == word1 || words[i] == word2)  {
+                if (idx != -1 && words[idx] != words[i]) {
+                    res = min(res, i - idx)
+                }
+                idx = i;
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Shortest Word Distance II (M)}
+This is a follow up of Shortest Word Distance. The only difference is now you are given the list of words and your method will be called repeatedly many times with different parameters. How would you optimize it? Design a class which receives a list of words in the constructor, and implements a method that takes two words word1 and word2 and return the shortest distance between these two words in the list.\\
+
+For example,\\
+Assume that words = [``practice", ``makes", ``perfect", ``coding", ``makes"].\\
+Given word1 = ``coding", word2 = ``practice", return 3.\\
+Given word1 = ``makes", word2 = ``coding", return 1.\\
+
+Note: You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.\\
+
+\begin{lstlisting}
+// 1. O(MN) solution
+class WordDistance {
+public:
+    WordDistance(vector<string> &words) {
+        for (int i = 0; i < words.size(); ++i) {
+            m[words[i]].push_back(i);
+        }
+    }
+    
+    int shortestDistance(string word1, string word2) {
+        int res = INT_MAX;
+        for (int i = 0; i < m[word1].size(); ++i) {
+            for (int j = 0; j < m[word2].size(); ++j) {
+                res = min(res, abs(m[word1][i] - m[word2][j]));
+            }
+        }
+        return res;
+    }
+
+private:
+    unordered_map<string, vector<int>> m;
+};
+
+// 2. O(M+N) solution
+class WordDistance {
+public:
+    WordDistance(vector<string> &words) {
+        for (int i = 0; i < words.size(); ++i) {
+            m[words[i]].push_back(i);
+        }
+    }
+    
+    int shortestDistance(string word1, string word2) {
+        int i = 0, j = 0, res = INT_MAX;
+        while (i < m[word1].size() && j < m[word2].size()) {
+            res = min(res, abs(m[word1][i] - m[word2][j]));
+            m[word1][i] < m[word2][j] ? ++i : ++j;    
+        }
+        return res;
+    }
+
+private:
+    unordered_map<string, vector<int>> m;
+};
+\end{lstlisting}
+
+
+\section{Shortest Word Distance III (M)}
+This is a follow up of Shortest Word Distance. The only difference is now word1 could be the same as word2. Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list. In this time, word1 and word2 may be the same and they represent two individual words in the list.
+
+For example,\\
+Assume that words = [``practice", ``makes", ``perfect", ``coding", ``makes"].\\
+Given word1 = ``makes", word2 = ``coding", return 1.\\
+Given word1 = ``makes", word2 = ``makes", return 3.\\
+
+Note:
+You may assume word1 and word2 are both in the list. 
+
+\begin{lstlisting}
+class Solution {
+public:
+    int shortestWordDistance(vector<string>& words, string word1, string word2) {
+        int idx = -1, res = INT_MAX;
+        for (int i = 0; i < words.size(); ++i) {
+            if (words[i] == word1 || words[i] == word2) {
+                if (idx != -1 && (word1 == word2 || words[i] != words[idx])) {
+                    res = min(res, i - idx);
+                }
+                idx = i;
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Strobogrammatic Number (E)}
+A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down). Write a function to determine if a number is strobogrammatic. The number is represented as a string.\\
+
+For example, the numbers "69", "88", and "818" are all strobogrammatic.\\
+
+\begin{lstlisting}
+class Solution{
+public:
+    bool isStrobogrammatic(string num) {
+        int l = 0, r = num.size() - 1;
+        while (l <= r) {
+            if (num[l] == num[r]) {
+                if (num[l] != '1' || num[l] != '8' || num[l] != '0') {
+                    return false;
+                }
+            } else {
+                if ( (num[l] != '6' || num[r] != '9') && (num[l] != '9' || num[r] != '6') ) {
+                    return false;
+                }
+            }
+            ++l;
+            --r;
+        }
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Strobogrammatic Number II (M)}
+A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down). Find all strobogrammatic numbers that are of length = n.\\
+
+For example, Given n = 2, return ["11","69","88","96"].\\
+
+Hint: Try to use recursion and notice that it should recurse with n - 2 instead of n - 1. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> findStrobogrammatic(int n) {
+        return find(n, n);
+    }
+    
+    vector<string> find(int m, int n) {
+        if (m == 0) return {""};
+        if (m == 1) return {"0", "1", "8"};
+        vector<string> t = find(m - 2, n), res;
+        
+        for (auto a : t) {
+            // add 0 to both side of a if level m is not level n
+            if (m != n) res.push_back("0" + a + "0"); 
+            
+            res.push_back("1" + a + "1");
+            res.push_back("6" + a + "9");
+            res.push_back("8" + a + "8");
+            res.push_back("9" + a + "6");
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Strobogrammatic Number III (M)}
+A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down). Write a function to count the total strobogrammatic numbers that exist in the range of $low \leq num \leq high$. \\
+
+For example,\\
+Given low = "50", high = "100", return 3. Because 69, 88, and 96 are three strobogrammatic numbers. \\
+
+Note: Because the range might be a large number, the low and high numbers are represented as string.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int strobogrammaticInRange(string low, string high) {
+        int res = 0;
+        find(low, high, "", res);
+        find(low, high, "0", res);
+        find(low, high, "1", res);
+        find(low, high, "8", res);
+        return res;
+    }
+    void find(string low, string high, string w, int &res) {
+        if (w.size() >= low.size() && w.size() <= high.size()) {
+            if ((w.size() == low.size() && w.compare(low) < 0) || (w.size() == high.size() && w.compare(high) > 0)) {
+                return;
+            }
+            if (!(w.size() > 1 && w[0] == '0')) ++res;
+        }
+        if (w.size() + 2 > high.size()) return;
+        find(low, high, "0" + w + "0", res);
+        find(low, high, "1" + w + "1", res);
+        find(low, high, "6" + w + "9", res);
+        find(low, high, "8" + w + "8", res);
+        find(low, high, "9" + w + "6", res);
+    }
+};
+\end{lstlisting}
+
+
+\section{Read N Characters Given Read4 (E)}
+The API: int read4(char *buf) reads 4 characters at a time from a file. The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file. By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.\\
+
+Note:The read function will only be called once for each test case.\\
+
+\begin{lstlisting}
+int read4(char *buf);
+
+class Solution {
+public:
+    int read(char *buf, int n) {
+        int res = 0;
+        for (int i = 0; i <= n / 4; ++i) {
+            int cur = read4(buf + res);
+            if (cur == 0) break;
+            res += cur;
+        }
+        return min(res, n);
+    }
+};
+\end{lstlisting}
+
+
+\section{Read N Characters Given Read4 II (H)}
+The API: int read4(char *buf) reads 4 characters at a time from a file. The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file. By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.\\
+
+Note: The read function may be called multiple times. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int read(char *buf, int n) {
+        for (int i = 0; i < n; ++i) {
+            if (readPos == writePos) {
+                writePos = read4(buff);
+                readPos = 0;
+                if (writePos == 0) return i;
+            }
+            buf[i] = buff[readPos++];
+        }
+        return n;
+    }
+private:
+    int readPos = 0, writePos = 0;
+    char buff[4];
+};
+\end{lstlisting}
+
+
+\section{Unique Word Abbreviation (E)}
+An abbreviation of a word follows the form $<first letter><number><last letter>$. Below are some examples of word abbreviations:\\
+
+a) it                     $ -->$ it    (no abbreviation)\\
+
+b) d|o|g                   $-->$ d1g\\
+
+c) i|nternationalizatio|n  $-->$ i18n\\
+
+d) l|ocalizatio|n          $-->$ l10n\\
+
+Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no other word from the dictionary has the same abbreviation.\\
+
+Example: \\
+Given dictionary = [ "deer", "door", "cake", "card" ]\\
+isUnique("dear") $->$ false\\
+isUnique("cart") $->$ true\\
+isUnique("cane") $->$ false\\
+isUnique("make") $->$ true\\
+
+\begin{lstlisting}
+class ValidWordAbbr {
+public:
+    ValidWordAbbr(vector<string> &dictionary) {
+        for (auto a : dictionary) {
+            // get the word abbreviation in dictionary
+            string k = a.front() + to_string(a.size() - 2) + a.back(); 
+            m[k].insert(a);
+        }
+    }
+    
+    // If this word (also this word's abbreviation) is not in the dictionary 
+    // OR this word and only it's abbreviation in the dictionary,
+    // we call a word's abbreviation unique.
+    bool isUnique(string word) {
+        // get the word abbreviation
+        string k = word.front() + to_string(word.size() - 2) + word.back();
+        return m[k].count(word) == m[k].size();
+    }
+    
+private:
+    unordered_map<string, set<string>> m;   // mapping the word abbr and the words
+};
+\end{lstlisting}
+
+
+\section{Generalized Abbreviation (M)}
+Write a function to generate the generalized abbreviations of a word.\\
+
+Example: Given word = "word", return the following list (order does not matter):\\
+$["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", \\
+"1o2", "2r1", "3d", "w3", "4"]$ \\
+
+\begin{lstlisting}
+// 1. Iterative solution
+class Solution {
+public:
+    vector<string> generateAbbreviations(string word) {
+        vector<string> res;
+        // Use binary bit to code word
+        for (int i = 0; i < pow(2, word.size()); ++i) {
+            string out = "";
+            int cnt = 0, t = i;
+            for (int j = 0; j < word.size(); ++j) {
+                if (t & 1 == 1) { // If bit is 1, count it as a number
+                    ++cnt;
+                    if (j == word.size() - 1) {
+                        out += to_string(cnt);
+                    }
+                } else { // If bit is 0, count it as a char
+                    if (cnt != 0) { // If there is a number counted, output it
+                        out += to_string(cnt);
+                        cnt = 0;
+                    }
+                    out += word[j]; // Otherwise output char
+                }
+                t >>= 1; // Move to next bit
+            }
+            res.push_back(out);
+        }
+        return res;
+    }
+};
+
+// 2. Recursive solution
+class Solution {
+public:
+    vector<string> generateAbbreviations(string word) {
+        vector<string> res{word};
+        helper(word, 0, res);
+        return res;
+    }
+    void helper(string word, int pos, vector<string> &res) {
+        for (int i = pos; i < word.size(); ++i) {
+            for (int j = 1; i + j <= word.size(); ++j) {
+                string t = word.substr(0, i);
+                t += to_string(j) + word.substr(i + j);
+                res.push_back(t);
+                helper(t, i + 1 + to_string(j).size(), res);
+            }
+        }
+    }
+};
+\end{lstlisting}
+

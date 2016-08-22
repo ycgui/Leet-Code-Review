@@ -1,0 +1,1682 @@
+\chapter{Array}
+\section{Bulls and Cows (E)}
+You are playing the following Bulls and Cows game with your friend: You write down a number and ask your friend to guess what the number is. Each time your friend makes a guess, you provide a hint that indicates how many digits in said guess match your secret number exactly in both digit and position (called "bulls") and how many digits match the secret number but locate in the wrong position (called "cows"). Your friend will use successive guesses and hints to eventually derive the secret number.\\
+
+For example:\\
+Secret number:  ``1807"\\
+Friend's guess: ``7810"\\
+Hint: 1 bull and 3 cows. (The bull is 8, the cows are 0, 1 and 7.) \\
+
+Please note that both secret number and friend's guess may contain duplicate digits, for example:\\
+Secret number:  ``1123"\\
+Friend's guess: ``0111"\\
+In this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow, and your function should return ``1A1B". \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int bull = 0, cow = 0;
+        int set1[10] = {0};
+        int set2[10] = {0};
+        int len = secret.size();
+        
+        for (int i = 0; i < len; ++i) {
+            if (secret[i] == guess[i]) {
+                ++bull;
+            } else {
+                ++set1[secret[i] - '0'];    
+                ++set2[guess[i] - '0']; 
+            }
+        }
+        
+        for (int i = 0; i < 10; ++i) {
+            if (set1[i] != 0 && set2[i] != 0)
+                cow += min(set1[i],set2[i]);
+        }
+    
+        return to_string(bull) + 'A' + to_string(cow) + 'B';
+    }
+};
+\end{lstlisting}
+
+
+\section{Rotate Array (E)}
+Rotate an array of n elements to the right by k steps.\\
+
+For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    void rotate(vector<int> &nums, int k) {
+        if (k == 0) return;
+        int n = nums.size();
+        k = k % n;              // get the correct k if k > n
+        
+        reverse(nums, 0, n-1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, n-1);
+    }
+    
+    void reverse(vector<int> &nums, int start, int end) {
+        int tmp; 
+        while (start < end) {
+            tmp = nums[start];
+            nums[start++] = nums[end];
+            nums[end--] = tmp;
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Move Zeros (E)}
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.\\
+
+For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].\\
+
+Note:\\
+    You must do this in-place without making a copy of the array.\\
+    Minimize the total number of operations.\\
+    
+\begin{lstlisting}
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int index = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] != 0)
+                nums[index++] = nums[i];
+        }
+        for (int i = index; i < nums.size(); ++i)
+            nums[i] = 0;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Element (E)}
+Given an array and a value, remove all instances of that value in place and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. The order of elements can be changed. It doesn't matter what you leave beyond the new length.\\
+
+Example:\\
+Given input array nums = [3,2,2,3], val = 3, Your function should return length = 2, with the first two elements of nums being 2.\\
+    
+\begin{lstlisting}
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int index = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] != val)
+                nums[index++] = nums[i];
+        }
+        return index;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Duplicates from Sorted Array (E)}
+Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory.\\
+
+For example,\\
+Given input array nums = [1,1,2], your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length. \\
+    
+\begin{lstlisting}
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.empty())   return 0;
+            
+        int index = 0;
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[index] != nums[i])
+                nums[++index] = nums[i];
+        }
+        return index + 1;
+    }
+};
+\end{lstlisting}
+
+
+\section{Missing Number (M)}
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.\\
+
+For example, 
+Given nums = [0, 1, 3] return 2.\\
+
+Note:
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity? \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int missingNumber(vector<int> &nums) {
+        int n = nums.size(), res = (1 + n) * n / 2;
+        for (int i = 0; i < n; ++i) {
+            res -= nums[i];
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{First Missing Positive (H)}
+Given an unsorted integer array, find the first missing positive integer.\\
+
+For example,
+Given [1,2,0] return 3,
+and [3,4,-1,1] return 2.\\
+
+Your algorithm should run in O(n) time and uses constant space. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int i = 0, n = nums.size();
+        while (i < n) {
+            if (nums[i] <= n && nums[i] > 0 && nums[i] != nums[nums[i] - 1]) {
+                swap(nums[i], nums[nums[i] - 1]);
+            } else {
+                ++i;
+            }
+        }
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] != i + 1) {
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+};
+\end{lstlisting}
+
+
+\section{Intersection of Two Arrays (E)}
+Given two arrays, write a function to compute their intersection.\\
+
+Example:
+Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].\\
+
+Note: \\
+    Each element in the result must be unique.\\
+    The result can be in any order.\\
+    
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set<int> s(nums1.begin(), nums1.end());
+        vector<int> res;
+        
+        for (auto x : nums2) {
+            if (s.find(x) != s.end()) {           // Searches x in s, returns 1 if x is found, otherwise return 0
+                res.push_back(x);
+                s.erase(x);
+            }
+        }
+            
+        return res;
+    }
+};
+\end{lstlisting}   
+
+
+\section{Intersection of Two Arrays II (E)}
+Given two arrays, write a function to compute their intersection.\\
+
+Example:
+Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].\\
+
+Note:\\
+    Each element in the result should appear as many times as it shows in both arrays.\\
+    The result can be in any order.\\
+
+Follow up:\\
+    What if the given array is already sorted? How would you optimize your algorithm?\\
+    What if nums1's size is small compared to nums2's size? Which algorithm is better?\\
+    What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?\\
+
+\begin{lstlisting}
+// Sol1: Hash table
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int,int> dict;
+        vector<int> res;
+        
+        for (int i = 0; i < nums1.size(); ++i)
+            dict[nums1[i]]++;
+            
+        for (int i = 0; i < nums2.size(); ++i){
+            if (--dict[nums2[i]] >= 0)
+                res.push_back(nums2[i]);
+        }
+        
+        return res;
+    }
+};
+
+// Sol2: Sorting & Two pointers
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        
+        int n1 = nums1.size(), n2 = nums2.size();
+        int i1 = 0, i2 = 0;
+        vector<int> res;
+        
+        while(i1 < n1 && i2 < n2) {
+            if (nums1[i1] == nums2[i2]) {
+                res.push_back(nums1[i1]);
+                ++i1;
+                ++i2;
+            } else if (nums1[i1] < nums2[i2]) {
+                ++i1;
+            } else {
+                ++i2;
+            }
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}  
+
+
+\section{Merge Sorted Array (E)}
+Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.\\
+
+Note: You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2. The number of elements initialized in nums1 and nums2 are m and n respectively.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
+        
+        while (i >= 0 && j >= 0) {              // compare from end to start of two arrays
+            if (nums1[i] < nums2[j]) {          // put the largest element to the end of array
+                nums1[k--] = nums2[j--];
+            } else {
+                nums1[k--] = nums1[i--];
+            }
+        }
+        
+        while (i >= 0)                          // keep writing for the left over
+            nums1[k--] = nums1[i--];
+            
+        while (j >= 0)
+            nums1[k--] = nums2[j--];
+    }
+};
+\end{lstlisting}
+
+
+\section{Sort Transformed Array (M)}
+Given a sorted array of integers nums and integer values a, b and c. Apply a function of the form $f(x) = ax^2 + bx + c$ to each element x in the array. The returned array must be in sorted order.\\
+
+Expected time complexity: O(n)\\
+
+Example:\\
+nums = [-4, -2, 2, 4], a = 1, b = 3, c = 5,
+Result: [3, 9, 15, 33]\\
+nums = [-4, -2, 2, 4], a = -1, b = 3, c = 5
+Result: [-23, -5, 1, 7]\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
+        int n = nums.size(), i = 0, j = n - 1, k;
+        vector<int> res(n);
+        // Decide which side we should write sorted result to res
+        if (a >= 0) {   // parabola open up
+            k = n - 1;
+        } else {        // parabola open down
+            k = 0;
+        }
+        while (i <= j) {
+            if (a >= 0) { // large number first
+                if (cal(nums[i],a,b,c) >= cal(nums[j],a,b,c)) {
+                    res[j--] = cal(nums[i++],a,b,c);
+                } else {
+                    res[j--] = cal(nums[j--],a,b,c);
+                }
+            } else { // small number first
+                if (cal(nums[i],a,b,c) >= cal(nums[j],a,b,c)) {
+                    res[i++] = cal(nums[j--],a,b,c);
+                } else {
+                    res[i++] = cal(nums[i++],a,b,c);
+                }
+            }
+        }
+        return res;
+    }
+    int cal(int x, int a, int b, int c) {
+        return a * x * x + b * x + c;
+    }
+};
+\end{lstlisting}
+
+
+\section{Majority Element (E)}
+Given an array of size n, find the majority element. The majority element is the element that appears more than floor(n/2) times.\\
+
+You may assume that the array is non-empty and the majority element always exist in the array.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int element, counts = 0;
+        
+        for (int i = 0; i < nums.size(); ++i) {
+            if (counts == 0) {
+                element = nums[i];
+                ++counts;
+            } else {
+                if (element == nums[i])
+                    ++counts;
+                else
+                    --counts;
+            }
+        }
+        
+        return element;
+    }
+};
+\end{lstlisting}
+
+
+\section{Majority Element II (M)}
+Given an integer array of size n, find all elements that appear more than floor(n/3) times. The algorithm should run in linear time and in O(1) space. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int candidate1 = 0, candidate2 = 0, count1 = 0, count2 = 0;
+        vector<int> res;
+        
+        // 1. get candidates
+        for (auto n : nums) {
+            if (candidate1 == n) {
+                ++count1;
+            } else if (candidate2 == n) {
+                ++count2;
+            } else if (count1 == 0) {
+                candidate1 = n;
+                ++count1;
+            } else if (count2 == 0) {
+                candidate2 = n;
+                ++count2;
+            } else {
+                --count1;
+                --count2;
+            }
+        }
+        
+        // 2. get the count of each candidate
+        count1 = 0;
+        count2 = 0;
+        for (auto n : nums) {
+            if (candidate1 == n)
+                ++count1;
+            else if (candidate2 == n)
+                ++count2;
+        }
+        
+        // 3. check if each candidate satisfies the majority condition
+        if (count1 > nums.size() / 3)
+            res.push_back(candidate1);
+        if (count2 > nums.size() / 3)
+            res.push_back(candidate2);
+            
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Contains Duplicate (E)}
+Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set<int> s;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (s.find(nums[i]) != s.end())
+                return true;
+            s.insert(nums[i]);
+        }
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Contains Duplicate II (E)}
+Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_set<int> s;
+        
+        if (k <= 0) 
+            return false;
+        if (k >= nums.size()) 
+            k = nums.size() - 1;
+       
+        for (int i = 0; i < nums.size(); ++i) {
+            if (i > k) 
+                s.erase(nums[i-k-1]);
+            if (s.find(nums[i]) != s.end())
+                return true;
+            s.insert(nums[i]);
+        }
+        
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Contains Duplicate III (M)}
+Given an array of integers, find out whether there are two distinct indices i and j in the array such that the difference between nums[i] and nums[j] is at most t and the difference between i and j is at most k. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+        set<int> s; // set is ordered automatically 
+        
+        for (int i = 0; i < nums.size(); i++) {
+            // keep the set contains nums i j at most k
+            if (i > k) 
+                s(nums[i-k-1]); 
+            
+            // |x - nums[i]| <= t  ==> -t <= x - nums[i] <= t;
+            auto pos = s(nums[i] - t); // x-nums[i] >= -t ==> x >= nums[i]-t 
+            if (pos != s() && *pos - nums[i] <= t) // x - nums[i] <= t
+                return true;
+            
+            s(nums[i]);
+        }
+        
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Find the Duplicate Number (H)}
+Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one. \\
+
+Note:
+    You must not modify the array (assume the array is read only).\\
+    You must use only constant, O(1) extra space.\\
+    Your runtime complexity should be less than $O(n^2)$.\\
+    There is only one duplicate number in the array, but it could be repeated more than once.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int low = 1, high = nums.size() - 1;
+        // Use the mid of 1~n, not the mid of nums[0]~nums[nums.size()-1]
+        while (low < high) {
+            int mid = low + (high - low) / 2; 
+            int cnt = 0;
+            for (int i = 0; i < nums.size(); ++i) {
+                if (nums[i] <= mid) {
+                    ++cnt;
+                }
+            }
+            if (cnt <= mid) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
+};
+\end{lstlisting}
+
+
+\section{Top K Frequent Elements (M)}
+Given a non-empty array of integers, return the k most frequent elements.\\
+
+For example,
+Given [1,1,1,2,2,3] and k = 2, return [1,2].\\
+
+Note:
+    You may assume k is always valid, $1 \leq k \leq $ number of unique elements.\\
+    Your algorithm's time complexity must be better than O(n log n), where n is the array's size.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> m;
+        // Priority queues are a type of container adaptors, specifically designed such that its first element is always the greatest of the elements it contains, according to some strict weak ordering criterion.
+        priority_queue<pair<int, int>> q;
+        vector<int> res;
+        for (auto a : nums) {
+            ++m[a];
+        }
+        for (auto it : m) {
+            q.push({it.second, it.first});
+        }
+        for (int i = 0; i < k; ++i) {
+            res.push_back(q.top().second); 
+            q.pop();
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Two Sum (E)}
+Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution. \\
+
+Example:\\
+Given nums = [2, 7, 11, 15], target = 9,\\
+Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &nums, int target) {
+        vector<int> res;
+        unordered_map<int, int> map;
+        
+        for (int i = 0; i < nums.size(); ++i)
+            map[nums[i]] = i;
+            
+        for (int i = 0; i < nums.size(); ++i) {
+            int tmp = target - nums[i];
+            if (map.find(tmp) != map.end() && i != map[tmp]){
+                res.push_back(i);
+                res.push_back(map[tmp]);
+                break;
+            }
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Two Sum II (M)}
+Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.\\
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.\\
+
+You may assume that each input would have exactly one solution.\\
+
+Input: numbers={2, 7, 11, 15}, target=9\\
+Output: index1=1, index2=2\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &nums, int target) {
+        vector<int> res;
+        int left = 0, right = nums.size() - 1;
+        
+        while (left < right) {
+            int tmp = nums[left] + nums[right];
+            if (tmp < target) {
+                ++left;
+            } else if (tmp > target) {
+                --right;
+            } else {
+                res.push_bcak(left+1);
+                res.push_back(right+1);
+                return res;
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Two Sum III (E)}
+Design and implement a TwoSum class. It should support the following operations: add and find.\\
+
+add - Add the number to an internal data structure.\\
+find - Find if there exists any pair of numbers which sum is equal to the value.\\
+
+For example,\\
+add(1); add(3); add(5);\\
+find(4) $->$ true\\
+find(7) $->$ false\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    unordered_map<int, int> map;
+    
+    void add(int num) {
+        ++map[num];
+    }
+    
+    bool find(int num) {
+        for (auto i : map) {
+            int tmp = num - i.first;
+            if (map.find(tmp) != map.end()) {       
+                if (tmp != i.first)             // the pair of numbers has two different numbers
+                    return true;
+                else if (i.second >= 2)         // the pair of numbers has two same numbers
+                    return true;
+            }
+        }
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{3Sum (M)}
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. The solution set must not contain duplicate triplets.\\
+
+For example, given array S = [-1, 0, 1, 2, -1, -4], \\
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+] \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> res;
+        if (nums.size() < 3) return res;
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i < nums.size()-2; ++i) {
+            if (i != 0 && nums[i] == nums[i-1]) continue;           // skip duplicates
+            
+            // like the two sum problem, let j to be left, and k to be right
+            int j = i + 1, k = nums.size() - 1;                     
+            while (j < k) {
+                if (nums[i] + nums[j] + nums[k] == 0) {
+                    res.push_back({nums[i], nums[j], nums[k]});
+                    ++j;
+                    --k;
+                    while (j < k && nums[j] == nums[j-1]) ++j;      // skip duplicates
+                    while (j < k && nums[k] == nums[k+1]) --k;      // skip duplicates
+                } else if (nums[i] + nums[j] + nums[k] < 0) {
+                    ++j;
+                    while (j < k && nums[j] == nums[j-1]) ++j;      // skip duplicates
+                } else {
+                    --k;
+                    while (j < k && nums[k] == nums[k+1]) --k;      // skip duplicates
+                }
+            }
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{3Sum Closest (M)}
+Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution. \\
+
+For example, given array S = {-1 2 1 -4}, and target = 1. The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int threeSumClosest(vector<int> &nums, int target) {
+        if (nums.size() < 3)    return 0;
+        int res = 0, min = INT_MAX;
+        sort(nums.begin(), nums.end());
+        
+        for (int i = 0; i < nums.size() - 2; ++i) {
+            int j = i + 1, k = nums.size() - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                int diff = abs(sum - target);
+                if (diff < min) {           // find the closest sum
+                    min = diff;
+                    res = sum;
+                }
+                if (sum < target)           // update j and k
+                    ++j;
+                else if (sum > target)
+                    --k;
+                else
+                    return res;
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{3Sum Smaller (M)}
+Given an array of n integers nums and a target, find the number of index triplets i, j, k with $0 <= i < j < k < n$ that satisfy the condition $nums[i] + nums[j] + nums[k] < target$.\\
+
+For example, given nums = [-2, 0, 1, 3], and target = 2.\\
+
+Return 2. Because there are two triplets which sums are less than 2:
+[-2, 0, 1]
+[-2, 0, 3]\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int threeSumSmaller(vector<int> &nums, int target) {
+        if (nums.size() < 3)    return 0;
+        int cnt = 0;
+        sort(nums.begin(), nums.end());
+        
+        for (int i = 0; i < nums.size() - 2; ++i){
+            int j = i + 1; k = nums.size() - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k]
+                if (sum >= target) {
+                    --k;
+                } else {
+                    cnt += k - j;   // if j is fixed, all numbers from j to k (less than k, not include j) are satisfied
+                    ++j;            // update j for the next iteration
+                }
+            }
+        }
+        
+        return cnt;
+    }
+};
+\end{lstlisting}
+
+
+\section{4Sum (M)}
+Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target. The solution set must not contain duplicate quadruplets.\\
+
+For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.\\
+A solution set is:
+[
+  [-1,  0, 0, 1],
+  [-2, -1, 1, 2],
+  [-2,  0, 0, 2]
+]\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> res;
+        if (nums.size() < 4)    return res;  
+        sort(nums.begin(), nums.end());
+        
+        for (int i = 0; i < nums.size() - 3; ++i) {
+            if (i != 0 && nums[i] == nums[i-1]) continue;
+            for (int j = i + 1; j < nums.size() - 2; ++j) {
+                if (j != i + 1 && nums[j] == nums[j-1]) continue;
+                int p = j + 1, q = nums.size() - 1;
+                while (p < q) {
+                    int sum = nums[i] + nums[j] + nums[p] + nums[q];
+                    if (sum < target) {
+                        ++p;
+                        while (p < q && nums[p] == nums[p-1]) ++p;
+                    } else if (sum > target) {
+                        --q;
+                        while (p < q && nums[q] == nums[q+1]) --q;
+                    } else {
+                        res.push_back({nums[i], nums[j], nums[p], nums[q]});
+                        ++p;
+                        --q;
+                        while (p < q && nums[p] == nums[p-1]) ++p;
+                        while (p < q && nums[q] == nums[q+1]) --q;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Maximum Subarray (M)}
+Find the contiguous subarray within an array (containing at least one number) which has the largest sum.\\
+
+For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        int res = INT_MIN, tmp = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            tmp = max(nums[i], tmp + nums[i]);
+            res = max(res, tmp);
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Range Addition (M)}
+Assume you have an array of length n initialized with all 0's and are given k update operations. Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc. Return the modified array after all k operations were executed.\\
+
+Example:
+Given:
+    length = 5,
+    updates = [
+        [1,  3,  2],
+        [2,  4,  3],
+        [0,  2, -2]
+    ]\\
+
+Output:
+    [-2, 0, 3, 5, 3]\\
+
+Explanation:\\
+
+Initial state:
+[ 0, 0, 0, 0, 0 ]\\
+
+After applying operation [1, 3, 2]:
+[ 0, 2, 2, 2, 0 ]\\
+
+After applying operation [2, 4, 3]:
+[ 0, 2, 5, 5, 3 ]\\
+
+After applying operation [0, 2, -2]:
+[-2, 0, 3, 5, 3 ]\\
+
+Hint:\\
+    Thinking of using advanced data structures? You are thinking it too complicated.\\
+    For each update operation, do you really need to update all elements between i and j?\\
+    Update only the first and end element is sufficient.\\
+    The optimal time complexity is O(k + n) and uses O(1) extra space.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
+        vector<int> res(length+1, 0);
+        
+        // 1. The update query (l, r, v) requires that arr[i] += v for i in l..r (both l and r inclusive). 
+        // 2. Applying the final transformation [3] ensures that the increment of +v on arr[l] is carried through to all arr[i] for i >= l. 
+        // 3. The increment of -v on arr[r+1] ensures that the previous +v increment is cancelled out for each arr[i] for i >= r+1. 
+        for (int i = 0; i < update.size(); ++i) {
+            res[update[i][0]] += update[i][2];      
+            res[update[i][1] + 1] -= update[i][2]; 
+        }
+        
+        // propagate the addition number to all corresponding positions except the last one
+        for (int i = 1; i < length; ++i) {
+            res[i] += res[i-1];                 
+        }
+        
+        res.pop_back(); // remove the last element
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Maximum Product Subarray (M)}
+Find the contiguous subarray within an array (containing at least one number) which has the largest product.\\
+
+For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int mx = 1, mn = 1, res = INT_MIN;
+        for (int i = 0; i < nums.size(); ++i) {
+            int tmp = mx; // keep the previous max to avoid overwriting of max value
+            mx = max(max(nums[i], mx * nums[i]), mn * nums[i]);
+            mn = min(min(nums[i], tmp * nums[i]), mn * nums[i]); // use the prev max here
+            res = max(mx, res);
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Product of Array Except Self (M)}
+Given an array of n integers where n $>$ 1, nums, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i]. Solve it without division and in O(n). \\
+
+For example, given [1,2,3,4], return [24,12,8,6].\\
+
+Follow up: Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int> &nums) {
+        int n = nums.size(), tmp = 1;
+        vector<int> res(n, 1);
+        
+        // production of all elements before i
+        for (int i = 1; i < n; ++i) {
+            res[i] = res[i-1] * nums[i-1];
+        }
+        
+        // production of all elements after i
+        for (int i = n-1; i >= 0; --i) {
+            res[i] *= tmp;      // the tmp element after the last i is set to 1
+            tmp *= nums[i];     // update tmp during each iteration
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Maximum Size Subarray Sum Equals k (M)}
+Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.\\
+
+Example 1:\\
+Given nums = [1, -1, 5, -2, 3], k = 3, return 4. (because the subarray [1, -1, 5, -2] sums to 3 and is the longest)\\
+
+Example 2: \\
+Given nums = [-2, -1, 2, 1], k = 1, return 2. (because the subarray [-1, 2] sums to 1 and is the longest) \\
+
+Follow Up:
+Can you do it in O(n) time? \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxSubArrayLen(vector<int>& nums, int k) {
+        int sum = 0, res = 0;
+        unordered_map<int, int> m;
+        for (int i = 0; i < nums.size(); ++i) {
+            sum += nums[i];
+            if (sum == k)   res = i + 1;
+            // if sum - prev_sum = k, i.e. sum - k = prev_sum,
+            // we can remove prev_sum from sum to get the subarray sum equals k
+            else if (m.count(sum-k))    res = max(res, i - m[sum-k]);
+            if (!m.count(sum))  m[sum] = i;
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Minimum Size Subarray Sum (M)}
+Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum $\geq$ s. If there isn't one, return 0 instead.\\
+
+For example, given the array [2,3,1,2,4,3] and s = 7, the subarray [4,3] has the minimal length under the problem constraint. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int left = 0, right = 0, sum = 0, res = INT_MAX, n = nums.size();
+        while (right < n) {
+            // must have "right < n" to jump out the inner while loop
+            while (sum < s && right < n) {  
+                sum += nums[right++];
+            }
+            while (sum >= s) {
+                res = min(res, right - left);
+                sum -= nums[left++];
+            }
+        }
+        if (res == INT_MAX) return 0;
+        else return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Meeting Rooms (E)}
+Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si $<$ ei), determine if a person could attend all meetings.\\
+
+For example, given [[0, 30],[5, 10],[15, 20]], return false.\\
+
+\begin{lstlisting}
+/** 
+ * Definition for an interval. 
+ * struct Interval { 
+ *     int start; 
+ *     int end; 
+ *     Interval() : start(0), end(0) {} 
+ *     Interval(int s, int e) : start(s), end(e) {} 
+ * }; 
+ */
+class Solution {
+public:
+    bool canAttendMeetings(vector<Interval>& intervals) {
+        sort(intervals.begin(), intervals.end(), compare);
+        for (int i = 1; i < intervals.size(); ++i) {
+            // the start time of i should be larger than the end time of i-1 for a vaild case
+            if (intervals[i].start < intervals[i - 1].end) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    // use the start time to compare
+    bool compare(Interval& i1, Interval& i2) {
+        return i1.start < i2.start;
+    }
+};
+\end{lstlisting}
+
+
+\section{Meeting Rooms II (M)}
+Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si $<$ ei), find the minimum number of conference rooms required.\\
+
+For example, given [[0, 30],[5, 10],[15, 20]], return 2.\\
+
+\begin{lstlisting}
+// 1. Map
+class Solution {
+public:
+    int minMeetingRooms(vector<Interval>& intervals) {
+        map<int, int> m;    // map keeps their elements ordered rather than unordered_map
+        for (auto a : intervals) {
+            ++m[a.start];
+            --m[a.end];
+        }
+        int rooms = 0, res = 0;
+        for (auto it : m) {
+            rooms += it.second;
+            res = max(res, rooms); // always store the max room number
+        }
+        return res;
+    }
+};
+
+// 2. Two vectors
+class Solution {
+public:
+    int minMeetingRooms(vector<Interval>& intervals) {
+        vector<int> starts, ends;
+        int res = 0, endpos = 0;
+        for (auto a : intervals) {
+            starts.push_back(a.start);
+            ends.push_back(a.end);
+        }
+        sort(starts.begin(), starts.end());
+        sort(ends.begin(), ends.end());
+        for (int i = 0; i < intervals.size(); ++i) {
+            if (starts[i] < ends[endpos]) ++res;    // need a new room
+            else ++endpos;
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Logger Rate Limiter (E)}
+Design a logger system that receive stream of messages along with its timestamps, each message should be printed if and only if it is not printed in the last 10 seconds. Given a message and a timestamp (in seconds granularity), return true if the message should be printed in the given timestamp, otherwise returns false. It is possible that several messages arrive roughly at the same time.\\
+
+Example:\\
+Logger logger = new Logger();\\
+
+// logging string "foo" at timestamp 1\\
+logger.shouldPrintMessage(1, "foo"); returns true;\\
+
+// logging string "bar" at timestamp 2\\
+logger.shouldPrintMessage(2,"bar"); returns true;\\
+
+// logging string "foo" at timestamp 3\\
+logger.shouldPrintMessage(3,"foo"); returns false;\\
+
+// logging string "bar" at timestamp 8\\
+logger.shouldPrintMessage(8,"bar"); returns false;\\
+
+// logging string "foo" at timestamp 10\\
+logger.shouldPrintMessage(10,"foo"); returns false;\\
+
+// logging string "foo" at timestamp 11\\
+logger.shouldPrintMessage(11,"foo"); returns true;\\
+
+\begin{lstlisting}
+class Logger {
+public:
+    Logger() {}
+    
+    bool shouldPrintMessage(int timestamp, string message) {
+        if (!m.count(message)) {            // if the current message is not in m
+            m[message] = timestamp;         // store it and return true
+            return true;
+        } 
+        if (timestamp - m[message] >= 10) { // if the current message should be printed
+            m[message] = timestamp;         // update the timestamp of the current message
+            return true;
+        }
+        return false;
+    }
+
+private:
+    unordered_map<string, int> m;       // build a hashtable to store the message/timestamp pair
+};
+\end{lstlisting}
+
+
+\section{Design Hit Counter (M)}
+Design a hit counter which counts the number of hits received in the past 5 minutes. Each function accepts a timestamp parameter (in seconds granularity) and you may assume that calls are being made to the system in chronological order (ie, the timestamp is monotonically increasing). You may assume that the earliest timestamp starts at 1. It is possible that several hits arrive roughly at the same time.\\
+
+Example:\\
+HitCounter counter = new HitCounter();\\
+
+// hit at timestamp 1.\\
+counter.hit(1);\\
+
+// hit at timestamp 2.\\
+counter.hit(2);\\
+
+// hit at timestamp 3.\\
+counter.hit(3);\\
+
+// get hits at timestamp 4, should return 3.\\
+counter.getHits(4);\\
+
+// hit at timestamp 300.\\
+counter.hit(300);\\
+
+// get hits at timestamp 300, should return 4.\\
+counter.getHits(300);\\
+
+// get hits at timestamp 301, should return 3.\\
+counter.getHits(301); \\
+
+Follow up: What if the number of hits per second could be very large? Does your design scale? \\
+
+\begin{lstlisting}
+// 1. Use queue
+class HitCounter {
+public:
+    /** Initialize your data structure here. */
+    HitCounter() {}
+    
+    /** Record a hit.
+        @param timestamp - The current timestamp (in seconds granularity). */
+    void hit(int timestamp) {
+        q.push(timestamp);
+    }
+    
+    /** Return the number of hits in the past 5 minutes.
+        @param timestamp - The current timestamp (in seconds granularity). */
+    int getHits(int timestamp) {
+        while (!q.empty() && timestamp - q.front() >= 300) {
+            q.pop();
+        }
+        return q.size();
+    }
+
+private:
+    queue<int> q;
+};
+
+
+// 2. Use two vectors
+class HitCounter {
+public:
+    /** Initialize your data structure here. */
+    HitCounter() {
+        times.resize(300); 
+        hits.resize(300);
+    }
+    
+    /** Record a hit.
+        @param timestamp - The current timestamp (in seconds granularity). */
+    void hit(int timestamp) {
+        int idx = timestamp % 300;
+        if (times[idx] != timestamp) {  // time limit exceeded
+            times[idx] = timestamp;     // reset timestamp
+            hits[idx] = 1;              // reset hit count
+        } else {                        // same time stamp
+            ++hits[idx];                // increase hit count
+        }
+    }
+    
+    /** Return the number of hits in the past 5 minutes.
+        @param timestamp - The current timestamp (in seconds granularity). */
+    int getHits(int timestamp) {
+        int res = 0;
+        for (int i = 0; i < 300; ++i) {
+            if (timestamp - times[i] < 300) {
+                res += hits[i];
+            }
+        }
+        return res;
+    }
+
+private:
+    vector<int> times, hits;
+};
+\end{lstlisting}
+
+
+\section{Flatten 2D Vector (M)}
+Implement an iterator to flatten a 2d vector. \\
+
+For example, \\
+Given 2d vector =
+[
+  [1,2],
+  [3],
+  [4,5,6]
+]\\
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,2,3,4,5,6].\\
+
+Hint:\\
+    How many variables do you need to keep track?\\
+    Two variables is all you need. Try with x and y.\\
+    Beware of empty rows. It could be the first few rows.\\
+    To write correct code, think about the invariant to maintain. What is it?\\
+    The invariant is x and y must always point to a valid point in the 2d vector. Should you maintain your invariant ahead of time or right when you need it?\\
+    Not sure? Think about how you would implement hasNext(). Which is more complex?\\
+    Common logic in two different places should be refactored into a common method.\\
+
+Follow up: As an added challenge, try to code it using only iterators in C++ or iterators in Java.\\
+
+\begin{lstlisting}
+// 1. Use 1D vector
+class Vector2D {
+public:
+    Vector2D(vector<vector<int>> &vec2d) {
+        for (auto a : vec2d){
+            v.insert(v.end(), a.begin(), a.end());
+        }
+    }
+    int next() {
+        return v[i++];
+    }
+    bool hasNext() {
+        return i < v.size();
+    }
+private:
+    vector<int> v;
+    int i = 0;
+};
+
+// 2. Use two variables x and y
+class Vector2D {
+public:
+    Vector2D(vector<vector<int>>& vec2d) {
+        v = vec2d;
+        x = y = 0;
+    }
+    int next() {
+        return v[x][y++];
+    }
+    bool hasNext() {
+        while (x < v.size() && y == v[x].size()) {
+            ++x; 
+            y = 0;
+        }
+        return x < v.size();
+    }    
+private:
+    vector<vector<int>> v;
+    int x, y;
+};
+
+// 3. Use iterator
+class Vector2D {
+public:
+    Vector2D(vector<vector<int>>& vec2d) {
+        x = vec2d.begin();
+        end = vec2d.end();
+    }
+    int next() {
+        return (*x)[y++];
+    }
+    bool hasNext() {
+        while (x != end && y == (*x).size()) {
+            ++x; 
+            y = 0;
+        }
+        return x != end;
+    }
+private:
+    vector<vector<int>>::iterator x, end;
+    int y = 0;
+};
+\end{lstlisting}
+
+
+\section{Zigzag Iterator (M)}
+Given two 1d vectors, implement an iterator to return their elements alternately.\\
+
+For example, given two 1d vectors:\\
+v1 = [1, 2]\\
+v2 = [3, 4, 5, 6]\\
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1, 3, 2, 4, 5, 6].\\
+
+Follow up: What if you are given k 1d vectors? How well can your code be extended to such cases?\\
+
+Clarification for the follow up question - Update (2015-09-18):\\
+The "Zigzag" order is not clearly defined and is ambiguous for k $>$ 2 cases. If "Zigzag" does not look right to you, replace "Zigzag" with "Cyclic". For example, given the following input: [ [1,2,3], [4,5,6,7], [8,9] ]\\
+It should return [1,4,8,2,5,9,3,6,7].\\
+
+\begin{lstlisting}
+// 1. Use 1D vector
+class ZigzagIterator {
+public:
+    ZigzagIterator(vector<int> &v1, vector<int> &v2) {
+        int n1 = v1.size(), n2 = v2.size(), n = max(n1, n2);
+        for (int i = 0; i < n; ++i) {
+            if (i < n1) v.push_back(v1[i]);
+            if (i < n2) v.push_back(v2[i]);
+        }
+    }
+    int next() {
+        return v[i++];
+    }
+    bool hasNext() {
+        return i < v.size();
+    }
+private:
+    vector<int> v;
+    int i = 0;
+};
+
+// 2. Use two variables i and j
+class ZigzagIterator {
+public:
+    ZigzagIterator(vector<int>& v1, vector<int>& v2) {
+        v.push_back(v1);
+        v.push_back(v2);
+        i = j = 0;
+    }
+    int next() {
+        return i <= j ? v[0][i++] : v[1][j++];
+    }
+    bool hasNext() {
+        if (i >= v[0].size()) i = INT_MAX;
+        if (j >= v[1].size()) j = INT_MAX;
+        return i < v[0].size() || j < v[1].size();
+    }
+private:
+    vector<vector<int>> v;
+    int i, j;
+};
+
+// 3. Use queue and iterator
+class ZigzagIterator {
+public:
+    ZigzagIterator(vector<int>& v1, vector<int>& v2) {
+        if (!v1.empty()) q.push(make_pair(v1.begin(), v1.end()));
+        if (!v2.empty()) q.push(make_pair(v2.begin(), v2.end()));
+    }
+    int next() {
+        auto it = q.front().first, end = q.front().second;
+        q.pop();
+        if (it + 1 != end) q.push(make_pair(it + 1, end));
+        return *it;
+    }
+    bool hasNext() {
+        return !q.empty();
+    }
+private:
+    queue<pair<vector<int>::iterator, vector<int>::iterator>> q;
+};
+\end{lstlisting}
+
+
+\section{Sparse Matrix Multiplication (M)}
+Given two sparse matrices A and B, return the result of AB. You may assume that A's column number is equal to B's row number.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> multiply(vector<vector<int>>& A, vector<vector<int>>& B) {
+        int m = A.size(), n = B.size(), p = B[0].size();
+        vector<vector<int>> res(m, vector<int>(p));
+        
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (A[i][j] != 0) {
+                    for (int k = 0; k < p; ++k) {
+                        if (B[j][k] != 0) {
+                            res[i][k] += A[i][j] * B[j][k]; 
+                        }
+                    }
+                }
+            }
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Set Matrix Zeroes (M)}
+Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.\\
+
+Follow up:\\
+Did you use extra space?\\
+A straight forward solution using O(mn) space is probably a bad idea.\\
+A simple improvement uses O(m + n) space, but still not the best solution.\\
+Could you devise a constant space solution?\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    void setZeroes(vector<vector<int>> &matrix) {
+        if (matrix.empty() || matrix[0].empty()) return;
+        int m = matrix.size(), n = matrix[0].size();
+        bool rowFlag = false, colFlag = false;
+        
+        // if the fist column has a zero element, update flag
+        for (int i = 0; i < m; ++i) {
+            if (matrix[i][0] == 0) colFlag = true;
+        }
+        // if the fist row has a zero element, update flag
+        for (int j = 0; j < n; ++j) {
+            if (matrix[0][j] == 0) rowFlag = true;
+        }
+        
+        // if an element of matrix expect the first row and column is zero,
+        // set corresponding indices in the first row and column to zero
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        
+        // set corresponding element in matrix to zero
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+        // set the first row and column to zero based on the flags
+        if (colFlag == true) {
+            for (int i = 0; i < m; ++i) matrix[i][0] = 0;
+        }
+        if (rowFlag == true) {
+            for (int j = 0; j < n; ++j) matrix[0][j] = 0;
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Spiral Matrix (M)}
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.\\
+
+For example,\\
+Given the following matrix:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+You should return [1,2,3,6,9,8,7,4,5]. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        if (matrix.empty()) return res;
+        int rowBegin = 0, rowEnd = matrix.size()-1;
+        int colBegin = 0, colEnd = matrix[0].size()-1;
+        
+        // Use four variables to locate search ranges and update values 
+        // based on the search progress
+        while (rowBegin <= rowEnd && colBegin <= colEnd) {
+            // Traverse Right
+            for (int j = colBegin; j <= colEnd; ++j) {
+                res.push_back(matrix[rowBegin][j]);
+            }
+            ++rowBegin;
+            
+            // Traverse Down
+            for (int i = rowBegin; i <= rowEnd; ++i) {
+                res.push_back(matrix[i][colEnd]);
+            }
+            --colEnd;
+            
+            // Traverse Left
+            if (rowBegin <= rowEnd) {
+                for (int j = colEnd; j >= colBegin; --j) {
+                    res.push_back(matrix[rowEnd][j]);
+                }
+                --rowEnd;
+            }
+            
+            // Traverse Up
+            if (colBegin <= colEnd) {
+                for (int i = rowEnd; i >= rowBegin; --i) {
+                    res.push_back(matrix[i][colBegin]);
+                }
+                ++colBegin;
+            }
+        }
+        
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Spiral Matrix II (M)}
+Given an integer n, generate a square matrix filled with elements from 1 to $n^2$ in spiral order.\\
+
+For example,\\
+Given n = 3,
+You should return the following matrix:
+[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> res(n, vector<int> (n));
+        int start = 0, end = n-1, num = 1;
+        // Iterate the matrix from outside level to insider level
+        // Iterate each row and col from index 0 to n-2
+        while (start < end) {
+            for (int j = start; j < end; ++j) res[start][j] = num++;
+            for (int i = start; i < end; ++i) res[i][end] = num++;
+            for (int j = end; j > start; --j) res[end][j] = num++;
+            for (int i = end; i > start; --i) res[i][start] = num++;
+            ++start; // update index for the next inside level
+            --end;
+        }
+        // In case that matrix[n/2][n/2] is the last num
+        if (start == end) res[start][end] = num;
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Rotate Image (M)}
+You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).\\
+
+Follow up: Could you do this in-place?\\
+
+\begin{lstlisting}
+// 1. Direct rotate
+class Solution {
+public:
+    void rotate(vector<vector<int> > &matrix) {
+        int n = matrix.size();
+        for (int i = 0; i < n / 2; ++i) { // iterate layer by layer
+            for (int j = i; j < n - 1 - i; ++j) {
+                int tmp = matrix[i][j]; // upper left to tmp
+                matrix[i][j] = matrix[n - 1 - j][i]; // bottom left to upper left
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j]; // bottom right to bottom left
+                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i]; // upper right to bottom right
+                matrix[j][n - 1 - i] = tmp; // tmp to upper right
+            }
+        }
+    }
+};
+
+// 2. Flip by antidiagonal line, then flip by the middle row
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        // swap elements by antidiagonal line
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < n-i; ++j)
+                swap(matrix[i][j], matrix[n-1-j][n-1-i]);
+        // swap elements by horizontal center line        
+        for (int i = 0; i < n/2; ++i)
+            for (int j = 0; j < n; ++j)
+                swap(matrix[i][j], matrix[n-1-i][j]);
+    }
+};
+
+// 3. Transpose the matrix (i.e. flip by diagonal line), then reverse each row
+class Solution {
+public:
+    void rotate(vector<vector<int> > &matrix) {
+        int n = matrix.size();
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+            reverse(matrix[i].begin(), matrix[i].end());
+        }
+    }
+};
+\end{lstlisting}
+
+

@@ -1,0 +1,657 @@
+\chapter{Math}
+
+
+\section{Nim Game (E)}
+You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones. \\
+
+Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap. \\
+
+For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool canWinNim(int n) {
+        if (n % 4 == 0)
+            return false;
+        else
+            return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Bulb Switcher (M)}
+There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the ith round, you toggle every i bulb. For the nth round, you only toggle the last bulb. Find how many bulbs are on after n rounds. \\
+
+Example:
+Given n = 3. \\
+At first, the three bulbs are [off, off, off].\\
+After first round, the three bulbs are [on, on, on].\\
+After second round, the three bulbs are [on, off, on].\\
+After third round, the three bulbs are [on, off, off]. \\
+So you should return 1, because there is only one bulb is on.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int bulbSwitch(int n) {
+        int res = 1;
+        while (res * res <= n) ++res;
+        return res - 1;
+        // Or just simply use one line command: return sqrt(n);
+    }
+};
+\end{lstlisting}
+
+
+\section{Find the Celebrity (M)}
+Suppose you are at a party with n people (labeled from 0 to n - 1) and among them, there may exist one celebrity. The definition of a celebrity is that all the other n - 1people know him/her but he/she does not know any of them.\\
+
+Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is to ask questions like: "Hi, A. Do you know B?" to get information of whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).\\
+
+You are given a helper function bool knows(a, b) which tells you whether A knows B. Implement a function int findCelebrity(n), your function should minimize the number of calls to knows.\\
+
+Note: There will be exactly one celebrity if he/she is in the party. Return the celebrity's label if there is a celebrity in the party. If there is no celebrity, return -1.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int findCelebrity(int n) {
+        int res = 0;
+        for (int i = 0; i < n; ++i) {
+            // if res knows i, then res must not be celebrity and i could be celebrity
+            // update res to i and check the next i
+            if (knows(res, i)) res = i;
+        }
+        for (int i = 0; i < n; ++i) {
+            // if res knows i, or i doesn't know res,
+            // then res must not be celebrity
+            if (res != i && (knows(res, i) || !knows(i, res))) return -1;
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int findCelebrity(int n) {
+        for (int i = 0, j = 0; i < n; ++i) {
+            for (j = 0; j < n; ++j) {
+                // if i knows j or j doesn't know i,
+                // then i is not celebrity
+                if (i != j && (knows(i, j) || !knows(j, i))) break;
+            }
+            // if i does not know any j , but all j know i
+            // then i is celebrity
+            if (j == n) return i;
+        }
+        return -1;
+    }
+};
+\end{lstlisting}
+
+
+\section{Rectangle Area (E)}
+Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int areaA = (C-A) * (D-B);
+        int areaB = (G-E) * (H-F);
+        
+        int left = max(A,E);
+        int right = min(C,G);
+        int top = min(D,H);
+        int bottom = max(B,F);
+        
+        int overlap = 0;
+        if (right > left && top > bottom)
+             overlap = (right - left) * (top - bottom);
+             
+        return areaA + areaB - overlap;
+    }
+};
+\end{lstlisting}
+
+
+\section{Container With Most Water (M)}
+Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.\\
+
+Note: You may not slant the container. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxArea(vector<int> &height) {
+        int left = 0, right = height.size()-1, res = 0;
+        while (left <= right) {
+            res = max(res, min(height[left], height[right]) * (right - left));
+            if (height[left] < height[right]) ++left;
+            else --right;
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Factorial Trailing Zeroes (E)}
+Given an integer n, return the number of trailing zeroes in n!.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    // All trailing 0 is from factors 5 * 2
+    // In the n! operation, factors 2 is always ample. 
+    // So we just count how many 5 factors in all number from 1 to n.
+    int trailingZeroes(int n) {
+        if (n < 5)
+            return 0;
+        else
+            return n/5 + trailingZeroes(n/5);
+    }
+};
+\end{lstlisting}
+
+
+\section{Palindrome Number (E)}
+Determine whether an integer is a palindrome. Do this without extra space. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0)  return false;
+            
+        int d = 1;      
+        while (x / d >= 10) 
+            d *= 10;            // get the initial divisor size
+            
+        while (x > 0) {
+            int q = x / d;      // quotient as the first digit
+            int r = x % 10;     // remainder as the last digit
+            if (q != r) return false;
+            x = x % d / 10;     // remove the first and the last digits
+            d /= 100;           // reduce the divisor size
+        }
+        
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Reverse Integer (E)}
+Reverse digits of an integer. \\
+
+Example1: x = 123, return 321\\
+Example2: x = -123, return -321\\ 
+
+\begin{lstlisting}
+class Solution {
+public:
+    int reverse(int x) {
+        if (x < INT_MIN || x > INT_MAX)
+            return 0;
+        
+        long num, result = 0;
+        
+        if (x < 0)              // convert to positive if x is a negtive
+            num = -x;
+        else
+            num = x;
+            
+        while (num != 0) {
+            result = result * 10 + num % 10;
+            num /= 10;
+        }
+        
+        if (x < 0)              // convert result back if x is a negtive
+            result = -result;
+
+        if (result < INT_MIN || result > INT_MAX)
+            return 0;
+        else
+            return result;
+    }
+};
+\end{lstlisting}
+
+
+\section{Count Numbers with Unique Digits (M)}
+Given a non-negative integer n, count all numbers with unique digits, x, where $0 \leq x < 10^n$.\\
+
+Example:
+Given n = 2, return 91. (The answer should be the total numbers in the range of $0 \leq x < 100$, excluding [11,22,33,44,55,66,77,88,99]) \\
+
+Hint:\\
+    A direct way is to use the backtracking approach.\\
+    Backtracking should contains three states which are (the current number, number of steps to get that number and a bitmask which represent which number is marked as visited so far in the current number). Start with state (0,0,0) and count all valid number till we reach number of steps equals to 10n.\\
+    This problem can also be solved using a dynamic programming approach and some knowledge of combinatorics.\\
+    Let f(k) = count of numbers with unique digits with length equals k.\\
+    f(1) = 10, ..., f(k) = 9 * 9 * 8 * ... (9 - k + 2) [The first factor is 9 because a number cannot start with 0].\\
+
+\begin{lstlisting}
+// 1. Formula solution
+class Solution {
+public:
+    int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) return 1;
+        int res = 0;
+        for (int i = 1; i <= n; ++i) {
+            res += count(i);
+        }
+        return res;
+    }
+    
+    int count(int k) {
+        if (k == 1)  return 10;
+        int res = 1;
+        for (int i = 9; i >= (9 - k + 2); --i) {
+            res *= i;
+        }
+        return res * 9;
+    }
+};
+
+
+// 2. Backtracking solution
+class Solution {
+public:
+    int countNumbersWithUniqueDigits(int n) {
+        int res = 1, max = pow(10, n), used = 0;
+        for (int i = 1; i < 10; ++i) {
+            used |= (1 << i);
+            res += search(i, max, used);
+            used &= ~(1 << i);
+        }
+        return res;
+    }
+    int search(int pre, int max, int used) {
+        int res = 0;
+        if (pre < max) ++res;
+        else return res;
+        for (int i = 0; i < 10; ++i) {
+            if (!(used & (1 << i))) {
+                used |= (1 << i);
+                int cur = 10 * pre + i;
+                res += search(cur, max, used);
+                used &= ~(1 << i);
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Integer Break (M)}
+Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.\\
+
+For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).\\
+
+Note: You may assume that n is not less than 2 and not larger than 58.\\
+
+Hint:\\
+    There is a simple O(n) solution to this problem.\\
+    You may check the breaking results of n ranging from 7 to 10 to discover the regularities.\\
+
+\begin{lstlisting}
+/** 2 = 1 + 1
+ *  3 = 2 + 1
+ *  4 = 2 + 2
+ *  5 = 3 + 2
+ *  6 = 3 + 3
+ *  7 = 3 + 4
+ *  8 = 3 + 3 + 2
+ *  9 = 3 + 3 + 3
+ *  10 = 3 + 3 + 4
+ */
+class Solution {
+public:
+    int integerBreak(int n) {
+        if (n == 2 || n == 3) return n - 1;
+        int res = 1;
+        while (n > 4) {
+            res *= 3;
+            n -= 3;
+        }
+        return res * n;
+    }
+};
+\end{lstlisting}
+
+
+\section{Plus One (E)}
+Given a non-negative number represented as an array of digits, plus one to the number. The digits are stored such that the most significant digit is at the head of the list. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int tmp = 1;
+        
+        for (int i = digits.size()-1; i >= 0; --i) {
+            digits[i] += tmp;
+            if (digits[i] == 10) {
+                digits[i] = 0;
+                tmp = 1;
+            } else {
+                tmp = 0;
+            }
+        }
+        
+        if (tmp == 1) {
+            digits[0] = 1;
+            digits.push_back(0);
+        }
+        
+        return digits;
+    }
+};
+\end{lstlisting}
+
+
+\section{Add Digits (E)}
+Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.\\
+
+For example:
+Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it.\\
+
+Follow up:
+Could you do it without any loop/recursion in O(1) runtime? \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int addDigits(int num) {
+        if (num < 10)
+            return num;
+        
+        int sum = 0;
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        
+        return addDigits(sum);
+    }
+};
+\end{lstlisting}
+
+
+\section{Happy Number (E)}
+Write an algorithm to determine if a number is "happy".\\
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.\\
+
+Example: 19 is a happy number\\
+
+    $1^2 + 9^2 = 82\\
+    8^2 + 2^2 = 68\\
+    6^2 + 8^2 = 100\\
+    1^2 + 0^2 + 0^2 = 1$\\
+    
+\begin{lstlisting}
+class Solution {
+public:
+    bool isHappy(int n) {
+        if (n == 1) 
+            return true;
+        // All non-happy numbers follow sequences that reach the cycle: 4, 16, 37, 58, 89, 145, 42, 20, 4, ... 
+        if (n == 4)         
+            return false;
+
+        int digit = 0;
+        while (n != 0) {
+            digit += pow((n % 10), 2);
+            n /= 10;
+        }
+        
+        return isHappy(digit);
+    }
+};
+\end{lstlisting}
+
+
+\section{Ugly Number (E)}
+Write a program to check whether a given number is an ugly number.\\
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7.\\
+
+Note that 1 is typically treated as an ugly number. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isUgly(int num) {
+        if (num == 0)
+            return false;
+        
+        while (num % 2 == 0)
+            num /= 2;
+        
+        while (num % 3 == 0)
+            num /= 3;
+        
+        while (num % 5 == 0)
+            num /= 5;
+        
+        return num == 1;
+    }
+};
+\end{lstlisting}
+
+
+\section{Ugly Number II (M)}
+Write a program to find the n-th ugly number. \\
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers. \\
+
+Note that 1 is typically treated as an ugly number. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        if (n <= 0)
+            return 0;
+
+        int idx2 = 0, idx3 = 0, idx5 = 0;
+        vector<int> res(n);
+        res[0] = 1;
+
+        for (int i = 1; i < n; ++i) {
+            res[i] = min(2 * res[idx2], min(3 * res[idx3], 5 * res[idx5]));
+            if (res[i] == 2 * res[idx2])
+                ++idx2;
+            if (res[i] == 3 * res[idx3])
+                ++idx3;
+            if (res[i] == 5 * res[idx5])
+                ++idx5;
+        }
+        
+        return res[n-1];
+    }
+};
+\end{lstlisting}
+
+
+\section{Super Ugly Number (M)}
+Write a program to find the n-th super ugly number.\\
+
+Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k. For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.\\
+
+Note:
+(1) 1 is a super ugly number for any given primes.
+(2) The given numbers in primes are in ascending order.
+(3) $0 < k \leq 100, 0 < n \leq 10^6, 0 < primes[i] < 1000$. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int nthSuperUglyNumber(int n, vector<int>& primes) {
+        vector<int> res(n, INT_MAX);
+        vector<int> index(primes.size(), 0);
+        res[0] = 1;
+        
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < primes.size(); ++j) {
+                res[i] = min(res[i], primes[j] * res[index[j]]);
+            }
+            for (int j = 0; j < index.size(); ++j) {
+                if (res[i] == primes[j] * res[index[j]]) {
+                    ++index[j];
+                }
+            }
+        }
+        
+        return res[n-1];
+    }
+};
+\end{lstlisting}
+
+
+\section{Count Primes (E)}
+Count the number of prime numbers less than a non-negative number, n. \\
+A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int countPrimes(int n) {
+        if (n <= 0) 
+            return 0;
+        
+        bool isPrime[n];
+        for (int i = 2; i < n; ++i)
+            isPrime[i] = true;
+            
+        // if i is a prime, then i*i, i*(i+1), i*(i+2), ... are not prime
+        for (int i = 2; i * i < n; ++i) {
+            if (isPrime[i] == false)    
+                continue;
+            for (int j = i * i; j < n; j += i)  
+                isPrime[j] = false;
+        }
+        
+        int cnt = 0;
+        for (int i = 2; i < n; ++i){
+            if (isPrime[i] == true)
+                ++cnt;
+        }
+        return cnt;
+    }
+};
+\end{lstlisting}
+
+
+\section{Pow(x, n) (M)}
+Implement pow(x, n). \\
+
+\begin{lstlisting}
+// x^n = x^(n/2) * x^(n/2) if n is even
+// x^n = x * x^(n/2) * x^(n/2) if n is odd
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if (n < 0)  return 1 / power(x, -n);
+        else return power(x, n);
+    }
+    double power(double x, int n) {
+        if (n == 0) return 1;
+        double half = power(x, n/2);
+        if (n % 2 == 0) return half * half;
+        else return x * half * half;
+    }
+};
+\end{lstlisting}
+
+
+\section{Super Pow (M)}
+Your task is to calculate ab mod 1337 where a is a positive integer and b is an extremely large positive integer given in the form of an array. \\
+ 
+Example1:
+a = 2
+b = [3]
+Result: 8\\
+
+Example2:
+a = 2
+b = [1,0]
+Result: 1024\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int superPow(int a, vector<int>& b) {
+        long long res = 1;
+        for (int i = 0; i < b.size(); ++i) {
+            //e.g. 2^23 % 1337 = (2^2)^10 * 2^3 % 1337
+            res = power(res, 10) * power(a, b[i]) % 1337;
+        }
+        return res;
+    }
+    int power(int x, int n) {
+        if (n == 0) return 1;
+        if (n == 1) return x % 1337;
+        return power(x % 1337, n / 2) * power(x % 1337, n - n / 2) % 1337;
+    }
+};
+\end{lstlisting}
+
+
+\section{Sqrt(x) (M)}
+Implement int sqrt(int x). Compute and return the square root of x. \\
+
+\begin{lstlisting}
+// Find a candidate sq and decide the search range based on sq and x
+class Solution {
+public:
+    int mySqrt(int x) {
+        long long left = 1, right = x;
+        while (left <= right) {
+            long long mid = left + (right - left) / 2;
+            long long sq = mid * mid; 
+            if (sq == x) return mid;
+            else if (sq < x) left = mid + 1;
+            else right = mid - 1;
+        }
+        return right; // if x=0 or x=1, just return right
+    }
+};
+\end{lstlisting}
+
+
+\section{Valid Perfect Square (M)}
+Given a positive integer num, write a function which returns True if num is a perfect square else False. Note: Do not use any built-in library function such as sqrt.\\
+
+Example 1:
+Input: 16
+Returns: True\\
+
+Example 2:
+Input: 14
+Returns: False\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        long long left = 1, right = num;
+        while (left <= right) {
+            long long mid = left + (right - left) / 2;
+            long long sq = mid * mid; 
+            if (sq == num) return true;
+            else if (sq < num) left = mid + 1;
+            else right = mid - 1;
+        }
+        return false;     
+    }
+};
+\end{lstlisting}
+
+

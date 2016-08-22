@@ -1,0 +1,709 @@
+\chapter{Linked List}
+\section{Intersection of Two Linked Lists (E)}
+Write a program to find the node at which the intersection of two singly linked lists begins.\\
+
+Notes:\\
+    If the two linked lists have no intersection at all, return null.\\
+    The linked lists must retain their original structure after the function returns.\\
+    You may assume there are no cycles anywhere in the entire linked structure.\\
+    Your code should preferably run in O(n) time and use only O(1) memory.\\
+ 
+\begin{lstlisting}
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ 
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (!headA || !headB)   return NULL;
+        
+        ListNode *p1 = headA;
+        ListNode *p2 = headB;
+        
+        while (p1 && p2 && p1 != p2) {
+            p1 = p1->next;
+            p2 = p2->next;
+            
+            if (p1 == p2)   return p1;
+            
+            if (!p1)    p1 = headB;
+            if (!p2)    p2 = headA;
+        }
+        
+        return p1;
+    }
+};
+\end{lstlisting}
+
+
+\section{Plus One Linked List (E)}
+Given a non-negative number represented as a singly linked list of digits, plus one to the number. The digits are stored such that the most significant digit is at the head of the list.\\
+
+Example:\\
+Input: $1->2->3$\\
+Output: $1->2->4$\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode *plusOne(ListNode *head) {
+        if (!head)  return head;
+        int carry = 1;
+        ListNode *rev_head = reverse(head), *p = rev_head;
+        
+        while (p) {
+            int sum = p->val + carry;
+            if (sum == 10) {
+                p->val = 0;
+                carry = 1;
+                p = p->next;
+            } else {
+                carry = 0;
+                break;
+            }
+        }
+        
+        if (carry == 1) {
+            p->next = new ListNode(1);
+        }
+        
+        return revese(rev_head);
+    }
+    
+    ListNode *reverse(ListNode *head) {
+        ListNode *p1 = head->next, *p2;
+        head->next = NULL;
+        
+        while (p1->next) {
+            p2 = p1->next;
+            p1->next = head;
+            head = p1;
+            p1 = p2;
+        }
+        
+        return head;
+    }
+}; 
+\end{lstlisting}
+
+
+\section{Reverse Linked List (E)}
+Reverse a singly linked list.\\
+
+\begin{lstlisting}
+// iterative solution
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+            
+        ListNode *p1 = head->next, *p2;
+        head->next = NULL;
+        while (p1 != NULL) {
+            p2 = p1->next;
+            p1->next = head;
+            head = p1;
+            p1 = p2;
+        }
+        
+        return head;
+    }
+};
+
+// recursive solution
+class Solution {
+public:   
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !(head -> next)) 
+            return head;
+        ListNode* node = reverseList(head -> next);
+        head -> next -> next = head;
+        head -> next = NULL;
+        return node; 
+    }
+}; 
+\end{lstlisting} 
+
+
+\section{Rotate Linked List (E)}
+Given a list, rotate the list to the right by k places, where k is non-negative.\\
+
+For example:\\
+Given $1->2->3->4->5->NULL$ and k = 2, return $4->5->1->2->3->NULL$.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (!head || k <= 0)  return head;
+        
+        ListNode *p = head;
+        int n = 1;
+        
+        while (p->next){        // get the length of list
+            p = p->next;
+            ++n;
+        }
+        
+        p->next = head;         // make a circle list
+        k = k % n;              // get the correct k
+        
+        for(int i = 0; i < n - k; ++i)  // move p to the correct position
+            p = p->next;
+            
+        head = p->next;
+        p->next = NULL;
+        return head;
+    }
+};
+\end{lstlisting}
+
+
+\section{Palindrome Linked List (E)}
+Given a singly linked list, determine if it is a palindrome. \\
+
+\begin{lstlisting}
+// reverse the right half list and compare it to the left half list
+class Solution {
+public:
+    bool isPalindrome(ListNode *head) {
+        if (!head || !head->next)   return true;
+        
+        ListNode *slow = head, *fast = head;
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        slow->next = reverseList(slow->next);
+        slow = slow->next;
+        
+        while (slow) {
+            if (head->val != slow->val) return false;
+            head = head->next;
+            slow = slow->next;
+        }
+        
+        return true;
+    }
+    
+    ListNode *reverseList(ListNode *head) {
+        ListNode *p1 = head->next, *p2;
+        head->next = NULL;
+        
+        while (p1) {
+            p2 = p1->next;
+            p1->next = head;
+            head = p1;
+            p1 = p2;
+        }
+        
+        return head;
+    }
+};
+\end{lstlisting} 
+
+
+\section{Swap Nodes in Pairs (E)}
+Given a linked list, swap every two adjacent nodes and return its head. \\
+
+For example, Given $1->2->3->4$, you should return the list as $2->1->4->3$. \\
+
+Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. \\
+
+\begin{lstlisting}
+// iterative
+class Solution {
+public:
+    ListNode *swapPairs(ListNode *head) {
+        ListNode *new_head = new ListNode(0);
+        new_head->next = head;
+        ListNode *prev = new_head, *cur = head;
+        
+        while(cur && cur->next) {
+            prev->next = cur->next;
+            cur->next = cur->next->next;
+            prev->next->next = cur;
+            prev = cur;
+            cur = cur->next;
+        }
+        
+        return new_head->next;
+    }
+};
+
+// recursive
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+        
+        ListNode *p = head->next;
+        head->next = swapPairs(p->next);
+        p->next = head;
+        
+        return p;
+    }
+};
+\end{lstlisting}
+
+
+\section{Odd Even Linked List (M)}
+Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.\\
+
+You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.\\
+
+Example:
+Given $1->2->3->4->5->NULL$, return $1->3->5->2->4->NULL$.\\
+
+Note:
+The relative order inside both the even and odd groups should remain as it was in the input.
+The first node is considered odd, the second node even and so on ... \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *odd = head, *even = head->next;
+        while (even && even->next) {
+            ListNode *tmp = odd->next; // must store odd->next as tmp
+            odd->next = even->next;
+            even->next = even->next->next;
+            odd->next->next = tmp; // update odd->next->next to tmp but not the current even
+            even = even->next;
+            odd = odd->next;
+        }
+        return head;
+    }
+};
+
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode *odd = head, *even = head->next, *even_head = even;
+        while (even && even->next) {
+            odd->next = even->next;
+            odd = even->next;
+            even->next = odd->next;
+            even = odd->next;
+        }
+        odd->next = even_head;
+        return head;
+    }
+
+};
+\end{lstlisting}
+
+
+\section{Delete Node in a Linked List (E)}
+Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.\\
+
+Supposed the linked list is 1-2-3-4 and you are given the third node with value 3, the linked list should become 1-2-4 after calling your function. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        ListNode *tmp = node->next;
+        *node = *tmp;
+        delete tmp;
+    }
+};
+\end{lstlisting} 
+
+
+\section{Remove Linked List Elements (E)}
+Remove all elements from a linked list of integers that have value val.\\
+
+Example:\\
+Given: 1-2-6-3-4-5-6, val = 6\\
+Return: 1-2-3-4-5 \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        while (head != NULL && head->val == val)
+            head = head->next;
+            
+        if (head == NULL)
+            return head;
+        
+        ListNode *p1 = head, *p2 = head->next;
+        while (p2 != NULL) {
+            if (p2->val == val) {
+                p1->next = p2->next;
+            } else {
+                p1 = p2;
+            }
+            p2 = p2->next;
+        }
+        
+        return head;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Nth Node From End of List (E)}
+Given a linked list, remove the nth node from the end of list and return its head.\\
+
+For example,\\
+   Given linked list: $1->2->3->4->5$, and n = 2.\\
+   After removing the second node from the end, the linked list becomes $1->2->3->5$.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        for (int i = 1; i <= n; ++i)
+            fast = fast->next;
+            
+        if (!fast)  return head->next;
+        
+        while (fast->next) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        slow->next = slow->next->next;      // remove the n-th node
+        
+        return head;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Duplicates from Sorted List (E)}
+
+Given a sorted linked list, delete all duplicates such that each element appear only once.\\ \\
+For example: \\
+Given 1-1-2, return 1-2. \\
+Given 1-1-2-3-3, return 1-2-3. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+        
+        ListNode *p1 = head, *p2 = head->next;
+        
+        while (p2 != NULL) {
+            if (p1->val == p2->val) {
+                p1->next = p2->next; 
+            } else {
+                p1 = p2;
+            }
+            p2 = p2->next;
+        }
+        
+        return head;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Duplicates from Sorted List II (M)}
+Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.\\
+
+For example,\\
+Given 1-2-3-3-4-4-5, return 1-2-5.\\
+Given 1-1-1-2-3, return 2-3. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+        
+        ListNode *new_head = new ListNode(0);   // define a new head
+        new_head->next = head;
+        ListNode *p1 = new_head, *p2 = head;
+        
+        while(p2 != NULL) {
+            while (p2->next != NULL && p2->val == p2->next->val)		// set p2 to the last node of duplicates
+                p2 = p2->next;
+            
+            if (p1->next == p2) {
+                p1 = p1->next;                // no duplicate
+            } else {
+                p1->next = p2->next;          // skip all duplicates
+            }
+            
+            p2 = p2->next;
+        }
+        
+        return new_head->next;
+        
+    }
+};
+\end{lstlisting}
+
+
+\section{Linked List Cycle (E)}
+Given a linked list, determine if it has a cycle in it. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if (head == NULL)
+            return false;
+            
+        ListNode *slow = head, *fast = head;
+        while (fast->next != NULL && fast->next->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast)
+                return true;
+        }
+        
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Linked List Cycle II (M)}
+Given a linked list, return the node where the cycle begins. If there is no cycle, return null. \\
+ 
+\begin{lstlisting}
+/** 
+ * len: length of the linked list
+ * a: length of the head to the node where the cycle begins
+ * b: length of the node where the cycle begins to the node where the slow and fast meet
+ * r: length of the cycle
+ * s: length of the slow moved
+ * s = a + b, 2s = s + kr; -> a + b = kr = (k-1)r + r, r = len - a; -> a = (k-1)r + len - a - b
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if (head == NULL)
+            return NULL;
+
+        ListNode *slow = head, *fast = head;
+        
+        while (fast->next != NULL && fast->next->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) {
+                fast = head;
+                while (slow != fast) {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
+            }
+        }
+        
+        return NULL;
+    }
+};
+\end{lstlisting}
+
+
+\section{Merge Two Sorted Lists (E)}
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (l1 == NULL) return l2;
+        if (l2 == NULL) return l1;
+        
+        if (l1->val < l2->val) {
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = mergeTwoLists(l2->next, l1);
+            return l2;
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Merge k Sorted Lists (H)}
+Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. \\
+ 
+\begin{lstlisting}
+// Divide & Conquer
+// Suppose initially each list is of average length n, then: k/2*(2n) + k/4*(4n) + k/8*(8n)... + = logk * (kn)
+class Solution {
+public:
+    ListNode *mergeKLists(vector<ListNode *> &lists) {
+        if(lists.empty())   return NULL;
+        
+        while(lists.size() > 1){
+            lists.push_back(mergeTwoLists(lists[0], lists[1]));
+            lists.erase(lists.begin());
+            lists.erase(lists.begin());
+        }
+        return lists.front();
+    }
+    
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (l1 == NULL) return l2;
+        if (l2 == NULL) return l1;
+        
+        if (l1->val < l2->val) {
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
+        } else {
+            l2->next = mergeTwoLists(l2->next, l1);
+            return l2;
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Flatten Nested List Iterator (M)}
+Given a nested list of integers, implement an iterator to flatten it. Each element is either an integer, or a list -- whose elements may also be integers or other lists.\\
+
+Example 1: Given the list [[1,1],2,[1,1]],\\
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].\\
+
+Example 2: Given the list [1,[4,[6]]],\\
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6]. \\
+ 
+\begin{lstlisting}
+/**
+ * // This is the interface that allows for creating nested lists.
+ * // You should not implement it, or speculate about its implementation
+ * class NestedInteger {
+ *   public:
+ *     // Return true if this NestedInteger holds a single integer, rather than a nested list.
+ *     bool isInteger() const;
+ *
+ *     // Return the single integer that this NestedInteger holds, if it holds a single integer
+ *     // The result is undefined if this NestedInteger holds a nested list
+ *     int getInteger() const;
+ *
+ *     // Return the nested list that this NestedInteger holds, if it holds a nested list
+ *     // The result is undefined if this NestedInteger holds a single integer
+ *     const vector<NestedInteger> &getList() const;
+ * };
+ */
+ 
+class NestedIterator {
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        for (int i = nestedList.size() - 1; i >= 0; --i)
+            s.push(nestedList[i]);
+    }
+
+    int next() {
+        NestedInteger n = s.top();
+        s.pop();
+        return n.getInteger();
+    }
+
+    bool hasNext() {
+        while(!s.empty()) {
+            NestedInteger n = s.top();
+            if (n.isInteger())  return true;
+            s.pop();    // pop the current element for the following push
+            // push to s if the current element is a list
+            for (int i = n.getList().size() - 1; i >= 0; --i)   
+                s.push(n.getList()[i]);
+        }
+        return false;
+    }
+    
+private:
+    stack<NestedInteger> s;
+};
+
+/**
+ * Your NestedIterator object will be instantiated and called as such:
+ * NestedIterator i(nestedList);
+ * while (i.hasNext()) cout << i.next();
+ */
+\end{lstlisting}
+
+
+\section{Nested List Weight Sum (E)}
+Given a nested list of integers, return the sum of all integers in the list weighted by their depth. Each element is either an integer, or a list -- whose elements may also be integers or other lists. \\
+
+Example 1:\\
+Given the list [[1,1],2,[1,1]], return 10. (four 1's at depth 2, one 2 at depth 1)\\
+
+Example 2:\\
+Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27) \\
+ 
+\begin{lstlisting}
+class Solution {
+public:
+    int depthSum(vector<NestedInteger>& nestedList) {
+        int res = 0;
+        for (auto l : nestedList)
+            res += getSum(l, 1);
+        return res;
+    }
+        
+    int getSum(NestedInteger nl, int level) {
+        int res = 0;
+        if (nl.isInteger())
+            return level * nl.getInteger();
+        for (auto l : nl.getList())
+            res += getSum(l, level+1);
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Nested List Weight Sum II (M)}
+Given a nested list of integers, return the sum of all integers in the list weighted by their depth. Each element is either an integer, or a list -- whose elements may also be integers or other lists.\\
+
+Different from the previous question where weight is increasing from root to leaf, now the weight is defined from bottom up. i.e., the leaf level integers have weight 1, and the root level integers have the largest weight. \\
+
+Example 1:\\
+Given the list [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)\\
+
+Example 2:\\
+Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 1*3 + 4*2 + 6*1 = 17)  \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int depthSumInverse(vector<NestedInteger> &nestedList) {
+        int unweighted = 0, weighted = 0;
+        
+        while (!nestedList.empty()) {
+            vector<NestedInteger> nextLevel;
+            for (auto l : nestedList) {
+                if (l.isInteger()) {
+                    unweighted += l.getInteger();       // add all integers of the current level togeter
+                } else {
+                    // insert(position, first, last)
+                    nextLevel.insert(nextLevel.end(), l.getList().begin(), l.getList().end());
+                }
+            }
+            weighted += unweighted;     // add all integers in level n to level n+1 twice
+            nestedList = nextLevel;     // update the nested list
+        }
+        
+        return weighted;
+    }
+};
+\end{lstlisting}
+

@@ -1,0 +1,1371 @@
+\chapter{Tree}
+\section{Binary Tree Traversal}
+\subsection{Binary Tree Preorder Traversal (M)}
+Given a binary tree, return the preorder traversal of its nodes' values.\\
+
+For example: Given binary tree [1,null,2,3], return [1,2,3]. \\
+
+\begin{lstlisting}
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+// 1. Recursion solution
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+        vector<int> res;
+        preorder(root, res);
+        return res;
+    }
+    void preorder(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        res.push_back(root->val);
+        if (root->left) preorder(root->left, res);
+        if (root->right) preorder(root->right, res);
+    }
+};
+
+// 2. Non-recursion
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        if (!root)  return res;
+        s.push(root);
+        while (!s.empty()) {
+            TreeNode *p = s.top();
+            s.pop();
+            res.push_back(p->val);
+            if (p->right) s.push(p->right);
+            if (p->left) s.push(p->left);
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Inorder Traversal (M)}
+Given a binary tree, return the inorder traversal of its nodes' values. \\
+
+For example: Given binary tree [1,null,2,3], return [1,3,2]. \\
+
+\begin{lstlisting}
+// 1. Recursion solution
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> res;
+        inorder(root, res);
+        return res;
+    }
+    void inorder(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        if (root->left) inorder(root->left, res);
+        res.push_back(root->val);
+        if (root->right) inorder(root->right, res);
+    }
+};
+
+// 2. Non-recursion
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root){
+        vector<int> res;
+        stack<TreeNode*> s;
+        TreeNode *p = root;
+        while (p || !s.empty()) {
+            if (p) {
+                s.push(p);
+                p = p->left;
+            } else {
+                p = s.top();
+                s.pop();
+                res.push_back(p->val);
+                p = p->right;
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Postorder Traversal (H)}
+Given a binary tree, return the postorder traversal of its nodes' values. \\
+
+For example: Given binary tree [1,null,2,3], return [3,2,1]. \\
+
+\begin{lstlisting}
+// 1. Recursion solution
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode *root) {
+        vector<int> res;
+        postorder(root, res);
+        return res;
+    }
+    void postorder(TreeNode *root, vector<int> &res) {
+        if (!root) return;
+        if (root->left) postorder(root->left, res);
+        if (root->right) postorder(root->right, res);
+        res.push_back(root->val);
+    }
+};
+
+// 2. Non-recursion
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode *root) {
+        vector<int> res;
+        if (!root) return res;
+        stack<TreeNode*> s;
+        s.push(root);
+        TreeNode *p = root;
+        while (!s.empty()) {
+            TreeNode *top = s.top();
+            // If the current node top in stack doesn't have any child in tree,
+            // or its left or right child has been visited,
+            // push back the current element to res
+            if ((!top->left && !top->right) || top->left == p || top->right == p) {
+                res.push_back(top->val);
+                s.pop();
+                p = top;
+            } else { // Otherwise, push its right and left child to stack
+                if(top->right) s.push(top->right);
+                if(top->left) s.push(top->left);
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Level Order Traversal (E)}
+Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        BFS(root, result, 0);
+        return result;
+    }
+    
+    void BFS(TreeNode *root, vector<vector<int>> &res, int depth) {
+        if (root == NULL)
+            return;
+        
+        if (res.size() == depth)            // The level does not exist in output
+            res.push_back(vector<int>());   // Create a new level
+            
+        res[depth].push_back(root->val);    // Add the current value to its level
+        
+        BFS(root->left, res, depth+1);      // Go to the next level
+        BFS(root->right, res, depth+1);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Level Order Traversal II (E)}
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        vector<vector<int>> result;
+        BFS(root, result, 0);
+        reverse(result.begin(), result.end());          // reverse to get the bottom-up level order result
+        return result;
+    }
+    
+    void BFS(TreeNode *root, vector<vector<int>> &res, int depth) {
+        if (root == NULL)
+            return;
+        
+        if (res.size() == depth)            // The level does not exist in output
+            res.push_back(vector<int>());   // Create a new level
+            
+        res[depth].push_back(root->val);    // Add the current value to its level
+        BFS(root->left, res, depth+1);      // Go to the next level
+        BFS(root->right, res, depth+1);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Zigzag Level Order Traversal (M)}
+Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        BFS(root, res, 0);
+        return res;
+    }
+    
+    void BFS(TreeNode *root, vector<vector<int>> &res, int depth) {
+        if (root == NULL)   return;
+        
+        if (res.size() == depth)
+            res.push_back(vector<int>());  
+
+        if (depth % 2 == 0) {                                   
+            res[depth].push_back(root->val);
+        } else {                                                
+            res[depth].insert(res[depth].begin(), root->val);   // insert the current root->val to the beginning of vector
+        }
+        
+        BFS(root->left, res, depth+1);  
+        BFS(root->right, res, depth+1);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Right Side View (M)}
+Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. \\
+
+For example: Given the following binary tree, [1, 2, 3, \#, 5, \#, 4], You should return [1, 3, 4]. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> res;
+        rightSideView(root, res, 1);
+        return res;
+    }
+    
+    void rightSideView(TreeNode *p, vector<int> &res, int level) {
+        if (p == NULL) return;
+        // push back p->val onlf if it is the right most node in the current level
+        if (res.size() < level) res.push_back(p->val);
+        rightSideView(p->right, res, level+1);
+        rightSideView(p->left, res, level+1);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Populating Next Right Pointers in Each Node (M)}
+Given a binary tree\\
+    struct TreeLinkNode {\\
+      TreeLinkNode *left;\\
+      TreeLinkNode *right;\\
+      TreeLinkNode *next;\\
+    }\\
+
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL. Initially, all next pointers are set to NULL.\
+
+Note:\\
+    You may only use constant extra space.\\
+    You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).\\
+    
+\begin{lstlisting}
+/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+// 1. Recursion, more than constant space
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        if (root->left) root->left->next = root->right;
+        if (root->right) root->right->next = root->next? root->next->left : NULL;
+        connect(root->left);
+        connect(root->right);
+    }
+};
+
+// 2. Non-recursion, more than constant space
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        queue<TreeLinkNode*> q;
+        q.push(root);
+        q.push(NULL);
+        while (true) {
+            TreeLinkNode *cur = q.front();
+            q.pop();
+            if (cur) {
+                cur->next = q.front();
+                if (cur->left) q.push(cur->left);
+                if (cur->right) q.push(cur->right);
+            } else {
+                if (q.size() == 0 || q.front() == NULL) return;
+                q.push(NULL);
+            }
+        }
+    }
+};
+
+// 3. Non-recursion, constant space
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        while (root->left) {
+            TreeLinkNode *p = root;
+            while(p) { //level order travesal from left to right
+                p->left->next = p->right;
+                if (p->next) p->right->next = p->next->left;
+                p = p->next;
+            }
+            root = root->left;
+        }
+    }    
+};
+\end{lstlisting}
+
+
+\subsection{Populating Next Right Pointers in Each Node II (H)}
+Follow up for problem "Populating Next Right Pointers in Each Node". What if the given tree could be any binary tree? Would your previous solution still work?\\
+
+Note: You may only use constant extra space.\\
+
+\begin{lstlisting}
+// 1. Recursion, more than constant space
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        TreeLinkNode *p = root->next;
+        while (p) {
+            if (p->left) {
+                p = p->left;
+                break;
+            }
+            if (p->right) {
+                p = p->right;
+                break;
+            }
+            p = p->next;
+        }
+        if (root->right) root->right->next = p; 
+        if (root->left) root->left->next = root->right ? root->right : p; 
+        connect(root->right);
+        connect(root->left);
+    }
+};
+
+// 2. Non-recursion, more than constant space
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        queue<TreeLinkNode*> q;
+        q.push(root);
+        q.push(NULL);
+        while (true) {
+            TreeLinkNode *cur = q.front();
+            q.pop();
+            if (cur) {
+                cur->next = q.front();
+                if (cur->left) q.push(cur->left);
+                if (cur->right) q.push(cur->right);
+            } else {
+                if (q.size() == 0 || q.front() == NULL) return;
+                q.push(NULL);
+            }
+        }
+    }
+};
+
+// 3. Non-recursion, constant space
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        TreeLinkNode *leftMost = root;
+        while (leftMost) {
+            TreeLinkNode *p = leftMost;
+            while (p && !p->left && !p->right) p = p->next;
+            if (!p) return;
+            leftMost = p->left ? p->left : p->right;
+            TreeLinkNode *cur = leftMost;
+            while (p) {
+                if (cur == p->left) {
+                    if (p->right) {
+                        cur->next = p->right;
+                        cur = cur->next;
+                    }
+                    p = p->next;
+                }
+                else if (cur == p->right) {
+                    p = p->next;
+                } else {
+                    if (!p->left && !p->right) {
+                        p = p->next;
+                        continue;
+                    }
+                    cur->next = p->left ? p->left : p->right;
+                    cur = cur->next;
+                }
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Binary Tree Recursion}
+\subsection{Same Tree (E)}
+Given two binary trees, write a function to check if they are equal or not. \\
+
+Two binary trees are considered equal if they are structurally identical and the nodes have the same value. \\
+
+\begin{lstlisting}
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if (p == NULL && q == NULL)	return true;
+        if (p == NULL || q == NULL)	return false;
+        return  p->val == q->val &&
+                isSameTree(p->left, q->left) &&
+                isSameTree(p->right, q->right);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Symmetric Tree (E)}
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (!root)  return true;
+        return compare(root->left, root->right);
+    }
+    
+    bool compare(TreeNode *p, TreeNode *q) {
+        if (!p && !q)   return true;
+        if (!p || !q)   return false;
+        if (p->val != q->val)    return false;
+        return compare(p->left, q->right) && compare(p->right, q->left);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Invert Binary Tree (E)}
+Invert a binary tree 4-2-7-1-3-6-9 to 4-7-2-9-6-3-1. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (root == NULL)
+            return NULL;
+            
+        TreeNode *tmp = root->left;
+        root->left = invertTree(root->right);
+        root->right = invertTree(tmp);
+        return root;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Upside Down (M)}
+Given a binary tree where all the right nodes are either leaf nodes with a sibling (a left node that shares the same parent node) or empty, flip it upside down and turn it into a tree where the original right nodes turned into left leaf nodes. Return the new root.\\
+
+For example:
+Given a binary tree {1,2,3,4,5}, return the root of the binary tree [4,5,2,\#,\#,3,1]. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode *upsideDownBinaryTree(TreeNode *root) {
+        if (!root || !root->left) return root;
+        TreeNode *l = root->left, *r = root->right;
+        TreeNode *res = upsideDownBinaryTree(l);
+        l->left = r;
+        l->right = root;
+        root->left = root_right = NULL;
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Lowest Common Ancestor of a Binary Tree (M)}
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == NULL || root == p || root == q)
+            return root;
+        
+        TreeNode *left = lowestCommonAncestor(root->left, p, q);
+        TreeNode *right = lowestCommonAncestor(root->right, p, q);
+        
+        if (left == NULL) {
+            return right;
+        } else {
+            if (right == NULL) {
+                return left;
+            } else {
+                return root;
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Longest Consecutive Sequence (M)}
+Given a binary tree, find the length of the longest consecutive sequence path.\\
+
+The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).\\
+
+For example, \\
+$[1, NULL, 3, 2, 4, NULL, NULL, NULL, 5]$, Longest consecutive sequence path is 3-4-5, so return 3. \\
+$[2, NULL, 3, 2, NULL, 1, NULL]$, Longest consecutive sequence path is 2-3, not 3-2-1, so return 2. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int longestConsecutive(TreeNode* root) {
+        if (!root) return 0;
+        int res = 0;
+        dfs(root, 1, res);
+        return res;
+    }
+    void dfs(TreeNode *root, int len, int &res) {
+        res = max(res, len);
+        if (root->left) {
+            if (root->left->val == root->val + 1) 
+                dfs(root->left, len + 1, res);
+            else 
+                dfs(root->left, 1, res);
+        }
+        if (root->right) {
+            if (root->right->val == root->val + 1) 
+                dfs(root->right, len + 1, res);
+            else 
+                dfs(root->right, 1, res);
+        }
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Count Univalue Subtrees (M)}
+Given a binary tree, count the number of uni-value subtrees. A Uni-value subtree means all nodes of the subtree have the same value. \\
+
+For example: Given binary tree, [5,1,5,5,5,\#,5], return 4.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int countUnivalSubtrees(TreeNode* root) {
+        if (!root) return res;
+        if (isUnival(root, root->val)) ++res;
+        countUnivalSubtrees(root->left);
+        countUnivalSubtrees(root->right);
+        return res;
+    }
+private:
+    int res = 0;
+    bool isUnival(TreeNode *root, int val) {
+        if (!root) return true;
+        return root->val == val && isUnival(root->left, val) && isUnival(root->right, val);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Balanced Binary Tree (E)}
+Given a binary tree, determine if it is height-balanced.\\
+
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1. \\
+\begin{lstlisting}
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if (root == NULL)
+            return true;
+            
+        return isBalanced(root->left) && isBalanced(root->right) && abs(height(root->left) - height(root->right)) <= 1;
+    }
+    
+    int height(TreeNode *node) {
+        if (node != NULL)
+            return 1 + max(height(node->left), height(node->right));
+        else
+            return 0;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Maximum Depth of Binary Tree (E)}
+Given a binary tree, find its maximum depth.\\
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (root != NULL)
+            return 1 + max(maxDepth(root->left), maxDepth(root->right));
+        else
+            return 0;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Minimum Depth of Binary Tree (E)}
+Given a binary tree, find its minimum depth.\\
+
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (!root) 
+            return 0;
+        if (!root->left) 
+            return 1 + minDepth(root->right);
+        if (!root->right) 
+            return 1 + minDepth(root->left);
+            
+        return 1 + min(minDepth(root->left), minDepth(root->right));
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Find Leaves of Binary Tree (M)}
+Given a binary tree, find all leaves and then remove those leaves. Then repeat the previous steps until the tree is empty.\\
+
+Example:\\
+Given binary tree [1, 2, 3, 4, 5], Returns [4, 5, 3], [2], [1].\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        vector<vector<int>> res;
+        helper(root, res);
+        return res;
+    }
+    
+    int helper(TreeNode *root, vector<vector<int>> &res) {
+        if (!root)  return -1;
+        int depth = 1 + max(helper(root->left, res), helper(root->right, res));
+        
+        if (depth >= res.size()) {
+                // assign new level
+                // or we can use: res.push_back(vector<int>())
+        		res.resize(depth + 1);
+        }
+        
+        res[depth].push_back(root->val);
+        return depth;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Paths (E)}
+Given a binary tree, return all root-to-leaf paths. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode *root) {
+        vector<string> res;
+        if (!root)  return res;
+        getTreePaths(root, res, to_string(root->val));
+        return res;
+    }
+    
+    void getTreePaths(TreeNode *root, vector<string> &res, string s) {
+        if (!root->left && !root->right) {      // push back to res until the end of the leaf
+            res.push_back(s);
+            return;
+        }
+        
+        if (root->left)
+            getTreePaths(root->left, res, s + "->" + to_string(root->left->val));
+        if (root->right)
+            getTreePaths(root->right, res, s + "->" + to_string(root->right->val));
+    }
+    
+};
+\end{lstlisting}
+
+
+\subsection{Path Sum (E)}
+Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool hasPathSum(TreeNode *root, int sum){
+        if (!root)  return false;
+        
+        if (!root->left && !root->right)
+            return root->val == sum;
+            
+        return hasPathSum(root->left, sum-(root->val)) || hasPathSum(root->right, sum-(root->val));
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Path Sum II (M)}
+Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum. \\
+ 
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> pathSum(TreeNode *root, int sum) {
+        vector<vector<int>> res;
+        vector<int> path;
+        getPathSum(root, sum, res, path);
+        return res;
+    }
+    
+    void getPathSum(TreeNode *root, int sum, vector<vector<int>> &res, vector<int> &path) {
+        if (!root)  return;
+        
+        path.push_back(root->val);              // add the current node to the path
+        if (!root->left && !root->right) {
+            if (root->val == sum)
+                res.push_back(path);            // find a correct path's sum
+        }
+        
+        getPathSum(root->left, sum-(root->val), res, path);
+        getPathSum(root->right, sum-(root->val), res, path);
+
+        path.pop_back();                        // delete the current node if no correct path's sum has been found
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Sum Root to Leaf Numbers (M)}
+Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number. An example is the root-to-leaf path $1->2->3$ which represents the number 123. Find the total sum of all root-to-leaf numbers.\\
+
+For example: \\
+The root-to-leaf path $1->2$ represents the number 12. The root-to-leaf path $1->3$ represents the number 13. Return the sum = 12 + 13 = 25. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int sumNumbers(TreeNode *root) {
+        return sumTreePaths(root, 0);
+    }
+    
+    int sumTreePaths(TreeNode *root, int sum) {
+        if (!root)  return 0;
+        
+        sum = 10 * sum + root->val;             // e.g. 1->2: 1 * 10 + 2 = 12
+        
+        if (!root->left && !root->right) {
+            return sum;
+        } else {
+            return sumTreePaths(root->left, sum) + sumTreePaths(root->right, sum);
+        }
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Tree Maximum Path Sum (H)}
+Given a binary tree, find the maximum path sum. For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        int sum = INT_MIN;
+        maxSum(root, sum);
+        return sum;
+    }
+    
+    int maxSum(TreeNode *root, int &sum) {
+        if (!root)  return 0;
+        
+        int left = max(0, maxSum(root->left, sum));
+        int right = max(0, maxSum(root->right, sum));
+        sum = max(sum, left + right + root->val);       // total sum = root + left subtree + right subtree
+        return max(left, right) + root->val;            // subtree sum = root + max(left subtree, right subtree)
+    }
+};
+\end{lstlisting}
+
+
+\section{Binary Tree Construction}
+
+
+\section{Binary Search Tree}
+\subsection{Lowest Common Ancestor of a Binary Search Tree (E)}
+Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST. \\
+
+According to the definition of LCA on Wikipedia: ``The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself)." \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (p->val < root->val && q->val < root->val) {
+            return lowestCommonAncestor(root->left, p, q);
+        } else if (p->val > root->val && q->val > root->val) {
+            return lowestCommonAncestor(root->right, p, q);
+        } else {
+            return root;
+        }     
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Validate Binary Search Tree (M)}
+Given a binary tree, determine if it is a valid binary search tree (BST).\\
+
+Assume a BST is defined as follows:\\
+    The left subtree of a node contains only nodes with keys less than the node's key.\\
+    The right subtree of a node contains only nodes with keys greater than the node's key.\\
+    Both the left and right subtrees must also be binary search trees.\\
+
+\begin{lstlisting}
+// 1. Recursion without inorder traversal
+class Solution {
+public:
+    bool isValidBST(TreeNode *root) {
+        return isValidBST(root, LONG_MIN, LONG_MAX);
+    }
+    bool isValidBST(TreeNode *root, long mn, long mx) {
+        if (!root) return true;
+        if (root->val <= mn || root->val >= mx) return false;
+        return isValidBST(root->left, mn, root->val) && isValidBST(root->right, root->val, mx);
+    }
+};
+
+// 2. Recursion with inorder traversal
+class Solution {
+public:
+    bool isValidBST(TreeNode *root) {
+        if (!root) return true;
+        vector<int> vals;
+        inorder(root, vals);
+        for (int i = 0; i < vals.size() - 1; ++i) {
+            if (vals[i] >= vals[i + 1]) return false;
+        }
+        return true;
+    }
+    void inorder(TreeNode *root, vector<int> &vals) {
+        if (!root) return;
+        inorder(root->left, vals);
+        vals.push_back(root->val);
+        inorder(root->right, vals);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Binary Search Tree Iterator (M)}
+Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST.\\
+
+Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree. \\
+
+\begin{lstlisting}
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class BSTIterator {
+public:
+    BSTIterator(TreeNode *root) {
+        pushLeft(root);
+    }
+    
+    void pushLeft(TreeNode *root) {
+        TreeNode *p = root;
+        while (p) {
+            s.push(p);
+            p = p->left;
+        }
+    }
+
+    /** @return whether we have a next smallest number */
+    bool hasNext() {
+        return !s.empty();
+    }
+
+    /** @return the next smallest number */
+    int next() {
+        TreeNode *p = s.top();
+        s.pop();
+        if (p->right)
+            pushLeft(p->right);
+        return p->val;
+    }
+    
+private:
+    stack<TreeNode*> s;
+};
+
+/**
+ * Your BSTIterator will be called like this:
+ * BSTIterator i = BSTIterator(root);
+ * while (i.hasNext()) cout << i.next();
+ */
+\end{lstlisting}
+
+
+\subsection{Recover Binary Search Tree (H)}
+Two elements of a binary search tree (BST) are swapped by mistake. Recover the tree without changing its structure.\\
+
+Note: A solution using O(n) space is pretty straight forward. Could you devise a constant space solution? \\
+
+\begin{lstlisting}
+// 1. O(n) space complexity
+class Solution {
+public:
+    void recoverTree(TreeNode *root) {
+        vector<TreeNode*> list;
+        vector<int> vals;
+        inorder(root, list, vals);
+        sort(vals.begin(), vals.end());
+        for (int i = 0; i < list.size(); ++i) {
+            list[i]->val = vals[i];
+        }
+    }
+    void inorder(TreeNode *root, vector<TreeNode*> &list, vector<int> &vals) {
+        if (!root) return;
+        inorder(root->left, list, vals);
+        list.push_back(root);
+        vals.push_back(root->val);
+        inorder(root->right, list, vals);
+    }
+};
+
+// 2. O(1) space complexity
+class Solution {
+public:
+    void recoverTree(TreeNode *root) {
+        TreeNode *first = NULL, *second = NULL, *parent = NULL;
+        TreeNode *cur, *pre;
+        cur = root;
+        while (cur) {
+            if (!cur->left) {
+                if (parent && parent->val > cur->val) {
+                    if (!first) first = parent;
+                    second = cur;
+                }
+                parent = cur;
+                cur = cur->right;
+            } else {
+                pre = cur->left;
+                while (pre->right && pre->right != cur) pre = pre->right;
+                if (!pre->right) {
+                    pre->right = cur;
+                    cur = cur->left;
+                } else {
+                    pre->right = NULL;
+                    if (parent->val > cur->val) {
+                        if (!first) first = parent;
+                        second = cur;
+                    }
+                    parent = cur;
+                    cur = cur->right;
+                }
+            }
+        }
+        if (first && second) swap(first->val, second->val);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Kth Smallest Element in a BST (M)}
+Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.\\
+
+Note:
+You may assume k is always valid, $1 \leq k \leq $BST's total elements.\\
+
+Follow up:
+What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?\\
+
+Hint:\\
+    Try to utilize the property of a BST.\\
+    What if you could modify the BST node's structure?\\
+    The optimal runtime complexity is O(height of BST).\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        int count = CountNodes(root->left);
+        if (k <= count)
+            return kthSmallest(root->left, k);
+        else if (k > count + 1)
+            return kthSmallest(root->right, k-1-count);
+        return root->val;
+    }
+    
+    int CountNodes(TreeNode *node) {
+        if (!node) return 0;
+        return 1 + CountNodes(node->left) + CountNodes(node->right);
+    }
+};
+
+// Inorder traversal of BST provides a sorted array of the BST
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        return kthSmallestDFS(root, k);
+    }
+    int kthSmallestDFS(TreeNode* root, int &k) {
+        if (!root) return -1;
+        int val = kthSmallestDFS(root->left, k);
+        if (k == 0) return val;
+        --k;
+        if (k == 0) return root->val;
+        return kthSmallestDFS(root->right, k);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Verify Preorder Sequence in Binary Search Tree (M)}
+Given an array of numbers, verify whether it is the correct preorder traversal sequence of a binary search tree.\\
+
+You may assume each number in the sequence is unique.\\
+
+Follow up:
+Could you do it using only constant space complexity?\\
+
+\begin{lstlisting}
+// e.g. [4, 2, 1, 3, 6, 5, 7]
+class Solution {
+public:
+    bool verifyPreorder(vector<int>& preorder) {
+        return helper(preorder, 0, preorder.size() - 1, INT_MIN, INT_MAX);
+    }
+    bool helper(vector<int> &preorder, int start, int end, int lower, int upper) {
+        if (start > end) return true;
+        int val = preorder[start], i = 0; // save root value to val
+        if (val <= lower || val >= upper) return false;
+        for (i = start + 1; i <= end; ++i) {
+            if (preorder[i] >= val) break;  // break if found the right tree node
+        }
+        // verify if both the left subtree and the right subtree are valid
+        return helper(preorder, start + 1, i - 1, lower, val) && helper(preorder, i, end, val, upper);
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Inorder Successor in BST (M)}
+Given a binary search tree and a node in it, find the in-order successor of that node in the BST.\\
+
+Note: If the given node has no in-order successor in the tree, return null.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
+        TreeNode *res = NULL;
+        while (root) {
+            if (p->val < root->val) {
+                res = root; // root could be the in-order successor of p
+                root = root->left; // or the successor could exist in the left subtree of root
+            } else { // otherwise, the successor will definitely exist in the right subtree of root
+                root = root->right; 
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Largest BST Subtree (M)}
+Given a binary tree, find the largest subtree which is a Binary Search Tree (BST), where largest means subtree with largest number of nodes in it.\\
+
+Note: A subtree must include all of its descendants.\\
+
+Here's an example: [10, 5, 15, 1, 8, \#, 7]\\
+The Largest BST Subtree in this case is the highlighted one. \\
+The return value is the subtree's size, which is 3.\\
+
+Hint: You can recursively use algorithm similar to 98. Validate Binary Search Tree at each node of the tree, which will result in O(nlogn) time complexity.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int largestBSTSubtree(TreeNode* root) {
+        int res = 0;
+        dfs(root, res);
+        return res;
+    }
+    void dfs(TreeNode *root, int &res) {
+        if (!root) return;
+        int d = countBFS(root, INT_MIN, INT_MAX);
+        if (d != -1) {
+            res = max(res, d);
+            return;
+        }
+        dfs(root->left, res);
+        dfs(root->right, res);
+    }
+    int countBFS(TreeNode *root, int mn, int mx) {
+        if (!root) return 0;
+        if (root->val < mn || root->val > mx) return -1;
+        int left = countBFS(root->left, mn, root->val);
+        if (left == -1) return -1;
+        int right = countBFS(root->right, root->val, mx);
+        if (right == -1) return -1;
+        return left + right + 1;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Unique Binary Search Trees (M)}
+Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
+
+\begin{lstlisting}
+// Catalan number
+// dp[2] = dp[0] * dp[1] + dp[1] * dp[0];
+// dp[3] = dp[0] * dp[2] + dp[1] * dp[1] + dp[2] * dp[0];
+class Solution {
+public:
+    int numTrees(int n) {
+        vector<int> dp(n + 1, 0);
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; ++i) {          
+            for (int j = 0; j < i; ++j) {
+                dp[i] += dp[j] * dp[i - j - 1];
+            }
+        }
+        return dp[n];
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Unique Binary Search Trees II (M)}
+Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1...n.
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<TreeNode*> generateTrees(int n) {
+        if (n == 0) return {};
+        return generateTreesDFS(1, n);
+    }
+    vector<TreeNode *> generateTreesDFS(int start, int end) {
+        vector<TreeNode*> subTree;
+        if (start > end) {
+            subTree.push_back(NULL);
+            return subTree;
+        }
+        for (int k = start; k <= end; k++) {
+            vector<TreeNode*> leftSubTree = generateTreesDFS(start, k - 1);
+            vector<TreeNode*> rightSubTree = generateTreesDFS(k + 1, end);
+            for (int i = 0; i < leftSubTree.size(); ++i) {
+                for (int j = 0; j < rightSubTree.size(); ++j) {
+                    TreeNode *node = new TreeNode(k);
+                    node->left = leftSubTree[i];
+                    node->right = rightSubTree[j];
+                    subTree.push_back(node);
+                }
+            }
+        }
+        return subTree;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Convert Sorted Array to Binary Search Tree (M)}
+Given an array where elements are sorted in ascending order, convert it to a height balanced BST.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode *sortedArrayToBST(vector<int> &nums) {
+        return sortedArrayToBST(nums, 0, nums.size()-1);
+    }
+    TreeNode *sortedArrayToBST(vector<int> &nums, int left, int right) {
+        if (left > right)   return NULL;
+        int mid = left + (right - left) / 2;
+        TreeNode *root = new TreeNode(nums[mid]);
+        root->left = sortedArrayToBST(nums, left, mid-1);
+        root->right = sortedArrayToBST(nums, mid+1, right);
+        return root;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Convert Sorted List to Binary Search Tree (M)}
+Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode *sortedListToBST(ListNode *head) {
+        if (!head) return NULL;
+        if (!head->next) return new TreeNode (head->val);
+        ListNode *left, *mid, *right;
+        left = mid = right = head;
+        while (right->next && right->next->next) {
+            left = mid;  // update the tail of left
+            mid = mid->next;
+            right = right->next->next;
+        }
+        right = mid->next; // get the right list
+        left->next = NULL; // break the left list
+        TreeNode *root = new TreeNode(mid->val);
+        if (head != mid) root->left = sortedListToBST(head);
+        root->right = sortedListToBST(right);
+        return root;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Closest Binary Search Tree Value (E)}
+Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.\\
+
+Note:\\
+    Given target value is a floating point.\\
+    You are guaranteed to have only one unique value in the BST that is closest to the target.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int closestValue(TreeNode* root, double target) {
+        int res = root->val;
+        while (root) {
+            if (abs(root->val - target) < abs(res - target)) {  // find a shorter distance
+                res = root->val;                                // update value;
+            }
+            
+            if (target < root->val) {
+                root = root->left;
+            } else {
+                root = root->right;
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Closest Binary Search Tree Value II (H)}
+Given a non-empty binary search tree and a target value, find k values in the BST that are closest to the target.\\
+
+Note:\\
+    Given target value is a floating point.\\
+    You may assume k is always valid, that is: k ? total nodes.\\
+    You are guaranteed to have only one unique set of k values in the BST that are closest to the target.\\
+
+Follow up:
+Assume that the BST is balanced, could you solve it in less than O(n) runtime (where n = total nodes)?\\
+
+Hint:\\
+1. Consider implement these two helper functions:\\
+i. getPredecessor(N), which returns the next smaller node to N.\\
+ii. getSuccessor(N), which returns the next larger node to N.\\
+2. Try to assume that each node has a parent pointer, it makes the problem much easier.\\
+3. Without parent pointer we just need to keep track of the path from the root to the current node using a stack.\\
+4. You would need two stacks to track the path in finding predecessor and successor node separately.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> closestKValues(TreeNode* root, double target, int k) {
+        vector<int> res, v;
+        inorder(root, v);
+        int idx = 0;
+        double diff = numeric_limits<double>::max();
+        for (int i = 0; i < v.size(); ++i) {
+            if (diff >= abs(target - v[i])) {
+                diff = abs(target - v[i]);
+                idx = i;
+            }
+        }
+        int left = idx - 1, right = idx + 1;
+        for (int i = 0; i < k; ++i) {
+            res.push_back(v[idx]);
+            if (left >= 0 && right < v.size()) {
+                if (abs(v[left] - target) > abs(v[right] - target)) {
+                    idx = right;
+                    ++right;
+                } else {
+                    idx = left;
+                    --left;
+                }
+            } else if (left >= 0) {
+                idx = left;
+                --left;
+            } else if (right < v.size()) {
+                idx = right;
+                ++right;
+            }
+        }
+        return res;
+    }
+    void inorder(TreeNode *root, vector<int> &v) {
+        if (!root) return;
+        inorder(root->left, v);
+        v.push_back(root->val);
+        inorder(root->right, v);
+    }
+};
+\end{lstlisting}
+
+
+
+

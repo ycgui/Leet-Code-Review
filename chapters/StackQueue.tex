@@ -1,0 +1,174 @@
+\chapter{Stack and Queue}
+
+
+\section{Implement Stack using Queues (E)}
+Implement the following operations of a stack using queues.\\
+
+    push(x) -- Push element x onto stack.\\
+    pop() -- Removes the element on top of the stack.\\
+    top() -- Get the top element.\\
+    empty() -- Return whether the stack is empty.\\
+
+\begin{lstlisting}
+class Stack {
+queue<int> que;
+public:
+    // Push element x onto stack.
+    void push(int x) {
+       que.push(x);                             // push x to tail
+       for (int i = 1; i < que.size(); ++i) {   // repeat until x is the head
+           que.push(que.front());               // push head to tail
+           que.pop();                           // pop the old head
+       }
+    }
+
+    // Removes the element on top of the stack.
+    void pop() {
+        que.pop();
+    }
+
+    // Get the top element.
+    int top() {
+        return que.front();
+    }
+
+    // Return whether the stack is empty.
+    bool empty() {
+        return que.empty();
+    }
+};
+\end{lstlisting}
+
+
+\section{Implement Queue using Stacks (E)}
+ Implement the following operations of a queue using stacks.\\
+
+    push(x) -- Push element x to the back of queue.\\
+    pop() -- Removes the element from in front of queue.\\
+    peek() -- Get the front element.\\
+    empty() -- Return whether the queue is empty.\\
+    
+\begin{lstlisting}
+class Queue {
+stack<int> s1, s2;
+public:
+    // Push element x to the back of queue.
+    void push(int x) {
+        while (!s2.empty()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+        s1.push(x);
+    }
+
+    // Removes the element from in front of queue.
+    void pop(void) {
+        while (!s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
+        }
+        s2.pop();
+    }
+
+    // Get the front element.
+    int peek(void) {
+        while (!s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
+        }
+        return s2.top();
+    }
+
+    // Return whether the queue is empty.
+    bool empty(void) {
+        return s1.empty() && s2.empty();
+    }
+};
+\end{lstlisting}
+
+
+\section{Min Stack (E)}
+ Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.\\
+
+    push(x) -- Push element x onto stack.\\
+    pop() -- Removes the element on top of the stack.\\
+    top() -- Get the top element.\\
+    getMin() -- Retrieve the minimum element in the stack.\\
+    
+Example:\\
+MinStack minStack = new MinStack();\\
+minStack.push(-2);\\
+minStack.push(0);\\
+minStack.push(-3);\\
+minStack.getMin();   $->$ Returns -3.\\
+minStack.pop();\\
+minStack.top();      $->$ Returns 0.\\
+minStack.getMin();   $->$ Returns -2.\\
+
+\begin{lstlisting}
+class MinStack {
+public:
+    stack<int> s;
+    stack<int> s_min;                       // use a new stack to store minimum numbers
+    
+    void push(int x) {
+        s.push(x);
+        if (s_min.empty() || x <= getMin()) // make a copy of a min value to s_min
+            s_min.push(x);
+    }
+    
+    void pop() {
+        if (s.top() == getMin())            // update s_min if the min value is poped
+            s_min.pop();
+        s.pop();
+    }
+    
+    int top() {
+        return s.top();
+    }
+    
+    int getMin() {
+        return s_min.top();
+    }
+};
+\end{lstlisting}
+
+
+\section{Moving Average from Data Stream (E)}
+Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.\\
+
+For example,\\
+MovingAverage m = new MovingAverage(3);\\
+m.next(1) = 1\\
+m.next(10) = (1 + 10) / 2\\
+m.next(3) = (1 + 10 + 3) / 3\\
+m.next(5) = (10 + 3 + 5) / 3 \\
+
+\begin{lstlisting}
+class MovingAverage {
+public:
+    MovingAverage(int size) {
+        this->size = size;
+        sum = 0;
+    }
+    
+    double next(int val) {
+        if (q.size() >= size) {	
+            sum -= q.front();
+            q.pop();
+        }
+        q.push(val);
+        sum += val;
+        return sum / q.size();
+    }
+    
+private:
+    queue<int> q;
+    int size;
+    double sum;
+};
+\end{lstlisting}
+
+
+
+

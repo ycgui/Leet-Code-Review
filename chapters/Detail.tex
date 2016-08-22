@@ -1,0 +1,388 @@
+\chapter{Details Implementation}
+\section{Valid Sudoku (E)}
+Determine if a Sudoku is valid, according to:\\
+1. Each row must have the numbers 1-9 occuring just once. \\
+2. Each column must have the numbers 1-9 occuring just once. \\
+3. And the numbers 1-9 must occur just once in each of the 9 sub-boxes of the grid. \\
+
+The Sudoku board could be partially filled, where empty cells are filled with the character '.'.  A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        bool used[9]; // count if the number in the cell is appeared
+
+        for (int i = 0; i < 9; ++i) {
+
+            // fill: Assigns val to all the elements in the range [first,last).
+            // all set to false (not appear)
+            fill(used, used + 9, false);
+            // check rows
+            for (int j = 0; j < 9; ++j) { 
+                if (!check(board[i][j], used))
+                    return false;
+            }
+
+            fill(used, used + 9, false);
+            // check columns
+            for (int j = 0; j < 9; ++j) {               
+                if (!check(board[j][i], used))
+                return false;
+            }
+        }
+        
+        // check 9 blocks
+        for (int m = 0; m < 3; ++m) {                   
+            for (int n = 0; n < 3; ++n) {
+                fill(used, used + 9, false);
+                for (int i = m * 3; i < m * 3 + 3; ++i) {
+                    for (int j = n * 3; j < n * 3 + 3; ++j) {
+                        if (!check(board[i][j], used))
+                            return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
+    }
+    
+    bool check(char ch, bool used[9]) {
+        if (ch == '.')      return true; // continue if the current cell is .
+        if (used[ch - '1']) return false; // not first time appear, return false
+        return used[ch - '1'] = true; // first time appear, return true
+    }
+};
+\end{lstlisting}
+
+
+\section{Sudoku Solver (H)}
+Write a program to solve a Sudoku puzzle by filling the empty cells. Empty cells are indicated by the character '.'. You may assume that there will be only one unique solution. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool solveSudoku(vector<vector<char> > &board) {
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                if (board[i][j] == '.') {
+                    for (int k = 0; k < 9; ++k) {
+                        board[i][j] = '1' + k;
+                        if (isValid(board, i, j) && solveSudoku(board))
+                            return true;
+                        board[i][j] = '.';
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    bool isValid(const vector<vector<char> > &board, int x, int y) {
+        int i, j;
+        for (i = 0; i < 9; i++) {  
+              if (i != x && board[i][y] == board[x][y])
+                  return false;
+        }
+        for (j = 0; j < 9; j++) {  
+                if (j != y && board[x][j] == board[x][y])
+                  return false;
+        }
+        for (i = 3 * (x / 3); i < 3 * (x / 3 + 1); i++) {
+            for (j = 3 * (y / 3); j < 3 * (y / 3 + 1); j++) {
+                if ((i != x || j != y) && board[i][j] == board[x][y])
+                    return false;
+            }
+        }
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Design Tic-Tac-Toe (M)}
+Design a Tic-tac-toe game that is played between two players on a n x n grid. \\
+
+You may assume the following rules:\\
+A move is guaranteed to be valid and is placed on an empty block.\\
+Once a winning condition is reached, no more moves is allowed.\\
+A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game.\\
+
+Example:\\
+Given n = 3, assume that player 1 is "X" and player 2 is "O" in the board.\\
+TicTacToe toe = new TicTacToe(3);\\
+
+toe.move(0, 0, 1); -> Returns 0 (no one wins)\\
+|X| | |\\
+| | | | // Player 1 makes a move at (0, 0).\\
+| | | |\\
+
+toe.move(0, 2, 2); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| | | | // Player 2 makes a move at (0, 2).\\
+| | | |\\
+
+toe.move(2, 2, 1); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| | | | // Player 1 makes a move at (2, 2).\\
+| | |X|\\
+
+toe.move(1, 1, 2); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| |O| | // Player 2 makes a move at (1, 1).\\
+| | |X|\\
+
+toe.move(2, 0, 1); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| |O| | // Player 1 makes a move at (2, 0).\\
+|X| |X|\\
+
+toe.move(1, 0, 2); -> Returns 0 (no one wins)\\
+|X| |O|\\
+|O|O| | // Player 2 makes a move at (1, 0).\\
+|X| |X|\\
+
+toe.move(2, 1, 1); -> Returns 1 (player 1 wins)\\
+|X| |O|\\
+|O|O| | // Player 1 makes a move at (2, 1).\\
+|X|X|X|\\
+
+Follow up:\\
+Could you do better than $O(n^2)$ per move() operation?\\
+
+Hint:\\
+Could you trade extra space such that move() operation can be done in O(1)? You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, antidiagonal. \\
+
+\begin{lstlisting}
+class TicTacToe {
+public:
+    /** Initialize your data structure here. */
+    TicTacToe(int n) {
+        board.resize(n, vector<int>(n, 0));   
+    }
+
+    int move(int row, int col, int player) {
+        board[row][col] = player;
+        int i = 0, j = 0, N = board.size();
+        // check row
+        for (i = 0; i < N; ++i) {
+            if (board[i][0] != 0) {
+                for (j = 1; j < N; ++j) {
+                    if (board[i][j] != board[i][j - 1]) break;
+                }
+                if (j == N) return board[i][0];
+            }
+        }
+        // check column
+        for (j = 0; j < N; ++j) {
+            if (board[0][j] != 0) {
+                for (i = 1; i < N; ++i) {
+                    if (board[i][j] != board[i - 1][j]) break;
+                }
+                if (i == N) return board[0][j];
+            }
+        }
+        // check diagonal
+        if (board[0][0] != 0) {
+            for (i = 1; i < N; ++i) {
+                if (board[i][i] != board[i - 1][i - 1]) break;
+            }
+            if (i == N) return board[0][0];
+        }
+        // check antidiagonal
+        if (board[N - 1][0] != 0) {
+            for (i = 1; i < N; ++i) {
+                if (board[N - i - 1][i] != board[N - i][i - 1]) break;
+            }
+            if (i == N) return board[N - 1][0];
+        }
+        return 0;
+    }
+    
+private:
+    vector<vector<int>> board;
+};
+\end{lstlisting}
+
+
+\section{Boom Enemy (M)}
+Given a 2D grid, each cell is either a wall 'W', an enemy 'E' or empty '0' (the number zero), return the maximum enemies you can kill using one bomb.
+The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since the wall is too strong to be destroyed.
+Note that you can only put the bomb at an empty cell.\\
+
+Example:\\
+For the given grid\\
+0 E 0 0\\
+E 0 W E\\
+0 E 0 0\\
+return 3. (Placing a bomb at (1,1) kills 3 enemies)\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxKilledEnemies(vector<vector<char>>& grid) {
+        if (grid.empty() || grid[0].empty()) return 0;
+        int m = grid.size(), n = grid[0].size(), res = 0, tmp;
+        vector<vector<int>> v1(m, vector<int>(n, 0)), v2 = v1, v3 = v1, v4 = v1;
+        // search each row
+        for (int i = 0; i < m; ++i) { 
+            for (int j = 0; j < n; ++j) { // from left to right
+                if (j == 0 || grid[i][j] == 'W') tmp = 0;
+                else tmp = v1[i][j-1];
+                if (grid[i][j] == 'E') v1[i][j] = tmp + 1;
+                else v1[i][j] = tmp;
+            }
+            for (int j = n - 1; j >= 0; --j) { // from right to left
+                if (j == n - 1 || grid[i][j] == 'W') tmp = 0;
+                else tmp = v2[i][j+1];
+                if (grid[i][j] == 'E') v2[i][j] = tmp + 1;
+                else v2[i][j] = tmp;
+            }
+        }
+        // search each column
+        for (int j = 0; j < n; ++j) { 
+            for (int i = 0; i < m; ++i) { // from up to bottom
+                if (i == 0 || grid[i][j] == 'W') tmp = 0;
+                else tmp = v3[i-1][j];
+                if (grid[i][j] == 'E') v3[i][j] = tmp + 1;
+                else v3[i][j] = tmp;
+            }
+            for (int i = m - 1; i >= 0; --i) { // from bottom to up
+                if (i == m - 1 || grid[i][j] == 'W') tmp = 0;
+                else tmp = v4[i+1][j];
+                if (grid[i][j] == 'E') v4[i][j] = tmp + 1;
+                else v4[i][j] = tmp;
+            }
+        }
+        // iterate all empty cell and get the max 
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (grid[i][j] == '0') {
+                    res = max(res, v1[i][j] + v2[i][j] + v3[i][j] + v4[i][j]);
+                }
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Android Unlock Patterns (M)}
+Given an Android 3x3 key lock screen and two integers m and n, where $1 \leq m \leq n \leq 9$, count the total number of unlock patterns of the Android lock screen, which consist of minimum of m keys and maximum n keys.\\
+
+Rules for a valid pattern:\\
+    Each pattern must connect at least m keys and at most n keys.\\
+    All the keys must be distinct.\\
+    If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.\\
+    The order of keys used matters.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int numberOfPatterns(int m, int n) {
+        int res = 0;
+        vector<bool> visited(10, false);
+        vector<vector<int>> jumps(10, vector<int>(10, 0));
+        jumps[1][3] = jumps[3][1] = 2;
+        jumps[4][6] = jumps[6][4] = 5;
+        jumps[7][9] = jumps[9][7] = 8;
+        jumps[1][7] = jumps[7][1] = 4;
+        jumps[2][8] = jumps[8][2] = 5;
+        jumps[3][9] = jumps[9][3] = 6;
+        jumps[1][9] = jumps[9][1] = jumps[3][7] = jumps[7][3] = 5;
+        res += helper(1, 1, 0, m, n, jumps, visited) * 4;
+        res += helper(2, 1, 0, m, n, jumps, visited) * 4;
+        res += helper(5, 1, 0, m, n, jumps, visited);
+        return res;
+    }
+    int helper(int num, int len, int res, int m, int n, vector<vector<int>> &jumps, vector<bool> &visited) {
+        if (len >= m) ++res;
+        ++len;
+        if (len > n) return res;
+        visited[num] = true;
+        for (int next = 1; next <= 9; ++next) {
+            int jump = jumps[num][next];
+            if (!visited[next] && (jump == 0 || visited[jump])) {
+                res = helper(next, len, res, m, n, jumps, visited);
+            }
+        }
+        visited[num] = false;
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Game of Life (M)}
+According to the Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970." Given a board with m by n cells, each cell has an initial state live (1) or dead (0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):\\
+
+    Any live cell with fewer than two live neighbors dies, as if caused by under-population.\\
+    Any live cell with two or three live neighbors lives on to the next generation.\\
+    Any live cell with more than three live neighbors dies, as if by over-population.\\
+    Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.\\
+
+Write a function to compute the next state (after one update) of the board given its current state.\\
+
+Follow up:\\
+    Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.\\
+    In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?\\
+    
+\begin{lstlisting}
+/** [2nd bit, 1st bit] = [next state, current state]
+ * 00  dead (next) <- dead (current)
+ * 01  dead (next) <- live (current)  
+ * 10  live (next) <- dead (current)  
+ * 11  live (next) <- live (current) 
+ * 
+ * 1. In the beginning, every cell is either 00 or 01.
+ * 2. Notice that 1st state is independent of 2nd state.
+ * 3. Imagine all cells are instantly changing from the 1st to the 2nd state, at the same time.
+ * 4. Let's count # of neighbors from 1st state and set 2nd state bit.
+ * 5. Since every 2nd state is by default dead, no need to consider transition 01 -> 00.
+ * 6. In the end, delete every cell's 1st state by doing >> 1.
+ * 
+ * For each cell's 1st bit, check the 8 pixels around itself, and set the cell's 2nd bit.
+    Transition 01 -> 11: when board == 1 and (lives == 2 || lives == 3).
+    Transition 00 -> 10: when board == 0 and lives == 3.
+ * To get the current state, simply do board[i][j] & 1
+ * To get the next state, simply do board[i][j] >> 1
+ */
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+        if (board.empty() || board.size() == 0) return;
+        int m = board.size(), n = board[0].size();
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                int lives = getLives(board, i, j, m, n); // get current live numbers
+                if (board[i][j] == 1 && (lives == 2 || lives == 3)) {
+                    board[i][j] = 3;            // 01 -> 11
+                }
+                
+                if (board[i][j] == 0 && lives == 3) {
+                    board[i][j] = 2;            // 00 -> 10
+                }
+            }
+        }
+        // update board based on the 2nd bit
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                board[i][j] >>= 1; // get the 2nd bit
+            }
+        }
+    }
+    int getLives(vector<vector<int>>& board, int i, int j, int m, int n) {
+        int lives = 0;
+        for (int p = max(i-1, 0); p <= min(i+1, m-1); ++p) {
+            for (int q = max(j-1, 0); q <= min(j+1, n-1); ++q) {
+                lives += board[p][q] & 1;       // add the 1st bit
+            }
+        }
+        lives -= board[i][j] & 1;               // remove (i,j) itself
+        return lives;
+    }
+};    
+\end{lstlisting}
