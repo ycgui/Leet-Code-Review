@@ -305,6 +305,87 @@ public:
 \end{lstlisting}
 
 
+\section{Linked List Random Node (M)}
+Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.\\
+
+Follow up:
+What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?\\
+
+Example:\\
+
+// Init a singly linked list [1,2,3].\\
+ListNode head = new ListNode(1);\\
+head.next = new ListNode(2);\\
+head.next.next = new ListNode(3);\\
+Solution solution = new Solution(head);\\
+
+// getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.\\
+solution.getRandom();\\
+
+\begin{lstlisting}
+// 1. Regular solution 
+class Solution {
+public:
+    /** @param head The linked list's head.
+        Note that the head is guaranteed to be not null, so it contains at least one node. */
+    Solution(ListNode* head) {
+        n = 0;
+        ListNode *p = head;
+        this->head = head;
+        while (p) {
+            ++n; // get the length of list
+            p = p->next;
+        }
+    }
+    
+    /** Returns a random node's value. */
+    int getRandom() {
+        int idx = rand() % n;
+        ListNode *p = head;
+        while (idx) {
+            p = p->next;
+            --idx;
+        }
+        return p->val;
+    }
+    
+private:
+    int n;
+    ListNode *head;
+};
+
+// 2. Reservoir sampling
+class Solution {
+public:
+    /** @param head The linked list's head. Note that the head is guanranteed to be not null, so it contains at least one node. */
+    Solution(ListNode* head) {
+        this->head = head;
+    }
+    
+    /** Returns a random node's value. */
+    int getRandom() {
+        int res = head->val, i = 2;
+        ListNode *cur = head->next;
+        while (cur) {
+            int j = rand() % i; // get a number from [0, i-1]
+            if (j == 0) res = cur->val; // if j = 0, the random value is cur->val 
+            ++i;
+            cur = cur->next;
+        }
+        return res;
+    }
+private:
+    ListNode *head;
+};
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(head);
+ * int param_1 = obj.getRandom();
+ */
+\end{lstlisting}
+
+
 \section{Delete Node in a Linked List (E)}
 Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.\\
 
@@ -703,6 +784,132 @@ public:
         }
         
         return weighted;
+    }
+};
+\end{lstlisting}
+
+
+\section{Mini Parser (M)}
+Given a nested list of integers represented as a string, implement a parser to deserialize it. Each element is either an integer, or a list -- whose elements may also be integers or other lists.\\
+
+Note: You may assume that the string is well-formed:\\
+    String is non-empty.\\
+    String does not contain white spaces.\\
+    String contains only digits 0-9, [, -, ,, ].\\
+
+Example 1:
+Given s = "324",
+You should return a NestedInteger object which contains a single integer 324.\\
+
+Example 2:
+Given s = "[123,[456,[789]]]",
+Return a NestedInteger object containing a nested list with 2 elements:\\
+1. An integer containing value 123.\\
+2. A nested list containing two elements:\\
+    i.  An integer containing value 456.\\
+    ii. A nested list with one element:\\
+         a. An integer containing value 789.\\
+
+\begin{lstlisting}
+/**
+ * // This is the interface that allows for creating nested lists.
+ * // You should not implement it, or speculate about its implementation
+ * class NestedInteger {
+ *   public:
+ *     // Constructor initializes an empty nested list.
+ *     NestedInteger();
+ *
+ *     // Constructor initializes a single integer.
+ *     NestedInteger(int value);
+ *
+ *     // Return true if this NestedInteger holds a single integer, rather than a nested list.
+ *     bool isInteger() const;
+ *
+ *     // Return the single integer that this NestedInteger holds, if it holds a single integer
+ *     // The result is undefined if this NestedInteger holds a nested list
+ *     int getInteger() const;
+ *
+ *     // Set this NestedInteger to hold a single integer.
+ *     void setInteger(int value);
+ *
+ *     // Set this NestedInteger to hold a nested list and adds a nested integer to it.
+ *     void add(const NestedInteger &ni);
+ *
+ *     // Return the nested list that this NestedInteger holds, if it holds a nested list
+ *     // The result is undefined if this NestedInteger holds a single integer
+ *     const vector<NestedInteger> &getList() const;
+ * };
+ */
+// 1. Recursive solution
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        if (s.empty()) return NestedInteger();
+        if (s[0] != '[') return NestedInteger(stoi(s));
+        if (s.size() <= 2) return NestedInteger();
+        NestedInteger res;
+        int start = 1, cnt = 0;
+        for (int i = 1; i < s.size(); ++i) {
+            if (cnt == 0 && (s[i] == ',' || i == s.size() - 1)) {
+                res.add(deserialize(s.substr(start, i - start)));
+                start = i + 1;
+            } else if (s[i] == '[') ++cnt;
+            else if (s[i] == ']') --cnt;
+        }
+        return res;
+    }
+};
+
+// 2. Iterative solution
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        if (s.empty()) return NestedInteger();
+        if (s[0] != '[') return NestedInteger(stoi(s));
+        stack<NestedInteger> st;
+        int start = 1;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '[') {
+                st.push(NestedInteger());
+                start = i + 1;
+            } else if (s[i] == ',' || s[i] == ']') {
+                if (i > start) {
+                    st.top().add(NestedInteger(stoi(s.substr(start, i - start))));
+                }
+                start = i + 1;
+                if (s[i] == ']') {
+                    if (st.size() > 1) {
+                        NestedInteger t = st.top(); st.pop();
+                        st.top().add(t);
+                    }
+                }
+            }
+        }
+        return st.top();
+    }
+};
+
+// 3. istringstream solution
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        istringstream in(s);
+        return deserialize(in);
+    }
+    NestedInteger deserialize(istringstream& in) {
+        int num;
+        if (in >> num) return NestedInteger(num);
+        in.clear();
+        in.get();
+        NestedInteger list;
+        while (in.peek() != ']') {
+            list.add(deserialize(in));
+            if (in.peek() == ',') {
+                in.get();
+            }
+        }
+        in.get();
+        return list;
     }
 };
 \end{lstlisting}

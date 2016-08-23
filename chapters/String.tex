@@ -154,6 +154,79 @@ public:
 \end{lstlisting}
 
 
+\section{Ransom Note (E)}
+Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines; otherwise, it will return false. Each letter in the magazine string can only be used once in your ransom note. \\
+
+Note:
+You may assume that both strings contain only lowercase letters.\\
+
+canConstruct("a", "b") $->$ false\\
+canConstruct("aa", "ab") $->$ false\\
+canConstruct("aa", "aab") $->$ true\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char, int> m;
+        for (auto c : magazine) ++m[c];
+        for (auto c : ransomNote) {
+            if (--m[c] < 0) return false;
+        }
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{First Unique Character in a String (E)}
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.\\
+
+Examples:\\
+s = "leetcode"
+return 0.\\
+s = "loveleetcode",
+return 2.\\
+
+Note: You may assume the string contain only lowercase letters. \\
+
+\begin{lstlisting}
+// 1. Brute-force with scanning s twice
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        if (s.empty()) return -1;
+        unordered_map<char, int> m;
+        for (auto c : s) ++m[c];
+        for (int i = 0; i < s.size(); ++i) {
+            if (m[s[i]] == 1) return i;
+        }
+        return -1;
+    }
+};
+
+// 2. Brute-force with scanning s only once
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        if (s.empty()) return -1;
+        unordered_map<char, pair<int, int>> m;
+        int idx = s.size();
+        for (int i = 0; i < s.size(); ++i) {
+            m[s[i]].first++;     // save the count of chars
+            m[s[i]].second = i;  // save the index of chars
+        }
+        for (auto a : m) {
+            if (a.second.first == 1) {
+                idx = min(idx, a.second.second); // find the smallest index
+            }
+        }
+        return idx == s.size() ? -1 : idx;
+    }
+};
+\end{lstlisting}
+
+
 \section{ZigZag Conversion (E)}
 Write the code that will take a string and make this conversion given a number of rows: string convert(string text, int nRows). \\
 convert(``PAYPALISHIRING", 3) should return ``PAHNAPLSIIGYIR". \\
