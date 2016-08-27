@@ -93,79 +93,6 @@ public:
 \end{lstlisting}
 
 
-\section{Reverse Linked List (E)}
-Reverse a singly linked list.\\
-
-\begin{lstlisting}
-// iterative solution
-class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
-        if (head == NULL || head->next == NULL)
-            return head;
-            
-        ListNode *p1 = head->next, *p2;
-        head->next = NULL;
-        while (p1 != NULL) {
-            p2 = p1->next;
-            p1->next = head;
-            head = p1;
-            p1 = p2;
-        }
-        
-        return head;
-    }
-};
-
-// recursive solution
-class Solution {
-public:   
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !(head -> next)) 
-            return head;
-        ListNode* node = reverseList(head -> next);
-        head -> next -> next = head;
-        head -> next = NULL;
-        return node; 
-    }
-}; 
-\end{lstlisting} 
-
-
-\section{Rotate Linked List (E)}
-Given a list, rotate the list to the right by k places, where k is non-negative.\\
-
-For example:\\
-Given $1->2->3->4->5->NULL$ and k = 2, return $4->5->1->2->3->NULL$.\\
-
-\begin{lstlisting}
-class Solution {
-public:
-    ListNode* rotateRight(ListNode* head, int k) {
-        if (!head || k <= 0)  return head;
-        
-        ListNode *p = head;
-        int n = 1;
-        
-        while (p->next){        // get the length of list
-            p = p->next;
-            ++n;
-        }
-        
-        p->next = head;         // make a circle list
-        k = k % n;              // get the correct k
-        
-        for(int i = 0; i < n - k; ++i)  // move p to the correct position
-            p = p->next;
-            
-        head = p->next;
-        p->next = NULL;
-        return head;
-    }
-};
-\end{lstlisting}
-
-
 \section{Palindrome Linked List (E)}
 Given a singly linked list, determine if it is a palindrome. \\
 
@@ -251,6 +178,189 @@ public:
         p->next = head;
         
         return p;
+    }
+};
+\end{lstlisting}
+
+
+\section{Reverse Linked List (E)}
+Reverse a singly linked list.\\
+
+\begin{lstlisting}
+// recursive solution
+class Solution {
+public:   
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !(head -> next)) 
+            return head;
+        ListNode* node = reverseList(head -> next);
+        head -> next -> next = head;
+        head -> next = NULL;
+        return node; 
+    }
+}; 
+
+// iterative solution
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+            
+        ListNode *p1 = head->next, *p2;
+        head->next = NULL;
+        while (p1 != NULL) {
+            p2 = p1->next;
+            p1->next = head;
+            head = p1;
+            p1 = p2;
+        }
+        
+        return head;
+    }
+};
+\end{lstlisting} 
+
+
+\section{Reverse Linked List II (M)}
+Reverse a linked list from position m to n. Do it in-place and in one-pass.\\
+
+For example:
+Given $1->2->3->4->5->NULL$, m = 2 and n = 4,
+return $1->4->3->2->5->NULL$.\\
+
+Note:
+Given m, n satisfy the following condition:
+$1 \leq m \leq n \leq length of list$. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        if (!head || m >= n) return head;
+        ListNode *new_head = new ListNode(0);
+        new_head->next = head;
+        ListNode *pre = new_head;
+        for (int i = 1; i < m; ++i) pre = pre->next;
+        ListNode *cur = pre->next; // start of the mth node
+        for (int i = 1; i <= n - m; ++i) {
+            ListNode *tmp = cur->next;
+            cur->next = tmp->next;
+            tmp->next = pre->next;
+            pre->next = tmp;
+        }
+        
+        return new_head->next;
+    }
+};
+\end{lstlisting}
+
+
+\section{Rotate Linked List (M)}
+Given a list, rotate the list to the right by k places, where k is non-negative.\\
+
+For example:\\
+Given $1->2->3->4->5->NULL$ and k = 2, return $4->5->1->2->3->NULL$.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (!head || k <= 0)  return head;
+        ListNode *p = head;
+        int n = 1;
+        while (p->next){        // get the length of list
+            p = p->next;
+            ++n;
+        }
+        p->next = head;         // make a circle list
+        k = k % n;              // get the correct k
+        for(int i = 0; i < n - k; ++i)  // move p to the correct position
+            p = p->next;
+        head = p->next;
+        p->next = NULL;
+        return head;
+    }
+};
+\end{lstlisting}
+
+
+\section{Reorder List (M)}
+Given a singly linked list L: $L0 -> L1 -> ... -> Ln-1 -> Ln$, reorder it to: $L0 -> Ln -> L1 -> Ln-1 -> L2 -> Ln-2 -> ...$ You must do this in-place without altering the nodes' values.\\
+
+For example,
+Given {1,2,3,4}, reorder it to {1,4,2,3}. \\
+
+\begin{lstlisting}
+// 1. Break the list to two lists from center
+// 2. Reverse the second list
+// 3. Insert the second list to the first list alternatively
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        if (!head || !head->next || !head->next->next) return;
+        ListNode *slow = head, *fast = head;
+        // step 1
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode *mid = slow->next;
+        slow->next = NULL;
+        // step 2
+        ListNode *new_head = reverseList(mid);
+        // step 3
+        while (head && new_head) {
+            ListNode *tmp = head->next;
+            head->next = new_head;
+            new_head = new_head->next;
+            head->next->next = tmp;
+            head = tmp;
+        }
+    }
+    ListNode *reverseList(ListNode *head) {
+       ListNode *p1 = head->next, *p2;
+       head->next = NULL;
+       while (p1) {
+           p2 = p1->next;
+           p1->next = head;
+           head = p1;
+           p1 = p2;
+       }
+       return head;
+    }
+};
+\end{lstlisting}
+
+
+\section{Partition List (M)}
+Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x. You should preserve the original relative order of the nodes in each of the two partitions.\\
+
+For example,
+Given $1->4->3->2->5->2$ and x = 3,
+return $1->2->2->4->3->5$. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode *head1 = new ListNode(0);
+        ListNode *head2 = new ListNode(0);
+        ListNode *p1 = head1;
+        ListNode *p2 = head2;
+        while (head) {
+            if (head->val < x) {
+                p1->next = head;
+                p1 = p1->next;
+            } else {
+                p2->next = head;
+                p2 = p2->next;
+            }
+            head = head->next;
+        }
+        p2->next = NULL;
+        p1->next = head2->next;
+        return head1->next;
     }
 };
 \end{lstlisting}

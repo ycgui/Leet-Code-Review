@@ -23,6 +23,27 @@ public:
 \end{lstlisting}
 
 
+\section{Bitwise AND of Numbers Range (M)}
+Given a range [m, n] where $0 <= m <= n <= 2147483647$, return the bitwise AND of all numbers in this range, inclusive.\\
+
+For example, given the range [5, 7], you should return 4. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        int count = 0;
+        while (m != n) {
+            m >>= 1;
+            n >>= 1;
+            ++count;
+        }
+        return m << count;
+    }
+};
+\end{lstlisting}
+
+
 \section{Grey Code (M)}
 The gray code is a binary numeral system where two successive values differ in only one bit.\\
 
@@ -46,6 +67,20 @@ public:
         return res;
     }
 };
+\end{lstlisting}
+
+
+\section{Repeated DNA Sequences (M)}
+All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.\\
+
+Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.\\
+
+For example,
+Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",
+Return: ["AAAAACCCCC", "CCCCCAAAAA"].\\
+
+\begin{lstlisting}
+
 \end{lstlisting}
 
 

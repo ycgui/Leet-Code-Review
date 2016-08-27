@@ -640,6 +640,66 @@ private:
 \end{lstlisting}
 
 
+\subsection{Flatten Binary Tree to Linked List (M)}
+Given a binary tree, flatten it to a linked list in-place (Inorder traversal). \\
+
+\begin{lstlisting}
+// 1. Recursion
+class Solution {
+public:
+    void flatten(TreeNode *root) {
+        if (!root) return;
+        if (root->left) flatten(root->left);
+        if (root->right) flatten(root->right);
+        TreeNode *tmp = root->right;
+        root->right = root->left;
+        root->left = NULL;
+        while (root->right) root = root->right;
+        root->right = tmp;
+    }
+};
+
+// 2. Non-recursion
+class Solution {
+public:
+    void flatten(TreeNode *root) {
+        TreeNode *cur = root;
+        while (cur) {
+            if (cur->left) {
+                TreeNode *p = cur->left;
+                while (p->right) p = p->right;
+                p->right = cur->right;
+                cur->right = cur->left;
+                cur->left = NULL;
+            }
+            cur = cur->right;
+        }
+    }
+};
+
+// 3. Use stack
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        if (!root) return;
+        stack<TreeNode*> s;
+        s.push(root);
+        while (!s.empty()) {
+            TreeNode *t = s.top(); s.pop();
+            if (t->left) {
+                TreeNode *r = t->left;
+                while (r->right) r = r->right;
+                r->right = t->right;
+                t->right = t->left;
+                t->left = NULL;
+            }
+            if (t->right) s.push(t->right);
+        }
+    }
+};
+\end{lstlisting}
+
+
 \subsection{Balanced Binary Tree (E)}
 Given a binary tree, determine if it is height-balanced.\\
 
