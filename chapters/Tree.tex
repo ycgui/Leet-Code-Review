@@ -927,6 +927,64 @@ public:
 
 
 \section{Binary Tree Construction}
+\subsection{Construct Binary Tree from Preorder and Inorder Traversal (M)}
+Given preorder and inorder traversal of a tree, construct the binary tree.\\
+
+Note: You may assume that duplicates do not exist in the tree. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return buildTree(inorder, preorder, 0, inorder.size()-1, 0, preorder.size()-1);
+    }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& preorder, int in_start, int in_end, int pre_start, int pre_end) {
+        if (in_start > in_end) return NULL;
+        int index;
+        TreeNode *root = new TreeNode(preorder[pre_start]);
+        for (int i = in_start; i <= in_end; ++i) {
+            if (inorder[i] == root->val) {
+                index = i;
+                break;
+            }
+        }
+        root->left = buildTree(inorder, preorder, in_start, index-1, pre_start+1, pre_start+index-in_start);
+        root->right = buildTree(inorder, preorder, index+1, in_end, pre_end-in_end+index+1, pre_end);
+        return root;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Construct Binary Tree from Inorder and Postorder Traversal (M)}
+Given inorder and postorder traversal of a tree, construct the binary tree. \\
+
+Note: You may assume that duplicates do not exist in the tree. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        return buildTree(inorder, postorder, 0, inorder.size()-1, 0, postorder.size()-1);
+    }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder, int in_start, int in_end, int post_start, int post_end){
+        if (in_start > in_end) return NULL;
+        int index;
+        TreeNode *root = new TreeNode(postorder[post_end]);
+        for (int i = in_start; i <= in_end; ++i) {
+            if (inorder[i] == root->val) {
+                index = i;
+                break;
+            }
+        }
+        root->left = buildTree(inorder, postorder, in_start, index-1, post_start, post_start+index-in_start-1);
+        root->right = buildTree(inorder, postorder, index+1, in_end, post_end-in_end+index, post_end-1);
+        return root;
+    }
+};
+\end{lstlisting}
+
+
 \subsection{Serialize and Deserialize Binary Tree (H)}
 Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\\
 

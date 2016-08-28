@@ -29,6 +29,81 @@ public:
 \end{lstlisting}
 
 
+\subsection{Search for a Range (M)}
+Given a sorted array of integers, find the starting and ending position of a given target value. Your algorithm's runtime complexity must be in the order of O(log n). If the target is not found in the array, return [-1, -1].\\
+
+For example,
+Given [5, 7, 7, 8, 8, 10] and target value 8,
+return [3, 4]. \\
+
+\begin{lstlisting}
+// 1. Recursive
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<int> res = {n, -1};
+        searchRange(nums, target, res, 0, n-1);
+        if (res[0] > res[1]) res[0] = -1; // target is not found
+        return res;
+    }
+    void searchRange(vector<int>& nums, int target, vector<int>& res, int start, int end) {
+            if (start > end) return;
+            int mid = start + (end - start) / 2;
+            if (target == nums[mid]) {
+                if (mid < res[0]) { // search the left part
+                    res[0] = mid; // update the start index
+                    searchRange(nums, target, res, start, mid-1);
+                }
+                if (mid > res[1]) { // search the right part
+                    res[1] = mid; // update the end index
+                    searchRange(nums, target, res, mid+1, end);
+                }
+            } else if (target > nums[mid]) { 
+                searchRange(nums, target, res, mid+1, end);
+            } else {
+                searchRange(nums, target, res, start, mid-1);
+            }
+    }
+};
+
+// 2. Iteration
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int start = 0, end = nums.size() - 1;
+        vector<int> res = {-1, -1};
+        // find the start index
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (target > nums[mid]) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        if (target != nums[start]) {
+            return res;
+        } else {
+            res[0] = start; // update the start index
+        }
+        end = nums.size() - 1;
+        // find the end index
+        while (start < end) {
+            int mid = start + (end - start) / 2 + 1;
+            if (target < nums[mid]) {
+                end = mid - 1;
+            } else {
+                start = mid;
+            }
+        }
+        res[1] = end; // update the end index
+        return res;
+    }
+};
+\end{lstlisting}
+
+
 \subsection{Search Insert Position (M)}
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order. 
 You may assume no duplicates in the array.\\
@@ -980,6 +1055,85 @@ public:
                 }
             }
         }
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Letter Combinations of a Phone Number (M)}
+Given a digit string, return all possible letter combinations that the number could represent.\\
+
+Input:Digit string "23"\\
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].\\
+
+Note:Although the above answer is in lexicographical order, your answer could be in any order you want. \\
+
+\begin{lstlisting}
+// 1. Recursion
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if (digits.empty()) return res;
+        string dict[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        letterCombinationsDFS(digits, dict, 0, "", res);
+        return res;
+    }
+    void letterCombinationsDFS(string digits, string dict[], int level, string out, vector<string> &res) {
+        if (level == digits.size()) res.push_back(out);
+        else {
+            string str = dict[digits[level] - '2'];
+            for (int i = 0; i < str.size(); ++i) {
+                out.push_back(str[i]);
+                letterCombinationsDFS(digits, dict, level + 1, out, res);
+                out.pop_back();
+            }
+        }
+    }
+};
+
+// 2. Iterative
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if (digits.empty()) return res;
+        string dict[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        res.push_back("");
+        for (int i = 0; i < digits.size(); ++i) {
+            int n = res.size();
+            string str = dict[digits[i] - '2'];
+            for (int j = 0; j < n; ++j) {
+                string tmp = res.front();
+                res.erase(res.begin());
+                for (int k = 0; k < str.size(); ++k) {
+                    res.push_back(tmp + str[k]);
+                }
+            }
+        }
+        return res;
+    }
+};
+
+// 3. Iterative 2
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if (digits.empty()) return res;
+        vector<string> str = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        res.push_back("");
+        for (int i = 0; i < digits.size(); ++i) {
+            vector<string> tmp;
+            int index = digits[i] - '0';
+            for (int j = 0; j < str[index].size(); ++j) {
+                for (int k = 0; k < res.size(); ++k) {
+                    tmp.push_back(res[k]+str[index][j]);
+                }
+            }
+            res = tmp;
+        }
+        return res;
     }
 };
 \end{lstlisting}
