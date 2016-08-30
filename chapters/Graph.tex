@@ -151,124 +151,175 @@ public:
 \end{lstlisting}
 
 
-\section{Number of Islands (M)}
-Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.\\
+\section{Course Schedule (M)}
+There are a total of n courses you have to take, labeled from 0 to n - 1. Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]. Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses? \\
 
-Example 1:\\
-11110\\
-11010\\
-11000\\
-00000\\
-Answer: 1\\
+For example:\\
+2, [[1,0]]: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\\
+2, [[1,0],[0,1]]: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\\
 
-Example 2:\\
-11000\\
-11000\\
-00100\\
-00011\\
-Answer: 3\\
+Note:
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.\\
+
+Hints:\\
+    This problem is equivalent to finding if a cycle exists in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.\\
+    Topological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.\\
+    Topological sort could also be done via BFS.\\
 
 \begin{lstlisting}
+// DFS solution
 class Solution {
 public:
-    int numIslands(vector<vector<char> > &grid) {
-        if (grid.empty() || grid[0].empty()) return 0;
-        int m = grid.size(), n = grid[0].size(), res = 0;
-        vector<vector<bool> > visited(m, vector<bool>(n, false));
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (grid[i][j] == '1' && !visited[i][j]) {
-                    numIslandsDFS(grid, visited, i, j);
-                    ++res;
-                }
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<int> visit(numCourses, 0);
+        for (auto a : prerequisites) {
+            graph[a.second].push_back(a.first);
+        }
+        for (int i = 0; i < numCourses; ++i) {
+            if (!canFinishDFS(graph, visit, i)) return false;
+        }
+        return true;
+    }
+    bool canFinishDFS(vector<vector<int> > &graph, vector<int> &visit, int i) {
+        if (visit[i] == -1) return false;
+        if (visit[i] == 1) return true;
+        visit[i] = -1;
+        for (auto a : graph[i]) {
+            if (!canFinishDFS(graph, visit, a)) return false;
+        }
+        visit[i] = 1;
+        return true;
+    }
+};
+
+// BFS solution
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<int> in(numCourses, 0);
+        for (auto a : prerequisites) {
+            graph[a.second].push_back(a.first);
+            ++in[a.first];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] == 0) q.push(i);
+        }
+        while (!q.empty()) {
+            int t = q.front();
+            q.pop();
+            for (auto a : graph[t]) {
+                --in[a];
+                if (in[a] == 0) q.push(a);
             }
         }
-        return res;
-    }
-    void numIslandsDFS(vector<vector<char> > &grid, vector<vector<bool> > &visited, int x, int y) {
-        if (x < 0 || x >= grid.size()) return;
-        if (y < 0 || y >= grid[0].size()) return;
-        if (grid[x][y] != '1' || visited[x][y]) return;
-        visited[x][y] = true; // grid[x][y] is visited now
-        // search other 4 direction of grid[x][y]
-        numIslandsDFS(grid, visited, x - 1, y);
-        numIslandsDFS(grid, visited, x + 1, y);
-        numIslandsDFS(grid, visited, x, y - 1);
-        numIslandsDFS(grid, visited, x, y + 1);
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] != 0) return false;
+        }
+        return true;
     }
 };
 \end{lstlisting}
 
+\section{Course Schedule II (M)}
+There are a total of n courses you have to take, labeled from 0 to n - 1. Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]. Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses. There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.\\
 
-\section{Number of Islands II (H)}
-A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water. \\
+For example:\\
+2, [[1,0]]: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1]\\
+4, [[1,0],[2,0],[3,1],[3,2]]: There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].\\
 
-Example:\\
-Given m = 3, n = 3, positions = [[0,0], [0,1], [1,2], [2,1]].\\
-
-Initially, the 2d grid grid is filled with water. (Assume 0 represents water and 1 represents land).\\
-0 0 0\\
-0 0 0\\
-0 0 0\\
-
-Operation \#1: addLand(0, 0) turns the water at grid[0][0] into a land.\\
-1 0 0\\
-0 0 0   Number of islands = 1\\
-0 0 0\\
-
-Operation \#2: addLand(0, 1) turns the water at grid[0][1] into a land.\\
-1 1 0\\
-0 0 0   Number of islands = 1\\
-0 0 0\\
-
-Operation \#3: addLand(1, 2) turns the water at grid[1][2] into a land.\\
-1 1 0\\
-0 0 1   Number of islands = 2\\
-0 0 0\\
-
-Operation \#4: addLand(2, 1) turns the water at grid[2][1] into a land.\\
-1 1 0\\
-0 0 1   Number of islands = 3\\
-0 1 0\\
-
-We return the result as an array: [1, 1, 2, 3]\\
-
-Challenge: Can you do it in time complexity O(k log mn), where k is the length of the positions?\\
+Note:
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.\\
 
 \begin{lstlisting}
 class Solution {
 public:
-    vector<int> numIslands2(int m, int n, vector<pair<int, int>>& positions) {
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
         vector<int> res;
-        if (m <= 0 || n <= 0) return res;
-        vector<int> roots(m * n, -1);
-        int cnt = 0;
-        vector<vector<int> > dirs{{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
-        for (auto a : positions) {
-            int id = n * a.first + a.second;
-            roots[id] = id;
-            ++cnt;
-            for (auto d : dirs) {
-                int x = a.first + d[0], y = a.second + d[1];
-                int cur_id = n * x + y;
-                if (x < 0 || x >= m || y < 0 || y >= n || roots[cur_id] == -1) continue;
-                int new_id = findRoots(roots, cur_id);
-                if (id != new_id) {
-                    roots[id] = new_id;
-                    id = new_id;
-                    --cnt;
-                }
+        vector<vector<int> > graph(numCourses, vector<int>(0));
+        vector<int> in(numCourses, 0);
+        for (auto &a : prerequisites) {
+            graph[a.second].push_back(a.first);
+            ++in[a.first];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (in[i] == 0) q.push(i);
+        }
+        while (!q.empty()) {
+            int t = q.front();
+            res.push_back(t);
+            q.pop();
+            for (auto &a : graph[t]) {
+                --in[a];
+                if (in[a] == 0) q.push(a);
             }
-            res.push_back(cnt);
         }
+        // clear the result if a cycle exists
+        if (res.size() != numCourses) res.clear();
         return res;
-    }
-    int findRoots(vector<int> &roots, int id) {
-        while (id != roots[id]) {
-            roots[id] = roots[roots[id]];
-            id = roots[id];
-        }
-        return id;
     }
 };
 \end{lstlisting}
+
+
+\section{Minimum Height Trees (M)}
+For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.\\
+
+Format:\\
+The graph contains n nodes which are labeled from 0 to n - 1. You will be given the number n and a list of undirected edges (each edge is a pair of labels). You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.\\
+
+Example 1:
+Given n = 4, edges = [[1, 0], [1, 2], [1, 3]], return [1]\\
+Example 2:
+Given n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]], return [3, 4]\\
+
+Hint:
+    How many MHTs can a graph have at most?\\
+    
+Note:\\
+(1) According to the definition of tree on Wikipedia: ?a tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.?\\
+(2) The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf. \\
+
+\begin{lstlisting}
+// Non-recursion
+class Solution {
+public:
+    vector<int> findMinHeightTrees(int n, vector<pair<int, int> >& edges) {
+        if (n == 1) return {0};
+        vector<int> res, d(n, 0);
+        vector<vector<int> > g(n, vector<int>());
+        queue<int> q;
+        for (auto a : edges) {
+            g[a.first].push_back(a.second);
+            ++d[a.first];
+            g[a.second].push_back(a.first);
+            ++d[a.second];
+        }
+        for (int i = 0; i < n; ++i) {
+            if (d[i] == 1) q.push(i);
+        }
+        while (n > 2) {
+            int sz = q.size();
+            for (int i = 0; i < sz; ++i) {
+                int t = q.front(); q.pop();
+                --n;
+                for (int i : g[t]) {
+                    --d[i];
+                    if (d[i] == 1) q.push(i);
+                }
+            }
+        }
+        while (!q.empty()) {
+            res.push_back(q.front()); q.pop();
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+
+

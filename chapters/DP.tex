@@ -22,6 +22,54 @@ public:
 \end{lstlisting}
 
 
+\section{Gas Station (M)}
+There are N gas stations along a circular route, where the amount of gas at station i is gas[i]. You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations. Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.\\
+
+Note:
+The solution is guaranteed to be unique. \\
+
+\begin{lstlisting}
+// Solution 1
+class Solution {
+public:
+    int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
+        int total = 0, sum = 0, start = 0;
+        for (int i = 0; i < gas.size(); ++i) {
+            total += gas[i] - cost[i];
+            sum += gas[i] - cost[i];
+            if (sum < 0) {
+                start = i + 1;
+                sum = 0;
+            }
+        }
+        if (total < 0) return -1;
+        else return start;
+    }
+};
+
+// Solution 2
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int total_gas = 0, total_cost = 0, tank = 0, index = 0;
+        // If car starts at A and can not reach B, any station between A and B can not reach B
+        for (int i = 0; i < gas.size(); ++i) {  
+            total_gas += gas[i];                
+            total_cost += cost[i];
+            tank += gas[i] - cost[i];
+            if (tank < 0) {
+                index = i + 1;
+                tank = 0;
+            }
+        }
+        // If the total number of gas is bigger than the total number of cost, there must be a solution
+        if (total_gas < total_cost) return -1;                  
+        else return index;
+    }
+};
+\end{lstlisting}
+
+
 \section{Combination Sum IV (M)}
 Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.\\
 
@@ -119,6 +167,78 @@ public:
         for (int i = 0; i < mx; ++i) {
             res.push_back(nums[mx_idx]);
             mx_idx = parent[mx_idx];
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Jump Game (M)}
+Given an array of non-negative integers, you are initially positioned at the first index of the array. Each element in the array represents your maximum jump length at that position. Determine if you are able to reach the last index.\\
+
+For example:\\
+A = [2,3,1,1,4], return true.\\
+A = [3,2,1,0,4], return false. \\
+
+\begin{lstlisting}
+// 1. DP solution
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        // dp[i] is the maximum step that is left to jump at i
+        vector<int> dp(n, 0);
+        for (int i = 1; i < n; ++i) {
+            dp[i] = max(dp[i - 1], nums[i - 1]) - 1;
+            if (dp[i] < 0) return false;
+        }
+        return dp[n - 1] >= 0;
+    }
+};
+
+// 2. Greedy solution
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int maxIdx = 0, n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            if (i > maxIdx || maxIdx >= n - 1) break;
+            maxIdx = max(maxIdx, i + nums[i]);
+        }
+        return maxIdx >= n - 1;
+    }
+};
+\end{lstlisting}
+
+
+\section{Jump Game II (M)}
+Given an array of non-negative integers, you are initially positioned at the first index of the array. Each element in the array represents your maximum jump length at that position. Your goal is to reach the last index in the minimum number of jumps.\\
+
+For example:
+Given array A = [2,3,1,1,4],
+The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)\\
+
+Note:
+You can assume that you can always reach the last index.\\
+
+\begin{lstlisting}
+/* Greedy solution
+ * We use "last" to keep track of the maximum distance that has been reached
+ * by using the minimum steps "res", whereas "curr" is the maximum distance
+ * that can be reached by using "res+1" steps. Thus,
+ * curr = max(i+nums[i]) where 0 <= i <= last.
+ */
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        int res = 0, last = 0, cur = 0, n = nums.size();
+        for (int i = 0; i < n; ++i) {
+            if (i > last) {
+                last = cur;
+                ++res;
+            }
+            cur = max(cur, i + nums[i]);
         }
         return res;
     }
