@@ -80,7 +80,32 @@ Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",
 Return: ["AAAAACCCCC", "CCCCCAAAAA"].\\
 
 \begin{lstlisting}
-
+// A: 0100 0001??C: 0100 0011??G: 0100 0111??T: 0101 0100
+// Only use the last 3 bits to represent DNAs 
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        vector<string> res;
+        if (s.size() <= 10) return res;
+        int mask = 0x7ffffff;
+        unordered_map<int, int> m;
+        int cur = 0, i = 0;
+        while (i < 9) { // save 9 letters in DNA to cur
+            cur = (cur << 3) | (s[i++] & 7); // only use the last 3 bits
+        }
+        while (i < s.size()) {
+            cur = ((cur & mask) << 3) | (s[i++] & 7);
+            if (m.find(cur) != m.end()) {
+                // appear more than once
+                if (m[cur] == 1) res.push_back(s.substr(i - 10, 10));
+                ++m[cur]; 
+            } else {
+                m[cur] = 1;
+            }
+        }
+        return res;
+    }
+};
 \end{lstlisting}
 
 
