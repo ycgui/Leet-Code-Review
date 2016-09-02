@@ -310,5 +310,6 @@
 \BOOKMARK [1][-]{section.12.8}{Design Phone Directory \(M\)}{chapter.12}% 310
 \BOOKMARK [1][-]{section.12.9}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.12}% 311
 \BOOKMARK [1][-]{section.12.10}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.12}% 312
-\BOOKMARK [0][-]{chapter.13}{Brute-force Enumeration}{}% 313
-\BOOKMARK [0][-]{chapter.14}{Divide and Conquer}{}% 314
+\BOOKMARK [1][-]{section.12.11}{LRU Cache \(H\)}{chapter.12}% 313
+\BOOKMARK [0][-]{chapter.13}{Brute-force Enumeration}{}% 314
+\BOOKMARK [0][-]{chapter.14}{Divide and Conquer}{}% 315

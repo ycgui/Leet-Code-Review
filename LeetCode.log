@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 AUG 2016 17:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 SEP 2016 23:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -4165,12 +4165,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 642--644
 
  []
 
-[267]) [268]
+[267] [268]
+Underfull \hbox (badness 10000) in paragraph at lines 691--692
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 693--695
+
+ []
+
+[269]) [270]
 \openout2 = `chapters/BruteForce.aux'.
 
  (./chapters/BruteForce.tex
 Chapter 13.
-) [269
+) [271
 
 
 
@@ -4179,7 +4189,7 @@ Chapter 13.
 
  (./chapters/DivideConquer.tex
 Chapter 14.
-) [270
+) [272
 
 
 
@@ -4195,14 +4205,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `LeetCode.out' has not changed.
-(rerunfilecheck)             Checksum: EE3ECCD7A26EBE99FB2F2B22FE12E846;23928.
+(rerunfilecheck)             Checksum: 91D7B3597AB3D3BF70EF8954A6AAE8D6;23994.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 17300 strings out of 493089
- 264279 string characters out of 6134842
+ 17350 strings out of 493089
+ 265047 string characters out of 6134842
  307331 words of memory out of 5000000
- 11926 multiletter control sequences out of 15000+600000
+ 11937 multiletter control sequences out of 15000+600000
  10189 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  33i,6n,58p,544b,1728s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -4213,10 +4223,10 @@ usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
 ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
 cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on LeetCode.pdf (279 pages, 688233 bytes).
+Output written on LeetCode.pdf (281 pages, 691244 bytes).
 PDF statistics:
- 12794 PDF objects out of 12825 (max. 8388607)
- 12382 compressed objects within 124 object streams
- 8735 named destinations out of 8907 (max. 500000)
- 2513 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12852 PDF objects out of 15390 (max. 8388607)
+ 12437 compressed objects within 125 object streams
+ 8774 named destinations out of 8907 (max. 500000)
+ 2521 words of extra memory for PDF output out of 10000 (max. 10000000)
 

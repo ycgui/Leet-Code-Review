@@ -685,3 +685,50 @@ private:
  * int param_3 = obj.getRandom();
  */
 \end{lstlisting}
+
+
+\section{LRU Cache (H)}
+Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.\\
+
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.\\
+set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item. \\
+
+\begin{lstlisting}
+class LRUCache{
+public:
+    LRUCache(int capacity) {
+        cap = capacity;
+    }
+    
+    int get(int key) {
+        auto it = m.find(key);
+        if (it == m.end()) return -1;
+        // void splice (iterator position, list& x, iterator i)
+        // transfers only the element pointed by i from x into the container, inserting it at position.
+        l.splice(l.begin(), l, it->second);
+        return it->second->second;
+    }
+    
+    void set(int key, int value) {
+        auto it = m.find(key);
+        // if the current key and value exist in list, remove it
+        if (it != m.end()) l.erase(it->second);
+        // insert the new pair to the top of list
+        l.push_front(make_pair(key, value)); 
+        m[key] = l.begin();
+        // if capacity is exceeded, remove the bottom one
+        if (m.size() > cap) {
+            int k = l.rbegin()->first;
+            l.pop_back();
+            m.erase(k);
+        }
+    }
+    
+private:
+    int cap;
+    list<pair<int, int> > l;
+    unordered_map<int, list<pair<int, int> >::iterator> m;
+};
+\end{lstlisting}
+
+
