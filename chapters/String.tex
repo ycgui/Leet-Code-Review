@@ -362,6 +362,301 @@ public:
 \end{lstlisting}
 
 
+\section{Additive Number (M)}
+Additive number is a string whose digits can form additive sequence. A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.\\
+
+For example:\\
+
+"112358" is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.\\
+1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8\\
+
+"199100199" is also an additive number, the additive sequence is: 1, 99, 100, 199.\\
+1 + 99 = 100, 99 + 100 = 199\\
+
+Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.\\
+
+Given a string containing only digits '0'-'9', write a function to determine if it's an additive number.\\
+
+Follow up:
+How would you handle overflow for very large input integers? \\
+
+\begin{lstlisting}
+// Non-recursion
+class Solution {
+public:
+    bool isAdditiveNumber(string num) {
+        for (int i = 1; i < num.size(); ++i) {
+            for (int j = i + 1; j < num.size(); ++j) {
+                string s1 = num.substr(0, i);
+                string s2 = num.substr(i, j - i);
+                long long d1 = atoll(s1.c_str()), d2 = atoll(s2.c_str());
+                if ((s1.size() > 1 && s1[0] == '0') || (s2.size() > 1 && s2[0] == '0')) continue;
+                long long next = d1 + d2;
+                string nexts = to_string(next);
+                string now = s1 + s2 + nexts;
+                while (now.size() < num.size()) {
+                    d1 = d2;
+                    d2 = next;
+                    next = d1 + d2;
+                    nexts = to_string(next);
+                    now += nexts;
+                }
+                if (now == num) return true;
+            }
+        }
+        return false;
+    }
+};
+\end{lstlisting}
+
+
+\section{Valid Parentheses (E)}
+Given a string containing just the characters `(', `)', `\{', `\}', `[' and `]', determine if the input string is valid. The brackets must close in the correct order, ``()" and ``()[]\{\}" are all valid but ``(]" and ``([)]" are not.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> tmp;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+                tmp.push(s[i]);
+            } else if ( (!tmp.empty() && tmp.top() == '(' && s[i] == ')') ||
+                        (!tmp.empty() && tmp.top() == '[' && s[i] == ']') ||                                               
+                        (!tmp.empty() && tmp.top() == '{' && s[i] == '}') ){
+                tmp.pop();
+            } else {
+                return false;
+            }
+        }
+        
+        return tmp.empty();
+    }
+};
+\end{lstlisting}
+
+
+\section{Generate Parentheses (M)}
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. \\
+ 
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        generate(res, "", n, 0);
+        return res;
+    }
+    
+    void generate(vector<string> &res, string str, int left, int right) {
+        if (left == 0 && right == 0) {
+            res.push_back(str);
+            return;
+        }
+            
+        if (right > 0)
+            generate(res, str+")", left, right-1);
+            
+        if (left > 0)
+            generate(res, str+"(", left-1, right+1);
+    }
+};
+\end{lstlisting}
+
+
+\section{Different Ways to Add Parentheses (M)}
+Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.\\
+
+Example: 
+Input: ``2-1-1". \\
+((2-1)-1) = 0\\
+(2-(1-1)) = 2\\
+Output: [0, 2]\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string input) {
+        vector<int> res;
+        int n = input.size();
+        
+        for (int i = 0; i < n; ++i) {
+            char c = input[i];
+            if (c == '+' || c == '-' || c == '*') {
+                vector<int> result1 = diffWaysToCompute(input.substr(0,i));
+                vector<int> result2 = diffWaysToCompute(input.substr(i+1));
+                for (int j = 0; j < result1.size(); ++j) {
+                    for (int k = 0; k < result2.size(); ++k) {
+                        switch (c) {
+                            case '+':
+                                res.push_back(result1[j] + result2[k]);
+                                break;
+                            case '-':
+                                res.push_back(result1[j] - result2[k]);
+                                break;
+                            case '*':
+                                res.push_back(result1[j] * result2[k]);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (res.empty())
+            res.push_back(stoi(input));
+            
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Longest Valid Parentheses (H)}
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring. \\
+
+For "(()", the longest valid parentheses substring is "()", which has length = 2.\\
+
+Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int maxlen = 0, last = -1;
+        stack<int> tmp;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(') {
+                tmp.push(i);                // push the index of '(' to stack
+            } else {
+                if (tmp.empty()) {          // if no match for the current ')'
+                    last = i;               // update last index of '('
+                } else {                    // if find a match for the current ')'
+                    tmp.pop();              // pop the index of '('
+                    if (tmp.empty()) {                              
+                        maxlen = max(maxlen, i - last);
+                    } else {
+                        maxlen = max(maxlen, i - tmp.top());
+                    }
+                }
+            }
+        }
+        
+        return maxlen;
+    }
+};
+\end{lstlisting}
+
+
+\section{Remove Invalid Parentheses (H)}
+Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results. \\
+
+Note: The input string may contain letters other than the parentheses ( and ). \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> removeInvalidParentheses(string s) {
+        unordered_set<string> result;
+        int left_removed = 0;
+        int right_removed = 0;
+        for(auto c : s) {
+            if(c == '(') {
+                ++left_removed;
+            }
+            if(c == ')') {
+                if(left_removed != 0) {
+                    --left_removed;
+                }
+                else {
+                    ++right_removed;
+                }
+            }
+        }
+        helper(s, 0, left_removed, right_removed, 0, "", result);
+        return vector<string>(result.begin(), result.end());
+    }
+private:
+    void helper(string s, int index, int left_removed, int right_removed, int pair, string path, unordered_set<string>& result) {
+        if(index == s.size()) {
+            if(left_removed == 0 && right_removed == 0 && pair == 0) {
+                result.insert(path);
+            }
+            return;
+        }
+        if(s[index] != '(' && s[index] != ')') {
+            helper(s, index + 1, left_removed, right_removed, pair, path + s[index], result);
+        }
+        else {
+            if(s[index] == '(') {
+                if(left_removed > 0) {
+                    helper(s, index + 1, left_removed - 1, right_removed, pair, path, result);
+                }
+                helper(s, index + 1, left_removed, right_removed, pair + 1, path + s[index], result);
+            }
+            if(s[index] == ')') {
+                if(right_removed > 0) {
+                    helper(s, index + 1, left_removed, right_removed - 1, pair, path, result);
+                }
+                if(pair > 0) {
+                    helper(s, index + 1, left_removed, right_removed, pair - 1, path + s[index], result);
+                }
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Flip Game (E)}
+You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive ``++" into ``- -". The game ends when a person can no longer make a move and therefore the other person will be the winner. Write a function to compute all possible states of the string after one valid move.\\
+
+For example, given s = ``++++", after one move, it may become one of the following states:
+[
+  ``- -++",
+  ``+- -+",
+  ``++- -"
+]
+If there is no valid move, return an empty list [].\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> generatePossibleNextMoves(string s) {
+        vector<string> res;
+        for (int i = 1; i < s.size(); ++i) {
+            if (s[i] == '+' && s[i-1] == '+'){
+                res.push_back(s.substr(0, i-1) + "--" + s.substr(i+1)); // substr(pos, len);
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Flip Game II (M)}
+You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner. Write a function to determine if the starting player can guarantee a win.\\
+
+For example, given s = "++++", return true. The starting player can guarantee a win by flipping the middle "++" to become "+--+".\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool canWin(string s) {
+        for (int i = 1; i < s.size(); ++i) {
+            if (s[i] == '+' && s[i - 1] == '+' && !canWin(s.substr(0, i - 1) + "--" + s.substr(i + 1))) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+\end{lstlisting}
+
+
 \section{Excel Sheet Column Number (E)}
 Given a column title as appear in an Excel sheet, return its corresponding column number.\\
 
@@ -1107,248 +1402,179 @@ public:
 \end{lstlisting}
 
 
-\section{Valid Parentheses (E)}
-Given a string containing just the characters `(', `)', `\{', `\}', `[' and `]', determine if the input string is valid. The brackets must close in the correct order, ``()" and ``()[]\{\}" are all valid but ``(]" and ``([)]" are not.\\
+\section{Word Break (M)}
+Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.\\
+
+For example, given
+s = "leetcode",
+dict = ["leet", "code"].
+Return true because "leetcode" can be segmented as "leet code". \\
 
 \begin{lstlisting}
 class Solution {
 public:
-    bool isValid(string s) {
-        stack<char> tmp;
-        
-        for (int i = 0; i < s.size(); ++i) {
-            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
-                tmp.push(s[i]);
-            } else if ( (!tmp.empty() && tmp.top() == '(' && s[i] == ')') ||
-                        (!tmp.empty() && tmp.top() == '[' && s[i] == ']') ||                                               
-                        (!tmp.empty() && tmp.top() == '{' && s[i] == '}') ){
-                tmp.pop();
-            } else {
-                return false;
+    bool wordBreak(string s, unordered_set<string> &wordDict) {
+        int len = s.size();
+        vector<bool> res(len + 1, false);
+        res[0] = true;
+        for (int i = 0; i < len + 1; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (res[j] && wordDict.find(s.substr(j, i-j)) != wordDict.end()) {
+                    res[i] = true;
+                    break;
+                }
             }
         }
-        
-        return tmp.empty();
+        return res[len];
     }
 };
 \end{lstlisting}
 
 
-\section{Generate Parentheses (M)}
-Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. \\
- 
+\section{Word Break II (H)}
+Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+
+For example, given
+s = "catsanddog",
+dict = ["cat", "cats", "and", "sand", "dog"].
+A solution is ["cats and dog", "cat sand dog"]. \\
+
 \begin{lstlisting}
 class Solution {
 public:
-    vector<string> generateParenthesis(int n) {
+    vector<string> wordBreak(string s, unordered_set<string>& wordDict) {
         vector<string> res;
-        generate(res, "", n, 0);
+        string out;
+        vector<bool> possible(s.size() + 1, true);
+        wordBreakDFS(s, wordDict, 0, possible, out, res);
         return res;
     }
-    
-    void generate(vector<string> &res, string str, int left, int right) {
-        if (left == 0 && right == 0) {
-            res.push_back(str);
+    void wordBreakDFS(string &s, unordered_set<string> &wordDict, int start, vector<bool> &possible, string &out, vector<string> &res) {
+        if (start == s.size()) {
+            res.push_back(out.substr(0, out.size() - 1));
             return;
         }
-            
-        if (right > 0)
-            generate(res, str+")", left, right-1);
-            
-        if (left > 0)
-            generate(res, str+"(", left-1, right+1);
+        for (int i = start; i < s.size(); ++i) {
+            string word = s.substr(start, i - start + 1);
+            if (wordDict.find(word) != wordDict.end() && possible[i + 1]) {
+                out.append(word).append(" ");
+                int oldSize = res.size();
+                wordBreakDFS(s, wordDict, i + 1, possible, out, res);
+                if (res.size() == oldSize) possible[i + 1] = false;
+                out.resize(out.size() - word.size() - 1);
+            }
+        }
     }
 };
 \end{lstlisting}
 
 
-\section{Different Ways to Add Parentheses (M)}
-Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.\\
+\section{Word Ladder (M)}
+Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:\\
+    Only one letter can be changed at a time\\
+    Each intermediate word must exist in the word list\\
 
-Example: 
-Input: ``2-1-1". \\
-((2-1)-1) = 0\\
-(2-(1-1)) = 2\\
-Output: [0, 2]\\
+For example,\\
+Given:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]
+As one shortest transformation is $"hit" -> "hot" -> "dot" -> "dog" -> "cog"$,
+return its length 5.\\
+
+Note:\\
+    Return 0 if there is no such transformation sequence.\\
+    All words have the same length.\\
+    All words contain only lowercase alphabetic characters.\
 
 \begin{lstlisting}
 class Solution {
 public:
-    vector<int> diffWaysToCompute(string input) {
-        vector<int> res;
-        int n = input.size();
-        
-        for (int i = 0; i < n; ++i) {
-            char c = input[i];
-            if (c == '+' || c == '-' || c == '*') {
-                vector<int> result1 = diffWaysToCompute(input.substr(0,i));
-                vector<int> result2 = diffWaysToCompute(input.substr(i+1));
-                for (int j = 0; j < result1.size(); ++j) {
-                    for (int k = 0; k < result2.size(); ++k) {
-                        switch (c) {
-                            case '+':
-                                res.push_back(result1[j] + result2[k]);
-                                break;
-                            case '-':
-                                res.push_back(result1[j] - result2[k]);
-                                break;
-                            case '*':
-                                res.push_back(result1[j] * result2[k]);
-                                break;
-                        }
+    int ladderLength(string beginWord, string endWord, unordered_set<string>& wordDict) {
+        unordered_map<string, int> m;
+        queue<string> q;
+        m[beginWord] = 1;
+        q.push(beginWord);
+        while (!q.empty()) {
+            string word = q.front(); q.pop();
+            for (int i = 0; i < word.size(); ++i) {
+                string newWord = word;
+                for (char ch = 'a'; ch <= 'z'; ++ch) {
+                    newWord[i] = ch;
+                    if (newWord == endWord) return m[word] + 1;
+                    if (wordDict.find(newWord) != wordDict.end() && m.find(newWord) == m.end()) {
+                        q.push(newWord);
+                        m[newWord] = m[word] + 1;
+                    }   
+                }
+            }
+        }
+        return 0;
+    }
+};
+\end{lstlisting}
+
+
+\section{Word Ladder II (H)}
+Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:\\
+    Only one letter can be changed at a time\\
+    Each intermediate word must exist in the word list\\
+
+For example,\\
+Given:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]\\
+
+Return
+  [
+    ["hit","hot","dot","dog","cog"],
+    ["hit","hot","lot","log","cog"]
+  ]\\
+
+Note:\\
+    All words have the same length.\\
+    All words contain only lowercase alphabetic characters.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<string> > findLadders(string start, string end, unordered_set<string> &dict) {
+        vector<vector<string> > res;
+        dict.insert(end);
+        vector<string> p;
+        p.push_back(start);
+        queue<vector<string> > paths;
+        paths.push(p);
+        int level = 1, minLevel = INT_MAX;
+        unordered_set<string> words;
+        while (!paths.empty()) {
+            vector<string> path = paths.front();
+            paths.pop();
+            if (path.size() > level) {
+                for (string w : words) dict.erase(w);
+                words.clear();
+                level = path.size();
+                if (level > minLevel) break;
+            }
+            string last = path.back();
+            for (int i = 0; i < last.size(); ++i) {
+                string newLast = last;
+                for (char ch = 'a'; ch <= 'z'; ++ch) {
+                    newLast[i] = ch;
+                    if (dict.find(newLast) != dict.end()) {
+                        words.insert(newLast);
+                        vector<string> nextPath = path;
+                        nextPath.push_back(newLast);
+                        if (newLast == end) {
+                            res.push_back(nextPath);
+                            minLevel = level;
+                        } else paths.push(nextPath);
                     }
                 }
-            }
-        }
-        
-        if (res.empty())
-            res.push_back(stoi(input));
-            
-        return res;
-    }
-};
-\end{lstlisting}
-
-
-\section{Longest Valid Parentheses (H)}
-Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring. \\
-
-For "(()", the longest valid parentheses substring is "()", which has length = 2.\\
-
-Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4. \\
-
-\begin{lstlisting}
-class Solution {
-public:
-    int longestValidParentheses(string s) {
-        int maxlen = 0, last = -1;
-        stack<int> tmp;
-        
-        for (int i = 0; i < s.size(); ++i) {
-            if (s[i] == '(') {
-                tmp.push(i);                // push the index of '(' to stack
-            } else {
-                if (tmp.empty()) {          // if no match for the current ')'
-                    last = i;               // update last index of '('
-                } else {                    // if find a match for the current ')'
-                    tmp.pop();              // pop the index of '('
-                    if (tmp.empty()) {                              
-                        maxlen = max(maxlen, i - last);
-                    } else {
-                        maxlen = max(maxlen, i - tmp.top());
-                    }
-                }
-            }
-        }
-        
-        return maxlen;
-    }
-};
-\end{lstlisting}
-
-
-\section{Remove Invalid Parentheses (H)}
-Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results. \\
-
-Note: The input string may contain letters other than the parentheses ( and ). \\
-
-\begin{lstlisting}
-class Solution {
-public:
-    vector<string> removeInvalidParentheses(string s) {
-        unordered_set<string> result;
-        int left_removed = 0;
-        int right_removed = 0;
-        for(auto c : s) {
-            if(c == '(') {
-                ++left_removed;
-            }
-            if(c == ')') {
-                if(left_removed != 0) {
-                    --left_removed;
-                }
-                else {
-                    ++right_removed;
-                }
-            }
-        }
-        helper(s, 0, left_removed, right_removed, 0, "", result);
-        return vector<string>(result.begin(), result.end());
-    }
-private:
-    void helper(string s, int index, int left_removed, int right_removed, int pair, string path, unordered_set<string>& result) {
-        if(index == s.size()) {
-            if(left_removed == 0 && right_removed == 0 && pair == 0) {
-                result.insert(path);
-            }
-            return;
-        }
-        if(s[index] != '(' && s[index] != ')') {
-            helper(s, index + 1, left_removed, right_removed, pair, path + s[index], result);
-        }
-        else {
-            if(s[index] == '(') {
-                if(left_removed > 0) {
-                    helper(s, index + 1, left_removed - 1, right_removed, pair, path, result);
-                }
-                helper(s, index + 1, left_removed, right_removed, pair + 1, path + s[index], result);
-            }
-            if(s[index] == ')') {
-                if(right_removed > 0) {
-                    helper(s, index + 1, left_removed, right_removed - 1, pair, path, result);
-                }
-                if(pair > 0) {
-                    helper(s, index + 1, left_removed, right_removed, pair - 1, path + s[index], result);
-                }
-            }
-        }
-    }
-};
-\end{lstlisting}
-
-
-\section{Flip Game (E)}
-You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive ``++" into ``- -". The game ends when a person can no longer make a move and therefore the other person will be the winner. Write a function to compute all possible states of the string after one valid move.\\
-
-For example, given s = ``++++", after one move, it may become one of the following states:
-[
-  ``- -++",
-  ``+- -+",
-  ``++- -"
-]
-If there is no valid move, return an empty list [].\\
-
-\begin{lstlisting}
-class Solution {
-public:
-    vector<string> generatePossibleNextMoves(string s) {
-        vector<string> res;
-        for (int i = 1; i < s.size(); ++i) {
-            if (s[i] == '+' && s[i-1] == '+'){
-                res.push_back(s.substr(0, i-1) + "--" + s.substr(i+1)); // substr(pos, len);
-            }
+            }            
         }
         return res;
-    }
-};
-\end{lstlisting}
-
-
-\section{Flip Game II (M)}
-You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner. Write a function to determine if the starting player can guarantee a win.\\
-
-For example, given s = "++++", return true. The starting player can guarantee a win by flipping the middle "++" to become "+--+".\\
-
-\begin{lstlisting}
-class Solution {
-public:
-    bool canWin(string s) {
-        for (int i = 1; i < s.size(); ++i) {
-            if (s[i] == '+' && s[i - 1] == '+' && !canWin(s.substr(0, i - 1) + "--" + s.substr(i + 1))) {
-                return true;
-            }
-        }
-        return false;
     }
 };
 \end{lstlisting}
@@ -1586,55 +1812,6 @@ public:
 \end{lstlisting}
 
 
-\section{Read N Characters Given Read4 (E)}
-The API: int read4(char *buf) reads 4 characters at a time from a file. The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file. By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.\\
-
-Note:The read function will only be called once for each test case.\\
-
-\begin{lstlisting}
-int read4(char *buf);
-
-class Solution {
-public:
-    int read(char *buf, int n) {
-        int res = 0;
-        for (int i = 0; i <= n / 4; ++i) {
-            int cur = read4(buf + res);
-            if (cur == 0) break;
-            res += cur;
-        }
-        return min(res, n);
-    }
-};
-\end{lstlisting}
-
-
-\section{Read N Characters Given Read4 II (H)}
-The API: int read4(char *buf) reads 4 characters at a time from a file. The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file. By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.\\
-
-Note: The read function may be called multiple times. \\
-
-\begin{lstlisting}
-class Solution {
-public:
-    int read(char *buf, int n) {
-        for (int i = 0; i < n; ++i) {
-            if (readPos == writePos) {
-                writePos = read4(buff);
-                readPos = 0;
-                if (writePos == 0) return i;
-            }
-            buf[i] = buff[readPos++];
-        }
-        return n;
-    }
-private:
-    int readPos = 0, writePos = 0;
-    char buff[4];
-};
-\end{lstlisting}
-
-
 \section{Unique Word Abbreviation (E)}
 An abbreviation of a word follows the form $<first letter><number><last letter>$. Below are some examples of word abbreviations:\\
 
@@ -1807,3 +1984,86 @@ public:
 \end{lstlisting}
 
 
+\section{Encode and Decode Strings (M)}
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings. Implement the encode and decode methods.\\
+
+Note:\\
+    The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.\\
+    Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.\\
+    Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.\\
+
+\begin{lstlisting}
+class Codec {
+public:
+    // Encodes a list of strings to a single string.
+    // e.g. "a", "ab", "abc" -> 1/a2/ab3/abc
+    string encode(vector<string>& strs) {
+        string res = "";
+        for (auto a : strs) {
+            res.append(to_string(a.size())).append("/").append(a);
+        }
+        return res;
+    }
+    // Decodes a single string to a list of strings.
+    vector<string> decode(string s) {
+        vector<string> res;
+        int i = 0;
+        while (i < s.size()) {
+            auto found = s.find("/", i);
+            int len = atoi(s.substr(i, found).c_str());
+            res.push_back(s.substr(found + 1, len));
+            i = found + len + 1;
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Read N Characters Given Read4 (E)}
+The API: int read4(char *buf) reads 4 characters at a time from a file. The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file. By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.\\
+
+Note:The read function will only be called once for each test case.\\
+
+\begin{lstlisting}
+int read4(char *buf);
+
+class Solution {
+public:
+    int read(char *buf, int n) {
+        int res = 0;
+        for (int i = 0; i <= n / 4; ++i) {
+            int cur = read4(buf + res);
+            if (cur == 0) break;
+            res += cur;
+        }
+        return min(res, n);
+    }
+};
+\end{lstlisting}
+
+
+\section{Read N Characters Given Read4 II (H)}
+The API: int read4(char *buf) reads 4 characters at a time from a file. The return value is the actual number of characters read. For example, it returns 3 if there is only 3 characters left in the file. By using the read4 API, implement the function int read(char *buf, int n) that reads n characters from the file.\\
+
+Note: The read function may be called multiple times. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int read(char *buf, int n) {
+        for (int i = 0; i < n; ++i) {
+            if (readPos == writePos) {
+                writePos = read4(buff);
+                readPos = 0;
+                if (writePos == 0) return i;
+            }
+            buf[i] = buff[readPos++];
+        }
+        return n;
+    }
+private:
+    int readPos = 0, writePos = 0;
+    char buff[4];
+};
+\end{lstlisting}
