@@ -345,5 +345,3 @@
 \contentsline {section}{\numberline {12.16}Expression Add Operators (H)}{299}{section.12.16}
 \contentsline {section}{\numberline {12.17}Implement Trie (Prefix Tree) (M)}{300}{section.12.17}
 \contentsline {section}{\numberline {12.18}Add and Search Word - Data structure design (M)}{301}{section.12.18}
-\contentsline {chapter}{\numberline {13}Brute-force Enumeration}{304}{chapter.13}
-\contentsline {chapter}{\numberline {14}Divide and Conquer}{305}{chapter.14}

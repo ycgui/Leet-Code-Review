@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 SEP 2016 15:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 SEP 2016 15:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -217,8 +217,7 @@ File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
 (./chapters/LinkedList.aux) (./chapters/StackQueue.aux) (./chapters/Array.aux)
 (./chapters/String.aux) (./chapters/Tree.aux) (./chapters/Sorting.aux)
 (./chapters/Search.aux) (./chapters/DP.aux) (./chapters/Graph.aux)
-(./chapters/Detail.aux) (./chapters/BruteForce.aux)
-(./chapters/DivideConquer.aux))
+(./chapters/Detail.aux))
 \openout1 = `LeetCode.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -4676,43 +4675,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 1109--1112
  []
 
 [301] [302]) [303]
-\openout2 = `chapters/BruteForce.aux'.
-
- (./chapters/BruteForce.tex
-Chapter 13.
-) [304
-
-
-
-]
-\openout2 = `chapters/DivideConquer.aux'.
-
- (./chapters/DivideConquer.tex
-Chapter 14.
-) [305
-
-
-
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
- (./LeetCode.aux (./chapters/Math.aux) (./chapters/BitManipulation.aux)
-(./chapters/LinkedList.aux) (./chapters/StackQueue.aux) (./chapters/Array.aux)
-(./chapters/String.aux) (./chapters/Tree.aux) (./chapters/Sorting.aux)
-(./chapters/Search.aux) (./chapters/DP.aux) (./chapters/Graph.aux)
-(./chapters/Detail.aux) (./chapters/BruteForce.aux)
-(./chapters/DivideConquer.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
+ (./LeetCode.aux (./chapters/Math.aux)
+(./chapters/BitManipulation.aux) (./chapters/LinkedList.aux)
+(./chapters/StackQueue.aux) (./chapters/Array.aux) (./chapters/String.aux)
+(./chapters/Tree.aux) (./chapters/Sorting.aux) (./chapters/Search.aux)
+(./chapters/DP.aux) (./chapters/Graph.aux) (./chapters/Detail.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 59.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 59.
 Package rerunfilecheck Info: File `LeetCode.out' has not changed.
-(rerunfilecheck)             Checksum: C9D4DEA25D8DA531974A86B4E41A03C9;26690.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
+(rerunfilecheck)             Checksum: F5D3594528B659CE9834A4E26114665A;26573.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 18750 strings out of 493089
- 287343 string characters out of 6134842
+ 18728 strings out of 493089
+ 286907 string characters out of 6134842
  292331 words of memory out of 5000000
- 12179 multiletter control sequences out of 15000+600000
+ 12175 multiletter control sequences out of 15000+600000
  10189 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  33i,6n,58p,659b,1728s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -4724,10 +4704,10 @@ r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
 ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
 cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on LeetCode.pdf (315 pages, 777948 bytes).
+Output written on LeetCode.pdf (313 pages, 777183 bytes).
 PDF statistics:
- 14506 PDF objects out of 15390 (max. 8388607)
- 14040 compressed objects within 141 object streams
- 9932 named destinations out of 10688 (max. 500000)
- 2793 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 14487 PDF objects out of 15390 (max. 8388607)
+ 14023 compressed objects within 141 object streams
+ 9928 named destinations out of 10688 (max. 500000)
+ 2777 words of extra memory for PDF output out of 10000 (max. 10000000)
 
