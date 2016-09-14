@@ -1,27 +1,4 @@
 \chapter{Dynamic Programming}
-
-
-\section{Climbing Stairs (E)}
-You are climbing a stair case. It takes n steps to reach to the top.\\
-
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top? \\ 
-
-\begin{lstlisting}
-class Solution {
-public:
-    int climbStairs(int n) {
-        vector<int> steps(n,0);
-        steps[0] = 1;
-        steps[1] = 2;
-        // the number of distinct ways to reach level n is the sum of number of distinct ways to reach level n-1 and n-2.
-        for(int i = 2; i < n; i++)
-            steps[i] = steps[i-2] + steps[i-1]; 
-        return steps[n-1];
-    }
-};
-\end{lstlisting}
-
-
 \section{Gas Station (M)}
 There are N gas stations along a circular route, where the amount of gas at station i is gas[i]. You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations. Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.\\
 
@@ -222,6 +199,94 @@ public:
             mx_idx = parent[mx_idx];
         }
         return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Climbing Stairs (E)}
+You are climbing a stair case. It takes n steps to reach to the top.\\
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top? \\ 
+
+\begin{lstlisting}
+class Solution {
+public:
+    int climbStairs(int n) {
+        vector<int> steps(n,0);
+        steps[0] = 1;
+        steps[1] = 2;
+        // the number of distinct ways to reach level n is the sum of number of distinct ways to reach level n-1 and n-2.
+        for(int i = 2; i < n; i++)
+            steps[i] = steps[i-2] + steps[i-1]; 
+        return steps[n-1];
+    }
+};
+\end{lstlisting}
+
+
+\section{Decode Ways (M)}
+ A message containing letters from A-Z is being encoded to numbers using the following mapping:\\
+'A' $->$ 1\\
+'B' $->$ 2\\
+...\\
+'Z' $->$ 26\\
+
+Given an encoded message containing digits, determine the total number of ways to decode it.\\
+
+For example,
+Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12). The number of ways decoding "12" is 2. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int numDecodings(string s) {
+        if (s.empty()) return 0;
+        int n = s.size();
+        vector<int> dp(n + 2, 1);
+        for (int i = 2; i < n + 2; ++i) {
+            if (s[i - 2] == '0') dp[i] = 0;
+            else dp[i] = dp[i - 1];
+            if (i - 3 >= 0 && (s[i - 3] == '1' || (s[i - 3] == '2' && s[i - 2] <= '6'))) {
+                dp[i] += dp[i - 2];
+            }
+        }
+        return dp[n + 1];
+    }
+};
+
+class Solution {
+public:
+    int numDecodings(string s) {
+        if (s.empty()) return 0;
+        vector<int> dp(s.size() + 1, 0);
+        dp[0] = 1;
+        for (int i = 1; i < dp.size(); ++i) {
+            if (s[i - 1] != '0') dp[i] += dp[i - 1];
+            if (i >= 2 && s.substr(i - 2, 2) <= "26" && s.substr(i - 2, 2) >= "10") {
+                dp[i] += dp[i - 2];
+            }
+        }
+        return dp.back();
+    }
+};
+
+// Space O(1)
+class Solution {
+public:
+    int numDecodings(string s) {
+        if (s.empty() || s.front() == '0') return 0;
+        int c1 = 1, c2 = 1;
+        for (int i = 1; i < s.size(); ++i) {
+            if (s[i] == '0') c1 = 0;
+            if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] <= '6')) {
+                c1 = c1 + c2;
+                c2 = c1 - c2;
+            } else {
+                c2 = c1;
+            }
+        }
+        return c1;
     }
 };
 \end{lstlisting}

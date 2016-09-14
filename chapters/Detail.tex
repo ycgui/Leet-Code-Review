@@ -102,111 +102,6 @@ public:
 \end{lstlisting}
 
 
-\section{Design Tic-Tac-Toe (M)}
-Design a Tic-tac-toe game that is played between two players on a n x n grid. \\
-
-You may assume the following rules:\\
-A move is guaranteed to be valid and is placed on an empty block.\\
-Once a winning condition is reached, no more moves is allowed.\\
-A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game.\\
-
-Example:\\
-Given n = 3, assume that player 1 is "X" and player 2 is "O" in the board.\\
-TicTacToe toe = new TicTacToe(3);\\
-
-toe.move(0, 0, 1); -> Returns 0 (no one wins)\\
-|X| | |\\
-| | | | // Player 1 makes a move at (0, 0).\\
-| | | |\\
-
-toe.move(0, 2, 2); -> Returns 0 (no one wins)\\
-|X| |O|\\
-| | | | // Player 2 makes a move at (0, 2).\\
-| | | |\\
-
-toe.move(2, 2, 1); -> Returns 0 (no one wins)\\
-|X| |O|\\
-| | | | // Player 1 makes a move at (2, 2).\\
-| | |X|\\
-
-toe.move(1, 1, 2); -> Returns 0 (no one wins)\\
-|X| |O|\\
-| |O| | // Player 2 makes a move at (1, 1).\\
-| | |X|\\
-
-toe.move(2, 0, 1); -> Returns 0 (no one wins)\\
-|X| |O|\\
-| |O| | // Player 1 makes a move at (2, 0).\\
-|X| |X|\\
-
-toe.move(1, 0, 2); -> Returns 0 (no one wins)\\
-|X| |O|\\
-|O|O| | // Player 2 makes a move at (1, 0).\\
-|X| |X|\\
-
-toe.move(2, 1, 1); -> Returns 1 (player 1 wins)\\
-|X| |O|\\
-|O|O| | // Player 1 makes a move at (2, 1).\\
-|X|X|X|\\
-
-Follow up:\\
-Could you do better than $O(n^2)$ per move() operation?\\
-
-Hint:\\
-Could you trade extra space such that move() operation can be done in O(1)? You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, antidiagonal. \\
-
-\begin{lstlisting}
-class TicTacToe {
-public:
-    /** Initialize your data structure here. */
-    TicTacToe(int n) {
-        board.resize(n, vector<int>(n, 0));   
-    }
-
-    int move(int row, int col, int player) {
-        board[row][col] = player;
-        int i = 0, j = 0, N = board.size();
-        // check row
-        for (i = 0; i < N; ++i) {
-            if (board[i][0] != 0) {
-                for (j = 1; j < N; ++j) {
-                    if (board[i][j] != board[i][j - 1]) break;
-                }
-                if (j == N) return board[i][0];
-            }
-        }
-        // check column
-        for (j = 0; j < N; ++j) {
-            if (board[0][j] != 0) {
-                for (i = 1; i < N; ++i) {
-                    if (board[i][j] != board[i - 1][j]) break;
-                }
-                if (i == N) return board[0][j];
-            }
-        }
-        // check diagonal
-        if (board[0][0] != 0) {
-            for (i = 1; i < N; ++i) {
-                if (board[i][i] != board[i - 1][i - 1]) break;
-            }
-            if (i == N) return board[0][0];
-        }
-        // check antidiagonal
-        if (board[N - 1][0] != 0) {
-            for (i = 1; i < N; ++i) {
-                if (board[N - i - 1][i] != board[N - i][i - 1]) break;
-            }
-            if (i == N) return board[N - 1][0];
-        }
-        return 0;
-    }
-    
-private:
-    vector<vector<int>> board;
-};
-\end{lstlisting}
-
-
 \section{Boom Enemy (M)}
 Given a 2D grid, each cell is either a wall 'W', an enemy 'E' or empty '0' (the number zero), return the maximum enemies you can kill using one bomb.
 The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since the wall is too strong to be destroyed.
@@ -462,6 +357,235 @@ private:
 \end{lstlisting}
 
 
+\section{LRU Cache (H)}
+Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.\\
+
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.\\
+set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item. \\
+
+\begin{lstlisting}
+class LRUCache{
+public:
+    LRUCache(int capacity) {
+        cap = capacity;
+    }
+    
+    int get(int key) {
+        auto it = m.find(key);
+        if (it == m.end()) return -1;
+        // void splice (iterator position, list& x, iterator i)
+        // transfers only the element pointed by i from x into the container, inserting it at position.
+        l.splice(l.begin(), l, it->second);
+        return it->second->second;
+    }
+    
+    void set(int key, int value) {
+        auto it = m.find(key);
+        // if the current key and value exist in list, remove it
+        if (it != m.end()) l.erase(it->second);
+        // insert the new pair to the top of list
+        l.push_front(make_pair(key, value)); 
+        m[key] = l.begin();
+        // if capacity is exceeded, remove the bottom one
+        if (m.size() > cap) {
+            int k = l.rbegin()->first;
+            l.pop_back();
+            m.erase(k);
+        }
+    }
+    
+private:
+    int cap;
+    list<pair<int, int> > l;
+    unordered_map<int, list<pair<int, int> >::iterator> m;
+};
+\end{lstlisting}
+
+
+\section{Design Tic-Tac-Toe (M)}
+Design a Tic-tac-toe game that is played between two players on a n x n grid. \\
+
+You may assume the following rules:\\
+A move is guaranteed to be valid and is placed on an empty block.\\
+Once a winning condition is reached, no more moves is allowed.\\
+A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game.\\
+
+Example:\\
+Given n = 3, assume that player 1 is "X" and player 2 is "O" in the board.\\
+TicTacToe toe = new TicTacToe(3);\\
+
+toe.move(0, 0, 1); -> Returns 0 (no one wins)\\
+|X| | |\\
+| | | | // Player 1 makes a move at (0, 0).\\
+| | | |\\
+
+toe.move(0, 2, 2); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| | | | // Player 2 makes a move at (0, 2).\\
+| | | |\\
+
+toe.move(2, 2, 1); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| | | | // Player 1 makes a move at (2, 2).\\
+| | |X|\\
+
+toe.move(1, 1, 2); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| |O| | // Player 2 makes a move at (1, 1).\\
+| | |X|\\
+
+toe.move(2, 0, 1); -> Returns 0 (no one wins)\\
+|X| |O|\\
+| |O| | // Player 1 makes a move at (2, 0).\\
+|X| |X|\\
+
+toe.move(1, 0, 2); -> Returns 0 (no one wins)\\
+|X| |O|\\
+|O|O| | // Player 2 makes a move at (1, 0).\\
+|X| |X|\\
+
+toe.move(2, 1, 1); -> Returns 1 (player 1 wins)\\
+|X| |O|\\
+|O|O| | // Player 1 makes a move at (2, 1).\\
+|X|X|X|\\
+
+Follow up:\\
+Could you do better than $O(n^2)$ per move() operation?\\
+
+Hint:\\
+Could you trade extra space such that move() operation can be done in O(1)? You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, antidiagonal. \\
+
+\begin{lstlisting}
+class TicTacToe {
+public:
+    /** Initialize your data structure here. */
+    TicTacToe(int n) {
+        board.resize(n, vector<int>(n, 0));   
+    }
+
+    int move(int row, int col, int player) {
+        board[row][col] = player;
+        int i = 0, j = 0, N = board.size();
+        // check row
+        for (i = 0; i < N; ++i) {
+            if (board[i][0] != 0) {
+                for (j = 1; j < N; ++j) {
+                    if (board[i][j] != board[i][j - 1]) break;
+                }
+                if (j == N) return board[i][0];
+            }
+        }
+        // check column
+        for (j = 0; j < N; ++j) {
+            if (board[0][j] != 0) {
+                for (i = 1; i < N; ++i) {
+                    if (board[i][j] != board[i - 1][j]) break;
+                }
+                if (i == N) return board[0][j];
+            }
+        }
+        // check diagonal
+        if (board[0][0] != 0) {
+            for (i = 1; i < N; ++i) {
+                if (board[i][i] != board[i - 1][i - 1]) break;
+            }
+            if (i == N) return board[0][0];
+        }
+        // check antidiagonal
+        if (board[N - 1][0] != 0) {
+            for (i = 1; i < N; ++i) {
+                if (board[N - i - 1][i] != board[N - i][i - 1]) break;
+            }
+            if (i == N) return board[N - 1][0];
+        }
+        return 0;
+    }
+    
+private:
+    vector<vector<int>> board;
+};
+\end{lstlisting}
+
+
+\section{Design Snake Game (M)}
+Design a Snake game that is played on a device with screen size = width x height. Play the game online if you are not familiar with the game. The snake is initially positioned at the top left corner (0,0) with length = 1 unit. You are given a list of food's positions in row-column order. When a snake eats the food, its length and the game's score both increase by 1. Each food appears one by one on the screen. For example, the second food will not appear until the first food was eaten by the snake. When a food does appear on the screen, it is guaranteed that it will not appear on a block occupied by the snake.\\
+
+Example:\\
+Given width = 3, height = 2, and food = [[1,2],[0,1]].\\
+Snake snake = new Snake(width, height, food);\\
+
+Initially the snake appears at position (0,0) and the food at (1,2).\\
+|S| | |\\
+| | |F|\\
+
+snake.move("R"); -> Returns 0\\
+| |S| |\\
+| | |F|\\
+
+snake.move("D"); -> Returns 0\\
+| | | |\\
+| |S|F|\\
+
+snake.move("R"); -> Returns 1 (Snake eats the first food and right after that, the second food appears at (0,1) )\\
+| |F| |\\
+| |S|S|\\
+
+snake.move("U"); -> Returns 1\\
+| |F|S|\\
+| | |S|\\
+
+snake.move("L"); -> Returns 2 (Snake eats the second food)\\
+| |S|S|\\
+| | |S|\\
+
+snake.move("U"); -> Returns -1 (Game over because snake collides with border)\\
+
+\begin{lstlisting}
+class SnakeGame {
+public:
+    /** Initialize your data structure here.
+        @param width - screen width
+        @param height - screen height 
+        @param food - A list of food positions
+        E.g food = [[1,1], [1,0]] means the first food is positioned at [1,1], the second is at [1,0]. */
+    SnakeGame(int width, int height, vector<pair<int, int>> food) {
+        this->width = width;
+        this->height = height;
+        this->food = food;
+        score = 0;
+        pos.push_back({0, 0});
+    }
+    
+    /** Moves the snake.
+        @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down 
+        @return The game's score after the move. Return -1 if game over. 
+        Game over when snake crosses the screen boundary or bites its body. */
+    int move(string direction) {
+        auto head = pos.front(), tail = pos.back();
+        pos.pop_back();
+        if (direction == "U") --head.first;
+        else if (direction == "L") --head.second;
+        else if (direction == "R") ++head.second;
+        else if (direction == "D") ++head.first;
+        if (count(pos.begin(), pos.end(), head) || head.first < 0 || head.first >= height || head.second < 0 || head.second >= width) {
+            return -1;
+        }
+        pos.insert(pos.begin(), head);
+        if (!food.empty() && head == food.front()) {
+            food.erase(food.begin());
+            pos.push_back(tail);
+            ++score;
+        }
+        return score;
+    }
+
+private:
+    int width, height, score;
+    vector<pair<int, int>> food, pos;
+};
+\end{lstlisting}
+
+
 \section{Design Phone Directory (M)}
 Design a Phone Directory which supports the following operations:\\
     get: Provide a number which is not assigned to anyone.\\
@@ -534,6 +658,100 @@ private:
     int max_num, next, idx;
     vector<int> recycle, flag;
 };
+\end{lstlisting}
+
+
+\section{Design Twitter (M)}
+Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user's news feed. Your design should support the following methods:\\
+    postTweet(userId, tweetId): Compose a new tweet.\\
+    getNewsFeed(userId): Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.\\
+    follow(followerId, followeeId): Follower follows a followee.\\
+    unfollow(followerId, followeeId): Follower unfollows a followee.\\
+
+Example:\\
+Twitter twitter = new Twitter();\\
+
+// User 1 posts a new tweet (id = 5).\\
+twitter.postTweet(1, 5);\\
+
+// User 1's news feed should return a list with 1 tweet id -> [5].\\
+twitter.getNewsFeed(1);\\
+
+// User 1 follows user 2.\\
+twitter.follow(1, 2);\\
+
+// User 2 posts a new tweet (id = 6).\\
+twitter.postTweet(2, 6);\\
+
+// User 1's news feed should return a list with 2 tweet ids -> [6, 5].\\
+// Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.\\
+twitter.getNewsFeed(1);\\
+
+// User 1 unfollows user 2.\\
+twitter.unfollow(1, 2);\\
+
+// User 1's news feed should return a list with 1 tweet id -> [5],\\
+// since user 1 is no longer following user 2.\\
+twitter.getNewsFeed(1);\\
+
+\begin{lstlisting}
+class Twitter {
+public:
+    /** Initialize your data structure here. */
+    Twitter() {
+        cnt = 0;
+    }
+    
+    /** Compose a new tweet. */
+    void postTweet(int userId, int tweetId) {
+        follow(userId, userId);
+        tweets[userId].insert({cnt++, tweetId});
+    }
+    
+    /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
+    vector<int> getNewsFeed(int userId) {
+        vector<int> res;
+        map<int, int> top10;
+        for (auto it = friends[userId].begin(); it != friends[userId].end(); ++it) {
+            int t = *it;
+            for (auto a = tweets[t].begin(); a != tweets[t].end(); ++a) {
+                if (top10.size() > 0 && top10.begin()->first > a->first && top10.size() > 10) break;
+                top10.insert({a->first, a->second});
+                if (top10.size() > 10) top10.erase(top10.begin());
+            }
+        }
+        for (auto it = top10.rbegin(); it != top10.rend(); ++it) {
+            res.push_back(it->second);
+        }
+        return res;
+    }
+    
+    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+    void follow(int followerId, int followeeId) {
+        friends[followerId].insert(followeeId);
+    }
+    
+    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+    void unfollow(int followerId, int followeeId) {
+        if (followerId != followeeId) {
+            friends[followerId].erase(followeeId);
+        }
+    }
+    
+private:
+    int cnt;
+    unordered_map<int, set<int>> friends;
+    unordered_map<int, map<int, int>> tweets;
+};
+
+/**
+ * Your Twitter object will be instantiated and called as such:
+ * Twitter obj = new Twitter();
+ * obj.postTweet(userId,tweetId);
+ * vector<int> param_2 = obj.getNewsFeed(userId);
+ * obj.follow(followerId,followeeId);
+ * obj.unfollow(followerId,followeeId);
+ */
 \end{lstlisting}
 
 
@@ -684,51 +902,6 @@ private:
  * bool param_2 = obj.remove(val);
  * int param_3 = obj.getRandom();
  */
-\end{lstlisting}
-
-
-\section{LRU Cache (H)}
-Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.\\
-
-get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.\\
-set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item. \\
-
-\begin{lstlisting}
-class LRUCache{
-public:
-    LRUCache(int capacity) {
-        cap = capacity;
-    }
-    
-    int get(int key) {
-        auto it = m.find(key);
-        if (it == m.end()) return -1;
-        // void splice (iterator position, list& x, iterator i)
-        // transfers only the element pointed by i from x into the container, inserting it at position.
-        l.splice(l.begin(), l, it->second);
-        return it->second->second;
-    }
-    
-    void set(int key, int value) {
-        auto it = m.find(key);
-        // if the current key and value exist in list, remove it
-        if (it != m.end()) l.erase(it->second);
-        // insert the new pair to the top of list
-        l.push_front(make_pair(key, value)); 
-        m[key] = l.begin();
-        // if capacity is exceeded, remove the bottom one
-        if (m.size() > cap) {
-            int k = l.rbegin()->first;
-            l.pop_back();
-            m.erase(k);
-        }
-    }
-    
-private:
-    int cap;
-    list<pair<int, int> > l;
-    unordered_map<int, list<pair<int, int> >::iterator> m;
-};
 \end{lstlisting}
 
 

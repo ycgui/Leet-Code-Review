@@ -446,6 +446,102 @@ public:
 \end{lstlisting}
 
 
+\section{Restore IP Addresses (M)}
+Given a string containing only digits, restore it by returning all possible valid IP address combinations.\\
+
+For example:
+Given "25525511135",
+return ["255.255.11.135", "255.255.111.35"]. (Order does not matter) \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> restoreIpAddresses(string s) {
+        vector<string> res;
+        restore(s, 4, "", res);
+        return res;
+    }
+    void restore(string s, int k, string out, vector<string> &res) {
+        if (k == 0) {
+            if (s.empty()) res.push_back(out);
+        }
+        else {
+            for (int i = 1; i <= 3; ++i) {
+                if (s.size() >= i && isValid(s.substr(0, i))) {
+                    if (k == 1) restore(s.substr(i), k - 1, out + s.substr(0, i), res);
+                    else restore(s.substr(i), k - 1, out + s.substr(0, i) + ".", res);
+                }
+            }
+        }
+    }
+    bool isValid(string s) {
+        if (s.empty() || s.size() > 3 || (s.size() > 1 && s[0] == '0')) return false;
+        int res = atoi(s.c_str());
+        return res <= 255 && res >= 0;
+    }
+};
+\end{lstlisting}
+
+
+\section{Simplify Path (M)}
+Given an absolute path for a file (Unix-style), simplify it.\\
+
+For example,\\
+path = "/home/", => "/home"\\
+path = "/a/./b/../../c/", => "/c"\\
+
+Corner Cases:\\
+    Did you consider the case where path = "/../"?\\
+    In this case, you should return "/".\\
+    Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".\\
+    In this case, you should ignore redundant slashes and return "/home/foo".\\
+    
+\begin{lstlisting}
+class Solution {
+public:
+    string simplifyPath(string path) {
+        vector<string> v;
+        int i = 0;
+        while (i < path.size()) {
+            while (path[i] == '/' && i < path.size()) ++i;
+            if (i == path.size()) break;
+            int start = i;
+            while (path[i] != '/' && i < path.size()) ++i;
+            int end = i - 1;
+            string s = path.substr(start, end - start + 1);
+            if (s == "..") {
+                if (!v.empty()) v.pop_back(); 
+            } else if (s != ".") {
+                v.push_back(s);
+            }
+        }
+        if (v.empty()) return "/";
+        string res;
+        for (int i = 0; i < v.size(); ++i) {
+            res += '/' + v[i];
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        string res, t;
+        stringstream ss(path);
+        vector<string> v;
+        while (getline(ss, t, '/')) {
+            if (t == "" || t == ".") continue;
+            if (t == ".." && !v.empty()) v.pop_back();
+            else if (t != "..") v.push_back(t);
+        }
+        for (string s : v) res += "/" + s;
+        return res.empty() ? "/" : res;
+    }
+};
+\end{lstlisting}
+
+
 \section{Valid Parentheses (E)}
 Given a string containing just the characters `(', `)', `\{', `\}', `[' and `]', determine if the input string is valid. The brackets must close in the correct order, ``()" and ``()[]\{\}" are all valid but ``(]" and ``([)]" are not.\\
 
@@ -1128,6 +1224,89 @@ public:
 \end{lstlisting}
 
 
+\section{Longest Palindromic Substring (M)}
+Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.\\
+
+\begin{lstlisting}
+// Time complexity O(n*n)
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int startIdx = 0, left = 0, right = 0, len = 0;
+        for (int i = 0; i < s.size() - 1; ++i) {
+            if (s[i] == s[i + 1]) {
+                left = i;
+                right = i + 1;
+                searchPalindrome(s, left, right, startIdx, len);
+            }
+            left = right = i;
+            searchPalindrome(s, left, right, startIdx, len);
+        }
+        if (len == 0) len = s.size();
+        return s.substr(startIdx, len);
+    }
+    void searchPalindrome(string s, int left, int right, int &startIdx, int &len) {
+        int step = 1;
+        while ((left - step) >= 0 && (right + step) < s.size()) {
+            if (s[left - step] != s[right + step]) break;
+            ++step;
+        }
+        int wide = right - left + 2 * step - 1;
+        if (len < wide) {
+            len = wide;
+            startIdx = left - step + 1;
+        }
+    }
+};
+
+// DP
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int dp[s.size()][s.size()] = {0}, left = 0, right = 0, len = 0;
+        for (int i = 0; i < s.size(); ++i) {
+            for (int j = 0; j < i; ++j) {
+                dp[j][i] = (s[i] == s[j] && (i - j < 2 || dp[j + 1][i - 1]));
+                if (dp[j][i] && len < i - j + 1) {
+                    len = i - j + 1;
+                    left = j;
+                    right = i;
+                }
+            }
+            dp[i][i] = 1;
+        }
+        return s.substr(left, right - left + 1);
+    }
+};
+
+// Manacher's Algorithm
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        string t ="$#";
+        for (int i = 0; i < s.size(); ++i) {
+            t += s[i];
+            t += '#';
+        }
+        int p[t.size()] = {0}, id = 0, mx = 0, resId = 0, resMx = 0;
+        for (int i = 0; i < t.size(); ++i) {
+            p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
+            while (t[i + p[i]] == t[i - p[i]]) ++p[i];
+            if (mx < i + p[i]) {
+                mx = i + p[i];
+                id = i;
+            }
+            if (resMx < p[i]) {
+                resMx = p[i];
+                resId = i;
+            }
+        }
+        return s.substr((resId - resMx) / 2, resMx - 1);
+    }
+};
+\end{lstlisting}
+
+
 \section{Palindrome Permutation (E)}
 Given a string, determine if a permutation of the string could form a palindrome.\\
 
@@ -1329,7 +1508,6 @@ public:
     }
 };
 
-
 // intuitive solution  
 class Solution {
 public:
@@ -1361,6 +1539,149 @@ public:
             }
         }
         return true;
+    }
+};
+\end{lstlisting}
+
+
+\section{Longest Substring Without Repeating Characters (M)}
+Given a string, find the length of the longest substring without repeating characters.\\
+
+Examples:\\
+Given "abcabcbb", the answer is "abc", which the length is 3.\\
+Given "bbbbb", the answer is "b", with the length of 1.\\
+Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        // left is the start position of each substring
+        int m[256] = {0}, res = 0, left = 0;
+        for (int i = 0; i < s.size(); ++i) {
+            if (m[s[i]] == 0 || m[s[i]] < left) {
+                res = max(res, i - left + 1);
+            } else {
+                left = m[s[i]]; // update left if repeat chars is found
+            }
+            m[s[i]] = i + 1;
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int> m(256, -1);
+        int res = 0, left = -1;
+        for (int i = 0; i < s.size(); ++i) {
+            left = max(left, m[s[i]]);
+            m[s[i]] = i;
+            res = max(res, i - left);
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        set<char> t;
+        int res = 0, left = 0, right = 0;
+        while (right < s.size()) {
+            if (t.find(s[right]) == t.end()) {
+                t.insert(s[right++]);
+                res = max(res, (int)t.size());
+            }  else {
+                t.erase(s[left++]);
+            }
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+\section{Longest Substring with At Most Two Distinct Characters (H)}
+Given a string S, find the length of the longest substring T that contains at most two distinct characters.\\
+For example,
+Given S = ``eceba",
+T is ``ece" which its length is 3. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int lengthOfLongestSubstringTwoDistinct(string s) {
+        int res = 0, left = 0;
+        unordered_map<char, int> m;
+        for (int i = 0; i < s.size(); ++i) {
+            ++m[s[i]];
+            while (m.size() > 2) {
+                if (--m[s[left]] == 0) m.erase(s[left]);
+                ++left;
+            }
+            res = max(res, i - left + 1);
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLongestSubstringTwoDistinct(string s) {
+        int res = 0, left = 0;
+        unordered_map<char, int> m;
+        for (int i = 0; i < s.size(); ++i) {
+            m[s[i]] = i;
+            while (m.size() > 2) {
+                if (m[s[left]] == left) m.erase(s[left]);
+                ++left;
+            }
+            res = max(res, i - left + 1);
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Longest Substring with At Most K Distinct Characters (H)}
+Given a string, find the length of the longest substring T that contains at most k distinct characters.\\
+
+For example, Given s = ``eceba" and k = 2, T is ``ece" which its length is 3.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int lengthOfLongestSubstringKDistinct(string s, int k) {
+        int res = 0, left = 0;
+        unordered_map<char, int> m;
+        for (int i = 0; i < s.size(); ++i) {
+            ++m[s[i]];
+            while (m.size() > k) {
+                if (--m[s[left]] == 0) m.erase(s[left]);
+                ++left;
+            }
+            res = max(res, i - left + 1);
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int lengthOfLongestSubstringKDistinct(string s, int k) {
+        int res = 0, left = 0;
+        unordered_map<char, int> m;
+        for (int i = 0; i < s.size(); ++i) {
+            m[s[i]] = i;
+            while (m.size() > k) {
+                if (m[s[left]] == left) m.erase(s[left]);
+                ++left;
+            }
+            res = max(res, i - left + 1);
+        }
+        return res;
     }
 };
 \end{lstlisting}

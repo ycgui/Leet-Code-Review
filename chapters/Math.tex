@@ -92,6 +92,36 @@ public:
 \end{lstlisting}
 
 
+\section{Water and Jug Problem (M)}
+You are given two jugs with capacities x and y liters. There is an infinite amount of water supply available. You need to determine whether it is possible to measure exactly z liters using these two jugs. If z liters of water is measurable, you must have z liters of water contained within one or both buckets by the end.\\
+
+Operations allowed:\\
+    Fill any of the jugs completely with water.\\
+    Empty any of the jugs.\\
+    Pour water from one jug into another till the other jug is completely full or the first jug itself is empty.\\
+
+Example 1: (From the famous "Die Hard" example)\\
+Input: x = 3, y = 5, z = 4\\
+Output: True\\
+
+Example 2:\\
+Input: x = 2, y = 6, z = 5\\
+Output: False\\
+
+\begin{lstlisting}
+// ax + by = z where z = gcd(x, y)
+class Solution {
+public:
+    bool canMeasureWater(int x, int y, int z) {
+        return z == 0 || (x + y >= z && z % gcd(x, y) == 0);
+    }
+    int gcd(int x, int y) {
+        return y == 0 ? x : gcd(y, x % y);
+    }
+};
+\end{lstlisting}
+
+
 \section{Factorial Trailing Zeroes (E)}
 Given an integer n, return the number of trailing zeroes in n!.\\
 
@@ -106,6 +136,32 @@ public:
             return 0;
         else
             return n/5 + trailingZeroes(n/5);
+    }
+};
+\end{lstlisting}
+
+
+\section{Number of Digit One (H)}
+Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.\\
+
+For example:
+Given n = 13,
+Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.\\
+
+Hint: Beware of overflow.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int countDigitOne(int n) {
+        int res = 0, a = 1, b = 1;
+        while (n > 0) {
+            res += (n + 8) / 10 * a + (n % 10 == 1) * b;
+            b += n % 10 * a;
+            a *= 10;
+            n /= 10;
+        }
+        return res;
     }
 };
 \end{lstlisting}
@@ -237,6 +293,53 @@ public:
             }
         }
         return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Fraction to Recurring Decimal (M)}
+Given two integers representing the numerator and denominator of a fraction, return the fraction in string format. If the fractional part is repeating, enclose the repeating part in parentheses.\\
+
+For example,\\
+    Given numerator = 1, denominator = 2, return "0.5".\\
+    Given numerator = 2, denominator = 1, return "2".\\
+    Given numerator = 2, denominator = 3, return "0.(6)".\\
+
+Hint:\\
+    No scary math, just apply elementary math knowledge. Still remember how to perform a long division?\\
+    Try a long division on 4/9, the repeating part is obvious. Now try 4/333. Do you see a pattern?\\
+    Be wary of edge cases! List out as many test cases as you can think of and test your code thoroughly.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string fractionToDecimal(int numerator, int denominator) {
+        int s1 = numerator >= 0 ? 1 : -1;
+        int s2 = denominator >= 0 ? 1 : -1;
+        long long num = abs( (long long)numerator );
+        long long den = abs( (long long)denominator );
+        long long out = num / den;
+        long long rem = num % den;
+        unordered_map<long long, int> m;
+        string res = to_string(out);
+        if (s1 * s2 == -1 && (out > 0 || rem > 0)) res = "-" + res;
+        if (rem == 0) return res;
+        res += ".";
+        string s = "";
+        int pos = 0;
+        while (rem != 0) {
+            if (m.find(rem) != m.end()) {
+                s.insert(m[rem], "(");
+                s += ")";
+                return res + s;
+            }
+            m[rem] = pos;
+            s += to_string((rem * 10) / den);
+            rem = (rem * 10) % den;
+            ++pos;
+        }
+        return res + s;
     }
 };
 \end{lstlisting}
