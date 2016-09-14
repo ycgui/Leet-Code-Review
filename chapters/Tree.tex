@@ -724,6 +724,34 @@ public:
 \end{lstlisting}
 
 
+\subsection{Count Complete Tree Nodes (M)}
+Given a complete binary tree, count the number of nodes.\\
+
+In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.\\
+
+A perfect binary tree is a complete tree, but a complete tree is not necessary a perfect tree.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        int hLeft = 0, hRight = 0; // height of the left and right subtree
+        TreeNode *pLeft = root, *pRight = root;
+        while (pLeft) {
+            ++hLeft;
+            pLeft = pLeft->left;
+        }
+        while (pRight) {
+            ++hRight;
+            pRight = pRight->right;
+        }
+        if (hLeft == hRight) return pow(2, hLeft) - 1; // perfect binary tree
+        return countNodes(root->left) + countNodes(root->right) + 1;
+    }
+};
+\end{lstlisting}
+
+
 \subsection{Maximum Depth of Binary Tree (E)}
 Given a binary tree, find its maximum depth.\\
 
@@ -924,6 +952,10 @@ public:
     }
 };
 \end{lstlisting}
+
+
+\subsection{Binary Tree Path Sum of Two Nodes (Philips on-sight interview)}
+Given a binary tree and two arbitrary nodes, compute the path sum of these two nodes.
 
 
 \section{Binary Tree Construction}

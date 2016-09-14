@@ -810,3 +810,191 @@ public:
 };
 \end{lstlisting}
 
+
+\section{Expression Add Operators (H)}
+Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.\\
+
+Examples:\\
+"123", 6 $->$ ["1+2+3", "1*2*3"] \\
+"232", 8 $->$ ["2*3+2", "2+3*2"]\\
+"105", 5 $->$ ["1*0+5","10-5"]\\
+"00", 0 $->$ ["0+0", "0-0", "0*0"]\\
+"3456237490", 9191 $->$ []\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<string> addOperators(string num, int target) {
+        vector<string> res;
+        addOperatorsDFS(num, target, 0, 0, "", res);
+        return res;
+    }
+    void addOperatorsDFS(string num, int target, long long diff, long long curNum, string out, vector<string> &res) {
+        if (num.size() == 0 && curNum == target) {
+            res.push_back(out);
+        }
+        for (int i = 1; i <= num.size(); ++i) {
+            string cur = num.substr(0, i);
+            if (cur.size() > 1 && cur[0] == '0') return;
+            string next = num.substr(i);
+            if (out.size() > 0) {
+                addOperatorsDFS(next, target, stoll(cur), curNum + stoll(cur), out + "+" + cur, res);
+                addOperatorsDFS(next, target, -stoll(cur), curNum - stoll(cur), out + "-" + cur, res);
+                addOperatorsDFS(next, target, diff * stoll(cur), (curNum - diff) + diff * stoll(cur), out + "*" + cur, res);
+            } else {
+                addOperatorsDFS(next, target, stoll(cur), stoll(cur), cur, res);
+            }
+        }
+    }
+};
+\end{lstlisting}
+
+
+\section{Implement Trie (Prefix Tree) (M)}
+Implement a trie with insert, search, and startsWith methods.\\
+
+Note:
+You may assume that all inputs are consist of lowercase letters a-z. \\
+
+\begin{lstlisting}
+class TrieNode {
+public:
+    // Initialize your data structure here.
+    TrieNode *child[26];
+    bool isWord;
+    TrieNode() : isWord(false){
+        for (auto &a : child) a = NULL;
+    }
+};
+
+class Trie {
+public:
+    Trie() {
+        root = new TrieNode();
+    }
+
+    // Inserts a word into the trie.
+    void insert(string s) {
+        TrieNode *p = root;
+        for (auto &a : s) {
+            int i = a - 'a';
+            if (!p->child[i]) p->child[i] = new TrieNode();
+            p = p->child[i];
+        }
+        p->isWord = true;
+    }
+
+    // Returns if the word is in the trie.
+    bool search(string key) {
+        TrieNode *p = root;
+        for (auto &a : key) {
+            int i = a - 'a';
+            if (!p->child[i]) return false;
+            p = p->child[i];
+        }
+        return p->isWord;
+    }
+
+    // Returns if there is any word in the trie
+    // that starts with the given prefix.
+    bool startsWith(string prefix) {
+        TrieNode *p = root;
+        for (auto &a : prefix) {
+            int i = a - 'a';
+            if (!p->child[i]) return false;
+            p = p->child[i];
+        }
+        return true;
+    }
+
+private:
+    TrieNode* root;
+};
+
+// Your Trie object will be instantiated and called as such:
+// Trie trie;
+// trie.insert("somestring");
+// trie.search("key");
+\end{lstlisting}
+
+
+\section{Add and Search Word - Data structure design (M)}
+Design a data structure that supports the following two operations:\\
+void addWord(word)\\
+bool search(word)\\
+search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.\\
+
+For example:\\
+addWord("bad")\\
+addWord("dad")\\
+addWord("mad")\\
+search("pad") $->$ false\\
+search("bad") $->$ true\\
+search(".ad") $->$ true\\
+search("b..") $->$ true\\
+
+Note:\\
+You may assume that all words are consist of lowercase letters a-z.\\
+You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first. \\
+
+\begin{lstlisting}
+class WordDictionary {
+public:
+    struct TrieNode {
+    public:
+        TrieNode *child[26];
+        bool isWord;
+        TrieNode() : isWord(false) {
+            for (auto &a : child) a = NULL;
+        }
+    };
+    
+    WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    // Adds a word into the data structure.
+    void addWord(string word) {
+        TrieNode *p = root;
+        for (auto &a : word) {
+            int i = a - 'a';
+            if (!p->child[i]) p->child[i] = new TrieNode();
+            p = p->child[i];
+        }
+        p->isWord = true;
+    }
+
+    // Returns if the word is in the data structure. A word could
+    // contain the dot character '.' to represent any one letter.
+    bool search(string word) {
+        return searchWord(word, root, 0);
+    }
+    
+    bool searchWord(string &word, TrieNode *p, int i) {
+        if (i == word.size()) return p->isWord;
+        if (word[i] == '.') {
+            for (auto &a : p->child) {
+                if (a && searchWord(word, a, i + 1)) return true;
+            }
+            return false;
+        } else {
+            return p->child[word[i] - 'a'] && searchWord(word, p->child[word[i] - 'a'], i + 1);
+        }
+    }
+    
+private:
+    TrieNode *root;
+};
+
+// Your WordDictionary object will be instantiated and called as such:
+// WordDictionary wordDictionary;
+// wordDictionary.addWord("word");
+// wordDictionary.search("pattern");
+
+// Your WordDictionary object will be instantiated and called as such:
+// WordDictionary wordDictionary;
+// wordDictionary.addWord("word");
+// wordDictionary.search("pattern");
+\end{lstlisting}
+
+
