@@ -175,11 +175,9 @@ class Solution {
 public:
     bool isPalindrome(int x) {
         if (x < 0)  return false;
-            
         int d = 1;      
         while (x / d >= 10) 
             d *= 10;            // get the initial divisor size
-            
         while (x > 0) {
             int q = x / d;      // quotient as the first digit
             int r = x % 10;     // remainder as the last digit
@@ -187,7 +185,6 @@ public:
             x = x % d / 10;     // remove the first and the last digits
             d /= 100;           // reduce the divisor size
         }
-        
         return true;
     }
 };
@@ -204,16 +201,15 @@ Example2: x = -123, return -321\\
 class Solution {
 public:
     int reverse(int x) {
-        if (x < INT_MIN || x > INT_MAX)
-            return 0;
-        
+        if (x < INT_MIN || x > INT_MAX) return 0;
+       
         long num, result = 0;
-        
+      
         if (x < 0)              // convert to positive if x is a negtive
             num = -x;
         else
             num = x;
-            
+      
         while (num != 0) {
             result = result * 10 + num % 10;
             num /= 10;
@@ -430,8 +426,8 @@ public:
         
         int sum = 0;
         while (num != 0) {
-            sum += num % 10;
-            num /= 10;
+            sum += num % 10; // get the rightmost digit and add it up
+            num /= 10; // get the new num after removing the rightmost digit
         }
         
         return addDigits(sum);
@@ -485,18 +481,10 @@ Note that 1 is typically treated as an ugly number. \\
 class Solution {
 public:
     bool isUgly(int num) {
-        if (num == 0)
-            return false;
-        
-        while (num % 2 == 0)
-            num /= 2;
-        
-        while (num % 3 == 0)
-            num /= 3;
-        
-        while (num % 5 == 0)
-            num /= 5;
-        
+        if (num == 0) return false;
+        while (num % 2 == 0) num /= 2;
+        while (num % 3 == 0) num /= 3;
+        while (num % 5 == 0) num /= 5;
         return num == 1;
     }
 };
@@ -514,23 +502,16 @@ Note that 1 is typically treated as an ugly number. \\
 class Solution {
 public:
     int nthUglyNumber(int n) {
-        if (n <= 0)
-            return 0;
-
+        if (n <= 0) return 0;
         int idx2 = 0, idx3 = 0, idx5 = 0;
         vector<int> res(n);
         res[0] = 1;
-
         for (int i = 1; i < n; ++i) {
             res[i] = min(2 * res[idx2], min(3 * res[idx3], 5 * res[idx5]));
-            if (res[i] == 2 * res[idx2])
-                ++idx2;
-            if (res[i] == 3 * res[idx3])
-                ++idx3;
-            if (res[i] == 5 * res[idx5])
-                ++idx5;
+            if (res[i] == 2 * res[idx2]) ++idx2;
+            if (res[i] == 3 * res[idx3]) ++idx3;
+            if (res[i] == 5 * res[idx5]) ++idx5;
         }
-        
         return res[n-1];
     }
 };
@@ -597,8 +578,7 @@ public:
         
         int cnt = 0;
         for (int i = 2; i < n; ++i){
-            if (isPrime[i] == true)
-                ++cnt;
+            if (isPrime[i] == true) ++cnt;
         }
         return cnt;
     }
@@ -673,8 +653,8 @@ public:
         while (left <= right) {
             long long mid = left + (right - left) / 2;
             long long sq = mid * mid; 
-            if (sq == x) return mid;
-            else if (sq < x) left = mid + 1;
+            if (x == sq) return mid;
+            else if (x > sq) left = mid + 1;
             else right = mid - 1;
         }
         return right; // if x=0 or x=1, just return right
@@ -702,8 +682,8 @@ public:
         while (left <= right) {
             long long mid = left + (right - left) / 2;
             long long sq = mid * mid; 
-            if (sq == num) return true;
-            else if (sq < num) left = mid + 1;
+            if (num == sq) return true;
+            else if (num > sq) left = mid + 1;
             else right = mid - 1;
         }
         return false;     

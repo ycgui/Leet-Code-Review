@@ -402,14 +402,12 @@ public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         unordered_set<int> s(nums1.begin(), nums1.end());
         vector<int> res;
-        
         for (auto x : nums2) {
-            if (s.find(x) != s.end()) {           // Searches x in s, returns 1 if x is found, otherwise return 0
+            if (s.find(x) != s.end()) { // Searches x in s, returns 1 if x is found, otherwise return 0
                 res.push_back(x);
                 s.erase(x);
             }
         }
-            
         return res;
     }
 };
@@ -1125,27 +1123,6 @@ public:
 \end{lstlisting}
 
 
-\section{Maximum Subarray (M)}
-Find the contiguous subarray within an array (containing at least one number) which has the largest sum.\\
-
-For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6. \\
-
-\begin{lstlisting}
-class Solution {
-public:
-    int maxSubArray(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        int res = INT_MIN, tmp = 0;
-        for (int i = 0; i < nums.size(); ++i) {
-            tmp = max(nums[i], tmp + nums[i]);
-            res = max(res, tmp);
-        }
-        return res;
-    }
-};
-\end{lstlisting}
-
-
 \section{Range Addition (M)}
 Assume you have an array of length n initialized with all 0's and are given k update operations. Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc. Return the modified array after all k operations were executed.\\
 
@@ -1201,6 +1178,27 @@ public:
         }
         
         res.pop_back(); // remove the last element
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Maximum Summation Subarray (M)}
+Find the contiguous subarray within an array (containing at least one number) which has the largest sum.\\
+
+For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6. \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        int res = INT_MIN, tmp = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            tmp = max(nums[i], tmp + nums[i]);
+            res = max(res, tmp);
+        }
         return res;
     }
 };
