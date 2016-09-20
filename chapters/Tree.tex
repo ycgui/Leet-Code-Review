@@ -1163,6 +1163,12 @@ public:
 \subsection{Binary Tree Path Sum of Two Nodes (Philips on-sight interview)}
 Given a binary tree and two arbitrary nodes, compute the path sum of these two nodes.
 
+\begin{lstlisting}
+// 1. Find the LCA
+// 2. Compute the leftSum from LCA to target A and the rightSum from LCA to target B 
+// 3. pathSum = leftSum + rightSum - LCA
+\end{lstlisting}
+
 
 \section{Binary Search Tree}
 \subsection{Lowest Common Ancestor of a Binary Search Tree (E)}
