@@ -1890,7 +1890,7 @@ public:
 \end{lstlisting}
 
 
-\section{Rotate Image (M)}
+\section{Rotate Image (M) (Amazon 09.16.2016)}
 You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).\\
 
 Follow up: Could you do this in-place?\\
@@ -1901,7 +1901,8 @@ class Solution {
 public:
     void rotate(vector<vector<int> > &matrix) {
         int n = matrix.size();
-        for (int i = 0; i < n / 2; ++i) { // iterate layer by layer
+        // iterate from the outside layer to the inside layer
+        for (int i = 0; i < n / 2; ++i) { 
             for (int j = i; j < n - 1 - i; ++j) {
                 int tmp = matrix[i][j]; // upper left to tmp
                 matrix[i][j] = matrix[n - 1 - j][i]; // bottom left to upper left
@@ -1916,7 +1917,7 @@ public:
 // 2. Flip by antidiagonal line, then flip by the middle row
 class Solution {
 public:
-    void rotate(vector<vector<int>>& matrix) {
+    void rotate(vector<vector<int> >& matrix) {
         int n = matrix.size();
         // swap elements by antidiagonal line
         for (int i = 0; i < n; ++i)

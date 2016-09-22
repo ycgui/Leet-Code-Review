@@ -533,18 +533,14 @@ Example: 19 is a happy number\\
 class Solution {
 public:
     bool isHappy(int n) {
-        if (n == 1) 
-            return true;
+        if (n == 1) return true;
         // All non-happy numbers follow sequences that reach the cycle: 4, 16, 37, 58, 89, 145, 42, 20, 4, ... 
-        if (n == 4)         
-            return false;
-
+        if (n == 4) return false;
         int digit = 0;
         while (n != 0) {
             digit += pow((n % 10), 2);
             n /= 10;
         }
-        
         return isHappy(digit);
     }
 };
@@ -642,13 +638,9 @@ A prime number (or a prime) is a natural number greater than 1 that has no posit
 class Solution {
 public:
     int countPrimes(int n) {
-        if (n <= 0) 
-            return 0;
-        
+        if (n <= 0) return 0;
         bool isPrime[n];
-        for (int i = 2; i < n; ++i)
-            isPrime[i] = true;
-            
+        for (int i = 2; i < n; ++i) isPrime[i] = true;
         // if i is a prime, then i*i, i*(i+1), i*(i+2), ... are not prime
         for (int i = 2; i * i < n; ++i) {
             if (isPrime[i] == false)    
@@ -656,7 +648,6 @@ public:
             for (int j = i * i; j < n; j += i)  
                 isPrime[j] = false;
         }
-        
         int cnt = 0;
         for (int i = 2; i < n; ++i){
             if (isPrime[i] == true) ++cnt;
