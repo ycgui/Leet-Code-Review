@@ -25,6 +25,41 @@ public:
 \end{lstlisting}
 
 
+\section{Find the Duplicate Number (H)}
+Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one. \\
+
+Note:
+    You must not modify the array (assume the array is read only).\\
+    You must use only constant, O(1) extra space.\\
+    Your runtime complexity should be less than $O(n^2)$.\\
+    There is only one duplicate number in the array, but it could be repeated more than once.\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int low = 1, high = nums.size() - 1;
+        // Use the mid of 1~n, not the mid of nums[0]~nums[nums.size()-1]
+        while (low < high) {
+            int mid = low + (high - low) / 2; 
+            int cnt = 0;
+            for (int i = 0; i < nums.size(); ++i) {
+                if (nums[i] <= mid) {
+                    ++cnt;
+                }
+            }
+            if (cnt <= mid) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
+};
+\end{lstlisting}
+
+
 \section{Search for a Range (M)}
 Given a sorted array of integers, find the starting and ending position of a given target value. Your algorithm's runtime complexity must be in the order of O(log n). If the target is not found in the array, return [-1, -1].\\
 

@@ -190,6 +190,38 @@ public:
 \end{lstlisting}
 
 
+\section{Is Subsequence (M)}
+Given a string s and a string t, check if s is subsequence of t. You may assume that there is only lower case English letters in both s and t. t is potentially a very long (length ~= 500,000) string, and s is a short string ($\leq$100).\\
+
+A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ace" is a subsequence of "abcde" while "aec" is not).\\
+
+Example 1:
+s = "abc", t = "ahbgdc"
+Return true.\\
+
+Example 2:
+s = "axc", t = "ahbgdc"
+Return false.\\
+
+Follow up:
+If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int i = 0, j = 0;
+        while (i < s.size() && j < t.size()) {
+            if (s[i] == t[j]) ++i;
+            ++j;
+        }
+        if (i == s.size()) return true;
+        else return false;
+    }
+};
+\end{lstlisting}
+
+
 \section{Ransom Note (E)}
 Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines; otherwise, it will return false. Each letter in the magazine string can only be used once in your ransom note. \\
 
@@ -487,8 +519,8 @@ public:
 Given an absolute path for a file (Unix-style), simplify it.\\
 
 For example,\\
-path = "/home/", => "/home"\\
-path = "/a/./b/../../c/", => "/c"\\
+path = "/home/", $->$ "/home"\\
+path = "/a/./b/../../c/", $->$ "/c"\\
 
 Corner Cases:\\
     Did you consider the case where path = "/../"?\\
@@ -661,18 +693,13 @@ public:
         generate(res, "", n, 0);
         return res;
     }
-    
     void generate(vector<string> &res, string str, int left, int right) {
         if (left == 0 && right == 0) {
             res.push_back(str);
             return;
         }
-            
-        if (right > 0)
-            generate(res, str+")", left, right-1);
-            
-        if (left > 0)
-            generate(res, str+"(", left-1, right+1);
+        if (right > 0) generate(res, str+")", left, right-1);
+        if (left > 0) generate(res, str+"(", left-1, right+1);
     }
 };
 \end{lstlisting}
@@ -1219,7 +1246,7 @@ public:
     }
 };
 
-Sol2: Optimization by the fix-size array
+// Sol2: Optimization by the fix-size array
 class Solution {
 public:
      bool isAnagram(string s, string t) {
@@ -2451,6 +2478,48 @@ public:
             int len = atoi(s.substr(i, found).c_str());
             res.push_back(s.substr(found + 1, len));
             i = found + len + 1;
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Decode String (M)}
+Given an encoded string, return it's decoded string. The encoding rule is: k[encoded-string], where the encoded-string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.\\
+
+You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4].\\
+
+Examples:\\
+s = "3[a]2[bc]", return "aaabcbc".\\
+s = "3[a2[c]]", return "accaccacc".\\
+s = "2[abc]3[cd]ef", return "abcabccdcdcdef".\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    string decodeString(string s) {
+        int i = 0;
+        return decode(s, i);
+    }
+    string decode(string s, int &i) {
+        string res = "";
+        int n = s.size();
+        // check each substring until meet ']' or the end of s
+        while (i < n && s[i] != ']') { 
+            if (s[i] < '0' || s[i] > '9') { // if s[i] is char, store it to res
+                res += s[i++];
+            } else {
+                int cnt = 0;
+                // get the value of k
+                while (i < n && s[i] >= '0' && s[i] <= '9') {
+                    cnt = cnt * 10 + s[i++] - '0';
+                }
+                ++i; // skip the next [
+                string t = decode(s, i); // get the substring
+                ++i; // skip the next ]
+                while (cnt-- > 0) res += t; // write the substring by k times
+            }
         }
         return res;
     }

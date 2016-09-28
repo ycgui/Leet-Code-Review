@@ -1426,3 +1426,47 @@ public:
     }
 };
 \end{lstlisting}
+
+
+\section{Number of ways for mapping integers to alphabets (The Climate Corporation 09.22.2016)}
+Define a mapping of integers to alphabets as follows: 1 = a, 2 = b, ..., 26 = z. Given any combination of of the mapping numbers as a string, return the number of ways in which the input string can be split into sub-strings and represented as character strings. \\
+
+For example:\\
+"111" $->$ "aaa", "ak", "ka" $->$ 3 ways\\
+"11" $->$ "aa", "k" $->$ 2 ways\\
+"123" $->$ "abc", "lc", "aw" $->$ 3 ways\\
+
+\begin{lstlisting}
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int numOfWays(string);
+
+int main() {
+  string input = "123321";
+  int res = numOfWays(input);
+  cout << "String: " << input << "\n";
+  cout << "Number of Combinations are: " << res << "\n";
+  return 0;
+}
+
+int numOfWays(string s) {
+  int n = s.size();
+  vector<int> res(n);
+  res[0] = 1;
+  int tmp = (s[0] - '0') * 10 + (s[1] - '0');
+  if (tmp <= 26) res[1] = 2;
+  else res[1] = 1;
+  
+  for (int i = 2; i < n; ++i) {
+    int tmp = (s[i-1] - '0') * 10 + (s[i] - '0');    
+    if (tmp <= 26) res[i] = res[i-2] + res[i-1];
+    else res[i] = res[i-1];
+  }
+    
+  return res[n-1];
+}
+\end{lstlisting}
+
