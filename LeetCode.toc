@@ -8,350 +8,353 @@
 \contentsline {section}{\numberline {1.7}Palindrome Number (E)}{5}{section.1.7}
 \contentsline {section}{\numberline {1.8}Reverse Integer (E)}{5}{section.1.8}
 \contentsline {section}{\numberline {1.9}Integer Break (M)}{6}{section.1.9}
-\contentsline {section}{\numberline {1.10}Count Numbers with Unique Digits (M)}{7}{section.1.10}
-\contentsline {section}{\numberline {1.11}Lexicographical Numbers (M)}{9}{section.1.11}
-\contentsline {section}{\numberline {1.12}Fraction to Recurring Decimal (M)}{9}{section.1.12}
-\contentsline {section}{\numberline {1.13}Elimination Game (M)}{10}{section.1.13}
-\contentsline {section}{\numberline {1.14}Rotate Function (E)}{12}{section.1.14}
-\contentsline {section}{\numberline {1.15}Plus One (E)}{12}{section.1.15}
-\contentsline {section}{\numberline {1.16}Add Digits (E)}{13}{section.1.16}
-\contentsline {section}{\numberline {1.17}Happy Number (E)}{14}{section.1.17}
-\contentsline {section}{\numberline {1.18}Ugly Number (E)}{15}{section.1.18}
-\contentsline {section}{\numberline {1.19}Ugly Number II (M)}{15}{section.1.19}
-\contentsline {section}{\numberline {1.20}Super Ugly Number (M)}{16}{section.1.20}
-\contentsline {section}{\numberline {1.21}Count Primes (E)}{16}{section.1.21}
-\contentsline {section}{\numberline {1.22}Pow(x, n) (M)}{17}{section.1.22}
-\contentsline {section}{\numberline {1.23}Super Pow (M)}{18}{section.1.23}
-\contentsline {section}{\numberline {1.24}Sqrt(x) (M)}{18}{section.1.24}
-\contentsline {section}{\numberline {1.25}Valid Perfect Square (M)}{19}{section.1.25}
-\contentsline {section}{\numberline {1.26}Rectangle Area (E)}{19}{section.1.26}
-\contentsline {section}{\numberline {1.27}Container With Most Water (M)}{20}{section.1.27}
-\contentsline {section}{\numberline {1.28}Trapping Rain Water (H)}{20}{section.1.28}
-\contentsline {section}{\numberline {1.29}Largest Rectangle in Histogram (H)}{21}{section.1.29}
-\contentsline {section}{\numberline {1.30}Line Reflection (M)}{22}{section.1.30}
-\contentsline {section}{\numberline {1.31}Max Points on a Line (H)}{23}{section.1.31}
-\contentsline {section}{\numberline {1.32}Perfect Rectangle (H)}{24}{section.1.32}
-\contentsline {chapter}{\numberline {2}Bit Manipulation}{26}{chapter.2}
-\contentsline {section}{\numberline {2.1}Sum of Two Integers (E)}{26}{section.2.1}
-\contentsline {section}{\numberline {2.2}Divide Two Integers (M)}{26}{section.2.2}
-\contentsline {section}{\numberline {2.3}Bitwise AND of Numbers Range (M)}{27}{section.2.3}
-\contentsline {section}{\numberline {2.4}Grey Code (M)}{27}{section.2.4}
-\contentsline {section}{\numberline {2.5}Repeated DNA Sequences (M)}{28}{section.2.5}
-\contentsline {section}{\numberline {2.6}Power of Two (E)}{29}{section.2.6}
-\contentsline {section}{\numberline {2.7}Power of Three (E)}{29}{section.2.7}
-\contentsline {section}{\numberline {2.8}Power of Four (E)}{30}{section.2.8}
-\contentsline {section}{\numberline {2.9}Number of 1 Bits (E)}{30}{section.2.9}
-\contentsline {section}{\numberline {2.10}Counting Bits (M)}{30}{section.2.10}
-\contentsline {section}{\numberline {2.11}Reverse Bits (E)}{31}{section.2.11}
-\contentsline {section}{\numberline {2.12}Single Number (E)}{32}{section.2.12}
-\contentsline {section}{\numberline {2.13}Single Number II (M)}{32}{section.2.13}
-\contentsline {section}{\numberline {2.14}Single Number III (M)}{33}{section.2.14}
-\contentsline {section}{\numberline {2.15}Binary Clock (Google Interview 8.15.2016)}{33}{section.2.15}
-\contentsline {section}{\numberline {2.16}UTF-8 Validation (M)}{34}{section.2.16}
-\contentsline {chapter}{\numberline {3}Linked List}{37}{chapter.3}
-\contentsline {section}{\numberline {3.1}Intersection of Two Linked Lists (E)}{37}{section.3.1}
-\contentsline {section}{\numberline {3.2}Plus One Linked List (E)}{38}{section.3.2}
-\contentsline {section}{\numberline {3.3}Add Two Numbers (M)}{39}{section.3.3}
-\contentsline {section}{\numberline {3.4}Palindrome Linked List (E)}{40}{section.3.4}
-\contentsline {section}{\numberline {3.5}Swap Nodes in Pairs (E)}{41}{section.3.5}
-\contentsline {section}{\numberline {3.6}Reverse Linked List (E)}{42}{section.3.6}
-\contentsline {section}{\numberline {3.7}Reverse Linked List II (M)}{42}{section.3.7}
-\contentsline {section}{\numberline {3.8}Rotate Linked List (M)}{43}{section.3.8}
-\contentsline {section}{\numberline {3.9}Reorder List (M)}{44}{section.3.9}
-\contentsline {section}{\numberline {3.10}Partition List (M)}{45}{section.3.10}
-\contentsline {section}{\numberline {3.11}Odd Even Linked List (M)}{46}{section.3.11}
-\contentsline {section}{\numberline {3.12}Linked List Random Node (M)}{47}{section.3.12}
-\contentsline {section}{\numberline {3.13}Delete Node in a Linked List (E)}{48}{section.3.13}
-\contentsline {section}{\numberline {3.14}Remove Nth Node From End of List (E)}{49}{section.3.14}
-\contentsline {section}{\numberline {3.15}Remove Linked List Elements (E)}{50}{section.3.15}
-\contentsline {section}{\numberline {3.16}Remove Duplicates from Sorted List (E)}{50}{section.3.16}
-\contentsline {section}{\numberline {3.17}Remove Duplicates from Sorted List II (M)}{51}{section.3.17}
-\contentsline {section}{\numberline {3.18}Linked List Cycle (E)}{52}{section.3.18}
-\contentsline {section}{\numberline {3.19}Linked List Cycle II (M)}{52}{section.3.19}
-\contentsline {section}{\numberline {3.20}Merge Two Sorted Lists (E)}{53}{section.3.20}
-\contentsline {section}{\numberline {3.21}Merge k Sorted Lists (H)}{54}{section.3.21}
-\contentsline {section}{\numberline {3.22}Flatten Nested List Iterator (M)}{54}{section.3.22}
-\contentsline {section}{\numberline {3.23}Nested List Weight Sum (E)}{56}{section.3.23}
-\contentsline {section}{\numberline {3.24}Nested List Weight Sum II (M)}{57}{section.3.24}
-\contentsline {section}{\numberline {3.25}Mini Parser (M)}{58}{section.3.25}
-\contentsline {chapter}{\numberline {4}Stack and Queue}{61}{chapter.4}
-\contentsline {section}{\numberline {4.1}Implement Stack using Queues (E)}{61}{section.4.1}
-\contentsline {section}{\numberline {4.2}Implement Queue using Stacks (E)}{62}{section.4.2}
-\contentsline {section}{\numberline {4.3}Min Stack (E)}{63}{section.4.3}
-\contentsline {section}{\numberline {4.4}Moving Average from Data Stream (E)}{64}{section.4.4}
-\contentsline {section}{\numberline {4.5}Evaluate Reverse Polish Notation (M)}{65}{section.4.5}
-\contentsline {chapter}{\numberline {5}Array}{66}{chapter.5}
-\contentsline {section}{\numberline {5.1}Bulls and Cows (E)}{66}{section.5.1}
-\contentsline {section}{\numberline {5.2}Rotate Array (E)}{67}{section.5.2}
-\contentsline {section}{\numberline {5.3}Move Zeros (E)}{68}{section.5.3}
-\contentsline {section}{\numberline {5.4}Remove Element (E)}{68}{section.5.4}
-\contentsline {section}{\numberline {5.5}Remove Duplicates from Sorted Array (E)}{69}{section.5.5}
-\contentsline {section}{\numberline {5.6}Kth Largest Element in an Array (M)}{69}{section.5.6}
-\contentsline {section}{\numberline {5.7}Find K Pairs with Smallest Sums (M)}{70}{section.5.7}
-\contentsline {section}{\numberline {5.8}Shuffle an Array (M)}{71}{section.5.8}
-\contentsline {section}{\numberline {5.9}Missing Number (M)}{72}{section.5.9}
-\contentsline {section}{\numberline {5.10}First Missing Positive (H)}{73}{section.5.10}
-\contentsline {section}{\numberline {5.11}Summary Ranges (M)}{73}{section.5.11}
-\contentsline {section}{\numberline {5.12}Missing Ranges (M)}{74}{section.5.12}
-\contentsline {section}{\numberline {5.13}Intersection of Two Arrays (E)}{75}{section.5.13}
-\contentsline {section}{\numberline {5.14}Intersection of Two Arrays II (E)}{75}{section.5.14}
-\contentsline {section}{\numberline {5.15}Merge Sorted Array (E)}{77}{section.5.15}
-\contentsline {section}{\numberline {5.16}Sort Transformed Array (M)}{78}{section.5.16}
-\contentsline {section}{\numberline {5.17}H-Index (M)}{79}{section.5.17}
-\contentsline {section}{\numberline {5.18}H-Index II (M)}{80}{section.5.18}
-\contentsline {section}{\numberline {5.19}Majority Element (E)}{80}{section.5.19}
-\contentsline {section}{\numberline {5.20}Majority Element II (M)}{81}{section.5.20}
-\contentsline {section}{\numberline {5.21}Contains Duplicate (E)}{82}{section.5.21}
-\contentsline {section}{\numberline {5.22}Contains Duplicate II (E)}{83}{section.5.22}
-\contentsline {section}{\numberline {5.23}Contains Duplicate III (M)}{83}{section.5.23}
-\contentsline {section}{\numberline {5.24}Top K Frequent Elements (M)}{84}{section.5.24}
-\contentsline {section}{\numberline {5.25}Two Sum (E)}{85}{section.5.25}
-\contentsline {section}{\numberline {5.26}Two Sum II (M)}{85}{section.5.26}
-\contentsline {section}{\numberline {5.27}Two Sum III (E)}{86}{section.5.27}
-\contentsline {section}{\numberline {5.28}3Sum (M)}{87}{section.5.28}
-\contentsline {section}{\numberline {5.29}3Sum Closest (M)}{88}{section.5.29}
-\contentsline {section}{\numberline {5.30}3Sum Smaller (M)}{89}{section.5.30}
-\contentsline {section}{\numberline {5.31}4Sum (M)}{89}{section.5.31}
-\contentsline {section}{\numberline {5.32}Range Addition (M)}{90}{section.5.32}
-\contentsline {section}{\numberline {5.33}Maximum Summation Subarray (M)}{92}{section.5.33}
-\contentsline {section}{\numberline {5.34}Maximum Product Subarray (M)}{92}{section.5.34}
-\contentsline {section}{\numberline {5.35}Product of Array Except Self (M)}{93}{section.5.35}
-\contentsline {section}{\numberline {5.36}Maximum Size Subarray Sum Equals k (M)}{93}{section.5.36}
-\contentsline {section}{\numberline {5.37}Minimum Size Subarray Sum (M)}{94}{section.5.37}
-\contentsline {section}{\numberline {5.38}Meeting Rooms (E)}{95}{section.5.38}
-\contentsline {section}{\numberline {5.39}Meeting Rooms II (M)}{96}{section.5.39}
-\contentsline {section}{\numberline {5.40}Logger Rate Limiter (E)}{97}{section.5.40}
-\contentsline {section}{\numberline {5.41}Design Hit Counter (M)}{98}{section.5.41}
-\contentsline {section}{\numberline {5.42}Flatten 2D Vector (M)}{100}{section.5.42}
-\contentsline {section}{\numberline {5.43}Zigzag Iterator (M)}{102}{section.5.43}
-\contentsline {section}{\numberline {5.44}Sparse Matrix Multiplication (M)}{104}{section.5.44}
-\contentsline {section}{\numberline {5.45}Set Matrix Zeroes (M)}{104}{section.5.45}
-\contentsline {section}{\numberline {5.46}Spiral Matrix (M)}{106}{section.5.46}
-\contentsline {section}{\numberline {5.47}Spiral Matrix II (M)}{107}{section.5.47}
-\contentsline {section}{\numberline {5.48}Rotate Image (M) (Amazon 09.16.2016)}{107}{section.5.48}
-\contentsline {chapter}{\numberline {6}String}{110}{chapter.6}
-\contentsline {section}{\numberline {6.1}Add Binary (E)}{110}{section.6.1}
-\contentsline {section}{\numberline {6.2}Multiply Strings (M)}{111}{section.6.2}
-\contentsline {section}{\numberline {6.3}Count and Say (E)}{111}{section.6.3}
-\contentsline {section}{\numberline {6.4}Length of Last Word (E)}{112}{section.6.4}
-\contentsline {section}{\numberline {6.5}Longest Common Prefix (E)}{113}{section.6.5}
-\contentsline {section}{\numberline {6.6}Implement strStr() (E)}{114}{section.6.6}
-\contentsline {section}{\numberline {6.7}Is Subsequence (M)}{114}{section.6.7}
-\contentsline {section}{\numberline {6.8}Ransom Note (E)}{115}{section.6.8}
-\contentsline {section}{\numberline {6.9}Find the Difference (M)}{115}{section.6.9}
-\contentsline {section}{\numberline {6.10}First Unique Character in a String (E)}{116}{section.6.10}
-\contentsline {section}{\numberline {6.11}ZigZag Conversion (E)}{117}{section.6.11}
-\contentsline {section}{\numberline {6.12}Group Shifted Strings (E)}{118}{section.6.12}
-\contentsline {section}{\numberline {6.13}Compare Version Numbers (E)}{119}{section.6.13}
-\contentsline {section}{\numberline {6.14}Additive Number (M)}{120}{section.6.14}
-\contentsline {section}{\numberline {6.15}Restore IP Addresses (M)}{121}{section.6.15}
-\contentsline {section}{\numberline {6.16}Simplify Path (M)}{122}{section.6.16}
-\contentsline {section}{\numberline {6.17}Longest Absolute File Path (M)}{123}{section.6.17}
-\contentsline {section}{\numberline {6.18}Valid Parentheses (E)}{125}{section.6.18}
-\contentsline {section}{\numberline {6.19}Generate Parentheses (M)}{125}{section.6.19}
-\contentsline {section}{\numberline {6.20}Different Ways to Add Parentheses (M)}{126}{section.6.20}
-\contentsline {section}{\numberline {6.21}Longest Valid Parentheses (H)}{127}{section.6.21}
-\contentsline {section}{\numberline {6.22}Remove Invalid Parentheses (H)}{128}{section.6.22}
-\contentsline {section}{\numberline {6.23}Flip Game (E)}{129}{section.6.23}
-\contentsline {section}{\numberline {6.24}Flip Game II (M)}{130}{section.6.24}
-\contentsline {section}{\numberline {6.25}Excel Sheet Column Number (E)}{130}{section.6.25}
-\contentsline {section}{\numberline {6.26}Excel Sheet Column Title (E)}{131}{section.6.26}
-\contentsline {section}{\numberline {6.27}Roman to Integer (E)}{132}{section.6.27}
-\contentsline {section}{\numberline {6.28}Integer to Roman (M)}{133}{section.6.28}
-\contentsline {section}{\numberline {6.29}String to Integer (atoi) (E)}{133}{section.6.29}
-\contentsline {section}{\numberline {6.30}Reverse String (E)}{134}{section.6.30}
-\contentsline {section}{\numberline {6.31}Reverse Vowels of a String (E)}{135}{section.6.31}
-\contentsline {section}{\numberline {6.32}Reverse Words in a String (M)}{135}{section.6.32}
-\contentsline {section}{\numberline {6.33}Reverse Words in a String II (M)}{136}{section.6.33}
-\contentsline {section}{\numberline {6.34}Valid Anagram (E)}{137}{section.6.34}
-\contentsline {section}{\numberline {6.35}Group Anagrams (M)}{138}{section.6.35}
-\contentsline {section}{\numberline {6.36}Valid Palindrome (E)}{139}{section.6.36}
-\contentsline {section}{\numberline {6.37}Longest Palindromic Substring (M)}{140}{section.6.37}
-\contentsline {section}{\numberline {6.38}Palindrome Permutation (E)}{142}{section.6.38}
-\contentsline {section}{\numberline {6.39}Palindrome Permutation II (M)}{143}{section.6.39}
-\contentsline {section}{\numberline {6.40}Palindrome Partitioning (M)}{144}{section.6.40}
-\contentsline {section}{\numberline {6.41}Palindrome Partitioning II (H)}{144}{section.6.41}
-\contentsline {section}{\numberline {6.42}Longest Substring Without Repeating Characters (M)}{145}{section.6.42}
-\contentsline {section}{\numberline {6.43}Longest Substring with At Least K Repeating Characters (M)}{147}{section.6.43}
-\contentsline {section}{\numberline {6.44}Longest Substring with At Most Two Distinct Characters (H)}{148}{section.6.44}
-\contentsline {section}{\numberline {6.45}Longest Substring with At Most K Distinct Characters (H)}{149}{section.6.45}
-\contentsline {section}{\numberline {6.46}Isomorphic Strings (E)}{150}{section.6.46}
-\contentsline {section}{\numberline {6.47}Word Pattern (E)}{151}{section.6.47}
-\contentsline {section}{\numberline {6.48}Word Pattern II (H)}{152}{section.6.48}
-\contentsline {section}{\numberline {6.49}Word Break (M)}{153}{section.6.49}
-\contentsline {section}{\numberline {6.50}Word Break II (H)}{153}{section.6.50}
-\contentsline {section}{\numberline {6.51}Word Ladder (M)}{154}{section.6.51}
-\contentsline {section}{\numberline {6.52}Word Ladder II (H)}{155}{section.6.52}
-\contentsline {section}{\numberline {6.53}Shortest Word Distance (E)}{156}{section.6.53}
-\contentsline {section}{\numberline {6.54}Shortest Word Distance II (M)}{157}{section.6.54}
-\contentsline {section}{\numberline {6.55}Shortest Word Distance III (M)}{159}{section.6.55}
-\contentsline {section}{\numberline {6.56}Strobogrammatic Number (E)}{159}{section.6.56}
-\contentsline {section}{\numberline {6.57}Strobogrammatic Number II (M)}{160}{section.6.57}
-\contentsline {section}{\numberline {6.58}Strobogrammatic Number III (M)}{161}{section.6.58}
-\contentsline {section}{\numberline {6.59}Unique Word Abbreviation (E)}{162}{section.6.59}
-\contentsline {section}{\numberline {6.60}Generalized Abbreviation (M)}{163}{section.6.60}
-\contentsline {section}{\numberline {6.61}One Edit Distance (M)}{164}{section.6.61}
-\contentsline {section}{\numberline {6.62}Edit Distance (H)}{165}{section.6.62}
-\contentsline {section}{\numberline {6.63}Encode and Decode Strings (M)}{166}{section.6.63}
-\contentsline {section}{\numberline {6.64}Decode String (M)}{167}{section.6.64}
-\contentsline {section}{\numberline {6.65}Read N Characters Given Read4 (E)}{168}{section.6.65}
-\contentsline {section}{\numberline {6.66}Read N Characters Given Read4 II (H)}{168}{section.6.66}
-\contentsline {chapter}{\numberline {7}Tree}{170}{chapter.7}
-\contentsline {section}{\numberline {7.1}Binary Tree Construction}{170}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}Construct Binary Tree from Preorder and Inorder Traversal (M)}{170}{subsection.7.1.1}
-\contentsline {subsection}{\numberline {7.1.2}Construct Binary Tree from Inorder and Postorder Traversal (M)}{171}{subsection.7.1.2}
-\contentsline {subsection}{\numberline {7.1.3}Serialize and Deserialize Binary Tree (H)}{171}{subsection.7.1.3}
-\contentsline {subsection}{\numberline {7.1.4}Verify Preorder Serialization of a Binary Tree (M)}{174}{subsection.7.1.4}
-\contentsline {section}{\numberline {7.2}Binary Tree Traversal}{175}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Binary Tree Preorder Traversal (M)}{175}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Binary Tree Inorder Traversal (M)}{176}{subsection.7.2.2}
-\contentsline {subsection}{\numberline {7.2.3}Binary Tree Postorder Traversal (H)}{177}{subsection.7.2.3}
-\contentsline {subsection}{\numberline {7.2.4}Binary Tree Level Order Traversal (E)}{178}{subsection.7.2.4}
-\contentsline {subsection}{\numberline {7.2.5}Binary Tree Level Order Traversal II (E)}{178}{subsection.7.2.5}
-\contentsline {subsection}{\numberline {7.2.6}Binary Tree Zigzag Level Order Traversal (M)}{179}{subsection.7.2.6}
-\contentsline {subsection}{\numberline {7.2.7}Binary Tree Vertical Order Traversal (M)}{180}{subsection.7.2.7}
-\contentsline {subsection}{\numberline {7.2.8}Binary Tree Right Side View (M)}{180}{subsection.7.2.8}
-\contentsline {subsection}{\numberline {7.2.9}Populating Next Right Pointers in Each Node (M)}{181}{subsection.7.2.9}
-\contentsline {subsection}{\numberline {7.2.10}Populating Next Right Pointers in Each Node II (H)}{183}{subsection.7.2.10}
-\contentsline {section}{\numberline {7.3}Binary Tree Recursion}{185}{section.7.3}
-\contentsline {subsection}{\numberline {7.3.1}Same Tree (E)}{185}{subsection.7.3.1}
-\contentsline {subsection}{\numberline {7.3.2}Symmetric Tree (E)}{185}{subsection.7.3.2}
-\contentsline {subsection}{\numberline {7.3.3}Invert Binary Tree (E)}{186}{subsection.7.3.3}
-\contentsline {subsection}{\numberline {7.3.4}Binary Tree Upside Down (M)}{186}{subsection.7.3.4}
-\contentsline {subsection}{\numberline {7.3.5}Lowest Common Ancestor of a Binary Tree (M)}{187}{subsection.7.3.5}
-\contentsline {subsection}{\numberline {7.3.6}Binary Tree Longest Consecutive Sequence (M)}{187}{subsection.7.3.6}
-\contentsline {subsection}{\numberline {7.3.7}Count Univalue Subtrees (M)}{188}{subsection.7.3.7}
-\contentsline {subsection}{\numberline {7.3.8}Flatten Binary Tree to Linked List (M)}{189}{subsection.7.3.8}
-\contentsline {subsection}{\numberline {7.3.9}Balanced Binary Tree (E)}{190}{subsection.7.3.9}
-\contentsline {subsection}{\numberline {7.3.10}Count Complete Tree Nodes (M)}{190}{subsection.7.3.10}
-\contentsline {subsection}{\numberline {7.3.11}Maximum Depth of Binary Tree (E)}{191}{subsection.7.3.11}
-\contentsline {subsection}{\numberline {7.3.12}Minimum Depth of Binary Tree (E)}{191}{subsection.7.3.12}
-\contentsline {subsection}{\numberline {7.3.13}Find Leaves of Binary Tree (M)}{192}{subsection.7.3.13}
-\contentsline {subsection}{\numberline {7.3.14}Binary Tree Paths (E)}{193}{subsection.7.3.14}
-\contentsline {subsection}{\numberline {7.3.15}Path Sum (E)}{193}{subsection.7.3.15}
-\contentsline {subsection}{\numberline {7.3.16}Path Sum II (M)}{194}{subsection.7.3.16}
-\contentsline {subsection}{\numberline {7.3.17}Sum Root to Leaf Numbers (M)}{194}{subsection.7.3.17}
-\contentsline {subsection}{\numberline {7.3.18}Binary Tree Maximum Path Sum (H)}{195}{subsection.7.3.18}
-\contentsline {subsection}{\numberline {7.3.19}Binary Tree Path Sum of Two Nodes (Philips on-sight interview)}{196}{subsection.7.3.19}
-\contentsline {section}{\numberline {7.4}Binary Search Tree}{196}{section.7.4}
-\contentsline {subsection}{\numberline {7.4.1}Lowest Common Ancestor of a Binary Search Tree (E)}{196}{subsection.7.4.1}
-\contentsline {subsection}{\numberline {7.4.2}Validate Binary Search Tree (M)}{196}{subsection.7.4.2}
-\contentsline {subsection}{\numberline {7.4.3}Binary Search Tree Iterator (M)}{197}{subsection.7.4.3}
-\contentsline {subsection}{\numberline {7.4.4}Recover Binary Search Tree (H)}{199}{subsection.7.4.4}
-\contentsline {subsection}{\numberline {7.4.5}Kth Smallest Element in a BST (M)}{200}{subsection.7.4.5}
-\contentsline {subsection}{\numberline {7.4.6}Verify Preorder Sequence in Binary Search Tree (M)}{201}{subsection.7.4.6}
-\contentsline {subsection}{\numberline {7.4.7}Inorder Successor in BST (M)}{202}{subsection.7.4.7}
-\contentsline {subsection}{\numberline {7.4.8}Largest BST Subtree (M)}{202}{subsection.7.4.8}
-\contentsline {subsection}{\numberline {7.4.9}Unique Binary Search Trees (M)}{203}{subsection.7.4.9}
-\contentsline {subsection}{\numberline {7.4.10}Unique Binary Search Trees II (M)}{204}{subsection.7.4.10}
-\contentsline {subsection}{\numberline {7.4.11}Convert Sorted Array to Binary Search Tree (M)}{204}{subsection.7.4.11}
-\contentsline {subsection}{\numberline {7.4.12}Convert Sorted List to Binary Search Tree (M)}{205}{subsection.7.4.12}
-\contentsline {subsection}{\numberline {7.4.13}Closest Binary Search Tree Value (E)}{206}{subsection.7.4.13}
-\contentsline {subsection}{\numberline {7.4.14}Closest Binary Search Tree Value II (H)}{206}{subsection.7.4.14}
-\contentsline {chapter}{\numberline {8}Sorting}{209}{chapter.8}
-\contentsline {section}{\numberline {8.1}Largest Number (M)}{209}{section.8.1}
-\contentsline {section}{\numberline {8.2}Sort Colors (M)}{209}{section.8.2}
-\contentsline {section}{\numberline {8.3}Wiggle Sort (M)}{210}{section.8.3}
-\contentsline {section}{\numberline {8.4}Wiggle Sort II (M)}{211}{section.8.4}
-\contentsline {section}{\numberline {8.5}Wiggle Subsequence (M)}{212}{section.8.5}
-\contentsline {section}{\numberline {8.6}Sort List (M)}{214}{section.8.6}
-\contentsline {section}{\numberline {8.7}Insertion Sort List (M)}{215}{section.8.7}
-\contentsline {chapter}{\numberline {9}Binary Search}{216}{chapter.9}
-\contentsline {section}{\numberline {9.1}First Bad Version (E)}{216}{section.9.1}
-\contentsline {section}{\numberline {9.2}Find the Duplicate Number (H)}{217}{section.9.2}
-\contentsline {section}{\numberline {9.3}Search for a Range (M)}{217}{section.9.3}
-\contentsline {section}{\numberline {9.4}Search Insert Position (M)}{219}{section.9.4}
-\contentsline {section}{\numberline {9.5}Find Peak Element (M)}{220}{section.9.5}
-\contentsline {section}{\numberline {9.6}Search a 2D Matrix (M)}{220}{section.9.6}
-\contentsline {section}{\numberline {9.7}Search a 2D Matrix II (M)}{221}{section.9.7}
-\contentsline {section}{\numberline {9.8}Kth Smallest Element in a Sorted Matrix (M)}{222}{section.9.8}
-\contentsline {section}{\numberline {9.9}Guess Number Higher or Lower (E)}{223}{section.9.9}
-\contentsline {section}{\numberline {9.10}Guess Number Higher or Lower II (M)}{224}{section.9.10}
-\contentsline {section}{\numberline {9.11}Find Minimum in Rotated Sorted Array (M)}{225}{section.9.11}
-\contentsline {section}{\numberline {9.12}Find Minimum in Rotated Sorted Array II (H)}{226}{section.9.12}
-\contentsline {section}{\numberline {9.13}Search in Rotated Sorted Array (H)}{226}{section.9.13}
-\contentsline {section}{\numberline {9.14}Search in Rotated Sorted Array II (M)}{227}{section.9.14}
-\contentsline {section}{\numberline {9.15}Median of Two Sorted Arrays (H)}{228}{section.9.15}
-\contentsline {chapter}{\numberline {10}DFS and BFS}{230}{chapter.10}
-\contentsline {section}{\numberline {10.1}Subset (M)}{230}{section.10.1}
-\contentsline {section}{\numberline {10.2}Subset II (M)}{231}{section.10.2}
-\contentsline {section}{\numberline {10.3}Permutations (M)}{232}{section.10.3}
-\contentsline {section}{\numberline {10.4}Permutations II (M)}{233}{section.10.4}
-\contentsline {section}{\numberline {10.5}Next Permutation (M)}{234}{section.10.5}
-\contentsline {section}{\numberline {10.6}Permutation Sequence (M)}{235}{section.10.6}
-\contentsline {section}{\numberline {10.7}Combinations (M)}{236}{section.10.7}
-\contentsline {section}{\numberline {10.8}Combination Sum (M)}{236}{section.10.8}
-\contentsline {section}{\numberline {10.9}Combination Sum II (M)}{237}{section.10.9}
-\contentsline {section}{\numberline {10.10}Combination Sum III (M)}{238}{section.10.10}
-\contentsline {section}{\numberline {10.11}Factor Combinations (M)}{239}{section.10.11}
-\contentsline {section}{\numberline {10.12}Letter Combinations of a Phone Number (M)}{240}{section.10.12}
-\contentsline {section}{\numberline {10.13}Walls and Gates (M)}{242}{section.10.13}
-\contentsline {section}{\numberline {10.14}Surrounded Regions (M)}{243}{section.10.14}
-\contentsline {section}{\numberline {10.15}Number of Islands (M)}{244}{section.10.15}
-\contentsline {section}{\numberline {10.16}Number of Islands II (H)}{245}{section.10.16}
-\contentsline {section}{\numberline {10.17}Word Search (M)}{247}{section.10.17}
-\contentsline {section}{\numberline {10.18}Word Search II (H)}{248}{section.10.18}
-\contentsline {chapter}{\numberline {11}Dynamic Programming}{250}{chapter.11}
-\contentsline {section}{\numberline {11.1}Gas Station (M)}{250}{section.11.1}
-\contentsline {section}{\numberline {11.2}Combination Sum IV (M)}{251}{section.11.2}
-\contentsline {section}{\numberline {11.3}Perfect Squares (M)}{252}{section.11.3}
-\contentsline {section}{\numberline {11.4}Coin Change (M)}{252}{section.11.4}
-\contentsline {section}{\numberline {11.5}Largest Divisible Subset (M)}{253}{section.11.5}
-\contentsline {section}{\numberline {11.6}Climbing Stairs (E)}{254}{section.11.6}
-\contentsline {section}{\numberline {11.7}Decode Ways (M)}{255}{section.11.7}
-\contentsline {section}{\numberline {11.8}Jump Game (M)}{256}{section.11.8}
-\contentsline {section}{\numberline {11.9}Jump Game II (M)}{257}{section.11.9}
-\contentsline {section}{\numberline {11.10}Best Time to Buy and Sell Stock (E)}{258}{section.11.10}
-\contentsline {section}{\numberline {11.11}Best Time to Buy and Sell Stock II (M)}{258}{section.11.11}
-\contentsline {section}{\numberline {11.12}Best Time to Buy and Sell Stock with Cooldown (M)}{259}{section.11.12}
-\contentsline {section}{\numberline {11.13}Best Time to Buy and Sell Stock III (H)}{260}{section.11.13}
-\contentsline {section}{\numberline {11.14}Best Time to Buy and Sell Stock IV (H)}{261}{section.11.14}
-\contentsline {section}{\numberline {11.15}House Robber (E)}{261}{section.11.15}
-\contentsline {section}{\numberline {11.16}House Robber II (M)}{262}{section.11.16}
-\contentsline {section}{\numberline {11.17}House Robber III (M)}{263}{section.11.17}
-\contentsline {section}{\numberline {11.18}Paint Fence (E)}{264}{section.11.18}
-\contentsline {section}{\numberline {11.19}Paint House (M)}{264}{section.11.19}
-\contentsline {section}{\numberline {11.20}Paint House II (H)}{265}{section.11.20}
-\contentsline {section}{\numberline {11.21}Pascal's Triangle (E)}{267}{section.11.21}
-\contentsline {section}{\numberline {11.22}Pascal's Triangle II (E)}{267}{section.11.22}
-\contentsline {section}{\numberline {11.23}Range Sum Query - Immutable (E)}{268}{section.11.23}
-\contentsline {section}{\numberline {11.24}Range Sum Query - Mutable (M)}{268}{section.11.24}
-\contentsline {section}{\numberline {11.25}Range Sum Query 2D - Immutable (M)}{270}{section.11.25}
-\contentsline {section}{\numberline {11.26}Triangle (M)}{271}{section.11.26}
-\contentsline {section}{\numberline {11.27}Unique Paths (M)}{272}{section.11.27}
-\contentsline {section}{\numberline {11.28}Unique Paths II (M)}{273}{section.11.28}
-\contentsline {section}{\numberline {11.29}Minimum Path Sum (M)}{274}{section.11.29}
-\contentsline {section}{\numberline {11.30}Dungeon Game (H)}{275}{section.11.30}
-\contentsline {section}{\numberline {11.31}Increasing Triplet Subsequence (M)}{276}{section.11.31}
-\contentsline {section}{\numberline {11.32}Longest Increasing Subsequence (M)}{277}{section.11.32}
-\contentsline {section}{\numberline {11.33}Longest Increasing Path in a Matrix (M)}{278}{section.11.33}
-\contentsline {section}{\numberline {11.34}Maximal Square (M)}{279}{section.11.34}
-\contentsline {section}{\numberline {11.35}Maximal Rectangle (H)}{280}{section.11.35}
-\contentsline {section}{\numberline {11.36}Number of ways for mapping integers to alphabets (The Climate Corporation 09.22.2016)}{282}{section.11.36}
-\contentsline {chapter}{\numberline {12}Graph}{283}{chapter.12}
-\contentsline {section}{\numberline {12.1}Number of Connected Components in an Undirected Graph (M)}{283}{section.12.1}
-\contentsline {section}{\numberline {12.2}Graph Valid Tree (M)}{284}{section.12.2}
-\contentsline {section}{\numberline {12.3}Clone Graph (M)}{285}{section.12.3}
-\contentsline {section}{\numberline {12.4}Course Schedule (M)}{286}{section.12.4}
-\contentsline {section}{\numberline {12.5}Course Schedule II (M)}{288}{section.12.5}
-\contentsline {section}{\numberline {12.6}Minimum Height Trees (M)}{289}{section.12.6}
-\contentsline {section}{\numberline {12.7}Reconstruct Itinerary (M)}{290}{section.12.7}
-\contentsline {chapter}{\numberline {13}Design and Implementation}{292}{chapter.13}
-\contentsline {section}{\numberline {13.1}Valid Sudoku (E)}{292}{section.13.1}
-\contentsline {section}{\numberline {13.2}Sudoku Solver (H)}{293}{section.13.2}
-\contentsline {section}{\numberline {13.3}Boom Enemy (M)}{294}{section.13.3}
-\contentsline {section}{\numberline {13.4}Android Unlock Patterns (M)}{296}{section.13.4}
-\contentsline {section}{\numberline {13.5}Game of Life (M)}{297}{section.13.5}
-\contentsline {section}{\numberline {13.6}Peeking Iterator (M)}{298}{section.13.6}
-\contentsline {section}{\numberline {13.7}LRU Cache (H)}{300}{section.13.7}
-\contentsline {section}{\numberline {13.8}Design Tic-Tac-Toe (M)}{301}{section.13.8}
-\contentsline {section}{\numberline {13.9}Design Snake Game (M)}{304}{section.13.9}
-\contentsline {section}{\numberline {13.10}Design Phone Directory (M)}{305}{section.13.10}
-\contentsline {section}{\numberline {13.11}Design Twitter (M)}{307}{section.13.11}
-\contentsline {section}{\numberline {13.12}Insert Delete GetRandom O(1) (H)}{309}{section.13.12}
-\contentsline {section}{\numberline {13.13}Insert Delete GetRandom O(1) - Duplicates allowed ? (H)}{311}{section.13.13}
-\contentsline {section}{\numberline {13.14}Basic Calculator (H)}{313}{section.13.14}
-\contentsline {section}{\numberline {13.15}Basic Calculator II (M)}{314}{section.13.15}
-\contentsline {section}{\numberline {13.16}Expression Add Operators (H)}{315}{section.13.16}
-\contentsline {section}{\numberline {13.17}Implement Trie (Prefix Tree) (M)}{316}{section.13.17}
-\contentsline {section}{\numberline {13.18}Add and Search Word - Data structure design (M)}{317}{section.13.18}
+\contentsline {section}{\numberline {1.10}Integer Replacement (E)}{7}{section.1.10}
+\contentsline {section}{\numberline {1.11}Count Numbers with Unique Digits (M)}{8}{section.1.11}
+\contentsline {section}{\numberline {1.12}Lexicographical Numbers (M)}{10}{section.1.12}
+\contentsline {section}{\numberline {1.13}Fraction to Recurring Decimal (M)}{10}{section.1.13}
+\contentsline {section}{\numberline {1.14}Elimination Game (M)}{12}{section.1.14}
+\contentsline {section}{\numberline {1.15}Rotate Function (E)}{13}{section.1.15}
+\contentsline {section}{\numberline {1.16}Plus One (E)}{14}{section.1.16}
+\contentsline {section}{\numberline {1.17}Add Digits (E)}{14}{section.1.17}
+\contentsline {section}{\numberline {1.18}Happy Number (E)}{15}{section.1.18}
+\contentsline {section}{\numberline {1.19}Ugly Number (E)}{16}{section.1.19}
+\contentsline {section}{\numberline {1.20}Ugly Number II (M)}{16}{section.1.20}
+\contentsline {section}{\numberline {1.21}Super Ugly Number (M)}{17}{section.1.21}
+\contentsline {section}{\numberline {1.22}Count Primes (E)}{18}{section.1.22}
+\contentsline {section}{\numberline {1.23}Pow(x, n) (M)}{18}{section.1.23}
+\contentsline {section}{\numberline {1.24}Super Pow (M)}{19}{section.1.24}
+\contentsline {section}{\numberline {1.25}Sqrt(x) (M)}{19}{section.1.25}
+\contentsline {section}{\numberline {1.26}Valid Perfect Square (M)}{20}{section.1.26}
+\contentsline {section}{\numberline {1.27}Rectangle Area (E)}{20}{section.1.27}
+\contentsline {section}{\numberline {1.28}Container With Most Water (M)}{21}{section.1.28}
+\contentsline {section}{\numberline {1.29}Trapping Rain Water (H)}{21}{section.1.29}
+\contentsline {section}{\numberline {1.30}Largest Rectangle in Histogram (H)}{22}{section.1.30}
+\contentsline {section}{\numberline {1.31}Line Reflection (M)}{23}{section.1.31}
+\contentsline {section}{\numberline {1.32}Max Points on a Line (H)}{24}{section.1.32}
+\contentsline {section}{\numberline {1.33}Perfect Rectangle (H)}{25}{section.1.33}
+\contentsline {chapter}{\numberline {2}Bit Manipulation}{27}{chapter.2}
+\contentsline {section}{\numberline {2.1}Sum of Two Integers (E)}{27}{section.2.1}
+\contentsline {section}{\numberline {2.2}Divide Two Integers (M)}{27}{section.2.2}
+\contentsline {section}{\numberline {2.3}Bitwise AND of Numbers Range (M)}{28}{section.2.3}
+\contentsline {section}{\numberline {2.4}Grey Code (M)}{28}{section.2.4}
+\contentsline {section}{\numberline {2.5}Repeated DNA Sequences (M)}{29}{section.2.5}
+\contentsline {section}{\numberline {2.6}Power of Two (E)}{30}{section.2.6}
+\contentsline {section}{\numberline {2.7}Power of Three (E)}{30}{section.2.7}
+\contentsline {section}{\numberline {2.8}Power of Four (E)}{31}{section.2.8}
+\contentsline {section}{\numberline {2.9}Number of 1 Bits (E)}{31}{section.2.9}
+\contentsline {section}{\numberline {2.10}Counting Bits (M)}{31}{section.2.10}
+\contentsline {section}{\numberline {2.11}Reverse Bits (E)}{32}{section.2.11}
+\contentsline {section}{\numberline {2.12}Single Number (E)}{33}{section.2.12}
+\contentsline {section}{\numberline {2.13}Single Number II (M)}{33}{section.2.13}
+\contentsline {section}{\numberline {2.14}Single Number III (M)}{34}{section.2.14}
+\contentsline {section}{\numberline {2.15}UTF-8 Validation (M)}{34}{section.2.15}
+\contentsline {section}{\numberline {2.16}Binary Clock (Google Interview 8.15.2016)}{36}{section.2.16}
+\contentsline {chapter}{\numberline {3}Linked List}{38}{chapter.3}
+\contentsline {section}{\numberline {3.1}Intersection of Two Linked Lists (E)}{38}{section.3.1}
+\contentsline {section}{\numberline {3.2}Plus One Linked List (E)}{39}{section.3.2}
+\contentsline {section}{\numberline {3.3}Add Two Numbers (M)}{40}{section.3.3}
+\contentsline {section}{\numberline {3.4}Palindrome Linked List (E)}{41}{section.3.4}
+\contentsline {section}{\numberline {3.5}Swap Nodes in Pairs (E)}{42}{section.3.5}
+\contentsline {section}{\numberline {3.6}Reverse Linked List (E)}{43}{section.3.6}
+\contentsline {section}{\numberline {3.7}Reverse Linked List II (M)}{43}{section.3.7}
+\contentsline {section}{\numberline {3.8}Rotate Linked List (M)}{44}{section.3.8}
+\contentsline {section}{\numberline {3.9}Reorder List (M)}{45}{section.3.9}
+\contentsline {section}{\numberline {3.10}Partition List (M)}{46}{section.3.10}
+\contentsline {section}{\numberline {3.11}Odd Even Linked List (M)}{47}{section.3.11}
+\contentsline {section}{\numberline {3.12}Linked List Random Node (M)}{48}{section.3.12}
+\contentsline {section}{\numberline {3.13}Delete Node in a Linked List (E)}{49}{section.3.13}
+\contentsline {section}{\numberline {3.14}Remove Nth Node From End of List (E)}{50}{section.3.14}
+\contentsline {section}{\numberline {3.15}Remove Linked List Elements (E)}{51}{section.3.15}
+\contentsline {section}{\numberline {3.16}Remove Duplicates from Sorted List (E)}{51}{section.3.16}
+\contentsline {section}{\numberline {3.17}Remove Duplicates from Sorted List II (M)}{52}{section.3.17}
+\contentsline {section}{\numberline {3.18}Linked List Cycle (E)}{53}{section.3.18}
+\contentsline {section}{\numberline {3.19}Linked List Cycle II (M)}{53}{section.3.19}
+\contentsline {section}{\numberline {3.20}Merge Two Sorted Lists (E)}{54}{section.3.20}
+\contentsline {section}{\numberline {3.21}Merge k Sorted Lists (H)}{55}{section.3.21}
+\contentsline {section}{\numberline {3.22}Flatten Nested List Iterator (M)}{55}{section.3.22}
+\contentsline {section}{\numberline {3.23}Nested List Weight Sum (E)}{57}{section.3.23}
+\contentsline {section}{\numberline {3.24}Nested List Weight Sum II (M)}{58}{section.3.24}
+\contentsline {section}{\numberline {3.25}Mini Parser (M)}{59}{section.3.25}
+\contentsline {chapter}{\numberline {4}Stack and Queue}{62}{chapter.4}
+\contentsline {section}{\numberline {4.1}Implement Stack using Queues (E)}{62}{section.4.1}
+\contentsline {section}{\numberline {4.2}Implement Queue using Stacks (E)}{63}{section.4.2}
+\contentsline {section}{\numberline {4.3}Min Stack (E)}{64}{section.4.3}
+\contentsline {section}{\numberline {4.4}Moving Average from Data Stream (E)}{65}{section.4.4}
+\contentsline {section}{\numberline {4.5}Evaluate Reverse Polish Notation (M)}{66}{section.4.5}
+\contentsline {chapter}{\numberline {5}Array}{67}{chapter.5}
+\contentsline {section}{\numberline {5.1}Bulls and Cows (E)}{67}{section.5.1}
+\contentsline {section}{\numberline {5.2}Rotate Array (E)}{68}{section.5.2}
+\contentsline {section}{\numberline {5.3}Move Zeros (E)}{69}{section.5.3}
+\contentsline {section}{\numberline {5.4}Remove Element (E)}{69}{section.5.4}
+\contentsline {section}{\numberline {5.5}Remove Duplicates from Sorted Array (E)}{70}{section.5.5}
+\contentsline {section}{\numberline {5.6}Kth Largest Element in an Array (M)}{70}{section.5.6}
+\contentsline {section}{\numberline {5.7}Find K Pairs with Smallest Sums (M)}{71}{section.5.7}
+\contentsline {section}{\numberline {5.8}Shuffle an Array (M)}{72}{section.5.8}
+\contentsline {section}{\numberline {5.9}Random Pick Index (M)}{73}{section.5.9}
+\contentsline {section}{\numberline {5.10}Missing Number (M)}{74}{section.5.10}
+\contentsline {section}{\numberline {5.11}First Missing Positive (H)}{75}{section.5.11}
+\contentsline {section}{\numberline {5.12}Summary Ranges (M)}{75}{section.5.12}
+\contentsline {section}{\numberline {5.13}Missing Ranges (M)}{76}{section.5.13}
+\contentsline {section}{\numberline {5.14}Intersection of Two Arrays (E)}{77}{section.5.14}
+\contentsline {section}{\numberline {5.15}Intersection of Two Arrays II (E)}{77}{section.5.15}
+\contentsline {section}{\numberline {5.16}Merge Sorted Array (E)}{79}{section.5.16}
+\contentsline {section}{\numberline {5.17}Sort Transformed Array (M)}{79}{section.5.17}
+\contentsline {section}{\numberline {5.18}H-Index (M)}{80}{section.5.18}
+\contentsline {section}{\numberline {5.19}H-Index II (M)}{82}{section.5.19}
+\contentsline {section}{\numberline {5.20}Majority Element (E)}{82}{section.5.20}
+\contentsline {section}{\numberline {5.21}Majority Element II (M)}{83}{section.5.21}
+\contentsline {section}{\numberline {5.22}Contains Duplicate (E)}{84}{section.5.22}
+\contentsline {section}{\numberline {5.23}Contains Duplicate II (E)}{84}{section.5.23}
+\contentsline {section}{\numberline {5.24}Contains Duplicate III (M)}{85}{section.5.24}
+\contentsline {section}{\numberline {5.25}Top K Frequent Elements (M)}{86}{section.5.25}
+\contentsline {section}{\numberline {5.26}Two Sum (E)}{86}{section.5.26}
+\contentsline {section}{\numberline {5.27}Two Sum II (M)}{87}{section.5.27}
+\contentsline {section}{\numberline {5.28}Two Sum III (E)}{88}{section.5.28}
+\contentsline {section}{\numberline {5.29}3Sum (M)}{89}{section.5.29}
+\contentsline {section}{\numberline {5.30}3Sum Closest (M)}{90}{section.5.30}
+\contentsline {section}{\numberline {5.31}3Sum Smaller (M)}{91}{section.5.31}
+\contentsline {section}{\numberline {5.32}4Sum (M)}{91}{section.5.32}
+\contentsline {section}{\numberline {5.33}Range Addition (M)}{92}{section.5.33}
+\contentsline {section}{\numberline {5.34}Maximum Summation Subarray (M)}{94}{section.5.34}
+\contentsline {section}{\numberline {5.35}Maximum Product Subarray (M)}{94}{section.5.35}
+\contentsline {section}{\numberline {5.36}Product of Array Except Self (M)}{95}{section.5.36}
+\contentsline {section}{\numberline {5.37}Maximum Size Subarray Sum Equals k (M)}{95}{section.5.37}
+\contentsline {section}{\numberline {5.38}Minimum Size Subarray Sum (M)}{96}{section.5.38}
+\contentsline {section}{\numberline {5.39}Meeting Rooms (E)}{97}{section.5.39}
+\contentsline {section}{\numberline {5.40}Meeting Rooms II (M)}{98}{section.5.40}
+\contentsline {section}{\numberline {5.41}Logger Rate Limiter (E)}{99}{section.5.41}
+\contentsline {section}{\numberline {5.42}Design Hit Counter (M)}{100}{section.5.42}
+\contentsline {section}{\numberline {5.43}Flatten 2D Vector (M)}{102}{section.5.43}
+\contentsline {section}{\numberline {5.44}Zigzag Iterator (M)}{104}{section.5.44}
+\contentsline {section}{\numberline {5.45}Sparse Matrix Multiplication (M)}{106}{section.5.45}
+\contentsline {section}{\numberline {5.46}Set Matrix Zeroes (M)}{106}{section.5.46}
+\contentsline {section}{\numberline {5.47}Spiral Matrix (M)}{107}{section.5.47}
+\contentsline {section}{\numberline {5.48}Spiral Matrix II (M)}{109}{section.5.48}
+\contentsline {section}{\numberline {5.49}Rotate Image (M) (Amazon 09.16.2016)}{109}{section.5.49}
+\contentsline {chapter}{\numberline {6}String}{111}{chapter.6}
+\contentsline {section}{\numberline {6.1}Add Binary (E)}{111}{section.6.1}
+\contentsline {section}{\numberline {6.2}Multiply Strings (M)}{112}{section.6.2}
+\contentsline {section}{\numberline {6.3}Count and Say (E)}{112}{section.6.3}
+\contentsline {section}{\numberline {6.4}Length of Last Word (E)}{113}{section.6.4}
+\contentsline {section}{\numberline {6.5}Longest Common Prefix (E)}{114}{section.6.5}
+\contentsline {section}{\numberline {6.6}Implement strStr() (E)}{115}{section.6.6}
+\contentsline {section}{\numberline {6.7}Is Subsequence (M)}{115}{section.6.7}
+\contentsline {section}{\numberline {6.8}Ransom Note (E)}{116}{section.6.8}
+\contentsline {section}{\numberline {6.9}Find the Difference (M)}{116}{section.6.9}
+\contentsline {section}{\numberline {6.10}First Unique Character in a String (E)}{117}{section.6.10}
+\contentsline {section}{\numberline {6.11}ZigZag Conversion (E)}{118}{section.6.11}
+\contentsline {section}{\numberline {6.12}Group Shifted Strings (E)}{119}{section.6.12}
+\contentsline {section}{\numberline {6.13}Compare Version Numbers (E)}{120}{section.6.13}
+\contentsline {section}{\numberline {6.14}Additive Number (M)}{121}{section.6.14}
+\contentsline {section}{\numberline {6.15}Evaluate Division (M)}{122}{section.6.15}
+\contentsline {section}{\numberline {6.16}Restore IP Addresses (M)}{122}{section.6.16}
+\contentsline {section}{\numberline {6.17}Simplify Path (M)}{123}{section.6.17}
+\contentsline {section}{\numberline {6.18}Longest Absolute File Path (M)}{124}{section.6.18}
+\contentsline {section}{\numberline {6.19}Valid Parentheses (E)}{126}{section.6.19}
+\contentsline {section}{\numberline {6.20}Generate Parentheses (M)}{127}{section.6.20}
+\contentsline {section}{\numberline {6.21}Different Ways to Add Parentheses (M)}{127}{section.6.21}
+\contentsline {section}{\numberline {6.22}Longest Valid Parentheses (H)}{128}{section.6.22}
+\contentsline {section}{\numberline {6.23}Remove Invalid Parentheses (H)}{129}{section.6.23}
+\contentsline {section}{\numberline {6.24}Flip Game (E)}{131}{section.6.24}
+\contentsline {section}{\numberline {6.25}Flip Game II (M)}{131}{section.6.25}
+\contentsline {section}{\numberline {6.26}Excel Sheet Column Number (E)}{132}{section.6.26}
+\contentsline {section}{\numberline {6.27}Excel Sheet Column Title (E)}{133}{section.6.27}
+\contentsline {section}{\numberline {6.28}Roman to Integer (E)}{133}{section.6.28}
+\contentsline {section}{\numberline {6.29}Integer to Roman (M)}{134}{section.6.29}
+\contentsline {section}{\numberline {6.30}String to Integer (atoi) (E)}{135}{section.6.30}
+\contentsline {section}{\numberline {6.31}Reverse String (E)}{136}{section.6.31}
+\contentsline {section}{\numberline {6.32}Reverse Vowels of a String (E)}{136}{section.6.32}
+\contentsline {section}{\numberline {6.33}Reverse Words in a String (M)}{137}{section.6.33}
+\contentsline {section}{\numberline {6.34}Reverse Words in a String II (M)}{138}{section.6.34}
+\contentsline {section}{\numberline {6.35}Valid Anagram (E)}{139}{section.6.35}
+\contentsline {section}{\numberline {6.36}Group Anagrams (M)}{140}{section.6.36}
+\contentsline {section}{\numberline {6.37}Valid Palindrome (E)}{141}{section.6.37}
+\contentsline {section}{\numberline {6.38}Longest Palindromic Substring (M)}{141}{section.6.38}
+\contentsline {section}{\numberline {6.39}Palindrome Permutation (E)}{143}{section.6.39}
+\contentsline {section}{\numberline {6.40}Palindrome Permutation II (M)}{144}{section.6.40}
+\contentsline {section}{\numberline {6.41}Palindrome Partitioning (M)}{145}{section.6.41}
+\contentsline {section}{\numberline {6.42}Palindrome Partitioning II (H)}{146}{section.6.42}
+\contentsline {section}{\numberline {6.43}Longest Substring Without Repeating Characters (M)}{147}{section.6.43}
+\contentsline {section}{\numberline {6.44}Longest Substring with At Least K Repeating Characters (M)}{148}{section.6.44}
+\contentsline {section}{\numberline {6.45}Longest Substring with At Most Two Distinct Characters (H)}{149}{section.6.45}
+\contentsline {section}{\numberline {6.46}Longest Substring with At Most K Distinct Characters (H)}{150}{section.6.46}
+\contentsline {section}{\numberline {6.47}Isomorphic Strings (E)}{151}{section.6.47}
+\contentsline {section}{\numberline {6.48}Word Pattern (E)}{153}{section.6.48}
+\contentsline {section}{\numberline {6.49}Word Pattern II (H)}{153}{section.6.49}
+\contentsline {section}{\numberline {6.50}Word Break (M)}{154}{section.6.50}
+\contentsline {section}{\numberline {6.51}Word Break II (H)}{155}{section.6.51}
+\contentsline {section}{\numberline {6.52}Word Ladder (M)}{156}{section.6.52}
+\contentsline {section}{\numberline {6.53}Word Ladder II (H)}{157}{section.6.53}
+\contentsline {section}{\numberline {6.54}Shortest Word Distance (E)}{158}{section.6.54}
+\contentsline {section}{\numberline {6.55}Shortest Word Distance II (M)}{159}{section.6.55}
+\contentsline {section}{\numberline {6.56}Shortest Word Distance III (M)}{160}{section.6.56}
+\contentsline {section}{\numberline {6.57}Strobogrammatic Number (E)}{161}{section.6.57}
+\contentsline {section}{\numberline {6.58}Strobogrammatic Number II (M)}{162}{section.6.58}
+\contentsline {section}{\numberline {6.59}Strobogrammatic Number III (M)}{162}{section.6.59}
+\contentsline {section}{\numberline {6.60}Unique Word Abbreviation (E)}{163}{section.6.60}
+\contentsline {section}{\numberline {6.61}Generalized Abbreviation (M)}{164}{section.6.61}
+\contentsline {section}{\numberline {6.62}One Edit Distance (M)}{166}{section.6.62}
+\contentsline {section}{\numberline {6.63}Edit Distance (H)}{166}{section.6.63}
+\contentsline {section}{\numberline {6.64}Encode and Decode Strings (M)}{167}{section.6.64}
+\contentsline {section}{\numberline {6.65}Decode String (M)}{168}{section.6.65}
+\contentsline {section}{\numberline {6.66}Read N Characters Given Read4 (E)}{169}{section.6.66}
+\contentsline {section}{\numberline {6.67}Read N Characters Given Read4 II (H)}{170}{section.6.67}
+\contentsline {chapter}{\numberline {7}Tree}{171}{chapter.7}
+\contentsline {section}{\numberline {7.1}Binary Tree Construction}{171}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Construct Binary Tree from Preorder and Inorder Traversal (M)}{171}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Construct Binary Tree from Inorder and Postorder Traversal (M)}{172}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Serialize and Deserialize Binary Tree (H)}{172}{subsection.7.1.3}
+\contentsline {subsection}{\numberline {7.1.4}Verify Preorder Serialization of a Binary Tree (M)}{175}{subsection.7.1.4}
+\contentsline {section}{\numberline {7.2}Binary Tree Traversal}{176}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Binary Tree Preorder Traversal (M)}{176}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Binary Tree Inorder Traversal (M)}{177}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Binary Tree Postorder Traversal (H)}{178}{subsection.7.2.3}
+\contentsline {subsection}{\numberline {7.2.4}Binary Tree Level Order Traversal (E)}{179}{subsection.7.2.4}
+\contentsline {subsection}{\numberline {7.2.5}Binary Tree Level Order Traversal II (E)}{179}{subsection.7.2.5}
+\contentsline {subsection}{\numberline {7.2.6}Binary Tree Zigzag Level Order Traversal (M)}{180}{subsection.7.2.6}
+\contentsline {subsection}{\numberline {7.2.7}Binary Tree Vertical Order Traversal (M)}{181}{subsection.7.2.7}
+\contentsline {subsection}{\numberline {7.2.8}Binary Tree Right Side View (M)}{181}{subsection.7.2.8}
+\contentsline {subsection}{\numberline {7.2.9}Populating Next Right Pointers in Each Node (M)}{182}{subsection.7.2.9}
+\contentsline {subsection}{\numberline {7.2.10}Populating Next Right Pointers in Each Node II (H)}{184}{subsection.7.2.10}
+\contentsline {section}{\numberline {7.3}Binary Tree Recursion}{186}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Same Tree (E)}{186}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Symmetric Tree (E)}{186}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}Invert Binary Tree (E)}{187}{subsection.7.3.3}
+\contentsline {subsection}{\numberline {7.3.4}Binary Tree Upside Down (M)}{187}{subsection.7.3.4}
+\contentsline {subsection}{\numberline {7.3.5}Lowest Common Ancestor of a Binary Tree (M)}{188}{subsection.7.3.5}
+\contentsline {subsection}{\numberline {7.3.6}Binary Tree Longest Consecutive Sequence (M)}{188}{subsection.7.3.6}
+\contentsline {subsection}{\numberline {7.3.7}Count Univalue Subtrees (M)}{189}{subsection.7.3.7}
+\contentsline {subsection}{\numberline {7.3.8}Flatten Binary Tree to Linked List (M)}{190}{subsection.7.3.8}
+\contentsline {subsection}{\numberline {7.3.9}Balanced Binary Tree (E)}{191}{subsection.7.3.9}
+\contentsline {subsection}{\numberline {7.3.10}Count Complete Tree Nodes (M)}{191}{subsection.7.3.10}
+\contentsline {subsection}{\numberline {7.3.11}Maximum Depth of Binary Tree (E)}{192}{subsection.7.3.11}
+\contentsline {subsection}{\numberline {7.3.12}Minimum Depth of Binary Tree (E)}{192}{subsection.7.3.12}
+\contentsline {subsection}{\numberline {7.3.13}Find Leaves of Binary Tree (M)}{193}{subsection.7.3.13}
+\contentsline {subsection}{\numberline {7.3.14}Binary Tree Paths (E)}{194}{subsection.7.3.14}
+\contentsline {subsection}{\numberline {7.3.15}Path Sum (E)}{194}{subsection.7.3.15}
+\contentsline {subsection}{\numberline {7.3.16}Path Sum II (M)}{195}{subsection.7.3.16}
+\contentsline {subsection}{\numberline {7.3.17}Sum Root to Leaf Numbers (M)}{195}{subsection.7.3.17}
+\contentsline {subsection}{\numberline {7.3.18}Binary Tree Maximum Path Sum (H)}{196}{subsection.7.3.18}
+\contentsline {subsection}{\numberline {7.3.19}Binary Tree Path Sum of Two Nodes (Philips on-sight interview)}{197}{subsection.7.3.19}
+\contentsline {section}{\numberline {7.4}Binary Search Tree}{197}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Lowest Common Ancestor of a Binary Search Tree (E)}{197}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}Validate Binary Search Tree (M)}{197}{subsection.7.4.2}
+\contentsline {subsection}{\numberline {7.4.3}Binary Search Tree Iterator (M)}{198}{subsection.7.4.3}
+\contentsline {subsection}{\numberline {7.4.4}Recover Binary Search Tree (H)}{200}{subsection.7.4.4}
+\contentsline {subsection}{\numberline {7.4.5}Kth Smallest Element in a BST (M)}{201}{subsection.7.4.5}
+\contentsline {subsection}{\numberline {7.4.6}Verify Preorder Sequence in Binary Search Tree (M)}{202}{subsection.7.4.6}
+\contentsline {subsection}{\numberline {7.4.7}Inorder Successor in BST (M)}{203}{subsection.7.4.7}
+\contentsline {subsection}{\numberline {7.4.8}Largest BST Subtree (M)}{203}{subsection.7.4.8}
+\contentsline {subsection}{\numberline {7.4.9}Unique Binary Search Trees (M)}{204}{subsection.7.4.9}
+\contentsline {subsection}{\numberline {7.4.10}Unique Binary Search Trees II (M)}{205}{subsection.7.4.10}
+\contentsline {subsection}{\numberline {7.4.11}Convert Sorted Array to Binary Search Tree (M)}{205}{subsection.7.4.11}
+\contentsline {subsection}{\numberline {7.4.12}Convert Sorted List to Binary Search Tree (M)}{206}{subsection.7.4.12}
+\contentsline {subsection}{\numberline {7.4.13}Closest Binary Search Tree Value (E)}{207}{subsection.7.4.13}
+\contentsline {subsection}{\numberline {7.4.14}Closest Binary Search Tree Value II (H)}{207}{subsection.7.4.14}
+\contentsline {chapter}{\numberline {8}Sorting}{210}{chapter.8}
+\contentsline {section}{\numberline {8.1}Largest Number (M)}{210}{section.8.1}
+\contentsline {section}{\numberline {8.2}Sort Colors (M)}{210}{section.8.2}
+\contentsline {section}{\numberline {8.3}Wiggle Sort (M)}{211}{section.8.3}
+\contentsline {section}{\numberline {8.4}Wiggle Sort II (M)}{212}{section.8.4}
+\contentsline {section}{\numberline {8.5}Wiggle Subsequence (M)}{213}{section.8.5}
+\contentsline {section}{\numberline {8.6}Sort List (M)}{215}{section.8.6}
+\contentsline {section}{\numberline {8.7}Insertion Sort List (M)}{216}{section.8.7}
+\contentsline {chapter}{\numberline {9}Binary Search}{217}{chapter.9}
+\contentsline {section}{\numberline {9.1}First Bad Version (E)}{217}{section.9.1}
+\contentsline {section}{\numberline {9.2}Find the Duplicate Number (H)}{218}{section.9.2}
+\contentsline {section}{\numberline {9.3}Search for a Range (M)}{218}{section.9.3}
+\contentsline {section}{\numberline {9.4}Search Insert Position (M)}{220}{section.9.4}
+\contentsline {section}{\numberline {9.5}Find Peak Element (M)}{221}{section.9.5}
+\contentsline {section}{\numberline {9.6}Search a 2D Matrix (M)}{221}{section.9.6}
+\contentsline {section}{\numberline {9.7}Search a 2D Matrix II (M)}{222}{section.9.7}
+\contentsline {section}{\numberline {9.8}Kth Smallest Element in a Sorted Matrix (M)}{223}{section.9.8}
+\contentsline {section}{\numberline {9.9}Guess Number Higher or Lower (E)}{224}{section.9.9}
+\contentsline {section}{\numberline {9.10}Guess Number Higher or Lower II (M)}{225}{section.9.10}
+\contentsline {section}{\numberline {9.11}Find Minimum in Rotated Sorted Array (M)}{226}{section.9.11}
+\contentsline {section}{\numberline {9.12}Find Minimum in Rotated Sorted Array II (H)}{227}{section.9.12}
+\contentsline {section}{\numberline {9.13}Search in Rotated Sorted Array (H)}{227}{section.9.13}
+\contentsline {section}{\numberline {9.14}Search in Rotated Sorted Array II (M)}{228}{section.9.14}
+\contentsline {section}{\numberline {9.15}Median of Two Sorted Arrays (H)}{229}{section.9.15}
+\contentsline {chapter}{\numberline {10}DFS and BFS}{231}{chapter.10}
+\contentsline {section}{\numberline {10.1}Subset (M)}{231}{section.10.1}
+\contentsline {section}{\numberline {10.2}Subset II (M)}{232}{section.10.2}
+\contentsline {section}{\numberline {10.3}Permutations (M)}{233}{section.10.3}
+\contentsline {section}{\numberline {10.4}Permutations II (M)}{234}{section.10.4}
+\contentsline {section}{\numberline {10.5}Next Permutation (M)}{235}{section.10.5}
+\contentsline {section}{\numberline {10.6}Permutation Sequence (M)}{236}{section.10.6}
+\contentsline {section}{\numberline {10.7}Combinations (M)}{237}{section.10.7}
+\contentsline {section}{\numberline {10.8}Combination Sum (M)}{237}{section.10.8}
+\contentsline {section}{\numberline {10.9}Combination Sum II (M)}{238}{section.10.9}
+\contentsline {section}{\numberline {10.10}Combination Sum III (M)}{239}{section.10.10}
+\contentsline {section}{\numberline {10.11}Factor Combinations (M)}{240}{section.10.11}
+\contentsline {section}{\numberline {10.12}Letter Combinations of a Phone Number (M)}{241}{section.10.12}
+\contentsline {section}{\numberline {10.13}Walls and Gates (M)}{243}{section.10.13}
+\contentsline {section}{\numberline {10.14}Surrounded Regions (M)}{244}{section.10.14}
+\contentsline {section}{\numberline {10.15}Number of Islands (M)}{245}{section.10.15}
+\contentsline {section}{\numberline {10.16}Number of Islands II (H)}{246}{section.10.16}
+\contentsline {section}{\numberline {10.17}Word Search (M)}{248}{section.10.17}
+\contentsline {section}{\numberline {10.18}Word Search II (H)}{249}{section.10.18}
+\contentsline {chapter}{\numberline {11}Dynamic Programming}{251}{chapter.11}
+\contentsline {section}{\numberline {11.1}Gas Station (M)}{251}{section.11.1}
+\contentsline {section}{\numberline {11.2}Combination Sum IV (M)}{252}{section.11.2}
+\contentsline {section}{\numberline {11.3}Perfect Squares (M)}{253}{section.11.3}
+\contentsline {section}{\numberline {11.4}Coin Change (M)}{253}{section.11.4}
+\contentsline {section}{\numberline {11.5}Largest Divisible Subset (M)}{254}{section.11.5}
+\contentsline {section}{\numberline {11.6}Climbing Stairs (E)}{255}{section.11.6}
+\contentsline {section}{\numberline {11.7}Decode Ways (M)}{256}{section.11.7}
+\contentsline {section}{\numberline {11.8}Jump Game (M)}{257}{section.11.8}
+\contentsline {section}{\numberline {11.9}Jump Game II (M)}{258}{section.11.9}
+\contentsline {section}{\numberline {11.10}Best Time to Buy and Sell Stock (E)}{259}{section.11.10}
+\contentsline {section}{\numberline {11.11}Best Time to Buy and Sell Stock II (M)}{259}{section.11.11}
+\contentsline {section}{\numberline {11.12}Best Time to Buy and Sell Stock with Cooldown (M)}{260}{section.11.12}
+\contentsline {section}{\numberline {11.13}Best Time to Buy and Sell Stock III (H)}{261}{section.11.13}
+\contentsline {section}{\numberline {11.14}Best Time to Buy and Sell Stock IV (H)}{262}{section.11.14}
+\contentsline {section}{\numberline {11.15}House Robber (E)}{262}{section.11.15}
+\contentsline {section}{\numberline {11.16}House Robber II (M)}{263}{section.11.16}
+\contentsline {section}{\numberline {11.17}House Robber III (M)}{264}{section.11.17}
+\contentsline {section}{\numberline {11.18}Paint Fence (E)}{265}{section.11.18}
+\contentsline {section}{\numberline {11.19}Paint House (M)}{265}{section.11.19}
+\contentsline {section}{\numberline {11.20}Paint House II (H)}{266}{section.11.20}
+\contentsline {section}{\numberline {11.21}Pascal's Triangle (E)}{268}{section.11.21}
+\contentsline {section}{\numberline {11.22}Pascal's Triangle II (E)}{268}{section.11.22}
+\contentsline {section}{\numberline {11.23}Range Sum Query - Immutable (E)}{269}{section.11.23}
+\contentsline {section}{\numberline {11.24}Range Sum Query - Mutable (M)}{269}{section.11.24}
+\contentsline {section}{\numberline {11.25}Range Sum Query 2D - Immutable (M)}{271}{section.11.25}
+\contentsline {section}{\numberline {11.26}Triangle (M)}{272}{section.11.26}
+\contentsline {section}{\numberline {11.27}Unique Paths (M)}{273}{section.11.27}
+\contentsline {section}{\numberline {11.28}Unique Paths II (M)}{274}{section.11.28}
+\contentsline {section}{\numberline {11.29}Minimum Path Sum (M)}{275}{section.11.29}
+\contentsline {section}{\numberline {11.30}Dungeon Game (H)}{276}{section.11.30}
+\contentsline {section}{\numberline {11.31}Increasing Triplet Subsequence (M)}{277}{section.11.31}
+\contentsline {section}{\numberline {11.32}Longest Increasing Subsequence (M)}{278}{section.11.32}
+\contentsline {section}{\numberline {11.33}Longest Increasing Path in a Matrix (M)}{279}{section.11.33}
+\contentsline {section}{\numberline {11.34}Maximal Square (M)}{280}{section.11.34}
+\contentsline {section}{\numberline {11.35}Maximal Rectangle (H)}{281}{section.11.35}
+\contentsline {section}{\numberline {11.36}Number of ways for mapping integers to alphabets (The Climate Corporation 09.22.2016)}{283}{section.11.36}
+\contentsline {chapter}{\numberline {12}Graph}{284}{chapter.12}
+\contentsline {section}{\numberline {12.1}Number of Connected Components in an Undirected Graph (M)}{284}{section.12.1}
+\contentsline {section}{\numberline {12.2}Graph Valid Tree (M)}{285}{section.12.2}
+\contentsline {section}{\numberline {12.3}Clone Graph (M)}{286}{section.12.3}
+\contentsline {section}{\numberline {12.4}Course Schedule (M)}{287}{section.12.4}
+\contentsline {section}{\numberline {12.5}Course Schedule II (M)}{289}{section.12.5}
+\contentsline {section}{\numberline {12.6}Minimum Height Trees (M)}{290}{section.12.6}
+\contentsline {section}{\numberline {12.7}Reconstruct Itinerary (M)}{291}{section.12.7}
+\contentsline {chapter}{\numberline {13}Design and Implementation}{293}{chapter.13}
+\contentsline {section}{\numberline {13.1}Valid Sudoku (E)}{293}{section.13.1}
+\contentsline {section}{\numberline {13.2}Sudoku Solver (H)}{294}{section.13.2}
+\contentsline {section}{\numberline {13.3}Boom Enemy (M)}{295}{section.13.3}
+\contentsline {section}{\numberline {13.4}Android Unlock Patterns (M)}{297}{section.13.4}
+\contentsline {section}{\numberline {13.5}Game of Life (M)}{298}{section.13.5}
+\contentsline {section}{\numberline {13.6}Peeking Iterator (M)}{299}{section.13.6}
+\contentsline {section}{\numberline {13.7}LRU Cache (H)}{301}{section.13.7}
+\contentsline {section}{\numberline {13.8}Design Tic-Tac-Toe (M)}{302}{section.13.8}
+\contentsline {section}{\numberline {13.9}Design Snake Game (M)}{305}{section.13.9}
+\contentsline {section}{\numberline {13.10}Design Phone Directory (M)}{306}{section.13.10}
+\contentsline {section}{\numberline {13.11}Design Twitter (M)}{308}{section.13.11}
+\contentsline {section}{\numberline {13.12}Insert Delete GetRandom O(1) (H)}{310}{section.13.12}
+\contentsline {section}{\numberline {13.13}Insert Delete GetRandom O(1) - Duplicates allowed ? (H)}{312}{section.13.13}
+\contentsline {section}{\numberline {13.14}Basic Calculator (H)}{314}{section.13.14}
+\contentsline {section}{\numberline {13.15}Basic Calculator II (M)}{315}{section.13.15}
+\contentsline {section}{\numberline {13.16}Expression Add Operators (H)}{316}{section.13.16}
+\contentsline {section}{\numberline {13.17}Implement Trie (Prefix Tree) (M)}{317}{section.13.17}
+\contentsline {section}{\numberline {13.18}Add and Search Word - Data structure design (M)}{318}{section.13.18}

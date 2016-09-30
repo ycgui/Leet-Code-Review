@@ -320,35 +320,6 @@ public:
 \end{lstlisting}
 
 
-\section{Binary Clock (Google Interview 8.15.2016)}
-Suppose you have a binary clock that consists of two rows of LEDs. The first row has four LEDs representing four binary digits to indicate the hour. The bottom row has six LEDs to represent six binary digits indicating the minute. Write a program to list all the times that consist of exactly three lights being on, and the rest being off. List the times in human readable form.\\
-
-\begin{lstlisting}
-class BinaryClock {
-public:
-    void clockTime() {
-        vector<string> res;
-        for (int h = 0; h <= 12; ++h) {
-            for (int m = 0; m < 60; ++m) {
-                if (countBits(h) + countBits(m) == 3) {
-                    res.push_back(to_string(h) + ':' + to_string(m));
-                }
-            }
-        }
-    }
-    int countBits(int value){
-      int mask = 1;
-      int cnt = 0;
-      for(int i = 0; i < 6; i++) {
-         if((value & mask) == 1) ++cnt; // find 1, increase cnt
-         mask <<= 1; // shift left to find all 1's in value
-      }
-      return cnt;       
-    }
-};
-\end{lstlisting}
-
-
 \section{UTF-8 Validation (M)}
 A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:\\
     For 1-byte character, the first bit is a 0, followed by its unicode code.\\
@@ -425,3 +396,31 @@ public:
 };
 \end{lstlisting}
 
+
+\section{Binary Clock (Google Interview 8.15.2016)}
+Suppose you have a binary clock that consists of two rows of LEDs. The first row has four LEDs representing four binary digits to indicate the hour. The bottom row has six LEDs to represent six binary digits indicating the minute. Write a program to list all the times that consist of exactly three lights being on, and the rest being off. List the times in human readable form.\\
+
+\begin{lstlisting}
+class BinaryClock {
+public:
+    void clockTime() {
+        vector<string> res;
+        for (int h = 0; h <= 12; ++h) {
+            for (int m = 0; m < 60; ++m) {
+                if (countBits(h) + countBits(m) == 3) {
+                    res.push_back(to_string(h) + ':' + to_string(m));
+                }
+            }
+        }
+    }
+    int countBits(int value){
+      int mask = 1;
+      int cnt = 0;
+      for(int i = 0; i < 6; i++) {
+         if((value & mask) == 1) ++cnt; // find 1, increase cnt
+         mask <<= 1; // shift left to find all 1's in value
+      }
+      return cnt;       
+    }
+};
+\end{lstlisting}
