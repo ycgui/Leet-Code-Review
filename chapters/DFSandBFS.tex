@@ -493,6 +493,29 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].\\
 Note:Although the above answer is in lexicographical order, your answer could be in any order you want. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if not digits: return []
+        res = []
+        d = {0:'', 1:'', 2:'abc', 3:'def', 4:'ghi', 5:'jkl',
+             6:'mno', 7:'pqrs', 8:'tuv', 9:'wxyz'}
+        self.combine(digits, d, 0, '', res)
+        return res
+    def combine(self, digits, d, idx, out, res):
+        if idx == len(digits):
+            res.append(out)
+            return
+        num = int(digits[idx])
+        s = d[num]
+        for i in range(len(s)):
+            self.combine(digits, d, idx+1, out+s[i], res)
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. Recursion
 class Solution {
 public:

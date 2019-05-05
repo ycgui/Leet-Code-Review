@@ -215,6 +215,56 @@ public:
 \section{Palindrome Linked List (E)}
 Given a singly linked list, determine if it is a palindrome. \\
 
+Python:
+\lstset{language=python}
+\begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# stack
+class Solution(object):
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        s = []
+        x = head
+        while x:
+            s.append(x.val)
+            x = x.next
+        while s:
+            tmp = s.pop()
+            if tmp != head.val: return False
+            head = head.next
+        return True
+
+# stack with slow and fast pointers
+class Solution(object):
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        if not head: return True
+        s = []
+        slow, fast = head, head
+        s.append(head.val)
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+            s.append(slow.val)
+        if not fast.next: s.pop()
+        while slow.next:   
+            slow = slow.next
+            if s.pop() != slow.val: return False
+        return True
+\end{lstlisting} 
+
+C++:
 \lstset{language=C++}
 \begin{lstlisting}
 // reverse the right half list and compare it to the left half list

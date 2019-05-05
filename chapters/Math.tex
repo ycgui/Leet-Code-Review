@@ -170,6 +170,51 @@ public:
 \section{Palindrome Number (E)}
 Determine whether an integer is a palindrome. Do this without extra space. \\
 
+Python:
+\lstset{language=python}
+
+\begin{lstlisting}
+# Convert to string
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0: return False
+        x_str = str(x)
+        n = len(x_str)
+        if n == 1: return True
+        left, right = 0, n - 1
+        while left < right:
+            if x_str[left] != x_str[right]:
+                return False
+            left += 1
+            right -= 1
+        return True
+    
+# use module and div
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0: return False
+        n = 1
+        while x / n >= 10:
+            n *= 10
+        while x > 0:
+            left = x / n
+            right = x % 10
+            if left != right: return False
+            x = (x % n) / 10
+            n /= 100
+        return True
+\end{lstlisting}
+
+C++:
+\lstset{language=c++}
 \begin{lstlisting}
 class Solution {
 public:
@@ -197,6 +242,33 @@ Reverse digits of an integer. \\
 Example1: x = 123, return 321\\
 Example2: x = -123, return -321\\ 
 
+Python:
+\lstset{language=python}
+\begin{lstlisting}
+import sys
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x < -sys.maxint or x > sys.maxint or x == 0:
+            return 0
+        if x > 0:
+            sign = 1
+        elif x < 0:
+            sign = -1
+            x = abs(x)
+        res = 0
+        while x != 0:
+            res = res * 10 + x % 10
+            x /= 10
+            
+        return res*sign
+\end{lstlisting}
+
+C++:
+\lstset{language=c++}
 \begin{lstlisting}
 class Solution {
 public:
