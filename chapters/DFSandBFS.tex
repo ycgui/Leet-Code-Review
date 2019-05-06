@@ -289,6 +289,27 @@ Given two integers n and k, return all possible combinations of k numbers out of
 For example, If n = 4 and k = 2, a solution is: [ [2,4], [3,4], [2,3], [1,2], [1,3], [1,4]]\\
 
 \begin{lstlisting}
+class Solution(object):
+    def combine(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        out, res = [], []
+        self.helper(n, k, 1, out, res)
+        return res
+    def helper(self, n, k, idx, out, res):
+        if len(out) == k:
+            res.append(list(out))
+            return
+        for i in range(idx, n+1):
+            out.append(i)
+            self.helper(n, k, i+1, out, res)
+            out.pop()
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
@@ -318,6 +339,30 @@ Note:\\
     The solution set must not contain duplicate combinations.\\
 
 For example, given candidate set [2, 3, 6, 7] and target 7, A solution set is: [ [7], [2, 2, 3] ]\\
+
+\begin{lstlisting}
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        out = []
+        self.comb(candidates, target, 0, out, res)
+        return res
+    def comb(self, candidates, target, idx, out, res):
+        if target < 0: return
+        if target == 0:
+            # It's needed to append a list to res for creating a list of lists
+            res.append(list(out)) 
+            return
+        for i in range(idx, len(candidates), 1):
+            out.append(candidates[i])
+            self.comb(candidates, target-candidates[i], i, out, res)
+            out.pop()
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -354,6 +399,31 @@ Note:\\
     The solution set must not contain duplicate combinations.\\
 
 For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, A solution set is: [ [1, 7], [1, 2, 5], [2, 6], [1, 1, 6] ] \\
+
+\begin{lstlisting}
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        out, res = [], []
+        candidates.sort()
+        self.comb(candidates, target, 0, out, res)
+        return res
+    def comb(self, candidates, target, idx, out, res):
+        if target < 0: return
+        if target == 0:
+            res.append(list(out))
+            return
+        for i in range(idx, len(candidates)):
+            # remove duplicates
+            if i > idx and candidates[i] == candidates[i-1]: continue
+            out.append(candidates[i])
+            self.comb(candidates, target-candidates[i], i+1, out, res)
+            out.pop()
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -396,6 +466,28 @@ Input: k = 3, n = 9\\
 Output:[[1,2,6], [1,3,5], [2,3,4]]\\
 
 \begin{lstlisting}
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        out, res = [], []
+        self.comb(k, n, 1, out, res)
+        return res
+    def comb(self, k, n, idx, out, res):
+        if k < 0 or n < 0: return
+        if k == 0 and n == 0: 
+            res.append(list(out))
+            return
+        for i in range(idx, 10):
+            out.append(i)
+            self.comb(k-1, n-i, i+1, out, res)
+            out.pop()
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<vector<int>> combinationSum3(int k, int n) {
@@ -418,6 +510,78 @@ public:
         }
     }
 };
+\end{lstlisting}
+
+\section{Combination Sum IV (M)}
+Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target. \\
+
+Example:\\
+nums = [1, 2, 3]\\
+target = 4\\
+
+The possible combination ways are:\\
+(1, 1, 1, 1)\\
+(1, 1, 2)\\
+(1, 2, 1)\\
+(1, 3)\\
+(2, 1, 1)\\
+(2, 2)\\
+(3, 1)\\
+
+Note that different sequences are counted as different combinations. Therefore the output is 7.\\
+
+\begin{lstlisting}
+# Get all combinations and count
+class Solution(object):
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        out, res = [], []
+        self.comb(nums, target, 0, out, res)
+        return len(res)
+    def comb(self, nums, target, idx, out, res):
+        if target < 0: return
+        if target == 0:
+            res.append(list(out))
+            return
+        for i in range(len(nums)):
+            out.append(nums[i])
+            self.comb(nums, target-nums[i], i, out, res)
+            out.pop()
+
+# Count combinations
+class Solution(object):
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if target == 0:
+            return 1
+        res = 0
+        for i in range(len(nums)):
+            if target >= nums[i]:
+                res += self.combinationSum4(nums, target-nums[i])
+        return res
+    
+# DP
+class Solution(object):
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        dp = [0 for i in range(target+1)]
+        dp[0] = 1
+        for i in range(1, target+1):
+            for j in nums:
+                if i >= j: dp[i] += dp[i-j]
+        return dp[-1]
 \end{lstlisting}
 
 

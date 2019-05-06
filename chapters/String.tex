@@ -763,6 +763,26 @@ public:
 Given a string containing just the characters `(', `)', `\{', `\}', `[' and `]', determine if the input string is valid. The brackets must close in the correct order, ``()" and ``()[]\{\}" are all valid but ``(]" and ``([)]" are not.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        for bracket in s:
+            if bracket == '(' or bracket == '[' or bracket =='{':
+                stack.append(bracket)
+            else:
+                if not stack: return False
+                if bracket == ')' and stack[-1] != '(': return False
+                if bracket == ']' and stack[-1] != '[': return False
+                if bracket == '}' and stack[-1] != '{': return False
+                stack.pop()
+        return not stack    
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool isValid(string s) {
@@ -788,6 +808,27 @@ public:
 
 \section{Generate Parentheses (M)}
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. \\
+ 
+ \begin{lstlisting}
+ class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        out, res = '', []
+        self.gen(n, n, '', res)
+        return res
+    def gen(self, left, right, out, res):
+        if left > right: return
+        if left == 0 and right == 0:
+            res.append(out)
+        else:
+            if left > 0:
+                self.gen(left-1, right, out+'(', res)
+            if right > 0:
+                self.gen(left, right-1, out+')', res)
+\end{lstlisting}
  
 \begin{lstlisting}
 class Solution {
