@@ -8,6 +8,33 @@ Notes:\\
     You may assume there are no cycles anywhere in the entire linked structure.\\
     Your code should preferably run in O(n) time and use only O(1) memory.\\
  
+ \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        if not headA or not headB: return None
+        p1, p2 = headA, headB
+        while p1 != p2:
+            p1 = p1.next
+            p2 = p2.next
+            if p1 == p2:
+                return p1
+            if not p1:
+                p1 = headB
+            if not p2:
+                p2 = headA
+        return p1
+\end{lstlisting}
+ 
 \begin{lstlisting}
 /**
  * Definition for singly-linked list.
@@ -357,6 +384,61 @@ public:
 Reverse a singly linked list.\\
 
 \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# iteration with stack
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        s = []
+        p = head
+        while p:
+            s.append(p.val)
+            p = p.next
+        dummy = ListNode(0)
+        p = dummy
+        while s:
+            p.next = ListNode(s.pop())
+            p = p.next
+        return dummy.next
+    
+# iteration by inserting nodes after new head
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        newhead = None 
+        while head:
+            t = head.next
+            head.next = newhead
+            newhead = head
+            head = t
+        return newhead
+        
+# recursive
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head or not head.next: return head
+        newhead = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return newhead
+\end{lstlisting}
+
+\begin{lstlisting}
 // recursive solution
 class Solution {
 public:   
@@ -402,6 +484,35 @@ return $1->4->3->2->5->NULL$.\\
 Note:
 Given m, n satisfy the following condition:
 $1 \leq m \leq n \leq length of list$. \\
+
+\begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def reverseBetween(self, head, m, n):
+        """
+        :type head: ListNode
+        :type m: int
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+        for i in range(m-1):
+            prev = prev.next
+        curr = prev.next
+        for i in range(m, n):
+            t = curr.next
+            curr.next = t.next
+            t.next = prev.next
+            prev.next = t
+        return dummy.next
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -672,6 +783,25 @@ Write a function to delete a node (except the tail) in a singly linked list, giv
 Supposed the linked list is 1-2-3-4 and you are given the third node with value 3, the linked list should become 1-2-4 after calling your function. \\
 
 \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        node.val = node.next.val
+        t = node.next
+        node.next = t.next
+        del t
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     void deleteNode(ListNode* node) {
@@ -689,6 +819,35 @@ Remove all elements from a linked list of integers that have value val.\\
 Example:\\
 Given: 1-2-6-3-4-5-6, val = 6\\
 Return: 1-2-3-4-5 \\
+
+\begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        dummy.next = head
+        prev, curr = dummy, head
+        while curr:
+            if curr.val == val:
+                prev.next = curr.next  
+                t = curr
+                curr = curr.next
+                del t
+            else:
+                prev = prev.next
+                curr = curr.next
+        return dummy.next
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -722,6 +881,34 @@ Given a linked list, remove the nth node from the end of list and return its hea
 For example,\\
    Given linked list: $1->2->3->4->5$, and n = 2.\\
    After removing the second node from the end, the linked list becomes $1->2->3->5$.\\
+
+\begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        dummy.next = head
+        p1, p2 = head, head
+        for i in range(n):
+            p2 = p2.next
+        if not p2: 
+            return p1.next
+        while p2.next:
+            p1 = p1.next
+            p2 = p2.next
+        p1.next = p1.next.next
+        return dummy.next
+\end{lstlisting}        
 
 \begin{lstlisting}
 class Solution {
@@ -820,6 +1007,27 @@ public:
 Given a linked list, determine if it has a cycle in it. \\
 
 \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast: return True
+        return False
+\end{lstlisting}            
+
+\begin{lstlisting}
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -842,6 +1050,32 @@ public:
 
 \section{Linked List Cycle II (M)}
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null. \\
+ 
+ \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast: break
+        if not fast or not fast.next: return None
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+        return slow
+\end{lstlisting}
  
 \begin{lstlisting}
 /** 
@@ -882,6 +1116,35 @@ public:
 \section{Merge Two Sorted Lists (E)}
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.\\
 
+\begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        p = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                p.next = l1
+                l1 = l1.next
+            else: 
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        if l1: p.next = l1
+        if l2: p.next = l2
+        return dummy.next
+\end{lstlisting}
+                
 \begin{lstlisting}
 class Solution {
 public:
