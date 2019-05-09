@@ -212,6 +212,50 @@ Given a binary tree, return the preorder traversal of its nodes' values.\\
 For example: Given binary tree [1,null,2,3], return [1,2,3]. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# recursion
+class Solution(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        res = []
+        self.preorder(root, res)
+        return res
+    def preorder(self, root, res):
+        if not root: return
+        res.append(root.val)
+        if root.left: self.preorder(root.left, res)
+        if root.right: self.preorder(root.right, res)
+        
+# iteration with stack
+class Solution(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        res, s = [], []
+        p = root
+        while s or p:
+            if p:
+                s.append(p)
+                res.append(s[-1].val)
+                p = p.left
+            else:
+                p = s[-1].right
+                s.pop()
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -264,6 +308,50 @@ Given a binary tree, return the inorder traversal of its nodes' values. \\
 For example: Given binary tree [1,null,2,3], return [1,3,2]. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# recursion
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        res = []
+        self.inorder(root, res)
+        return res
+    def inorder(self, root, res):
+        if not root: return
+        if root.left: self.inorder(root.left, res)
+        res.append(root.val)
+        if root.right: self.inorder(root.right, res)
+
+# iteration with stack
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        s, res = [], []
+        p = root
+        while s or p:
+            if p:
+                s.append(p)
+                p = p.left
+            else:
+                res.append(s[-1].val)
+                p = s[-1].right
+                s.pop()
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. Recursion solution
 class Solution {
 public:
@@ -308,6 +396,50 @@ public:
 Given a binary tree, return the postorder traversal of its nodes' values. \\
 
 For example: Given binary tree [1,null,2,3], return [3,2,1]. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+        
+# recursion
+class Solution(object):
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        res = []
+        self.postorder(root, res)
+        return res
+    def postorder(self, root, res):
+        if not root: return
+        if root.left: self.postorder(root.left, res)
+        if root.right: self.postorder(root.right, res)
+        res.append(root.val)
+
+# iteration with stack
+class Solution(object):
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        s, res = [], []
+        p = root
+        while s or p:
+            if p:
+                s.append(p)
+                res.insert(0, s[-1].val)
+                p = p.right
+            else:
+                p = s[-1].left
+                s.pop()
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 // 1. Recursion solution
@@ -359,6 +491,56 @@ public:
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# recursion
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        res = []
+        self.level(root, 0, res)
+        return res
+    def level(self, node, idx, res):
+        if not node: return
+        if len(res) == idx:
+            res.append(list([]))
+        res[idx].append(node.val)
+        if node.left:
+            self.level(node.left, idx+1, res)
+        if node.right:
+            self.level(node.right, idx+1, res)
+
+# iteration with queue
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root: return []
+        q, res = [], []
+        q.insert(0, root)
+        while q:
+            out = []
+            n = len(q)
+            for i in range(n):
+                out.append(q[-1].val)
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+            res.append(list(out))
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
@@ -387,6 +569,35 @@ public:
 Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def levelOrderBottom(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root: return []
+        q, res = [], []
+        q.insert(0, root)
+        while q:
+            out = []
+            n = len(q)
+            for i in range(n):
+                out.append(q[-1].val)
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+            res.insert(0, list(out))
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
@@ -413,6 +624,40 @@ public:
 
 \subsection{Binary Tree Zigzag Level Order Traversal (M)}
 Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).\\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def zigzagLevelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root: return []
+        q, res = [], []
+        q.append(root)
+        level = 1
+        while q:
+            out = []
+            n = len(q)
+            for i in range(n):
+                out.append(q[-1].val)
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+            if level % 2 == 1:
+                res.append(list(out))
+            else:
+                res.append(list(reversed(out)))
+            level += 1
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -478,6 +723,33 @@ public:
 Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. \\
 
 For example: Given the following binary tree, [1, 2, 3, \#, 5, \#, 4], You should return [1, 3, 4]. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def rightSideView(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root: return []
+        q, res = [], []
+        q.append(root)
+        while q:
+            res.append(q[-1].val)
+            n = len(q)
+            for i in range(n):
+                if q[-1].right: q.insert(0, q[-1].right)
+                if q[-1].left: q.insert(0, q[-1].left)
+                q.pop()
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
