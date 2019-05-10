@@ -786,6 +786,78 @@ Note:\\
     You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).\\
     
 \begin{lstlisting}
+ """
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+# recursion
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root: return None
+        if root.left:
+            root.left.next = root.right
+        if root.right:
+            if root.next:
+                root.right.next = root.next.left
+            else:
+                root.right.next = None
+        self.connect(root.left)
+        self.connect(root.right)
+        return root
+        
+
+# iteration with queue
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root: return None
+        q = []
+        q.append(root)
+        while q:
+            n = len(q)
+            for i in range(n):
+                if i < n - 1:
+                    q[-1].next = q[-2]
+                else:
+                    q[-1].next = None
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+        return root
+                
+# iteration with two pointer, constant space
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root: return None
+        start, cur = root, None
+        while start.left:
+            cur = start
+            while cur:
+                cur.left.next = cur.right
+                if cur.next:
+                    cur.right.next = cur.next.left
+                cur = cur.next
+            start = start.left
+        return root
+\end{lstlisting}
+  
+\begin{lstlisting}
 /**
  * Definition for binary tree with next pointer.
  * struct TreeLinkNode {
@@ -852,6 +924,67 @@ public:
 Follow up for problem "Populating Next Right Pointers in Each Node". What if the given tree could be any binary tree? Would your previous solution still work?\\
 
 Note: You may only use constant extra space.\\
+
+\begin{lstlisting}
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+# recursion
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root: return None
+        p = root.next
+        while p:
+            if p.left: 
+                p = p.left
+                break
+            if p.right:
+                p = p.right
+                break
+            p = p.next
+        if root.right:
+            root.right.next = p
+        if root.left:
+            if root.right:
+                root.left.next = root.right
+            else:
+                root.left.next = p
+        self.connect(root.right)
+        self.connect(root.left)
+        return root
+
+# iteration with queue
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root: return None
+        q = []
+        q.append(root)
+        while q:
+            n = len(q)
+            for i in range(n):
+                if i < n - 1:
+                    q[-1].next = q[-2]
+                else:
+                    q[-1].next = None
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+        return root
+\end{lstlisting}
 
 \begin{lstlisting}
 // 1. Recursion, more than constant space
