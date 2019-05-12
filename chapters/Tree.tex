@@ -1078,6 +1078,28 @@ Given two binary trees, write a function to check if they are equal or not. \\
 Two binary trees are considered equal if they are structurally identical and the nodes have the same value. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        if not p and not q: return True
+        if not p or not q: return False
+        if p.val != q.val: return False
+        return self.isSameTree(p.left, q.left) and \
+               self.isSameTree(p.right, q.right)
+\end{lstlisting}
+
+\begin{lstlisting}
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -1104,6 +1126,29 @@ public:
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root: return True
+        return self.compare(root.left, root.right)
+    def compare(self, left, right):
+        if not left and not right: return True
+        if not left or not right or left.val != right.val: return False
+        return self.compare(left.left, right.right) and \
+               self.compare(left.right, right.left)
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
@@ -1123,6 +1168,27 @@ public:
 
 \subsection{Invert Binary Tree (E)}
 Invert a binary tree 4-2-7-1-3-6-9 to 4-7-2-9-6-3-1. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if not root: return None
+        t = root.left
+        root.left = self.invertTree(root.right)
+        root.right = self.invertTree(t)
+        return root
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1164,6 +1230,32 @@ public:
 
 \subsection{Lowest Common Ancestor of a Binary Tree (M)}
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        if not root or root == p or root == q:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        if left: return left
+        if right: return right
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1255,6 +1347,30 @@ private:
 Given a binary tree, flatten it to a linked list in-place (Inorder traversal). \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def flatten(self, root):
+        """
+        :type root: TreeNode
+        :rtype: None Do not return anything, modify root in-place instead.
+        """
+        if not root: return
+        if root.left: self.flatten(root.left)
+        if root.right: self.flatten(root.right)
+        t = root.right
+        root.right = root.left
+        root.left = None
+        while root.right: root = root.right
+        root.right = t
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. Recursion
 class Solution {
 public:
@@ -1315,6 +1431,29 @@ public:
 Given a binary tree, determine if it is height-balanced.\\
 
 For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root: return True
+        return abs(self.depth(root.left) - self.depth(root.right)) <= 1 and \
+               self.isBalanced(root.left) and self.isBalanced(root.right)
+    def depth(self, node):
+        if not node: return 0
+        return 1 + max(self.depth(node.left), self.depth(node.right))
+\end{lstlisting}
+
 \begin{lstlisting}
 class Solution {
 public:
@@ -1439,6 +1578,34 @@ public:
 Given a binary tree, return all root-to-leaf paths. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def binaryTreePaths(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[str]
+        """
+        if not root: return []
+        path = ''
+        res = []
+        self.DFS(root, path, res)
+        return res
+    def DFS(self, node, path, res):
+        path += str(node.val)
+        if not node.left and not node.right: 
+            res.append(path)
+            return
+        if node.left: self.DFS(node.left, path+'->', res)
+        if node.right: self.DFS(node.right, path+'->', res)
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode *root) {
@@ -1468,6 +1635,28 @@ public:
 Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def hasPathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: bool
+        """
+        if not root: return False
+        if not root.left and not root.right and root.val == sum: 
+            return True
+        return self.hasPathSum(root.left, sum - root.val) or \
+               self.hasPathSum(root.right, sum - root.val)
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool hasPathSum(TreeNode *root, int sum){
@@ -1484,6 +1673,34 @@ public:
 
 \subsection{Path Sum II (M)}
 Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: List[List[int]]
+        """
+        path, res = [], []
+        self.DFS(root, sum, path, res)
+        return res
+    def DFS(self, node, sum, path, res):
+        if not node: return
+        path.append(node.val)
+        if not node.left and not node.right and node.val == sum:
+            res.append(list(path))
+        self.DFS(node.left, sum - node.val, path, res)
+        self.DFS(node.right, sum - node.val, path, res)
+        path.pop()
+\end{lstlisting}
  
 \begin{lstlisting}
 class Solution {
@@ -1512,12 +1729,77 @@ public:
 };
 \end{lstlisting}
 
+\subsection{Path Sum III (E)}
+You are given a binary tree in which each node contains an integer value.\\
+
+Find the number of paths that sum to a given value.\\
+
+The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).\\
+
+The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        out = []
+        self.res = 0
+        self.DFS(root, sum, 0, out)
+        return self.res
+    def DFS(self, node, sum, subsum, out):
+        if not node: return
+        subsum += node.val
+        out.append(node)
+        if subsum == sum: self.res += 1
+        t = subsum
+        for i in range(len(out)-1):
+            t -= out[i].val
+            if t == sum: self.res += 1
+        self.DFS(node.left, sum, subsum, out)
+        self.DFS(node.right, sum, subsum, out)
+        out.pop()        
+\end{lstlisting}
 
 \subsection{Sum Root to Leaf Numbers (M)}
 Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number. An example is the root-to-leaf path $1->2->3$ which represents the number 123. Find the total sum of all root-to-leaf numbers.\\
 
 For example: \\
 The root-to-leaf path $1->2$ represents the number 12. The root-to-leaf path $1->3$ represents the number 13. Return the sum = 12 + 13 = 25. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def sumNumbers(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        return self.DFS(root, 0)
+    def DFS(self, node, sum):
+        if not node: return 0
+        sum = sum * 10 + node.val
+        if not node.left and not node.right:
+            return sum
+        return self.DFS(node.left, sum) + self.DFS(node.right, sum)                
+\end{lstlisting}
+
 
 \begin{lstlisting}
 class Solution {
@@ -1544,6 +1826,32 @@ public:
 \subsection{Binary Tree Maximum Path Sum (H)}
 Given a binary tree, find the maximum path sum. For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path does not need to go through the root. \\
 
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+import sys
+class Solution(object):
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.res = -sys.maxint-1
+        self.maxpath(root)
+        return self.res
+    def maxpath(self, node):
+        if not node: return 0
+        left = max(self.maxpath(node.left), 0)
+        right = max(self.maxpath(node.right), 0)
+        self.res = max(self.res, left + right + node.val)
+        return max(left, right) + node.val
+\end{lstlisting}
+        
 \begin{lstlisting}
 class Solution {
 public:
@@ -1580,6 +1888,32 @@ Given a binary tree and two arbitrary nodes, compute the path sum of these two n
 Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST. \\
 
 According to the definition of LCA on Wikipedia: ``The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself)." \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        if not root or root == p or root == q:
+            return root
+        if p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        elif p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        else:
+            return root
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
