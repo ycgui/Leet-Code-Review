@@ -1342,6 +1342,36 @@ private:
 };
 \end{lstlisting}
 
+\subsection{Find Leaves of Binary Tree (M)}
+Given a binary tree, find all leaves and then remove those leaves. Then repeat the previous steps until the tree is empty.\\
+
+Example:\\
+Given binary tree [1, 2, 3, 4, 5], Returns [4, 5, 3], [2], [1].\\
+
+\begin{lstlisting}
+class Solution {
+public:
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        vector<vector<int>> res;
+        helper(root, res);
+        return res;
+    }
+    
+    int helper(TreeNode *root, vector<vector<int>> &res) {
+        if (!root)  return -1;
+        int depth = 1 + max(helper(root->left, res), helper(root->right, res));
+        
+        if (depth >= res.size()) {
+                // assign new level
+                // or we can use: res.push_back(vector<int>())
+        		res.resize(depth + 1);
+        }
+        
+        res[depth].push_back(root->val);
+        return depth;
+    }
+};
+\end{lstlisting}
 
 \subsection{Flatten Binary Tree to Linked List (M)}
 Given a binary tree, flatten it to a linked list in-place (Inorder traversal). \\
@@ -1481,6 +1511,45 @@ In a complete binary tree every level, except possibly the last, is completely f
 
 A perfect binary tree is a complete tree, but a complete tree is not necessary a perfect tree.\\
 
+Notes: \\
+Full Binary Tree: A Binary Tree is full if every node has 0 or 2 children. \\
+$[1, 2, 3, 4, 5, Null, Null, 6, 7]$ \\
+
+Complete Binary Tree: A Binary Tree is complete Binary Tree if all levels are completely filled except possibly the last level and the last level has all keys as left as possible.\\
+$[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]$ \\
+
+
+Perfect Binary Tree: A Binary tree is Perfect Binary Tree in which all internal nodes have two children and all leaves are at same level.\\
+$[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]$ \\
+
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def countNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        h_left, h_right = 0, 0
+        p_left, p_right = root, root
+        while p_left:
+            h_left += 1
+            p_left = p_left.left
+        while p_right:
+            h_right +=1
+            p_right = p_right.right
+        if h_left == h_right:
+            return 2 ** h_left - 1
+        return 1 + self.countNodes(root.left) + self.countNodes(root.right)
+\end{lstlisting}
+
 \begin{lstlisting}
 class Solution {
 public:
@@ -1501,29 +1570,51 @@ public:
 };
 \end{lstlisting}
 
-
-\subsection{Maximum Depth of Binary Tree (E)}
-Given a binary tree, find its maximum depth.\\
-
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\\
-
-\begin{lstlisting}
-class Solution {
-public:
-    int maxDepth(TreeNode* root) {
-        if (root != NULL)
-            return 1 + max(maxDepth(root->left), maxDepth(root->right));
-        else
-            return 0;
-    }
-};
-\end{lstlisting}
-
-
 \subsection{Minimum Depth of Binary Tree (E)}
 Given a binary tree, find its minimum depth.\\
 
 The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.\\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# Recursion
+class Solution(object):
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        if not root.left: return 1 + self.minDepth(root.right)
+        if not root.right: return 1 + self.minDepth(root.left)
+        return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
+    
+# Iteration
+class Solution(object):
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        res = 0
+        q = [root]
+        while q:
+            res += 1
+            n = len(q)
+            for i in range(n):
+                if not q[-1].left and not q[-1].right:
+                    return res
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1541,36 +1632,233 @@ public:
 };
 \end{lstlisting}
 
+\subsection{Maximum Depth of Binary Tree (E)}
+Given a binary tree, find its maximum depth.\\
 
-\subsection{Find Leaves of Binary Tree (M)}
-Given a binary tree, find all leaves and then remove those leaves. Then repeat the previous steps until the tree is empty.\\
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\\
 
-Example:\\
-Given binary tree [1, 2, 3, 4, 5], Returns [4, 5, 3], [2], [1].\\
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# Recursion
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+        
+# Iteration
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        res = 0
+        q = [root]
+        while q:
+            res += 1
+            n = len(q)
+            for i in range(n):
+                if q[-1].left: q.insert(0, q[-1].left)
+                if q[-1].right: q.insert(0, q[-1].right)
+                q.pop()
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
 public:
-    vector<vector<int>> findLeaves(TreeNode* root) {
-        vector<vector<int>> res;
-        helper(root, res);
-        return res;
-    }
-    
-    int helper(TreeNode *root, vector<vector<int>> &res) {
-        if (!root)  return -1;
-        int depth = 1 + max(helper(root->left, res), helper(root->right, res));
-        
-        if (depth >= res.size()) {
-                // assign new level
-                // or we can use: res.push_back(vector<int>())
-        		res.resize(depth + 1);
-        }
-        
-        res[depth].push_back(root->val);
-        return depth;
+    int maxDepth(TreeNode* root) {
+        if (root != NULL)
+            return 1 + max(maxDepth(root->left), maxDepth(root->right));
+        else
+            return 0;
     }
 };
+\end{lstlisting}
+
+\subsection{Maximum Depth of N-ary Tree (E)}
+Given a n-ary tree, find its maximum depth.\\
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\\
+
+\begin{lstlisting}
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
+"""
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: Node
+        :rtype: int
+        """
+        if not root: return 0
+        res = 1
+        for c in root.children:
+            res = max(res, 1 + self.maxDepth(c))
+        return res
+\end{lstlisting}
+
+\subsection{Maximum Width of Binary Tree (M)}
+Given a binary tree, write a function to get the maximum width of the given tree. The width of a tree is the maximum width among all levels. The binary tree has the same structure as a full binary tree, but some nodes are null.\\
+
+The width of one level is defined as the length between the end-nodes (the leftmost and right most non-null nodes in the level, where the null nodes between the end-nodes are also counted into the length calculation.\\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# The main idea in this question is to give each node a position value. 
+# If we go down the left neighbor, then position -> position * 2; and if we go down the right neighbor, then position -> position * 2 + 1. 
+# This makes it so that when we look at the position values L and R of two nodes with the same depth, the width will be R - L + 1.
+
+class Solution(object):
+    def widthOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.res = 0
+        start = []
+        depth, idx = 0, 1
+        self.dfs(root, depth, idx, start)
+        return self.res
+    def dfs(self, node, depth, idx, start):
+        if not node: return
+        if depth >= len(start):
+            start.append(idx)
+        self.res = max(self.res, idx - start[depth] + 1)
+        self.dfs(node.left, depth+1, idx*2, start)
+        self.dfs(node.right, depth+1, idx*2+1, start)
+\end{lstlisting}
+
+
+\subsection{Diameter of Binary Tree (E)}
+Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.res = 0
+        self.maxDepth(root)
+        return self.res
+    def maxDepth(self, node):
+        if not node: return 0
+        left = self.maxDepth(node.left)
+        right = self.maxDepth(node.right)
+        self.res = max(self.res, left + right)
+        return 1 + max(left, right)
+\end{lstlisting}
+
+
+\subsection{Maximum Binary Tree (M)}
+Given an integer array with no duplicates. A maximum tree building on this array is defined as follow:\\
+
+1.The root is the maximum number in the array.\\
+2.The left subtree is the maximum tree constructed from left part subarray divided by the maximum number.\\
+3.The right subtree is the maximum tree constructed from right part subarray divided by the maximum number.\\
+
+Construct the maximum tree by the given array and output the root node of this tree. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def constructMaximumBinaryTree(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        if not nums: return None
+        start, end = 0, len(nums)-1
+        return self.helper(nums, start, end)
+    def helper(self, nums, start, end):
+        if start > end: return None
+        mid = start
+        for i in range(start+1, end+1):
+            if nums[i] > nums[mid]:
+                mid = i
+        node = TreeNode(nums[mid])
+        node.left = self.helper(nums, start, mid-1)
+        node.right = self.helper(nums, mid+1, end)
+        return node
+\end{lstlisting}
+
+
+\subsection{Maximum Binary Tree II (M)}
+We are given the root node of a maximum tree: a tree where every node has a value greater than any other value in its subtree.\\
+
+Just as in the previous problem, the given tree was constructed from an list A (root = Construct(A)) recursively with the following Construct(A) routine:\\
+
+    If A is empty, return null.\\
+    Otherwise, let A[i] be the largest element of A.  Create a root node with value A[i].\\
+    The left child of root will be Construct([A[0], A[1], ..., A[i-1]])\\
+    The right child of root will be Construct([A[i+1], A[i+2], ..., A[A.length - 1]])\\
+    Return root.\\
+
+Note that we were not given A directly, only a root node root = Construct(A).\\
+
+Suppose B is a copy of A with the value val appended to it.  It is guaranteed that B has unique values.\\
+
+Return Construct(B).\\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# The appended value can only be the right child of it's parent, and it could only have left children (Since it's the right-most element in the construction array).
+class Solution(object):
+    def insertIntoMaxTree(self, root, val):
+        """
+        :type root: TreeNode
+        :type val: int
+        :rtype: TreeNode
+        """
+        if not root: return TreeNode(val)
+        if val > root.val:
+            node = TreeNode(val)
+            node.left = root
+            return node
+        root.right = self.insertIntoMaxTree(root.right, val)
+        return root
 \end{lstlisting}
 
 
@@ -1940,6 +2228,53 @@ Assume a BST is defined as follows:\\
     Both the left and right subtrees must also be binary search trees.\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# Recursion
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        minval = float('-inf')
+        maxval = float('inf')
+        return self.helper(root, minval, maxval)
+    def helper(self, node, minval, maxval):
+        if not node: return True
+        if node.val <= minval or node.val >= maxval:
+            return False
+        return self.helper(node.left, minval, node.val) and \
+               self.helper(node.right, node.val, maxval)
+        
+# Iteration with inorder traversal
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        s = []
+        p = root
+        val = float('-inf')
+        while s or p:
+            if p:
+                s.append(p)
+                p = p.left
+            else:
+                if s[-1].val <= val: return False
+                val = s[-1].val
+                p = s[-1].right
+                s.pop()
+        return True
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. Recursion without inorder traversal
 class Solution {
 public:
@@ -1979,6 +2314,51 @@ public:
 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST. Calling next() will return the next smallest number in the BST.\\
 
 Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class BSTIterator(object):
+
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
+        
+    def next(self):
+        """
+        @return the next smallest number
+        :rtype: int
+        """
+        node = self.stack.pop()
+        r = node.right
+        while r:
+            self.stack.append(r)
+            r = r.left
+        return node.val
+
+    def hasNext(self):
+        """
+        @return whether we have a next smallest number
+        :rtype: bool
+        """
+        return len(self.stack) != 0
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
+\end{lstlisting}
 
 \begin{lstlisting}
 /**

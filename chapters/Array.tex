@@ -917,7 +917,6 @@ class Solution(object):
             if another in dict_nums.keys():
                 if dict_nums[another] != index:
                     return [index, dict_nums[another]]
-            dict_nums[num] = index
             
         # 3. One-pass hash table: O(N)
         dict_nums = {}
