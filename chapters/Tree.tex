@@ -2490,6 +2490,38 @@ Hint:\\
     The optimal runtime complexity is O(height of BST).\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# Time: O(H+k)  Balanced tree: O(logN+k)  Completely unblanced tree: O(N+k)
+# Space:O(H+k)  Worst case: O(N+k)  Average case: O(logN+k)
+class Solution(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        s = []
+        p = root
+        cnt = 0
+        while s or p:
+            if p:
+                s.append(p)
+                p = p.left
+            else:
+                p = s[-1].right
+                cnt += 1
+                if cnt == k:
+                    return s[-1].val
+                s.pop()
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
@@ -2560,6 +2592,59 @@ Given a binary search tree and a node in it, find the in-order successor of that
 Note: If the given node has no in-order successor in the tree, return null.\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# Iteration
+class Solution(object):
+    def inorderSuccessor(self, root, p):
+        s = []
+        q = root
+        flag = 0
+        while s or q:
+            if q:
+                s.append(q)
+                q = q.left
+            else:
+                if s[-1].val == p.val:
+                    flag = 1
+                if flag == 1:
+                    return s[-1]
+                q = s[-1].right
+                q.pop()
+        return None
+        
+# Iteration with BST nature
+class Solution(object):
+    def inorderSuccessor(self, root, p):
+        res = None
+        while root:
+            if root.val > p.val:
+                res = root
+                root = root.left
+            else:
+                root = root.right
+        return res
+        
+# Recursion with BST nature
+class Solution(object):
+    def inorderSuccessor(self, root, p):
+        if not root: return None
+        if root.val <= p.val:
+            return self.inorderSuccessor(root.right, p)
+        else:
+            left = self.inorderSuccessor(root.left, p)
+            if not left:
+                return root
+            else: 
+                return left
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
@@ -2575,6 +2660,36 @@ public:
         return res;
     }
 };
+\end{lstlisting}
+
+\subsection{Inorder Successor in BST II (M)}
+Given a binary search tree and a node in it, find the in-order successor of that node in the BST.\\
+
+The successor of a node p is the node with the smallest key greater than p.val.\\
+
+You will have direct access to the node but not to the root of the tree. Each node will have a reference to its parent node.\\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def inorderSuccessor(self, root, parent):
+        if not node: return None
+        res = None
+        if node.right:
+            res = node.right
+            while res and res.left:
+                res = res.left
+        else:
+            res =node.parent
+            while res and res.val < node.val:
+                res = res.parent
+        return res
 \end{lstlisting}
 
 

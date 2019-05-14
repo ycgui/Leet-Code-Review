@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  12 MAY 2019 22:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  14 MAY 2019 00:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -3415,92 +3415,107 @@ Underfull \hbox (badness 10000) in paragraph at lines 2487--2491
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2529--2530
-
- []
-
 [250]
-Underfull \hbox (badness 10000) in paragraph at lines 2531--2532
+Underfull \hbox (badness 10000) in paragraph at lines 2561--2562
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2533--2535
+Underfull \hbox (badness 10000) in paragraph at lines 2563--2564
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2558--2559
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2560--2561
+Underfull \hbox (badness 10000) in paragraph at lines 2565--2567
 
  []
 
 [251]
-Underfull \hbox (badness 10000) in paragraph at lines 2582--2583
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2584--2585
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2586--2589
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 2590--2591
 
  []
 
-[252] [253]
-Underfull \hbox (badness 10000) in paragraph at lines 2682--2683
+
+Underfull \hbox (badness 10000) in paragraph at lines 2592--2593
+
+ []
+
+[252]
+Underfull \hbox (badness 10000) in paragraph at lines 2666--2667
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2703--2704
-
- []
-
-[254]
-Underfull \hbox (badness 10000) in paragraph at lines 2730--2731
+Underfull \hbox (badness 10000) in paragraph at lines 2668--2669
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2732--2735
+Underfull \hbox (badness 10000) in paragraph at lines 2670--2671
+
+ []
+
+[253]
+Underfull \hbox (badness 10000) in paragraph at lines 2697--2698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2759--2760
+Underfull \hbox (badness 10000) in paragraph at lines 2699--2700
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2761--2765
-
- []
-
-[255]
-Underfull \hbox (badness 10000) in paragraph at lines 2766--2768
+Underfull \hbox (badness 10000) in paragraph at lines 2701--2704
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2769--2776
+Underfull \hbox (badness 10000) in paragraph at lines 2705--2706
 
  []
 
-[256]) [257]
+[254] [255]
+Underfull \hbox (badness 10000) in paragraph at lines 2797--2798
+
+ []
+
+[256]
+Underfull \hbox (badness 10000) in paragraph at lines 2818--2819
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2845--2846
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2847--2850
+
+ []
+
+[257]
+Underfull \hbox (badness 10000) in paragraph at lines 2874--2875
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2876--2880
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2881--2883
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2884--2891
+
+ []
+
+[258]) [259]
 \openout2 = `chapters/Sorting.aux'.
 
  (./chapters/Sorting.tex
@@ -3525,7 +3540,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-[258
+[260
 
 
 
@@ -3544,7 +3559,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
-[259]
+[261]
 Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
@@ -3564,7 +3579,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 115--116
 
  []
 
-[260]
+[262]
 Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
@@ -3579,7 +3594,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
-[261]
+[263]
 Underfull \hbox (badness 10000) in paragraph at lines 161--162
 
  []
@@ -3604,17 +3619,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
-[262]
+[264]
 Underfull \hbox (badness 10000) in paragraph at lines 223--224
 
  []
 
-[263]
+[265]
 Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
 
-) [264]
+) [266]
 \openout2 = `chapters/BinarySearch.aux'.
 
  (./chapters/BinarySearch.tex
@@ -3634,7 +3649,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
 
-[265
+[267
 
 
 
@@ -3653,7 +3668,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--69
 
  []
 
-[266] [267]
+[268] [269]
 Underfull \hbox (badness 10000) in paragraph at lines 139--141
 
  []
@@ -3663,7 +3678,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--147
 
  []
 
-[268]
+[270]
 Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
@@ -3688,7 +3703,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--210
 
  []
 
-[269]
+[271]
 Underfull \hbox (badness 10000) in paragraph at lines 234--237
 
  []
@@ -3698,7 +3713,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 238--248
 
  []
 
-[270]
+[272]
 Underfull \hbox (badness 10000) in paragraph at lines 308--309
 
  []
@@ -3708,7 +3723,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 310--317
 
  []
 
-[271]
+[273]
 Underfull \hbox (badness 10000) in paragraph at lines 318--320
 
  []
@@ -3718,7 +3733,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 360--361
 
  []
 
-[272]
+[274]
 Underfull \hbox (badness 10000) in paragraph at lines 362--366
 
  []
@@ -3738,7 +3753,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 403--410
 
  []
 
-[273]
+[275]
 Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
@@ -3748,7 +3763,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 440--444
 
  []
 
-[274]
+[276]
 Underfull \hbox (badness 10000) in paragraph at lines 467--471
 
  []
@@ -3758,12 +3773,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 493--497
 
  []
 
-[275]
+[277]
 Underfull \hbox (badness 10000) in paragraph at lines 528--532
 
  []
 
-[276]
+[278]
 Underfull \hbox (badness 10000) in paragraph at lines 565--566
 
  []
@@ -3778,7 +3793,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 572--576
 
  []
 
-[277]) [278]
+[279]) [280]
 \openout2 = `chapters/DFSandBFS.aux'.
 
  (./chapters/DFSandBFS.tex
@@ -3788,7 +3803,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--17
 
  []
 
-[279
+[281
 
 
 
@@ -3802,12 +3817,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 97--98
 
  []
 
-[280]
+[282]
 Underfull \hbox (badness 10000) in paragraph at lines 99--101
 
  []
 
-[281]
+[283]
 Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
@@ -3817,7 +3832,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 155--161
 
  []
 
-[282]
+[284]
 Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
@@ -3827,12 +3842,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 218--222
 
  []
 
-[283]
+[285]
 Underfull \hbox (badness 10000) in paragraph at lines 253--262
 
  []
 
-[284]
+[286]
 Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
@@ -3842,7 +3857,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 289--290
 
  []
 
-[285]
+[287]
 Underfull \hbox (badness 10000) in paragraph at lines 335--336
 
  []
@@ -3857,7 +3872,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 341--342
 
  []
 
-[286]
+[288]
 Underfull \hbox (badness 10000) in paragraph at lines 395--396
 
  []
@@ -3872,12 +3887,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 401--402
 
  []
 
-[287]
+[289]
 Underfull \hbox (badness 10000) in paragraph at lines 458--459
 
  []
 
-[288]
+[290]
 Underfull \hbox (badness 10000) in paragraph at lines 460--463
 
  []
@@ -3887,7 +3902,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 464--467
 
  []
 
-[289]
+[291]
 Underfull \hbox (badness 10000) in paragraph at lines 516--517
 
  []
@@ -3907,7 +3922,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 531--532
 
  []
 
-[290]
+[292]
 Underfull \hbox (badness 10000) in paragraph at lines 589--590
 
  []
@@ -3922,7 +3937,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 593--597
 
  []
 
-[291]
+[293]
 Underfull \hbox (badness 10000) in paragraph at lines 598--602
 
  []
@@ -3957,7 +3972,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 657--658
 
  []
 
-[292] [293] [294]
+[294] [295] [296]
 Underfull \hbox (badness 10000) in paragraph at lines 754--758
 
  []
@@ -3977,7 +3992,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 767--772
 
  []
 
-[295]
+[297]
 Underfull \hbox (badness 10000) in paragraph at lines 798--799
 
  []
@@ -3992,7 +4007,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 806--811
 
  []
 
-[296]
+[298]
 Underfull \hbox (badness 10000) in paragraph at lines 853--854
 
  []
@@ -4007,7 +4022,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 862--868
 
  []
 
-[297]
+[299]
 Underfull \hbox (badness 10000) in paragraph at lines 902--903
 
  []
@@ -4032,7 +4047,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 917--921
 
  []
 
-[298]
+[300]
 Underfull \hbox (badness 10000) in paragraph at lines 922--926
 
  []
@@ -4052,7 +4067,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 934--935
 
  []
 
-[299]
+[301]
 Underfull \hbox (badness 10000) in paragraph at lines 978--985
 
  []
@@ -4062,7 +4077,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 986--989
 
  []
 
-[300]
+[302]
 Overfull \hbox (28.48566pt too wide) in paragraph at lines 1022--1030
 []\OT1/cmr/m/n/12 For ex-am-ple, Given words = ["oath","pea","eat","rain"] and 
 board = [ ['o','a','a','n'], ['e','t','a','e'],
@@ -4093,7 +4108,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1038--1039
 
  []
 
-[301]) [302]
+[303]) [304]
 \openout2 = `chapters/DP.aux'.
 
  (./chapters/DP.tex
@@ -4108,7 +4123,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-[303
+[305
 
 
 
@@ -4132,7 +4147,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--69
 
  []
 
-[304]
+[306]
 Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
@@ -4157,7 +4172,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--124
 
  []
 
-[305]
+[307]
 Underfull \hbox (badness 10000) in paragraph at lines 125--127
 
  []
@@ -4167,7 +4182,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
-[306]
+[308]
 Underfull \hbox (badness 10000) in paragraph at lines 170--173
 
  []
@@ -4187,7 +4202,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 210--211
 
  []
 
-[307]
+[309]
 Underfull \hbox (badness 10000) in paragraph at lines 229--234
 
  []
@@ -4202,7 +4217,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 237--239
 
  []
 
-[308]
+[310]
 Underfull \hbox (badness 10000) in paragraph at lines 296--297
 
  []
@@ -4212,7 +4227,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 298--301
 
  []
 
-[309]
+[311]
 Underfull \hbox (badness 10000) in paragraph at lines 334--335
 
  []
@@ -4227,7 +4242,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 340--342
 
  []
 
-[310]
+[312]
 Underfull \hbox (badness 10000) in paragraph at lines 368--369
 
  []
@@ -4242,7 +4257,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 394--395
 
  []
 
-[311]
+[313]
 Underfull \hbox (badness 10000) in paragraph at lines 419--420
 
  []
@@ -4257,7 +4272,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 423--425
 
  []
 
-[312]
+[314]
 Underfull \hbox (badness 10000) in paragraph at lines 448--449
 
  []
@@ -4272,7 +4287,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 484--485
 
  []
 
-[313]
+[315]
 Underfull \hbox (badness 10000) in paragraph at lines 486--487
 
  []
@@ -4282,7 +4297,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 523--524
 
  []
 
-[314]
+[316]
 Underfull \hbox (badness 10000) in paragraph at lines 525--526
 
  []
@@ -4297,7 +4312,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 548--549
 
  []
 
-[315]
+[317]
 Underfull \hbox (badness 10000) in paragraph at lines 576--577
 
  []
@@ -4312,7 +4327,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 605--606
 
  []
 
-[316]
+[318]
 Underfull \hbox (badness 10000) in paragraph at lines 607--608
 
  []
@@ -4327,7 +4342,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 640--641
 
  []
 
-[317]
+[319]
 Underfull \hbox (badness 10000) in paragraph at lines 642--644
 
  []
@@ -4352,17 +4367,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 673--675
 
  []
 
-[318]
+[320]
 Underfull \hbox (badness 10000) in paragraph at lines 730--731
 
  []
 
-[319]
+[321]
 Underfull \hbox (badness 10000) in paragraph at lines 755--756
 
  []
 
-[320]
+[322]
 Underfull \hbox (badness 10000) in paragraph at lines 777--778
 
  []
@@ -4382,12 +4397,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 815--816
 
  []
 
-[321]
+[323]
 Underfull \hbox (badness 10000) in paragraph at lines 823--826
 
  []
 
-[322]
+[324]
 Underfull \hbox (badness 10000) in paragraph at lines 899--900
 
  []
@@ -4397,7 +4412,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 913--917
 
  []
 
-[323]
+[325]
 Underfull \hbox (badness 10000) in paragraph at lines 949--950
 
  []
@@ -4412,7 +4427,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 960--962
 
  []
 
-[324]
+[326]
 Underfull \hbox (badness 10000) in paragraph at lines 981--982
 
  []
@@ -4422,7 +4437,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 983--984
 
  []
 
-[325]
+[327]
 Underfull \hbox (badness 10000) in paragraph at lines 1019--1020
 
  []
@@ -4437,7 +4452,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1028--1029
 
  []
 
-[326]
+[328]
 Underfull \hbox (badness 10000) in paragraph at lines 1083--1084
 
  []
@@ -4447,7 +4462,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1085--1086
 
  []
 
-[327]
+[329]
 Underfull \hbox (badness 10000) in paragraph at lines 1131--1132
 
  []
@@ -4467,7 +4482,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1137--1140
 
  []
 
-[328]
+[330]
 Underfull \hbox (badness 10000) in paragraph at lines 1173--1174
 
  []
@@ -4487,7 +4502,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1181--1186
 
  []
 
-[329]
+[331]
 Underfull \hbox (badness 10000) in paragraph at lines 1222--1223
 
  []
@@ -4507,7 +4522,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1230--1231
 
  []
 
-[330]
+[332]
 Underfull \hbox (badness 10000) in paragraph at lines 1279--1280
 
  []
@@ -4522,7 +4537,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1290--1298
 
  []
 
-[331]
+[333]
 Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 
  []
@@ -4532,7 +4547,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1335--1341
 
  []
 
-[332]
+[334]
 Underfull \hbox (badness 10000) in paragraph at lines 1368--1369
 
  []
@@ -4542,7 +4557,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1370--1376
 
  []
 
-[333]
+[335]
 Overfull \hbox (56.8006pt too wide) in paragraph at lines 1430--1430
 \OT1/cmr/bx/n/17.28 bets (The Cli-mate Cor-po-ra-tion phone screen 2016.9.22) 
  []
@@ -4552,12 +4567,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 1431--1432
 
  []
 
-[334]
+[336]
 Underfull \hbox (badness 10000) in paragraph at lines 1433--1437
 
  []
 
-) [335]
+) [337]
 \openout2 = `chapters/Graph.aux'.
 
  (./chapters/Graph.tex
@@ -4582,7 +4597,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--13
 
  []
 
-[336
+[338
 
 
 
@@ -4606,12 +4621,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
 
-[337]
+[339]
 Underfull \hbox (badness 10000) in paragraph at lines 117--118
 
  []
 
-[338]
+[340]
 Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
@@ -4626,12 +4641,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--163
 
  []
 
-[339]
+[341]
 Underfull \hbox (badness 10000) in paragraph at lines 164--168
 
  []
 
-[340]
+[342]
 Underfull \hbox (badness 10000) in paragraph at lines 227--228
 
  []
@@ -4646,7 +4661,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 233--235
 
  []
 
-[341]
+[343]
 Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
@@ -4671,7 +4686,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 282--285
 
  []
 
-[342]
+[344]
 Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
@@ -4681,7 +4696,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 327--331
 
  []
 
-[343]
+[345]
 Underfull \hbox (badness 10000) in paragraph at lines 332--335
 
  []
@@ -4691,7 +4706,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--340
 
  []
 
-) [344]
+) [346]
 \openout2 = `chapters/Detail.aux'.
 
  (./chapters/Detail.tex
@@ -4706,7 +4721,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-[345
+[347
 
 
 
@@ -4715,7 +4730,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
-[346]
+[348]
 Underfull \hbox (badness 10000) in paragraph at lines 106--109
 
  []
@@ -4725,17 +4740,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 110--116
 
  []
 
-[347]
+[349]
 Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
-[348]
+[350]
 Underfull \hbox (badness 10000) in paragraph at lines 171--176
 
  []
 
-[349]
+[351]
 Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
@@ -4755,12 +4770,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 224--227
 
  []
 
-[350]
+[352]
 Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
 
-[351]
+[353]
 Underfull \hbox (badness 10000) in paragraph at lines 289--293
 
  []
@@ -4775,7 +4790,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 300--301
 
  []
 
-[352]
+[354]
 Underfull \hbox (badness 10000) in paragraph at lines 361--362
 
  []
@@ -4785,7 +4800,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 363--365
 
  []
 
-[353]
+[355]
 Underfull \hbox (badness 10000) in paragraph at lines 406--407
 
  []
@@ -4805,7 +4820,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 417--421
 
  []
 
-[354]
+[356]
 Underfull \hbox (badness 10000) in paragraph at lines 422--426
 
  []
@@ -4845,12 +4860,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 455--457
 
  []
 
-[355]
+[357]
 Underfull \hbox (badness 10000) in paragraph at lines 511--512
 
  []
 
-[356]
+[358]
 Underfull \hbox (badness 10000) in paragraph at lines 513--516
 
  []
@@ -4890,12 +4905,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 541--542
 
  []
 
-[357]
+[359]
 Underfull \hbox (badness 10000) in paragraph at lines 590--594
 
  []
 
-[358]
+[360]
 Underfull \hbox (badness 10000) in paragraph at lines 595--598
 
  []
@@ -4935,7 +4950,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 617--619
 
  []
 
-[359]
+[361]
 Underfull \hbox (badness 10000) in paragraph at lines 665--670
 
  []
@@ -4955,7 +4970,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 677--679
 
  []
 
-[360]
+[362]
 Underfull \hbox (badness 10000) in paragraph at lines 680--682
 
  []
@@ -4980,7 +4995,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 693--696
 
  []
 
-[361]
+[363]
 Underfull \hbox (badness 10000) in paragraph at lines 759--763
 
  []
@@ -4990,7 +5005,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 764--767
 
  []
 
-[362]
+[364]
 Underfull \hbox (badness 10000) in paragraph at lines 768--770
 
  []
@@ -5025,7 +5040,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 786--788
 
  []
 
-[363]
+[365]
 Underfull \hbox (badness 10000) in paragraph at lines 835--840
 
  []
@@ -5045,7 +5060,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 848--850
 
  []
 
-[364]
+[366]
 Underfull \hbox (badness 10000) in paragraph at lines 851--853
 
  []
@@ -5065,7 +5080,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 860--862
 
  []
 
-[365]
+[367]
 Underfull \hbox (badness 10000) in paragraph at lines 909--910
 
  []
@@ -5080,7 +5095,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 916--917
 
  []
 
-[366]
+[368]
 Underfull \hbox (badness 10000) in paragraph at lines 947--951
 
  []
@@ -5090,7 +5105,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 952--953
 
  []
 
-[367]
+[369]
 Underfull \hbox (badness 10000) in paragraph at lines 988--989
 
  []
@@ -5100,7 +5115,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 990--996
 
  []
 
-[368]
+[370]
 Underfull \hbox (badness 10000) in paragraph at lines 1027--1028
 
  []
@@ -5110,7 +5125,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1029--1031
 
  []
 
-[369]
+[371]
 Underfull \hbox (badness 10000) in paragraph at lines 1095--1099
 
  []
@@ -5125,7 +5140,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1109--1112
 
  []
 
-[370] [371]) [372]
+[372] [373]) [374]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
  (./LeetCode.aux (./chapters/Math.aux)
@@ -5137,14 +5152,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 60.
 Package rerunfilecheck Info: File `LeetCode.out' has not changed.
-(rerunfilecheck)             Checksum: E71A17C8F5B8B622C8E788DA8E0AB498;28652.
+(rerunfilecheck)             Checksum: 867A01D1AEC7AB65B831232C18A2499C;28741.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 22170 strings out of 492649
- 338015 string characters out of 6129622
+ 22298 strings out of 492649
+ 340008 string characters out of 6129622
  297911 words of memory out of 5000000
- 13340 multiletter control sequences out of 15000+600000
+ 13363 multiletter control sequences out of 15000+600000
  10189 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,6n,60p,659b,1903s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -5156,10 +5171,10 @@ r/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
 ocal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
 cal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
 l/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on LeetCode.pdf (382 pages, 926418 bytes).
+Output written on LeetCode.pdf (384 pages, 931685 bytes).
 PDF statistics:
- 18048 PDF objects out of 18468 (max. 8388607)
- 17481 compressed objects within 175 object streams
- 12593 named destinations out of 12825 (max. 500000)
- 2993 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18186 PDF objects out of 18468 (max. 8388607)
+ 17615 compressed objects within 177 object streams
+ 12698 named destinations out of 12825 (max. 500000)
+ 3001 words of extra memory for PDF output out of 10000 (max. 10000000)
 

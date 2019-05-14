@@ -257,118 +257,119 @@
 \BOOKMARK [2][-]{subsection.7.4.5}{Kth Smallest Element in a BST \(M\)}{section.7.4}% 257
 \BOOKMARK [2][-]{subsection.7.4.6}{Verify Preorder Sequence in Binary Search Tree \(M\)}{section.7.4}% 258
 \BOOKMARK [2][-]{subsection.7.4.7}{Inorder Successor in BST \(M\)}{section.7.4}% 259
-\BOOKMARK [2][-]{subsection.7.4.8}{Largest BST Subtree \(M\)}{section.7.4}% 260
-\BOOKMARK [2][-]{subsection.7.4.9}{Unique Binary Search Trees \(M\)}{section.7.4}% 261
-\BOOKMARK [2][-]{subsection.7.4.10}{Unique Binary Search Trees II \(M\)}{section.7.4}% 262
-\BOOKMARK [2][-]{subsection.7.4.11}{Convert Sorted Array to Binary Search Tree \(M\)}{section.7.4}% 263
-\BOOKMARK [2][-]{subsection.7.4.12}{Convert Sorted List to Binary Search Tree \(M\)}{section.7.4}% 264
-\BOOKMARK [2][-]{subsection.7.4.13}{Closest Binary Search Tree Value \(E\)}{section.7.4}% 265
-\BOOKMARK [2][-]{subsection.7.4.14}{Closest Binary Search Tree Value II \(H\)}{section.7.4}% 266
-\BOOKMARK [0][-]{chapter.8}{Sorting}{}% 267
-\BOOKMARK [1][-]{section.8.1}{Largest Number \(M\)}{chapter.8}% 268
-\BOOKMARK [1][-]{section.8.2}{Sort Colors \(M\)}{chapter.8}% 269
-\BOOKMARK [1][-]{section.8.3}{Wiggle Sort \(M\)}{chapter.8}% 270
-\BOOKMARK [1][-]{section.8.4}{Wiggle Sort II \(M\)}{chapter.8}% 271
-\BOOKMARK [1][-]{section.8.5}{Wiggle Subsequence \(M\)}{chapter.8}% 272
-\BOOKMARK [1][-]{section.8.6}{Sort List \(M\)}{chapter.8}% 273
-\BOOKMARK [1][-]{section.8.7}{Insertion Sort List \(M\)}{chapter.8}% 274
-\BOOKMARK [0][-]{chapter.9}{Binary Search}{}% 275
-\BOOKMARK [1][-]{section.9.1}{First Bad Version \(E\)}{chapter.9}% 276
-\BOOKMARK [1][-]{section.9.2}{Find the Duplicate Number \(H\)}{chapter.9}% 277
-\BOOKMARK [1][-]{section.9.3}{Search for a Range \(M\)}{chapter.9}% 278
-\BOOKMARK [1][-]{section.9.4}{Search Insert Position \(M\)}{chapter.9}% 279
-\BOOKMARK [1][-]{section.9.5}{Find Peak Element \(M\)}{chapter.9}% 280
-\BOOKMARK [1][-]{section.9.6}{Search a 2D Matrix \(M\)}{chapter.9}% 281
-\BOOKMARK [1][-]{section.9.7}{Search a 2D Matrix II \(M\)}{chapter.9}% 282
-\BOOKMARK [1][-]{section.9.8}{Kth Smallest Element in a Sorted Matrix \(M\)}{chapter.9}% 283
-\BOOKMARK [1][-]{section.9.9}{Guess Number Higher or Lower \(E\)}{chapter.9}% 284
-\BOOKMARK [1][-]{section.9.10}{Guess Number Higher or Lower II \(M\)}{chapter.9}% 285
-\BOOKMARK [1][-]{section.9.11}{Find Minimum in Rotated Sorted Array \(M\)}{chapter.9}% 286
-\BOOKMARK [1][-]{section.9.12}{Find Minimum in Rotated Sorted Array II \(H\)}{chapter.9}% 287
-\BOOKMARK [1][-]{section.9.13}{Search in Rotated Sorted Array \(H\)}{chapter.9}% 288
-\BOOKMARK [1][-]{section.9.14}{Search in Rotated Sorted Array II \(M\)}{chapter.9}% 289
-\BOOKMARK [1][-]{section.9.15}{Median of Two Sorted Arrays \(H\)}{chapter.9}% 290
-\BOOKMARK [0][-]{chapter.10}{DFS and BFS}{}% 291
-\BOOKMARK [1][-]{section.10.1}{Subset \(M\)}{chapter.10}% 292
-\BOOKMARK [1][-]{section.10.2}{Subset II \(M\)}{chapter.10}% 293
-\BOOKMARK [1][-]{section.10.3}{Permutations \(M\)}{chapter.10}% 294
-\BOOKMARK [1][-]{section.10.4}{Permutations II \(M\)}{chapter.10}% 295
-\BOOKMARK [1][-]{section.10.5}{Next Permutation \(M\)}{chapter.10}% 296
-\BOOKMARK [1][-]{section.10.6}{Permutation Sequence \(M\)}{chapter.10}% 297
-\BOOKMARK [1][-]{section.10.7}{Combinations \(M\)}{chapter.10}% 298
-\BOOKMARK [1][-]{section.10.8}{Combination Sum \(M\)}{chapter.10}% 299
-\BOOKMARK [1][-]{section.10.9}{Combination Sum II \(M\)}{chapter.10}% 300
-\BOOKMARK [1][-]{section.10.10}{Combination Sum III \(M\)}{chapter.10}% 301
-\BOOKMARK [1][-]{section.10.11}{Combination Sum IV \(M\)}{chapter.10}% 302
-\BOOKMARK [1][-]{section.10.12}{Factor Combinations \(M\)}{chapter.10}% 303
-\BOOKMARK [1][-]{section.10.13}{Letter Combinations of a Phone Number \(M\)}{chapter.10}% 304
-\BOOKMARK [1][-]{section.10.14}{Walls and Gates \(M\)}{chapter.10}% 305
-\BOOKMARK [1][-]{section.10.15}{Surrounded Regions \(M\)}{chapter.10}% 306
-\BOOKMARK [1][-]{section.10.16}{Number of Islands \(M\)}{chapter.10}% 307
-\BOOKMARK [1][-]{section.10.17}{Number of Islands II \(H\)}{chapter.10}% 308
-\BOOKMARK [1][-]{section.10.18}{Word Search \(M\)}{chapter.10}% 309
-\BOOKMARK [1][-]{section.10.19}{Word Search II \(H\)}{chapter.10}% 310
-\BOOKMARK [0][-]{chapter.11}{Dynamic Programming}{}% 311
-\BOOKMARK [1][-]{section.11.1}{Gas Station \(M\)}{chapter.11}% 312
-\BOOKMARK [1][-]{section.11.2}{Combination Sum IV \(M\)}{chapter.11}% 313
-\BOOKMARK [1][-]{section.11.3}{Perfect Squares \(M\)}{chapter.11}% 314
-\BOOKMARK [1][-]{section.11.4}{Coin Change \(M\)}{chapter.11}% 315
-\BOOKMARK [1][-]{section.11.5}{Largest Divisible Subset \(M\)}{chapter.11}% 316
-\BOOKMARK [1][-]{section.11.6}{Climbing Stairs \(E\)}{chapter.11}% 317
-\BOOKMARK [1][-]{section.11.7}{Decode Ways \(M\)}{chapter.11}% 318
-\BOOKMARK [1][-]{section.11.8}{Jump Game \(M\)}{chapter.11}% 319
-\BOOKMARK [1][-]{section.11.9}{Jump Game II \(M\)}{chapter.11}% 320
-\BOOKMARK [1][-]{section.11.10}{Best Time to Buy and Sell Stock \(E\)}{chapter.11}% 321
-\BOOKMARK [1][-]{section.11.11}{Best Time to Buy and Sell Stock II \(M\)}{chapter.11}% 322
-\BOOKMARK [1][-]{section.11.12}{Best Time to Buy and Sell Stock with Cooldown \(M\)}{chapter.11}% 323
-\BOOKMARK [1][-]{section.11.13}{Best Time to Buy and Sell Stock III \(H\)}{chapter.11}% 324
-\BOOKMARK [1][-]{section.11.14}{Best Time to Buy and Sell Stock IV \(H\)}{chapter.11}% 325
-\BOOKMARK [1][-]{section.11.15}{House Robber \(E\)}{chapter.11}% 326
-\BOOKMARK [1][-]{section.11.16}{House Robber II \(M\)}{chapter.11}% 327
-\BOOKMARK [1][-]{section.11.17}{House Robber III \(M\)}{chapter.11}% 328
-\BOOKMARK [1][-]{section.11.18}{Paint Fence \(E\)}{chapter.11}% 329
-\BOOKMARK [1][-]{section.11.19}{Paint House \(M\)}{chapter.11}% 330
-\BOOKMARK [1][-]{section.11.20}{Paint House II \(H\)}{chapter.11}% 331
-\BOOKMARK [1][-]{section.11.21}{Pascal's Triangle \(E\)}{chapter.11}% 332
-\BOOKMARK [1][-]{section.11.22}{Pascal's Triangle II \(E\)}{chapter.11}% 333
-\BOOKMARK [1][-]{section.11.23}{Range Sum Query - Immutable \(E\)}{chapter.11}% 334
-\BOOKMARK [1][-]{section.11.24}{Range Sum Query - Mutable \(M\)}{chapter.11}% 335
-\BOOKMARK [1][-]{section.11.25}{Range Sum Query 2D - Immutable \(M\)}{chapter.11}% 336
-\BOOKMARK [1][-]{section.11.26}{Triangle \(M\)}{chapter.11}% 337
-\BOOKMARK [1][-]{section.11.27}{Unique Paths \(M\)}{chapter.11}% 338
-\BOOKMARK [1][-]{section.11.28}{Unique Paths II \(M\)}{chapter.11}% 339
-\BOOKMARK [1][-]{section.11.29}{Minimum Path Sum \(M\)}{chapter.11}% 340
-\BOOKMARK [1][-]{section.11.30}{Dungeon Game \(H\)}{chapter.11}% 341
-\BOOKMARK [1][-]{section.11.31}{Increasing Triplet Subsequence \(M\)}{chapter.11}% 342
-\BOOKMARK [1][-]{section.11.32}{Longest Increasing Subsequence \(M\)}{chapter.11}% 343
-\BOOKMARK [1][-]{section.11.33}{Longest Increasing Path in a Matrix \(M\)}{chapter.11}% 344
-\BOOKMARK [1][-]{section.11.34}{Maximal Square \(M\)}{chapter.11}% 345
-\BOOKMARK [1][-]{section.11.35}{Maximal Rectangle \(H\)}{chapter.11}% 346
-\BOOKMARK [1][-]{section.11.36}{Number of ways for mapping integers to alphabets \(The Climate Corporation phone screen 2016.9.22\)}{chapter.11}% 347
-\BOOKMARK [0][-]{chapter.12}{Graph}{}% 348
-\BOOKMARK [1][-]{section.12.1}{Number of Connected Components in an Undirected Graph \(M\)}{chapter.12}% 349
-\BOOKMARK [1][-]{section.12.2}{Graph Valid Tree \(M\)}{chapter.12}% 350
-\BOOKMARK [1][-]{section.12.3}{Clone Graph \(M\)}{chapter.12}% 351
-\BOOKMARK [1][-]{section.12.4}{Course Schedule \(M\)}{chapter.12}% 352
-\BOOKMARK [1][-]{section.12.5}{Course Schedule II \(M\)}{chapter.12}% 353
-\BOOKMARK [1][-]{section.12.6}{Minimum Height Trees \(M\)}{chapter.12}% 354
-\BOOKMARK [1][-]{section.12.7}{Reconstruct Itinerary \(M\)}{chapter.12}% 355
-\BOOKMARK [0][-]{chapter.13}{Design and Implementation}{}% 356
-\BOOKMARK [1][-]{section.13.1}{Valid Sudoku \(E\)}{chapter.13}% 357
-\BOOKMARK [1][-]{section.13.2}{Sudoku Solver \(H\)}{chapter.13}% 358
-\BOOKMARK [1][-]{section.13.3}{Boom Enemy \(M\)}{chapter.13}% 359
-\BOOKMARK [1][-]{section.13.4}{Android Unlock Patterns \(M\)}{chapter.13}% 360
-\BOOKMARK [1][-]{section.13.5}{Game of Life \(M\)}{chapter.13}% 361
-\BOOKMARK [1][-]{section.13.6}{Peeking Iterator \(M\)}{chapter.13}% 362
-\BOOKMARK [1][-]{section.13.7}{LRU Cache \(H\)}{chapter.13}% 363
-\BOOKMARK [1][-]{section.13.8}{Design Tic-Tac-Toe \(M\)}{chapter.13}% 364
-\BOOKMARK [1][-]{section.13.9}{Design Snake Game \(M\)}{chapter.13}% 365
-\BOOKMARK [1][-]{section.13.10}{Design Phone Directory \(M\)}{chapter.13}% 366
-\BOOKMARK [1][-]{section.13.11}{Design Twitter \(M\)}{chapter.13}% 367
-\BOOKMARK [1][-]{section.13.12}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.13}% 368
-\BOOKMARK [1][-]{section.13.13}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.13}% 369
-\BOOKMARK [1][-]{section.13.14}{Basic Calculator \(H\)}{chapter.13}% 370
-\BOOKMARK [1][-]{section.13.15}{Basic Calculator II \(M\)}{chapter.13}% 371
-\BOOKMARK [1][-]{section.13.16}{Expression Add Operators \(H\)}{chapter.13}% 372
-\BOOKMARK [1][-]{section.13.17}{Implement Trie \(Prefix Tree\) \(M\)}{chapter.13}% 373
-\BOOKMARK [1][-]{section.13.18}{Add and Search Word - Data structure design \(M\)}{chapter.13}% 374
+\BOOKMARK [2][-]{subsection.7.4.8}{Inorder Successor in BST II \(M\)}{section.7.4}% 260
+\BOOKMARK [2][-]{subsection.7.4.9}{Largest BST Subtree \(M\)}{section.7.4}% 261
+\BOOKMARK [2][-]{subsection.7.4.10}{Unique Binary Search Trees \(M\)}{section.7.4}% 262
+\BOOKMARK [2][-]{subsection.7.4.11}{Unique Binary Search Trees II \(M\)}{section.7.4}% 263
+\BOOKMARK [2][-]{subsection.7.4.12}{Convert Sorted Array to Binary Search Tree \(M\)}{section.7.4}% 264
+\BOOKMARK [2][-]{subsection.7.4.13}{Convert Sorted List to Binary Search Tree \(M\)}{section.7.4}% 265
+\BOOKMARK [2][-]{subsection.7.4.14}{Closest Binary Search Tree Value \(E\)}{section.7.4}% 266
+\BOOKMARK [2][-]{subsection.7.4.15}{Closest Binary Search Tree Value II \(H\)}{section.7.4}% 267
+\BOOKMARK [0][-]{chapter.8}{Sorting}{}% 268
+\BOOKMARK [1][-]{section.8.1}{Largest Number \(M\)}{chapter.8}% 269
+\BOOKMARK [1][-]{section.8.2}{Sort Colors \(M\)}{chapter.8}% 270
+\BOOKMARK [1][-]{section.8.3}{Wiggle Sort \(M\)}{chapter.8}% 271
+\BOOKMARK [1][-]{section.8.4}{Wiggle Sort II \(M\)}{chapter.8}% 272
+\BOOKMARK [1][-]{section.8.5}{Wiggle Subsequence \(M\)}{chapter.8}% 273
+\BOOKMARK [1][-]{section.8.6}{Sort List \(M\)}{chapter.8}% 274
+\BOOKMARK [1][-]{section.8.7}{Insertion Sort List \(M\)}{chapter.8}% 275
+\BOOKMARK [0][-]{chapter.9}{Binary Search}{}% 276
+\BOOKMARK [1][-]{section.9.1}{First Bad Version \(E\)}{chapter.9}% 277
+\BOOKMARK [1][-]{section.9.2}{Find the Duplicate Number \(H\)}{chapter.9}% 278
+\BOOKMARK [1][-]{section.9.3}{Search for a Range \(M\)}{chapter.9}% 279
+\BOOKMARK [1][-]{section.9.4}{Search Insert Position \(M\)}{chapter.9}% 280
+\BOOKMARK [1][-]{section.9.5}{Find Peak Element \(M\)}{chapter.9}% 281
+\BOOKMARK [1][-]{section.9.6}{Search a 2D Matrix \(M\)}{chapter.9}% 282
+\BOOKMARK [1][-]{section.9.7}{Search a 2D Matrix II \(M\)}{chapter.9}% 283
+\BOOKMARK [1][-]{section.9.8}{Kth Smallest Element in a Sorted Matrix \(M\)}{chapter.9}% 284
+\BOOKMARK [1][-]{section.9.9}{Guess Number Higher or Lower \(E\)}{chapter.9}% 285
+\BOOKMARK [1][-]{section.9.10}{Guess Number Higher or Lower II \(M\)}{chapter.9}% 286
+\BOOKMARK [1][-]{section.9.11}{Find Minimum in Rotated Sorted Array \(M\)}{chapter.9}% 287
+\BOOKMARK [1][-]{section.9.12}{Find Minimum in Rotated Sorted Array II \(H\)}{chapter.9}% 288
+\BOOKMARK [1][-]{section.9.13}{Search in Rotated Sorted Array \(H\)}{chapter.9}% 289
+\BOOKMARK [1][-]{section.9.14}{Search in Rotated Sorted Array II \(M\)}{chapter.9}% 290
+\BOOKMARK [1][-]{section.9.15}{Median of Two Sorted Arrays \(H\)}{chapter.9}% 291
+\BOOKMARK [0][-]{chapter.10}{DFS and BFS}{}% 292
+\BOOKMARK [1][-]{section.10.1}{Subset \(M\)}{chapter.10}% 293
+\BOOKMARK [1][-]{section.10.2}{Subset II \(M\)}{chapter.10}% 294
+\BOOKMARK [1][-]{section.10.3}{Permutations \(M\)}{chapter.10}% 295
+\BOOKMARK [1][-]{section.10.4}{Permutations II \(M\)}{chapter.10}% 296
+\BOOKMARK [1][-]{section.10.5}{Next Permutation \(M\)}{chapter.10}% 297
+\BOOKMARK [1][-]{section.10.6}{Permutation Sequence \(M\)}{chapter.10}% 298
+\BOOKMARK [1][-]{section.10.7}{Combinations \(M\)}{chapter.10}% 299
+\BOOKMARK [1][-]{section.10.8}{Combination Sum \(M\)}{chapter.10}% 300
+\BOOKMARK [1][-]{section.10.9}{Combination Sum II \(M\)}{chapter.10}% 301
+\BOOKMARK [1][-]{section.10.10}{Combination Sum III \(M\)}{chapter.10}% 302
+\BOOKMARK [1][-]{section.10.11}{Combination Sum IV \(M\)}{chapter.10}% 303
+\BOOKMARK [1][-]{section.10.12}{Factor Combinations \(M\)}{chapter.10}% 304
+\BOOKMARK [1][-]{section.10.13}{Letter Combinations of a Phone Number \(M\)}{chapter.10}% 305
+\BOOKMARK [1][-]{section.10.14}{Walls and Gates \(M\)}{chapter.10}% 306
+\BOOKMARK [1][-]{section.10.15}{Surrounded Regions \(M\)}{chapter.10}% 307
+\BOOKMARK [1][-]{section.10.16}{Number of Islands \(M\)}{chapter.10}% 308
+\BOOKMARK [1][-]{section.10.17}{Number of Islands II \(H\)}{chapter.10}% 309
+\BOOKMARK [1][-]{section.10.18}{Word Search \(M\)}{chapter.10}% 310
+\BOOKMARK [1][-]{section.10.19}{Word Search II \(H\)}{chapter.10}% 311
+\BOOKMARK [0][-]{chapter.11}{Dynamic Programming}{}% 312
+\BOOKMARK [1][-]{section.11.1}{Gas Station \(M\)}{chapter.11}% 313
+\BOOKMARK [1][-]{section.11.2}{Combination Sum IV \(M\)}{chapter.11}% 314
+\BOOKMARK [1][-]{section.11.3}{Perfect Squares \(M\)}{chapter.11}% 315
+\BOOKMARK [1][-]{section.11.4}{Coin Change \(M\)}{chapter.11}% 316
+\BOOKMARK [1][-]{section.11.5}{Largest Divisible Subset \(M\)}{chapter.11}% 317
+\BOOKMARK [1][-]{section.11.6}{Climbing Stairs \(E\)}{chapter.11}% 318
+\BOOKMARK [1][-]{section.11.7}{Decode Ways \(M\)}{chapter.11}% 319
+\BOOKMARK [1][-]{section.11.8}{Jump Game \(M\)}{chapter.11}% 320
+\BOOKMARK [1][-]{section.11.9}{Jump Game II \(M\)}{chapter.11}% 321
+\BOOKMARK [1][-]{section.11.10}{Best Time to Buy and Sell Stock \(E\)}{chapter.11}% 322
+\BOOKMARK [1][-]{section.11.11}{Best Time to Buy and Sell Stock II \(M\)}{chapter.11}% 323
+\BOOKMARK [1][-]{section.11.12}{Best Time to Buy and Sell Stock with Cooldown \(M\)}{chapter.11}% 324
+\BOOKMARK [1][-]{section.11.13}{Best Time to Buy and Sell Stock III \(H\)}{chapter.11}% 325
+\BOOKMARK [1][-]{section.11.14}{Best Time to Buy and Sell Stock IV \(H\)}{chapter.11}% 326
+\BOOKMARK [1][-]{section.11.15}{House Robber \(E\)}{chapter.11}% 327
+\BOOKMARK [1][-]{section.11.16}{House Robber II \(M\)}{chapter.11}% 328
+\BOOKMARK [1][-]{section.11.17}{House Robber III \(M\)}{chapter.11}% 329
+\BOOKMARK [1][-]{section.11.18}{Paint Fence \(E\)}{chapter.11}% 330
+\BOOKMARK [1][-]{section.11.19}{Paint House \(M\)}{chapter.11}% 331
+\BOOKMARK [1][-]{section.11.20}{Paint House II \(H\)}{chapter.11}% 332
+\BOOKMARK [1][-]{section.11.21}{Pascal's Triangle \(E\)}{chapter.11}% 333
+\BOOKMARK [1][-]{section.11.22}{Pascal's Triangle II \(E\)}{chapter.11}% 334
+\BOOKMARK [1][-]{section.11.23}{Range Sum Query - Immutable \(E\)}{chapter.11}% 335
+\BOOKMARK [1][-]{section.11.24}{Range Sum Query - Mutable \(M\)}{chapter.11}% 336
+\BOOKMARK [1][-]{section.11.25}{Range Sum Query 2D - Immutable \(M\)}{chapter.11}% 337
+\BOOKMARK [1][-]{section.11.26}{Triangle \(M\)}{chapter.11}% 338
+\BOOKMARK [1][-]{section.11.27}{Unique Paths \(M\)}{chapter.11}% 339
+\BOOKMARK [1][-]{section.11.28}{Unique Paths II \(M\)}{chapter.11}% 340
+\BOOKMARK [1][-]{section.11.29}{Minimum Path Sum \(M\)}{chapter.11}% 341
+\BOOKMARK [1][-]{section.11.30}{Dungeon Game \(H\)}{chapter.11}% 342
+\BOOKMARK [1][-]{section.11.31}{Increasing Triplet Subsequence \(M\)}{chapter.11}% 343
+\BOOKMARK [1][-]{section.11.32}{Longest Increasing Subsequence \(M\)}{chapter.11}% 344
+\BOOKMARK [1][-]{section.11.33}{Longest Increasing Path in a Matrix \(M\)}{chapter.11}% 345
+\BOOKMARK [1][-]{section.11.34}{Maximal Square \(M\)}{chapter.11}% 346
+\BOOKMARK [1][-]{section.11.35}{Maximal Rectangle \(H\)}{chapter.11}% 347
+\BOOKMARK [1][-]{section.11.36}{Number of ways for mapping integers to alphabets \(The Climate Corporation phone screen 2016.9.22\)}{chapter.11}% 348
+\BOOKMARK [0][-]{chapter.12}{Graph}{}% 349
+\BOOKMARK [1][-]{section.12.1}{Number of Connected Components in an Undirected Graph \(M\)}{chapter.12}% 350
+\BOOKMARK [1][-]{section.12.2}{Graph Valid Tree \(M\)}{chapter.12}% 351
+\BOOKMARK [1][-]{section.12.3}{Clone Graph \(M\)}{chapter.12}% 352
+\BOOKMARK [1][-]{section.12.4}{Course Schedule \(M\)}{chapter.12}% 353
+\BOOKMARK [1][-]{section.12.5}{Course Schedule II \(M\)}{chapter.12}% 354
+\BOOKMARK [1][-]{section.12.6}{Minimum Height Trees \(M\)}{chapter.12}% 355
+\BOOKMARK [1][-]{section.12.7}{Reconstruct Itinerary \(M\)}{chapter.12}% 356
+\BOOKMARK [0][-]{chapter.13}{Design and Implementation}{}% 357
+\BOOKMARK [1][-]{section.13.1}{Valid Sudoku \(E\)}{chapter.13}% 358
+\BOOKMARK [1][-]{section.13.2}{Sudoku Solver \(H\)}{chapter.13}% 359
+\BOOKMARK [1][-]{section.13.3}{Boom Enemy \(M\)}{chapter.13}% 360
+\BOOKMARK [1][-]{section.13.4}{Android Unlock Patterns \(M\)}{chapter.13}% 361
+\BOOKMARK [1][-]{section.13.5}{Game of Life \(M\)}{chapter.13}% 362
+\BOOKMARK [1][-]{section.13.6}{Peeking Iterator \(M\)}{chapter.13}% 363
+\BOOKMARK [1][-]{section.13.7}{LRU Cache \(H\)}{chapter.13}% 364
+\BOOKMARK [1][-]{section.13.8}{Design Tic-Tac-Toe \(M\)}{chapter.13}% 365
+\BOOKMARK [1][-]{section.13.9}{Design Snake Game \(M\)}{chapter.13}% 366
+\BOOKMARK [1][-]{section.13.10}{Design Phone Directory \(M\)}{chapter.13}% 367
+\BOOKMARK [1][-]{section.13.11}{Design Twitter \(M\)}{chapter.13}% 368
+\BOOKMARK [1][-]{section.13.12}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.13}% 369
+\BOOKMARK [1][-]{section.13.13}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.13}% 370
+\BOOKMARK [1][-]{section.13.14}{Basic Calculator \(H\)}{chapter.13}% 371
+\BOOKMARK [1][-]{section.13.15}{Basic Calculator II \(M\)}{chapter.13}% 372
+\BOOKMARK [1][-]{section.13.16}{Expression Add Operators \(H\)}{chapter.13}% 373
+\BOOKMARK [1][-]{section.13.17}{Implement Trie \(Prefix Tree\) \(M\)}{chapter.13}% 374
+\BOOKMARK [1][-]{section.13.18}{Add and Search Word - Data structure design \(M\)}{chapter.13}% 375
