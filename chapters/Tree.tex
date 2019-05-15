@@ -2705,6 +2705,32 @@ The return value is the subtree's size, which is 3.\\
 Hint: You can recursively use algorithm similar to 98. Validate Binary Search Tree at each node of the tree, which will result in O(nlogn) time complexity.\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def largestBSTSubtree(self, root):
+        if not root: return 0
+        if isValid(root, float('-inf'), float('inf')):
+            return count(root)
+        return max(self.largestBSTSubtree(root.left), \
+                   self.largestBSTSubtree(root.right))
+    def isValid(self, node, minval, maxval):
+        if not node: return True
+        if node.val <= minval or node.val >= maxval:
+            return False
+        return self.isValid(node.left, minval, node.val) and \
+               self.isValid(node.right, node.val, maxval)
+    def count(self, node):
+        if not root: return 0
+        return self.count(node.left) + self.count(node.right) + 1
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int largestBSTSubtree(TreeNode* root) {
