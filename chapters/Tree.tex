@@ -6,6 +6,42 @@ Given preorder and inorder traversal of a tree, construct the binary tree.\\
 Note: You may assume that duplicates do not exist in the tree. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        p_left, i_left = 0, 0
+        p_right, i_right = len(preorder) - 1, len(inorder) - 1
+        return self.construct(preorder, p_left, p_right, \
+                              inorder, i_left, i_right)
+    def construct(self, preorder, p_left, p_right, inorder, i_left, i_right):
+        if p_left > p_right or i_left > i_right:
+            return None
+        # find the root node
+        for i in range(i_left, i_right+1):
+            if preorder[p_left] == inorder[i]: break
+        node = TreeNode(preorder[p_left])
+        # i-i_left is the distance between the root node index i 
+        # and the left index in inorder traversal list
+        node.left = self.construct(preorder, p_left+1, p_left+(i-i_left), \
+                                   inorder, i_left, i-1)
+        node.right = self.construct(preorder, p_left+(i-i_left)+1, p_right, \
+                                   inorder, i+1, i_right)
+        return node
+\end{lstlisting}
+           
+
+\begin{lstlisting}
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -35,6 +71,41 @@ Given inorder and postorder traversal of a tree, construct the binary tree. \\
 Note: You may assume that duplicates do not exist in the tree. \\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def buildTree(self, inorder, postorder):
+        """
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        p_left, i_left = 0, 0
+        p_right, i_right = len(postorder) - 1, len(inorder) - 1
+        return self.construct(postorder, p_left, p_right, \
+                              inorder, i_left, i_right)
+    def construct(self, postorder, p_left, p_right, inorder, i_left, i_right):
+        if p_left > p_right or i_left > i_right:
+            return None
+        # find the root node
+        for i in range(i_left, i_right+1):
+            if postorder[p_right] == inorder[i]: break
+        node = TreeNode(postorder[p_right])
+        # i-i_left is the distance between the root node index i 
+        # and the left index in inorder traversal list
+        node.left = self.construct(postorder, p_left, p_left+(i-i_left)-1, \
+                                   inorder, i_left, i-1)
+        node.right = self.construct(postorder, p_left+(i-i_left), p_right-1, \
+                                   inorder, i+1, i_right)
+        return node
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
@@ -57,6 +128,63 @@ public:
 };
 \end{lstlisting}
 
+\subsection{Construct Binary Tree from Preorder and Postorder Traversal (M)}
+Return any binary tree that matches the given preorder and postorder traversals.\\
+
+Values in the traversals pre and post are distinct positive integers.\\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def constructFromPrePost(self, pre, post):
+        if not pre: return None
+        root = TreeNode(pre[0])
+        if len(pre) == 1: return root
+
+        L = post.index(pre[1]) + 1
+        root.left = self.constructFromPrePost(pre[1:L+1], post[:L])
+        root.right = self.constructFromPrePost(pre[L+1:], post[L:-1])
+        return root
+\end{lstlisting}
+
+\subsection{Construct Binary Search Tree from Preorder Traversal (M)}
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def bstFromPreorder(self, preorder):
+        """
+        :type preorder: List[int]
+        :rtype: TreeNode
+        """
+        start, end = 0, len(preorder)-1
+        return self.construct(preorder, start, end)
+    def construct(self, preorder, start, end):
+        if not preorder or start > end: return None
+        node = TreeNode(preorder[start])
+        if start == end: return node
+        for i in range(start, end+1):
+            # if the right subtree exists, the right root index is i
+            if preorder[i] > preorder[start]: 
+                node.left = self.construct(preorder, start+1, i-1)
+                node.right = self.construct(preorder, i, end)
+                return node
+        # no right subtree
+        node.left = self.construct(preorder, start+1, end)
+        return node
+\end{lstlisting}
 
 \subsection{Serialize and Deserialize Binary Tree (H)}
 Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\\
@@ -64,6 +192,60 @@ Serialization is the process of converting a data structure or object into a seq
 Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\\
 
 Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless. \\
+
+\begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+import json
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        arr = self.preorder(root, [])
+        return json.dumps(arr)
+    
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        tree = json.loads(data)
+        if not tree: return None
+        return self.construct(tree)
+        
+    def preorder(self, root, arr):
+        if not root: 
+            arr.append(None)
+            return
+        arr.append(root.val)
+        self.preorder(root.left, arr)
+        self.preorder(root.right, arr)
+        return arr
+    
+    def construct(self, tree_list):
+        val = tree_list.pop(0)
+        if val is None: return
+        else:
+            root = TreeNode(val)
+            root.left = self.construct(tree_list)
+            root.right = self.construct(tree_list)
+            return root
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
+\end{lstlisting}
+
 
 \begin{lstlisting}
 /**
@@ -163,6 +345,23 @@ public:
 // codec.deserialize(codec.serialize(root));
 \end{lstlisting}
 
+\subsection{Serialize and Deserialize BST (M)}
+Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\\
+
+Design an algorithm to serialize and deserialize a binary search tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary search tree can be serialized to a string and this string can be deserialized to the original tree structure.\\
+
+The encoded string should be as compact as possible.\\
+
+Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.\\
+
+Solution is the same as "Serialize and Deserialize Binary Tree". 
+
+\subsection{Serialize and Deserialize N-ary Tree (H)}
+Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\\
+
+Design an algorithm to serialize and deserialize an N-ary tree. An N-ary tree is a rooted tree in which each node has no more than N children. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that an N-ary tree can be serialized to a string and this string can be deserialized to the original tree structure.\\
+
+Solution is similar to "Serialize and Deserialize Binary Tree" by using for loop to apply recursion to each child node.
 
 \subsection{Verify Preorder Serialization of a Binary Tree (M)}
 One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as \#, where \# represents a null node. \\
@@ -2765,6 +2964,21 @@ public:
 Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
 
 \begin{lstlisting}
+class Solution(object):    
+    def numTrees(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [0] * (n+1)
+        dp[0], dp[1] = 1, 1
+        for i in range(2, n+1):
+            for j in range(0, i):
+                dp[i] += dp[j] * dp[i-j-1]
+        return dp[n]
+\end{lstlisting}
+
+\begin{lstlisting}
 // Catalan number
 // dp[2] = dp[0] * dp[1] + dp[1] * dp[0];
 // dp[3] = dp[0] * dp[2] + dp[1] * dp[1] + dp[2] * dp[0];
@@ -2823,6 +3037,33 @@ public:
 Given an array where elements are sorted in ascending order, convert it to a height balanced BST.\\
 
 \begin{lstlisting}
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        if not nums: return None
+        start = 0
+        end = len(nums) - 1
+        return self.convert(nums, start, end)
+    def convert(self, nums, start, end):
+        if start > end: return None
+        mid = start + (end - start) // 2
+        node = TreeNode(nums[mid])
+        node.left = self.convert(nums, start, mid-1)
+        node.right = self.convert(nums, mid+1, end)
+        return node
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     TreeNode *sortedArrayToBST(vector<int> &nums) {
@@ -2844,6 +3085,41 @@ public:
 Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.\\
 
 \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def sortedListToBST(self, head):
+        """
+        :type head: ListNode
+        :rtype: TreeNode
+        """
+        if not head: return None
+        return self.convert(head, None)
+    def convert(self, head, tail):
+        if head == tail: return None
+        slow, fast = head, head
+        while fast != tail and fast.next != tail:
+            slow = slow.next
+            fast = fast.next.next
+        node = TreeNode(slow.val)
+        node.left = self.convert(head, slow)
+        node.right = self.convert(slow.next, tail)
+        return node
+\end{lstlisting}
+        
+
+\begin{lstlisting}
 class Solution {
 public:
     TreeNode *sortedListToBST(ListNode *head) {
@@ -2862,6 +3138,38 @@ public:
         if (head != mid) root->left = sortedListToBST(head);
         root->right = sortedListToBST(right);
         return root;
+    }
+};
+\end{lstlisting}
+
+	
+\subsection{Convert Binary Search Tree to Sorted Doubly Linked List (M)}
+
+Convert a BST to a sorted circular doubly-linked list in-place. Think of the left and right pointers as synonymous to the previous and next pointers in a doubly-linked list.
+
+\begin{lstlisting}
+class Solution {
+public:
+    Node* treeToDoublyList(Node* root) {
+        if (!root) return NULL;
+        Node *head = NULL, *pre = NULL;
+        inorder(root, pre, head);
+        pre->right = head;
+        head->left = pre;
+        return head;
+    }
+    void inorder(Node* node, Node*& pre, Node*& head) {
+        if (!node) return;
+        inorder(node->left, pre, head);
+        if (!head) {
+            head = node;
+            pre = node;
+        } else {
+            pre->right = node;
+            node->left = pre;
+            pre = node;
+        }
+        inorder(node->right, pre, head);
     }
 };
 \end{lstlisting}

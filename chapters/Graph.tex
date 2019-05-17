@@ -113,8 +113,71 @@ public:
 \end{lstlisting}
 
 
+\section{Copy List with Random Pointer (M)}
+A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.\\
+
+Return a deep copy of the list.\\
+
+\begin{lstlisting}
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, next, random):
+        self.val = val
+        self.next = next
+        self.random = random
+"""
+class Solution(object):
+    def copyRandomList(self, head):
+        """
+        :type head: Node
+        :rtype: Node
+        """
+        list_dict = {}
+        return self.helper(head, list_dict)
+    def helper(self, node, list_dict):
+        if not node: return None
+        # if the random node points to a node that is already in the dict,
+        # then just return the node as the random node
+        if node in list_dict: 
+            return list_dict[node]
+        new_node = Node(node.val, None, None)
+        list_dict[node] = new_node
+        new_node.next = self.helper(node.next, list_dict)
+        new_node.random = self.helper(node.random, list_dict)
+        return new_node
+\end{lstlisting}
+
+
 \section{Clone Graph (M)}
 Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors. \\
+
+\begin{lstlisting}
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, neighbors):
+        self.val = val
+        self.neighbors = neighbors
+"""
+class Solution(object):
+    def cloneGraph(self, node):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        node_dict = {}
+        return self.helper(node, node_dict)
+    def helper(self, node, node_dict):
+        if not node: return None
+        if node in node_dict:
+            return node_dict[node]
+        new_node = Node(node.val, [])
+        node_dict[node] = new_node
+        for n in node.neighbors:
+            new_node.neighbors.append(self.helper(n, node_dict))
+        return new_node
+\end{lstlisting}
 
 \begin{lstlisting}
 /**
