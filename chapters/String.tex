@@ -1056,6 +1056,19 @@ $
     AB -> 28 $\\
 
 \begin{lstlisting}
+class Solution(object):
+    def titleToNumber(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        res = 0
+        for i in range(0, len(s)):
+            res = res * 26 + (ord(s[i]) - ord('A') + 1)
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int titleToNumber(string s) {
@@ -1083,6 +1096,20 @@ $
     27 -> AA\\
     28 -> AB \\$
     
+\begin{lstlisting}    
+class Solution(object):
+    def convertToTitle(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        res = ''
+        while n:
+            res += chr((n - 1) % 26 + ord('A'))
+            n = (n - 1) // 26
+        return res[::-1]
+\end{lstlisting}
+        
 \begin{lstlisting}
 class Solution {
 public:
