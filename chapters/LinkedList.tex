@@ -1167,6 +1167,58 @@ public:
 \section{Merge k Sorted Lists (H)}
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. \\
  
+ \begin{lstlisting}
+ # Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# BF: Time - O(NlogN)  Space - O(N)
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        p = dummy = ListNode(0)
+        nodes = []
+        for l in lists:
+            while l:
+                nodes.append(l.val)
+                l = l.next
+        for x in sorted(nodes):
+            p.next = ListNode(x)
+            p = p.next
+        return dummy.next
+    
+# Priority queue: Time - O(NlogK), K is the number of linked lists
+#                 Space - O(N)
+from Queue import PriorityQueue
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        p = dummy = ListNode(0)
+        pq = PriorityQueue()
+        # for each sublist, only save the first node to pq,
+        # so the comparison complexity can be maintained as logK 
+        # for insertion and pop.
+        for l in lists:
+            if l: 
+                pq.put((l.val, l))
+        while not pq.empty():
+            val, node = pq.get()
+            p.next = ListNode(val)
+            p = p.next
+            node = node.next
+            if node: 
+                pq.put((node.val, node))
+        return dummy.next
+\end{lstlisting}
+ 
 \begin{lstlisting}
 // Divide & Conquer
 // Suppose initially each list is of average length n, then: k/2*(2n) + k/4*(4n) + k/8*(8n)... + = logk * (kn)

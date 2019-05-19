@@ -1319,6 +1319,24 @@ Write a function that takes a string as input and returns the string reversed. \
 Example: Given s = "hello", return "olleh". \\
 
 \begin{lstlisting}
+class Solution(object):
+    def reverseString(self, s):
+        """
+        :type s: List[str]
+        :rtype: None Do not return anything, modify s in-place instead.
+        """
+        if not s: return
+        left = 0
+        right = len(s) - 1
+        while left < right:
+            t = s[left]
+            s[left] = s[right]
+            s[right] = t
+            left += 1
+            right -= 1
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     string reverseString(string s) {
@@ -1334,6 +1352,17 @@ public:
 };
 \end{lstlisting}
 
+\section{Reverse String II (E)}
+Given a string and an integer k, you need to reverse the first k characters for every 2k characters counting from the start of the string. If there are less than k characters left, reverse all of them. If there are less than 2k but greater than or equal to k characters, then reverse the first k characters and left the other as original. 
+
+\begin{lstlisting}
+class Solution(object):
+    def reverseStr(self, s, k):
+        a = list(s)
+        for i in xrange(0, len(a), 2*k):
+            a[i:i+k] = reversed(a[i:i+k])
+        return "".join(a)
+\end{lstlisting}
 
 \section{Reverse Vowels of a String (E)}
 Write a function that takes a string as input and reverse only the vowels of a string. \\
@@ -1390,6 +1419,20 @@ Clarification:\\
     Reduce them to a single space in the reversed string.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        res = ''
+        words = s.split(' ')
+        for i in range(len(words)-1, -1, -1):
+            res += words[i] + ' '
+        return ' '.join(res.split())
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     void reverseWords(string &s) {
@@ -1422,13 +1465,43 @@ public:
 
 
 \section{Reverse Words in a String II (M)}
-Given an input string, reverse the string word by word. A word is defined as a sequence of non-space characters. The input string does not contain leading or trailing spaces and the words are always separated by a single space.\\
+Given an input string, reverse the string word by word. \\
+
+Example:\\
+
+Input:  ["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]\\
+Output: ["b","l","u","e"," ","i","s"," ","s","k","y"," ","t","h","e"]\\
+
+A word is defined as a sequence of non-space characters. The input string does not contain leading or trailing spaces and the words are always separated by a single space.\\
 
 For example,
 Given s = "the sky is blue",
 return "blue is sky the".\\
 
 Could you do it in-place without allocating extra space? \\
+
+\begin{lstlisting}
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        left = 0
+        n = len(s)
+        self.reverse(s, 0, n - 1)
+        for i in range(n):
+            if i == n or s[i] = ' ':
+                self.reverse(s, left, i - 1)
+                left = i + 1
+    def reverse(s, left, right):
+        while left < right:
+            t = s[left]
+            s[left] = s[right]
+            s[right] = t
+            left += 1
+            right -= 1
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1453,6 +1526,28 @@ public:
 };
 \end{lstlisting}
 
+\section{Reverse Words in a String III (E)}
+Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.\\
+
+Example: \\
+Input: "Let's take LeetCode contest"\\
+Output: "s'teL ekat edoCteeL tsetnoc"\\
+
+Note: In the string, each word is separated by single space and there will not be any extra space in the string. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        words = s.split(' ')
+        res = []
+        for w in words:
+            res.append(w[::-1])
+        return ' '.join(res)
+\end{lstlisting}
 
 \section{Valid Anagram (E)}
 Given two strings s and t, write a function to determine if t is an anagram of s.\\

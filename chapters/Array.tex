@@ -2067,6 +2067,42 @@ Given the following matrix:
 You should return [1,2,3,6,9,8,7,4,5]. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix or not matrix[0]: return []
+        m = len(matrix)
+        n = len(matrix[0])
+        res = []
+        left, right, up, down = 0, n-1, 0, m-1
+        while True:
+            for j in range(left, right+1):
+                res.append(matrix[up][j])
+            up += 1
+            if up > down: break
+                
+            for i in range(up, down+1):
+                res.append(matrix[i][right])
+            right -= 1
+            if right < left: break
+            
+            for j in range(right, left-1, -1):
+                res.append(matrix[down][j])
+            down -= 1
+            if down < up: break
+                
+            for i in range(down, up-1, -1):
+                res.append(matrix[i][left])
+            left += 1
+            if left > right: break
+        return res        
+\end{lstlisting}
+                
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
@@ -2126,6 +2162,43 @@ You should return the following matrix:
 ]\\
 
 \begin{lstlisting}
+class Solution(object):
+    def generateMatrix(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        res = [[1] * n for i in range(n)]
+        val = 1
+        up, down, left, right = 0, n-1, 0, n-1
+        while True:
+            for j in range(left, right+1):
+                res[up][j] = val
+                val += 1
+            up += 1
+            if (up > down): break
+                
+            for i in range(up, down+1):
+                res[i][right] = val
+                val += 1
+            right -= 1
+            if right < left: break
+                
+            for j in range(right, left-1, -1):
+                res[down][j] = val
+                val += 1
+            down -= 1
+            if down < up: break
+                
+            for i in range(down, up-1, -1):
+                res[i][left] = val
+                val += 1
+            left += 1
+            if left > right: break
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
@@ -2148,6 +2221,51 @@ public:
 };
 \end{lstlisting}
 
+\section{Spiral Matrix III (M)}
+On a 2 dimensional grid with R rows and C columns, we start at (r0, c0) facing east.\\
+
+Here, the north-west corner of the grid is at the first row and column, and the south-east corner of the grid is at the last row and column.\\
+
+Now, we walk in a clockwise spiral shape to visit every position in this grid. \\
+
+Whenever we would move outside the boundary of the grid, we continue our walk outside the grid (but may return to the grid boundary later.) \\
+
+Eventually, we reach all R * C spaces of the grid.\\
+
+Return a list of coordinates representing the positions of the grid in the order they were visited.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def spiralMatrixIII(self, R, C, r0, c0):
+        """
+        :type R: int
+        :type C: int
+        :type r0: int
+        :type c0: int
+        :rtype: List[List[int]]
+        """
+        self.res = [[r0, c0]]
+        step = 1
+        while len(self.res) < R * C:
+            for i in range(step): 
+                c0 += 1
+                self.add(R, C, r0, c0)
+            for i in range(step): 
+                r0 += 1
+                self.add(R, C, r0, c0)
+            step += 1
+            for i in range(step): 
+                c0 -= 1
+                self.add(R, C, r0, c0)
+            for i in range(step): 
+                r0 -= 1
+                self.add(R, C, r0, c0)
+            step += 1
+        return self.res
+    def add(self, R, C, x, y):
+        if x >= 0 and x < R and y >= 0 and y < C:
+            self.res.append([x, y])
+\end{lstlisting}
 
 \section{Rotate Image (M)(Amazon phone screen 2016.9.16)}
 You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).\\
