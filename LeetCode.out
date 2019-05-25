@@ -329,57 +329,58 @@
 \BOOKMARK [1][-]{section.11.8}{Jump Game \(M\)}{chapter.11}% 329
 \BOOKMARK [1][-]{section.11.9}{Jump Game II \(M\)}{chapter.11}% 330
 \BOOKMARK [1][-]{section.11.10}{Best Time to Buy and Sell Stock \(E\)}{chapter.11}% 331
-\BOOKMARK [1][-]{section.11.11}{Best Time to Buy and Sell Stock II \(M\)}{chapter.11}% 332
+\BOOKMARK [1][-]{section.11.11}{Best Time to Buy and Sell Stock II \(E\)}{chapter.11}% 332
 \BOOKMARK [1][-]{section.11.12}{Best Time to Buy and Sell Stock with Cooldown \(M\)}{chapter.11}% 333
-\BOOKMARK [1][-]{section.11.13}{Best Time to Buy and Sell Stock III \(H\)}{chapter.11}% 334
-\BOOKMARK [1][-]{section.11.14}{Best Time to Buy and Sell Stock IV \(H\)}{chapter.11}% 335
-\BOOKMARK [1][-]{section.11.15}{House Robber \(E\)}{chapter.11}% 336
-\BOOKMARK [1][-]{section.11.16}{House Robber II \(M\)}{chapter.11}% 337
-\BOOKMARK [1][-]{section.11.17}{House Robber III \(M\)}{chapter.11}% 338
-\BOOKMARK [1][-]{section.11.18}{Paint Fence \(E\)}{chapter.11}% 339
-\BOOKMARK [1][-]{section.11.19}{Paint House \(M\)}{chapter.11}% 340
-\BOOKMARK [1][-]{section.11.20}{Paint House II \(H\)}{chapter.11}% 341
-\BOOKMARK [1][-]{section.11.21}{Pascal's Triangle \(E\)}{chapter.11}% 342
-\BOOKMARK [1][-]{section.11.22}{Pascal's Triangle II \(E\)}{chapter.11}% 343
-\BOOKMARK [1][-]{section.11.23}{Range Sum Query - Immutable \(E\)}{chapter.11}% 344
-\BOOKMARK [1][-]{section.11.24}{Range Sum Query - Mutable \(M\)}{chapter.11}% 345
-\BOOKMARK [1][-]{section.11.25}{Range Sum Query 2D - Immutable \(M\)}{chapter.11}% 346
-\BOOKMARK [1][-]{section.11.26}{Triangle \(M\)}{chapter.11}% 347
-\BOOKMARK [1][-]{section.11.27}{Unique Paths \(M\)}{chapter.11}% 348
-\BOOKMARK [1][-]{section.11.28}{Unique Paths II \(M\)}{chapter.11}% 349
-\BOOKMARK [1][-]{section.11.29}{Minimum Path Sum \(M\)}{chapter.11}% 350
-\BOOKMARK [1][-]{section.11.30}{Dungeon Game \(H\)}{chapter.11}% 351
-\BOOKMARK [1][-]{section.11.31}{Increasing Triplet Subsequence \(M\)}{chapter.11}% 352
-\BOOKMARK [1][-]{section.11.32}{Longest Increasing Subsequence \(M\)}{chapter.11}% 353
-\BOOKMARK [1][-]{section.11.33}{Longest Increasing Path in a Matrix \(M\)}{chapter.11}% 354
-\BOOKMARK [1][-]{section.11.34}{Maximal Square \(M\)}{chapter.11}% 355
-\BOOKMARK [1][-]{section.11.35}{Maximal Rectangle \(H\)}{chapter.11}% 356
-\BOOKMARK [1][-]{section.11.36}{Number of ways for mapping integers to alphabets \(The Climate Corporation phone screen 2016.9.22\)}{chapter.11}% 357
-\BOOKMARK [0][-]{chapter.12}{Graph}{}% 358
-\BOOKMARK [1][-]{section.12.1}{Number of Connected Components in an Undirected Graph \(M\)}{chapter.12}% 359
-\BOOKMARK [1][-]{section.12.2}{Graph Valid Tree \(M\)}{chapter.12}% 360
-\BOOKMARK [1][-]{section.12.3}{Copy List with Random Pointer \(M\)}{chapter.12}% 361
-\BOOKMARK [1][-]{section.12.4}{Clone Graph \(M\)}{chapter.12}% 362
-\BOOKMARK [1][-]{section.12.5}{Course Schedule \(M\)}{chapter.12}% 363
-\BOOKMARK [1][-]{section.12.6}{Course Schedule II \(M\)}{chapter.12}% 364
-\BOOKMARK [1][-]{section.12.7}{Minimum Height Trees \(M\)}{chapter.12}% 365
-\BOOKMARK [1][-]{section.12.8}{Reconstruct Itinerary \(M\)}{chapter.12}% 366
-\BOOKMARK [0][-]{chapter.13}{Design and Implementation}{}% 367
-\BOOKMARK [1][-]{section.13.1}{Valid Sudoku \(E\)}{chapter.13}% 368
-\BOOKMARK [1][-]{section.13.2}{Sudoku Solver \(H\)}{chapter.13}% 369
-\BOOKMARK [1][-]{section.13.3}{Boom Enemy \(M\)}{chapter.13}% 370
-\BOOKMARK [1][-]{section.13.4}{Android Unlock Patterns \(M\)}{chapter.13}% 371
-\BOOKMARK [1][-]{section.13.5}{Game of Life \(M\)}{chapter.13}% 372
-\BOOKMARK [1][-]{section.13.6}{Peeking Iterator \(M\)}{chapter.13}% 373
-\BOOKMARK [1][-]{section.13.7}{LRU Cache \(H\)}{chapter.13}% 374
-\BOOKMARK [1][-]{section.13.8}{Design Tic-Tac-Toe \(M\)}{chapter.13}% 375
-\BOOKMARK [1][-]{section.13.9}{Design Snake Game \(M\)}{chapter.13}% 376
-\BOOKMARK [1][-]{section.13.10}{Design Phone Directory \(M\)}{chapter.13}% 377
-\BOOKMARK [1][-]{section.13.11}{Design Twitter \(M\)}{chapter.13}% 378
-\BOOKMARK [1][-]{section.13.12}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.13}% 379
-\BOOKMARK [1][-]{section.13.13}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.13}% 380
-\BOOKMARK [1][-]{section.13.14}{Basic Calculator \(H\)}{chapter.13}% 381
-\BOOKMARK [1][-]{section.13.15}{Basic Calculator II \(M\)}{chapter.13}% 382
-\BOOKMARK [1][-]{section.13.16}{Expression Add Operators \(H\)}{chapter.13}% 383
-\BOOKMARK [1][-]{section.13.17}{Implement Trie \(Prefix Tree\) \(M\)}{chapter.13}% 384
-\BOOKMARK [1][-]{section.13.18}{Add and Search Word - Data structure design \(M\)}{chapter.13}% 385
+\BOOKMARK [1][-]{section.11.13}{Best Time to Buy and Sell Stock with Transaction Fee \(M\)}{chapter.11}% 334
+\BOOKMARK [1][-]{section.11.14}{Best Time to Buy and Sell Stock III \(H\)}{chapter.11}% 335
+\BOOKMARK [1][-]{section.11.15}{Best Time to Buy and Sell Stock IV \(H\)}{chapter.11}% 336
+\BOOKMARK [1][-]{section.11.16}{House Robber \(E\)}{chapter.11}% 337
+\BOOKMARK [1][-]{section.11.17}{House Robber II \(M\)}{chapter.11}% 338
+\BOOKMARK [1][-]{section.11.18}{House Robber III \(M\)}{chapter.11}% 339
+\BOOKMARK [1][-]{section.11.19}{Paint Fence \(E\)}{chapter.11}% 340
+\BOOKMARK [1][-]{section.11.20}{Paint House \(M\)}{chapter.11}% 341
+\BOOKMARK [1][-]{section.11.21}{Paint House II \(H\)}{chapter.11}% 342
+\BOOKMARK [1][-]{section.11.22}{Pascal's Triangle \(E\)}{chapter.11}% 343
+\BOOKMARK [1][-]{section.11.23}{Pascal's Triangle II \(E\)}{chapter.11}% 344
+\BOOKMARK [1][-]{section.11.24}{Range Sum Query - Immutable \(E\)}{chapter.11}% 345
+\BOOKMARK [1][-]{section.11.25}{Range Sum Query - Mutable \(M\)}{chapter.11}% 346
+\BOOKMARK [1][-]{section.11.26}{Range Sum Query 2D - Immutable \(M\)}{chapter.11}% 347
+\BOOKMARK [1][-]{section.11.27}{Triangle \(M\)}{chapter.11}% 348
+\BOOKMARK [1][-]{section.11.28}{Unique Paths \(M\)}{chapter.11}% 349
+\BOOKMARK [1][-]{section.11.29}{Unique Paths II \(M\)}{chapter.11}% 350
+\BOOKMARK [1][-]{section.11.30}{Minimum Path Sum \(M\)}{chapter.11}% 351
+\BOOKMARK [1][-]{section.11.31}{Dungeon Game \(H\)}{chapter.11}% 352
+\BOOKMARK [1][-]{section.11.32}{Increasing Triplet Subsequence \(M\)}{chapter.11}% 353
+\BOOKMARK [1][-]{section.11.33}{Longest Increasing Subsequence \(M\)}{chapter.11}% 354
+\BOOKMARK [1][-]{section.11.34}{Longest Increasing Path in a Matrix \(M\)}{chapter.11}% 355
+\BOOKMARK [1][-]{section.11.35}{Maximal Square \(M\)}{chapter.11}% 356
+\BOOKMARK [1][-]{section.11.36}{Maximal Rectangle \(H\)}{chapter.11}% 357
+\BOOKMARK [1][-]{section.11.37}{Number of ways for mapping integers to alphabets \(The Climate Corporation phone screen 2016.9.22\)}{chapter.11}% 358
+\BOOKMARK [0][-]{chapter.12}{Graph}{}% 359
+\BOOKMARK [1][-]{section.12.1}{Number of Connected Components in an Undirected Graph \(M\)}{chapter.12}% 360
+\BOOKMARK [1][-]{section.12.2}{Graph Valid Tree \(M\)}{chapter.12}% 361
+\BOOKMARK [1][-]{section.12.3}{Copy List with Random Pointer \(M\)}{chapter.12}% 362
+\BOOKMARK [1][-]{section.12.4}{Clone Graph \(M\)}{chapter.12}% 363
+\BOOKMARK [1][-]{section.12.5}{Course Schedule \(M\)}{chapter.12}% 364
+\BOOKMARK [1][-]{section.12.6}{Course Schedule II \(M\)}{chapter.12}% 365
+\BOOKMARK [1][-]{section.12.7}{Minimum Height Trees \(M\)}{chapter.12}% 366
+\BOOKMARK [1][-]{section.12.8}{Reconstruct Itinerary \(M\)}{chapter.12}% 367
+\BOOKMARK [0][-]{chapter.13}{Design and Implementation}{}% 368
+\BOOKMARK [1][-]{section.13.1}{Valid Sudoku \(E\)}{chapter.13}% 369
+\BOOKMARK [1][-]{section.13.2}{Sudoku Solver \(H\)}{chapter.13}% 370
+\BOOKMARK [1][-]{section.13.3}{Boom Enemy \(M\)}{chapter.13}% 371
+\BOOKMARK [1][-]{section.13.4}{Android Unlock Patterns \(M\)}{chapter.13}% 372
+\BOOKMARK [1][-]{section.13.5}{Game of Life \(M\)}{chapter.13}% 373
+\BOOKMARK [1][-]{section.13.6}{Peeking Iterator \(M\)}{chapter.13}% 374
+\BOOKMARK [1][-]{section.13.7}{LRU Cache \(H\)}{chapter.13}% 375
+\BOOKMARK [1][-]{section.13.8}{Design Tic-Tac-Toe \(M\)}{chapter.13}% 376
+\BOOKMARK [1][-]{section.13.9}{Design Snake Game \(M\)}{chapter.13}% 377
+\BOOKMARK [1][-]{section.13.10}{Design Phone Directory \(M\)}{chapter.13}% 378
+\BOOKMARK [1][-]{section.13.11}{Design Twitter \(M\)}{chapter.13}% 379
+\BOOKMARK [1][-]{section.13.12}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.13}% 380
+\BOOKMARK [1][-]{section.13.13}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.13}% 381
+\BOOKMARK [1][-]{section.13.14}{Basic Calculator \(H\)}{chapter.13}% 382
+\BOOKMARK [1][-]{section.13.15}{Basic Calculator II \(M\)}{chapter.13}% 383
+\BOOKMARK [1][-]{section.13.16}{Expression Add Operators \(H\)}{chapter.13}% 384
+\BOOKMARK [1][-]{section.13.17}{Implement Trie \(Prefix Tree\) \(M\)}{chapter.13}% 385
+\BOOKMARK [1][-]{section.13.18}{Add and Search Word - Data structure design \(M\)}{chapter.13}% 386

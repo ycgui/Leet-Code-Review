@@ -368,6 +368,22 @@ public:
 Say you have an array for which the i-th element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        buy, res = float('inf'), 0
+        for p in prices:
+            if p < buy: 
+                buy = p
+            elif p - buy > res:
+                res = p - buy
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -388,10 +404,24 @@ public:
 \end{lstlisting}
 
 
-\section{Best Time to Buy and Sell Stock II (M)}
+\section{Best Time to Buy and Sell Stock II (E)}
 Say you have an array for which the i-th element is the price of a given stock on day i. \\
 
 Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again). \\
+
+\begin{lstlisting}
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        profit = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[i-1]:
+                profit += prices[i] - prices[i-1]
+        return profit
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -408,7 +438,6 @@ public:
             if (diff > 0)
                 profit += diff;
         }
-        
         return profit;
     }
 };
@@ -422,7 +451,6 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 
     You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).\\
     After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)\\
-
 
 \begin{lstlisting}
 class Solution {
@@ -443,6 +471,37 @@ public:
 };
 \end{lstlisting}
 
+\section{Best Time to Buy and Sell Stock with Transaction Fee (M)}
+Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.\\
+
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)\\
+
+Return the maximum profit you can make.\\
+
+\begin{lstlisting}
+# class Solution(object):
+#     def maxProfit(self, prices, fee):
+#         """
+#         :type prices: List[int]
+#         :type fee: int
+#         :rtype: int
+#         """
+#         n = len(prices)
+#         sold = hold = [0] * n
+#         hold[0] = -prices[0]
+#         for i in range(1, n):
+#             sold[i] = max(sold[i-1], hold[i-1] + prices[i] - fee)
+#             hold[i] = max(hold[i-1], sold[i-1] - prices[i])
+#         return sold[n-1]
+    
+class Solution(object):
+    def maxProfit(self, prices, fee):
+        cash, hold = 0, -prices[0]
+        for i in range(1, len(prices)):
+            cash = max(cash, hold + prices[i] - fee)
+            hold = max(hold, cash - prices[i])
+        return cash
+\end{lstlisting}
 
 \section{Best Time to Buy and Sell Stock III (H)}
 Say you have an array for which the i-th element is the price of a given stock on day i. \\

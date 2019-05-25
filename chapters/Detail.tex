@@ -364,6 +364,59 @@ get(key) - Get the value (will always be positive) of the key if the key exists 
 set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item. \\
 
 \begin{lstlisting}
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.cache = {}  # hashmap of cache key and value mappings
+        self.queue = []  # queue of cache keys
+        
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+        # if key is in the cache
+        # update its current position to the top of queue
+        # the LRU is stored at the end of queue
+        if key in self.cache:
+            self.queue.remove(key)
+            self.queue.insert(0, key)
+            return self.cache[key]
+        else:
+            return -1
+
+    def put(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+        if not key or not value: 
+            return None
+        # remove the current key from the queue, update later
+        if key in self.cache:
+            self.queue.remove(key)
+        # if key is not in cache and the capacity is full
+        # pop the lru from queue and delete it from cache
+        elif len(self.queue) == self.capacity:
+            lru = self.queue.pop()
+            del self.cache[lru]
+        # update cache and queue
+        self.cache[key] = value
+        self.queue.insert(0, key)
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+\end{lstlisting}
+
+\begin{lstlisting}
 class LRUCache{
 public:
     LRUCache(int capacity) {

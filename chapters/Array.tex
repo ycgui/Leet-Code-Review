@@ -283,6 +283,34 @@ Note:
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity? \\
 
 \begin{lstlisting}
+# Expected sum - Actual sum
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sum1, sum2 = 0, 0
+        # sum1 = len(nums) * (len(nums)+1) / 2
+        for i in range(len(nums)+1):
+            sum1 += i
+        for num in nums:
+            sum2 += num
+        return sum1 - sum2
+
+# Use set
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        num_set = set(nums)
+        for num in range(len(nums)+1):
+            if num not in num_set: return num
+\end{lstlisting}        
+
+\begin{lstlisting}
 class Solution {
 public:
     int missingNumber(vector<int> &nums) {
@@ -1529,6 +1557,50 @@ For example, given [1,2,3,4], return [24,12,8,6].\\
 Follow up: Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)\\
 
 \begin{lstlisting}
+# Space O(N)
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n = len(nums)
+        L, R, res = [0] * n, [0] * n, [0] * n
+        
+        # L[i] contains the product of all the elements to the left
+        L[0] = 1
+        for i in range(1, n):
+            L[i] = L[i-1] * nums[i-1]
+            
+        # R[i] contains the product of all the elements to the right
+        R[n-1] = 1
+        for i in range(n-2, -1, -1):
+            R[i] = R[i+1] * nums[i+1]
+            
+        for i in range(n):
+            res[i] = L[i] * R[i]
+        return res
+
+# Space O(1)
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n = len(nums)
+        res = [0] * n
+        res[0] = 1
+        for i in range(1, n):
+            res[i] = res[i-1] * nums[i-1]
+        R = 1
+        for i in range(n-1, -1, -1):
+            res[i] *= R
+            R *= nums[i]
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int> &nums) {
@@ -2041,6 +2113,64 @@ A simple improvement uses O(m + n) space, but still not the best solution.\\
 Could you devise a constant space solution?\\
 
 \begin{lstlisting}
+# Time - O(MN)  Space - O(M+N)
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        m = len(matrix)
+        n = len(matrix[0])
+        row, col = set(), set()
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0:
+                    row.add(i)
+                    col.add(j)   
+        for i in range(m):
+            for j in range(n):
+                if i in row or j in col:
+                    matrix[i][j] = 0
+            
+# Time - O(MN)  Space - O(1)
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        m = len(matrix)
+        n = len(matrix[0])
+        row_flag, col_flag = 0, 0
+        
+        for i in range(m):
+            if matrix[i][0] == 0: col_flag = 1
+        
+        for j in range(n):
+            if matrix[0][j] == 0: row_flag = 1
+        
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][j] == 0:
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
+        
+        for i in range(1, m):
+            for j in range(1, n):
+                if matrix[i][0] == 0 or matrix[0][j] == 0:
+                    matrix[i][j] = 0
+                    
+        if row_flag:
+            for j in range(n):
+                matrix[0][j] = 0
+                
+        if col_flag:
+            for i in range(m):
+                matrix[i][0] = 0                
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     void setZeroes(vector<vector<int>> &matrix) {
@@ -2306,6 +2436,35 @@ class Solution(object):
 You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).\\
 
 Follow up: Could you do this in-place?\\
+
+\begin{lstlisting}
+# Clockwise 90deg rotation: Vertical flip + Transpose (Diagonal flip)
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix)
+        matrix.reverse()
+        for i in range(n):
+            for j in range(i+1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+                
+# Counter-clockwise 90deg rotation: Horizontal flip + Transpose (Diagonal flip)
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix)
+        for i in range(n):
+            matrix[i].reverse()
+        for i in range(n):
+            for j in range(i+1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]             
+\end{lstlisting}
 
 \begin{lstlisting}
 // 1. Direct rotate
