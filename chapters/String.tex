@@ -1279,6 +1279,47 @@ class Solution(object):
 Implement atoi to convert a string to an integer. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        int_max = pow(2, 31) - 1
+        int_min = -pow(2, 31)
+        sign = 1
+        res, pos = 0, 0
+        n = len(str)
+        
+        # skip all whitespaces
+        while pos < n and str[pos] == ' ':
+            pos += 1
+        
+        # get the sign
+        if pos < n and str[pos] == '-':
+            sign = -1
+            pos += 1
+        elif pos < n and str[pos] == '+':
+            pos += 1
+            
+        # get the numeral from the string
+        while pos < n and \
+              ord(str[pos]) >= ord('0') and \
+              ord(str[pos]) <= ord('9'):
+            num = ord(str[pos]) - ord('0')
+            # handle overflow
+            if res > int_max / 10 or (res == int_max / 10 and num >= 8): 
+                if sign == 1:
+                    return int_max
+                else:
+                    return int_min
+            res = res * 10 + num
+            pos += 1
+        
+        return sign * res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int myAtoi(string str) {
@@ -1819,7 +1860,8 @@ class Solution(object):
         """
         n = len(s)
         start, max_lps_len = 0, 1
-        if n < 2: return s  
+        if n < 2: return s 
+        # check both cases when the substring length is either odd or even
         for i in range(n-1):
             start, max_lps_len = self.findLPS(s, n, i, i, start, max_lps_len)
             start, max_lps_len = self.findLPS(s, n, i, i + 1, start, max_lps_len)
@@ -1829,6 +1871,7 @@ class Solution(object):
         while left >= 0 and right < s_len and s[left] == s[right]:
             left -= 1
             right += 1
+        # the actual left and right here are outside of the lsp substring
         if max_lps_len < right - left - 1:
             start = left + 1
             max_lps_len = right - left - 1
@@ -3214,3 +3257,55 @@ private:
     char buff[4];
 };
 \end{lstlisting}
+
+\section{Remove Comments (M)}
+Given a C++ program, remove comments from it. The program source is an array where source[i] is the i-th line of the source code. This represents the result of splitting the original source code string by the newline character.\\
+
+In C++, there are two types of comments, line comments, and block comments.\\
+
+The string // denotes a line comment, which represents that it and rest of the characters to the right of it in the same line should be ignored.\\
+
+The string /* denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of */ should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string /*/ does not yet end the block comment, as the ending would be overlapping the beginning.\\
+
+The first effective comment takes precedence over others: if the string // occurs in a block comment, it is ignored. Similarly, if the string /* occurs in a line or block comment, it is also ignored.\\
+
+If a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty.\\
+
+There will be no control characters, single quote, or double quote characters. For example, source = "string s = "/* Not a comment. */";" will not be a test case. (Also, nothing else such as defines or macros will interfere with the comments.)\\
+
+It is guaranteed that every open block comment will eventually be closed, so /* outside of a line or block comment always starts a new comment.\\
+
+Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details.\\
+
+After removing the comments from the source code, return the source code in the same format.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def removeComments(self, source):
+        """
+        :type source: List[str]
+        :rtype: List[str]
+        """
+        in_block = False
+        res = []
+        for line in source:
+            i = 0
+            if not in_block:
+                newline = []
+            while i < len(line):
+                if line[i:i+2] == '/*' and not in_block:
+                    in_block = True
+                    i += 1
+                elif line[i:i+2] == '*/' and in_block:
+                    in_block = False
+                    i += 1
+                elif line[i:i+2] == '//' and not in_block:
+                    break
+                elif not in_block:
+                    newline.append(line[i])
+                i += 1
+            if newline and not in_block:
+                res.append("".join(newline))
+        return res
+\end{lstlisting}
+        

@@ -443,6 +443,50 @@ Find the minimum element.
 You may assume no duplicate exists in the array.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 1:
+            return nums[0]
+        left, right = 0, len(nums) - 1
+        # array is not rotated
+        if nums[right] > nums[0]:
+            return nums[0]
+        # array is rotated
+        while left <= right:
+            mid = left + (right - left) / 2
+            # return the changing point
+            if nums[mid] > nums[mid+1]:
+                return nums[mid+1]
+            if nums[mid - 1] > nums[mid]:
+                return nums[mid]
+            # compare with the first element
+            if nums[mid] > nums[0]:
+                left = mid + 1
+            else:
+                right = mid - 1   
+                
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(nums)-1
+        while left < right and nums[left] > nums[right]:
+            mid = left + (right - left) / 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[left]
+\end{lstlisting}
+
+
+\begin{lstlisting}
 class Solution {
 public:
     int findMin(vector<int> &nums) {
@@ -470,6 +514,25 @@ Find the minimum element.
 The array may contain duplicates.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(nums) - 1
+        while left < right and nums[left] >= nums[right]:
+            mid = left + (right - left) - 1
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            elif nums[mid] < nums[right]:
+                right = mid
+            else:
+                left += 1
+        return nums[left]
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -489,11 +552,40 @@ public:
 \end{lstlisting}
 
 
-\section{Search in Rotated Sorted Array (H)}
+\section{Search in Rotated Sorted Array (M)}
 Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
 You are given a target value to search. If found in the array return its index, otherwise return -1.
 You may assume no duplicate exists in the array.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        left = 0
+        right = len(nums) - 1
+        while left <= right:
+            mid = left + (right - left) / 2
+            if nums[mid] == target:
+                return mid
+            # the right part of array is sorted
+            if nums[mid] < nums[right]:
+                if nums[mid] < target and target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            # the left part of array is sorted
+            else:
+                if nums[left] <= target and target < nums[mid]:
+                    right = mid - 1
+                else: 
+                    left = mid + 1
+        return -1
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -529,6 +621,36 @@ Follow up for "Search in Rotated Sorted Array":
 What if duplicates are allowed?
 Would this affect the run-time complexity? How and why?
 Write a function to determine if a given target is in the array.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = left + (right - left) / 2
+            if nums[mid] == target:
+                return True
+            elif nums[mid] < nums[right]:
+                if nums[mid] < target and target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            elif nums[mid] > nums[right]:
+                if nums[left] <= target and target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            # if nums[mid] == nums[right] for duplicates, move right to the left
+            else:
+                right -= 1
+        return False
+\end{lstlisting}
+        
 
 \begin{lstlisting}
 class Solution {
