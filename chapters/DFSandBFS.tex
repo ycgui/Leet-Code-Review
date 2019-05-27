@@ -1047,6 +1047,35 @@ word = "SEE", returns true,\\
 word = "ABCB", returns false.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        m, n = len(board), len(board[0])
+        visited = [[0] * n for i in range(m)]
+        idx, res = 0, 0
+        for i in range(m):
+            for j in range(n):
+                if self.search(board, word, idx, i, j, visited): return True
+        return False
+    def search(self, board, word, idx, i, j, visited):
+        if idx == len(word): return True
+        if i < 0 or i >= len(visited) or j < 0 or j >= len(visited[0]) or \
+           visited[i][j] == 1 or board[i][j] != word[idx]:
+            return False
+        visited[i][j] = 1
+        res = self.search(board, word, idx+1, i+1, j, visited) or \
+              self.search(board, word, idx+1, i, j+1, visited) or \
+              self.search(board, word, idx+1, i-1, j, visited) or \
+              self.search(board, word, idx+1, i, j-1, visited)
+        visited[i][j] = 0  # reset the visited letter
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool exist(vector<vector<char> > &board, string word) {

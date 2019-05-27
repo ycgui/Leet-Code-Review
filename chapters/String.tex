@@ -631,7 +631,25 @@ Corner Cases:\\
     In this case, you should return "/".\\
     Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".\\
     In this case, you should ignore redundant slashes and return "/home/foo".\\
-    
+
+\begin{lstlisting}
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+        path = path.split("/")
+        st = []
+        for i in path:
+            if i == '.' or not i: continue
+            elif i == '..':
+                if st: st.pop()
+                else: continue
+            else: st.append(i)
+        return "/" + "/".join(st)
+\end{lstlisting}
+            
 \begin{lstlisting}
 class Solution {
 public:
