@@ -170,6 +170,28 @@ public:
 Implement strStr(). Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        if not needle: return 0
+        n1 = len(haystack)
+        n2 = len(needle)
+        if n1 < n2: return -1
+        
+        for i in range(n1-n2+1):
+            j = 0
+            while j < n2:
+                if haystack[i+j] != needle[j]: break
+                j += 1
+            if j == n2: return i
+        return -1
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int strStr(string haystack, string needle) {
@@ -282,6 +304,24 @@ return 2.\\
 Note: You may assume the string contain only lowercase letters. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def firstUniqChar(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # Initialize the dictionary with keys from s and values as 0
+        d = dict.fromkeys(s, 0)
+        for c in s:
+            d[c] += 1
+        for c in s:
+            if d[c] == 1:
+                return s.index(c)
+        return -1
+\end{lstlisting}
+        
+
+\begin{lstlisting}
 // 1. Brute-force with scanning s twice
 class Solution {
 public:
@@ -317,6 +357,37 @@ public:
 };
 \end{lstlisting}
 
+\section{Permutation in String (M)}
+Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string's permutations is the substring of the second string.
+
+\begin{lstlisting}
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        m1, m2 = [0] * 26, [0] * 26
+        n1, n2 = len(s1), len(s2)
+        if n1 > n2: return False
+        
+        # count the frequency of each char for s1 and the first n1 chars of s2 
+        # if the two counts are the same, then s2 contains the permuation of s1
+        for i in range(n1):
+            m1[ord(s1[i]) - ord('a')] += 1
+            m2[ord(s2[i]) - ord('a')] += 1
+        if m1 == m2: return True
+        
+        # apply the sliding window to check if the counts between
+        # the length n1 substring of s2 and s1 are the same
+        for i in range(n1, n2):
+            m2[ord(s2[i]) - ord('a')] += 1
+            m2[ord(s2[i - n1]) - ord('a')] -= 1
+            if m1 == m2: return True
+            
+        return False
+\end{lstlisting}
 
 \section{ZigZag Conversion (E)}
 Write the code that will take a string and make this conversion given a number of rows: string convert(string text, int nRows). \\
@@ -397,6 +468,28 @@ The . character does not represent a decimal point and is used to separate numbe
 For instance, 2.5 is not "two and a half" or "half way to version three", it is the fifth second-level revision of the second first-level revision.\\
 
 Here is an example of version numbers ordering: $0.1 < 1.1 < 1.2 < 13.37$\\
+
+\begin{lstlisting}
+class Solution(object):
+    def compareVersion(self, version1, version2):
+        """
+        :type version1: str
+        :type version2: str
+        :rtype: int
+        """
+        v1_list = version1.split('.')
+        v2_list = version2.split('.')
+        max_len = max(len(v1_list), len(v2_list))
+        for i in range(max_len):
+            v1_int = int(v1_list[i]) if i < len(v1_list) else 0
+            v2_int = int(v2_list[i]) if i < len(v2_list) else 0
+            if v1_int < v2_int:
+                return -1
+            elif v1_int > v2_int:
+                return 1
+        return 0
+\end{lstlisting}
+        
 
 \begin{lstlisting}
 class Solution {
@@ -1769,18 +1862,18 @@ Input: "abca", Output: True\\
 Python:
 \lstset{language=python}
 \begin{lstlisting}
-# # O(N^2)
-# class Solution(object):
-#     def validPalindrome(self, s):
-#         """
-#         :type s: str
-#         :rtype: bool
-#         """
-#         n = len(s)
-#         for i in range(n):
-#             t = s[:i] + s[i+1:n]
-#             if t == t[::-1]: return True
-#         return s == s[::-1]
+# O(N^2)
+class Solution(object):
+    def validPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        n = len(s)
+        for i in range(n):
+            t = s[:i] + s[i+1:n]
+            if t == t[::-1]: return True
+        return s == s[::-1]
 
 # O(N)
 class Solution(object):
@@ -3149,6 +3242,40 @@ public:
 };
 \end{lstlisting}
 
+\section{String Compression (E)}
+Given an array of characters, compress it in-place.
+
+The length after compression must always be smaller than or equal to the original array.
+
+Every element of the array should be a character (not int) of length 1.
+
+After you are done modifying the input array in-place, return the new length of the array.
+
+\begin{lstlisting}
+class Solution(object):
+    def compress(self, chars):
+        """
+        :type chars: List[str]
+        :rtype: int
+        """
+        cur = 0
+        n = len(chars)
+        i, j = 0, 0
+        while i < n:
+            while j < n and chars[i] == chars[j]:
+                j += 1
+            chars[cur] = chars[i]
+            cur += 1
+            # j-i is the length of each compressed char
+            if j - i == 1: 
+                i = j
+                continue
+            for c in str(j-i):
+                chars[cur] = c
+                cur += 1
+            i = j
+        return cur
+\end{lstlisting}
 
 \section{Encode and Decode Strings (M)}
 Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings. Implement the encode and decode methods.\\

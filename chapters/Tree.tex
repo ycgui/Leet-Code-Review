@@ -2321,16 +2321,16 @@ Given a binary tree, find the maximum path sum. For this problem, a path is defi
 #         self.left = None
 #         self.right = None
 
-import sys
 class Solution(object):
     def maxPathSum(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
-        self.res = -sys.maxint-1
+        self.res = float('-inf')
         self.maxpath(root)
         return self.res
+    # maxpath to the current node, either left or right tree plus node
     def maxpath(self, node):
         if not node: return 0
         left = max(self.maxpath(node.left), 0)

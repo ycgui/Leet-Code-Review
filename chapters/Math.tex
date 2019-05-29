@@ -669,6 +669,34 @@ Follow up:
 Could you do it without any loop/recursion in O(1) runtime? \\
 
 \begin{lstlisting}
+class Solution(object):
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        res = 0
+        while num > 0:
+            res += num % 10
+            num /= 10
+        if res < 10: 
+            return res
+        else:
+            return self.addDigits(res)
+    
+class Solution(object):
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        if num == 0:
+            return 0
+        else:
+            return (num - 1) % 9 + 1
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int addDigits(int num) {
@@ -698,7 +726,23 @@ Example: 19 is a happy number\\
     8^2 + 2^2 = 68\\
     6^2 + 8^2 = 100\\
     1^2 + 0^2 + 0^2 = 1$\\
-    
+
+\begin{lstlisting}
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        if n == 1: return True
+        if n == 4: return False
+        res = 0
+        while n > 0:
+            res += pow((n % 10), 2)
+            n /= 10
+        return self.isHappy(res)
+\end{lstlisting}
+            
 \begin{lstlisting}
 class Solution {
 public:
@@ -803,6 +847,27 @@ public:
 \section{Count Primes (E)}
 Count the number of prime numbers less than a non-negative number, n. \\
 A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def countPrimes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n <= 1: return 0
+        isPrime = [True] * n
+        res = 0
+        # if i is a prime, then i*i, i*(i+1), i*(i+2), ... are not prime
+        for i in range(2, n):
+            if isPrime[i]:
+                for j in range(i * i, n, i):
+                    isPrime[j] = False
+        for p in isPrime:
+            if p: res += 1
+        return res - 2
+\end{lstlisting}
+        
 
 \begin{lstlisting}
 class Solution {

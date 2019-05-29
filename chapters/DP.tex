@@ -238,6 +238,25 @@ For example,
 Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12). The number of ways decoding "12" is 2. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s or s[0] == '0':
+            return 0
+        dp = [0] * (len(s) + 1)
+        dp[0] = 1
+        for i in range(1, len(dp)):
+            if s[i-1] != '0':
+                dp[i] += dp[i-1]
+            if i >= 2 and int(s[i-2:i]) >= 10 and int(s[i-2:i]) <= 26:
+                dp[i] += dp[i-2]
+        return dp[-1]
+ \end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int numDecodings(string s) {
@@ -291,6 +310,50 @@ public:
 };
 \end{lstlisting}
 
+\section{Number of ways for mapping integers to alphabets (The Climate Corporation phone screen 2016.9.22)}
+Define a mapping of integers to alphabets as follows: 1 = a, 2 = b, ..., 26 = z. Given any combination of of the mapping numbers as a string, return the number of ways in which the input string can be split into sub-strings and represented as character strings. \\
+
+For example:\\
+"111" $->$ "aaa", "ak", "ka" $->$ 3 ways\\
+"11" $->$ "aa", "k" $->$ 2 ways\\
+"123" $->$ "abc", "lc", "aw" $->$ 3 ways\\
+
+This question is the same as "Decode Ways".\\
+
+\begin{lstlisting}
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int numOfWays(string);
+
+int main() {
+  string input = "123321";
+  int res = numOfWays(input);
+  cout << "String: " << input << "\n";
+  cout << "Number of Combinations are: " << res << "\n";
+  return 0;
+}
+
+int numOfWays(string s) {
+  int n = s.size();
+  vector<int> res(n);
+  res[0] = 1;
+  int tmp = (s[0] - '0') * 10 + (s[1] - '0');
+  if (tmp <= 26) res[1] = 2;
+  else res[1] = 1;
+  
+  for (int i = 2; i < n; ++i) {
+    int tmp = (s[i-1] - '0') * 10 + (s[i] - '0');    
+    if (tmp <= 26) res[i] = res[i-2] + res[i-1];
+    else res[i] = res[i-1];
+  }
+    
+  return res[n-1];
+}
+\end{lstlisting}
+
 
 \section{Jump Game (M)}
 Given an array of non-negative integers, you are initially positioned at the first index of the array. Each element in the array represents your maximum jump length at that position. Determine if you are able to reach the last index.\\
@@ -298,6 +361,23 @@ Given an array of non-negative integers, you are initially positioned at the fir
 For example:\\
 A = [2,3,1,1,4], return true.\\
 A = [3,2,1,0,4], return false. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        max_reach = 0
+        n = len(nums)
+        for i in range(n):
+            if i > max_reach or max_reach >= n - 1:
+                break
+            # i + nums[i] is the maximum step that can be reached at i
+            max_reach = max(max_reach, i + nums[i])
+        return max_reach >= n - 1
+\end{lstlisting}
 
 \begin{lstlisting}
 // 1. DP solution
@@ -582,6 +662,22 @@ public:
 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. \\
 
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        rob, not_rob = 0, 0
+        n = len(nums)
+        for i in range(n):
+            pre_rob, pre_not_rob = rob, not_rob
+            rob = pre_not_rob + nums[i]
+            not_rob = max(pre_rob, pre_not_rob)
+        return max(rob, not_rob)
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1289,6 +1385,24 @@ Your algorithm should run in $O(n^2)$ complexity.\\
 Follow up: Could you improve it to O(n log n) time complexity? \\
 
 \begin{lstlisting}
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        dp = [1] * n
+        res = 0
+        for i in range(n):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+            res = max(res, dp[i])
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. DP solution: Time O(N^2), Space O(N)
 class Solution {
 public:
@@ -1485,46 +1599,3 @@ public:
     }
 };
 \end{lstlisting}
-
-\section{Number of ways for mapping integers to alphabets (The Climate Corporation phone screen 2016.9.22)}
-Define a mapping of integers to alphabets as follows: 1 = a, 2 = b, ..., 26 = z. Given any combination of of the mapping numbers as a string, return the number of ways in which the input string can be split into sub-strings and represented as character strings. \\
-
-For example:\\
-"111" $->$ "aaa", "ak", "ka" $->$ 3 ways\\
-"11" $->$ "aa", "k" $->$ 2 ways\\
-"123" $->$ "abc", "lc", "aw" $->$ 3 ways\\
-
-\begin{lstlisting}
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
-
-int numOfWays(string);
-
-int main() {
-  string input = "123321";
-  int res = numOfWays(input);
-  cout << "String: " << input << "\n";
-  cout << "Number of Combinations are: " << res << "\n";
-  return 0;
-}
-
-int numOfWays(string s) {
-  int n = s.size();
-  vector<int> res(n);
-  res[0] = 1;
-  int tmp = (s[0] - '0') * 10 + (s[1] - '0');
-  if (tmp <= 26) res[1] = 2;
-  else res[1] = 1;
-  
-  for (int i = 2; i < n; ++i) {
-    int tmp = (s[i-1] - '0') * 10 + (s[i] - '0');    
-    if (tmp <= 26) res[i] = res[i-2] + res[i-1];
-    else res[i] = res[i-1];
-  }
-    
-  return res[n-1];
-}
-\end{lstlisting}
-
