@@ -1160,6 +1160,49 @@ public:
 };
 \end{lstlisting}
 
+\section{Word Search debugging (Microsoft phone interview 2019.5.31)}
+\begin{lstlisting}
+def dfs(matrix, target, row, col, path, results, visited):
+    # bug 4
+    if target == '':
+        results.append(path)
+        return
+    m = len(matrix)
+    n = len(matrix[0])
+    # bug 1: skip corner conditions
+    if row < 0 or col < 0 or row >= m or col >= n: return
+    if target[0] != matrix[row][col]:
+        return
+    # bug 1: skip visited element
+    if visited[row][col]:
+        return
+    # bug 3: update visited array
+    visited[row][col] = True
+    dfs(matrix, target[1:], row-1, col, path + [(row, col)], results, visited)
+    dfs(matrix, target[1:], row+1, col, path + [(row, col)], results, visited)
+    dfs(matrix, target[1:], row, col-1, path + [(row, col)], results, visited)
+    dfs(matrix, target[1:], row, col+1, path + [(row, col)], results, visited)
+    visited[row][col] = False
+
+def findWords(matrix, target):
+    m = len(matrix)
+    n = len(matrix[0])
+    results = []
+    # bug 2: need to add a visited 2d array
+    visited = [ [ False for col in range(n) ] for row in range(m) ]
+    for row in range(m):
+        for col in range(n):
+            dfs(matrix, target, row, col, [], results, visited)
+    return results
+
+if __name__ == '__main__':
+    matrix = [ 'OMIC',
+               'OSOR',
+               'FTAZ',
+               'BYWK' ]
+    target = 'MICROSOFT'
+    print(findWords(matrix, target))
+\end{lstlisting}
 
 \section{Word Search II (H)}
 Given a 2D board and a list of words from the dictionary, find all words in the board. Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.

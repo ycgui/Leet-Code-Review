@@ -798,6 +798,25 @@ Given an array of size n, find the majority element. The majority element is the
 You may assume that the array is non-empty and the majority element always exist in the array.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        hashmap = {}
+        n = len(nums)
+        for num in nums:
+            if num in hashmap:
+                hashmap[num] += 1
+            else:
+                hashmap.update({num: 1})
+        for k, v in hashmap.items():
+            if v > n / 2:
+                return k      
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -823,6 +842,26 @@ public:
 
 \section{Majority Element II (M)}
 Given an integer array of size n, find all elements that appear more than floor(n/3) times. The algorithm should run in linear time and in O(1) space. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        hashmap = {}
+        res = []
+        for num in nums:
+            if num in hashmap:
+                hashmap[num] += 1
+            else:
+                hashmap.update({num: 1})
+        for k, v in hashmap.items():
+            if v > len(nums) / 3:
+                res.append(k)
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -875,6 +914,23 @@ public:
 Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        # sort and compare adjacent numbers
+        nums.sort()
+        for i in range(len(nums)-1):
+            if nums[i] == nums[i+1]: return True
+        return False
+    
+        # use set and compare length
+        # return len(nums) != len(set(nums))
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
@@ -892,6 +948,22 @@ public:
 
 \section{Contains Duplicate II (E)}
 Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        d = {}
+        for i in range(len(nums)):
+            if nums[i] in d and i - d[nums[i]] <= k:
+                return True
+            d.update({nums[i]: i})
+        return False
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -946,7 +1018,7 @@ public:
 \end{lstlisting}
 
 
-\section{Find the Duplicate Number (H)}
+\section{Find the Duplicate Number (M)}
 Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one. \\
 
 Note:
@@ -954,6 +1026,20 @@ Note:
     You must use only constant, O(1) extra space.\\
     Your runtime complexity should be less than $O(n^2)$.\\
     There is only one duplicate number in the array, but it could be repeated more than once.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        s = set()
+        for num in nums:
+            if num in s:
+                return num
+            s.add(num)
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
