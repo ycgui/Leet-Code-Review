@@ -233,38 +233,6 @@ class Solution(object):
         return idx
 \end{lstlisting}
 
-\section{Kth Largest Element in an Array (M)}
-Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.\\
-
-For example,
-Given [3,2,1,5,6,4] and k = 2, return 5.\\
-
-Note:
-You may assume k is always valid, $1 \leq k \leq array's length$.\\
-
-\begin{lstlisting}
-class Solution(object):
-    def findKthLargest(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
-        nums.sort()
-        return nums[len(nums)-k]
-\end{lstlisting}
-
-\begin{lstlisting}
-class Solution {
-public:
-    int findKthLargest(vector<int>& nums, int k) {   
-        sort(nums.begin(), nums.end());
-        return nums[nums.size()-k];
-    }
-};
-\end{lstlisting}
-
-
 \section{Find K Pairs with Smallest Sums (M)}
 You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k. Define a pair (u,v) which consists of one element from the first array and one element from the second array. Find the k pairs (u1,v1),(u2,v2) ...(uk,vk) with the smallest sums.\\
 
@@ -1066,41 +1034,6 @@ public:
 };
 \end{lstlisting}
 
-
-\section{Top K Frequent Elements (M)}
-Given a non-empty array of integers, return the k most frequent elements.\\
-
-For example,
-Given [1,1,1,2,2,3] and k = 2, return [1,2].\\
-
-Note:
-    You may assume k is always valid, $1 \leq k \leq $ number of unique elements.\\
-    Your algorithm's time complexity must be better than O(n log n), where n is the array's size.\\
-
-\begin{lstlisting}
-class Solution {
-public:
-    vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> m;
-        // Priority queues are a type of container adaptors, specifically designed such that its first element is always the greatest of the elements it contains, according to some strict weak ordering criterion.
-        priority_queue<pair<int, int>> q;
-        vector<int> res;
-        for (auto a : nums) {
-            ++m[a];
-        }
-        for (auto it : m) {
-            q.push({it.second, it.first});
-        }
-        for (int i = 0; i < k; ++i) {
-            res.push_back(q.top().second); 
-            q.pop();
-        }
-        return res;
-    }
-};
-\end{lstlisting}
-
-
 \section{Two Sum (E)}
 Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution. \\
 
@@ -1112,7 +1045,6 @@ Python:
 \lstset{language=python}
 \begin{lstlisting}
 class Solution(object):
- class Solution(object):
     def twoSum(self, nums, target):
         """
         :type nums: List[int]
@@ -1120,24 +1052,14 @@ class Solution(object):
         :rtype: List[int]
         """
         
-        # 1. BF: O(N^2)
+        # O(N^2)
         n = len(nums)
         for i in range(n):
             for j in range(i+1, n):
                 if nums[i] + nums[j] == target:
                     return [i, j]
-        
-        # 2. Two-pass hash table: O(N)
-        dict_nums = {}
-        for index, num in enumerate(nums):
-            dict_nums[num] = index
-        for index, num in enumerate(nums):
-            another = target - num
-            if another in dict_nums.keys():
-                if dict_nums[another] != index:
-                    return [index, dict_nums[another]]
             
-        # 3. One-pass hash table: O(N)
+        # One-pass hash table: O(N)
         dict_nums = {}
         for index, num in enumerate(nums):
             another = target - num
@@ -1146,7 +1068,6 @@ class Solution(object):
                     return [dict_nums[another], index]
             dict_nums[num] = index
 \end{lstlisting}
-
 
 C++:
 \lstset{language=C++}
@@ -1392,17 +1313,16 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        # Sorting + Two pointers: O(Nlog(N) + N)
+        # O(Nlog(N))
         res = []
         n = len(nums)
         nums.sort()
-        if not nums or len(nums) < 3 or nums[0] > 0 or nums[-1] < 0: 
-            return []
+        if not nums or n < 3 or nums[0] > 0 or nums[-1] < 0: return []
         for k in range(n - 2):
             if nums[k] > 0: break
             if k > 0 and nums[k] == nums[k - 1]: continue
             i, j = k + 1, n - 1
-            while (i < j):
+            while i < j:
                 if nums[k] + nums[i] + nums[j] == 0:
                     res.append([nums[k], nums[i], nums[j]])
                     while (i < j and nums[i] == nums[i + 1]): i += 1
@@ -1883,7 +1803,8 @@ class Solution(object):
         :type intervals: List[List[int]]
         :rtype: List[List[int]]
         """
-        intervals.sort(key=lambda x: x[0])
+        # sort according to the first element of the inner list
+        intervals.sort(key = lambda x: x[0])
         merged = []
         for interval in intervals:
             # if the list of merged intervals is empty or if the current
@@ -1891,12 +1812,49 @@ class Solution(object):
             if not merged or merged[-1][-1] < interval[0]:
                 merged.append(interval)
             else:
-            # otherwise, there is overlap, so we merge the current and previous
-            # intervals.
+            # otherwise, there is an overlapping
+            # so we merge the current and previous intervals.
                 merged[-1][-1] = max(merged[-1][-1], interval[-1])
         return merged        
 \end{lstlisting}
         
+\section{Task Scheduler (M)}
+Given a char array representing tasks CPU need to do. It contains capital letters A to Z where different letters represent different tasks. Tasks could be done without original order. Each task could be done in one interval. For each interval, CPU could finish one task or just be idle.\\
+
+However, there is a non-negative cooling interval n that means between two same tasks, there must be at least n intervals that CPU are doing different tasks or just be idle.\\
+
+You need to return the least number of intervals the CPU will take to finish all the given tasks.\\
+
+Example:\\
+Input: tasks = ["A","A","A","B","B","B"], n = 2\\
+Output: 8\\
+Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def leastInterval(self, tasks, n):
+        """
+        :type tasks: List[str]
+        :type n: int
+        :rtype: int
+        """
+        task_map = [0] * 26
+        for c in tasks:
+            task_map[ord(c) - ord('A')] += 1
+        task_map.sort()
+        res = 0
+        while task_map[25] > 0:
+            i = 0
+            while i <= n:
+                if task_map[25] == 0:
+                    break
+                if i < 26 and task_map[25 - i] > 0:
+                    task_map[25 - i] -= 1
+                res += 1
+                i += 1
+            task_map.sort()
+        return res
+\end{lstlisting}
 
 \section{Meeting Rooms (E)}
 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si $<$ ei), determine if a person could attend all meetings.\\

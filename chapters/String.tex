@@ -7,6 +7,35 @@ Given two binary strings, return their sum (also a binary string). \\
 For example, a = ``11", b = ``1", Return ``100". \\ 
 
 \begin{lstlisting}
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        s1, s2 = [], []
+        res = ''
+        carry = 0
+        for i in a:
+            s1.append(int(i))
+        for i in b:
+            s2.append(int(i))
+        while s1 or s2:
+            val = carry
+            if s1:
+                val += s1.pop()
+            if s2:
+                val += s2.pop()
+            carry = val / 2
+            val %= 2
+            res += str(val)         
+        if carry == 1:
+            res += str(carry)
+        return res[::-1]
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     string addBinary(string a, string b) {

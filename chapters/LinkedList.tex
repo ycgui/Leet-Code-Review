@@ -1208,7 +1208,7 @@ public:
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. \\
  
  \begin{lstlisting}
- # Definition for singly-linked list.
+# Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
 #         self.val = x
@@ -1231,7 +1231,7 @@ class Solution(object):
             p.next = ListNode(x)
             p = p.next
         return dummy.next
-    
+ 
 # Priority queue: Time - O(NlogK), K is the number of linked lists
 #                 Space - O(N)
 from Queue import PriorityQueue

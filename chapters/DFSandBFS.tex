@@ -714,26 +714,28 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].\\
 Note:Although the above answer is in lexicographical order, your answer could be in any order you want. \\
 
 \begin{lstlisting}
-class Solution(object):
+class Solution(object):            
     def letterCombinations(self, digits):
         """
         :type digits: str
         :rtype: List[str]
         """
         if not digits: return []
+        idx = 0
+        out = ''
         res = []
         d = {0:'', 1:'', 2:'abc', 3:'def', 4:'ghi', 5:'jkl',
              6:'mno', 7:'pqrs', 8:'tuv', 9:'wxyz'}
-        self.combine(digits, d, 0, '', res)
+        self.dfs(digits, d, idx, out, res)
         return res
-    def combine(self, digits, d, idx, out, res):
+    def dfs(self, digits, d, idx, out, res):
         if idx == len(digits):
             res.append(out)
             return
-        num = int(digits[idx])
-        s = d[num]
-        for i in range(len(s)):
-            self.combine(digits, d, idx+1, out+s[i], res)
+        digit = int(digits[idx])
+        letters = d[digit]
+        for letter in letters:
+            self.dfs(digits, d, idx + 1, out + letter, res)
 \end{lstlisting}
 
 \begin{lstlisting}
@@ -960,10 +962,8 @@ class Solution(object):
         :rtype: int
         """
         if not grid or not grid[0]: return 0
-        m = len(grid)
-        n = len(grid[0])
-        # 2d list with a dimension of m*n
-        visited = [[False] * n for i in range(m)]
+        m, n = len(grid), len(grid[0])
+        visited = [[False for j in range(n)] for i in range(m)]
         res = 0
         for i in range(m):
             for j in range(n):
@@ -972,8 +972,7 @@ class Solution(object):
                 res += 1
         return res
     def dfs(self, grid, visited, i, j):
-        if i < 0 or i >= len(grid) or \
-           j < 0 or j >= len(grid[0]) or \
+        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or \
            grid[i][j] == '0' or visited[i][j]: return
         visited[i][j] = True
         self.dfs(grid, visited, i - 1, j)

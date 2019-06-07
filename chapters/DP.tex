@@ -244,13 +244,15 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        if not s or s[0] == '0':
-            return 0
-        dp = [0] * (len(s) + 1)
+        if not s or s[0] == '0': return 0
+        dp = [0 for i in range(len(s) + 1)]
         dp[0] = 1
+        # number of ways to decode until the digit i
         for i in range(1, len(dp)):
+            # s[i-1] and s[i] cannot form a digit
             if s[i-1] != '0':
                 dp[i] += dp[i-1]
+            # s[i-2] and s[i-1] can form a digit in range [10, 26]
             if i >= 2 and int(s[i-2:i]) >= 10 and int(s[i-2:i]) <= 26:
                 dp[i] += dp[i-2]
         return dp[-1]
@@ -454,13 +456,16 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        buy, res = float('inf'), 0
-        for p in prices:
-            if p < buy: 
-                buy = p
-            elif p - buy > res:
-                res = p - buy
-        return res
+        buy = float('inf')
+        profit = 0
+        for price in prices:
+            if price < buy:
+                buy = price
+            # there is no need to check profit if we buy a stock
+            # so we use elif here
+            elif profit < price - buy:
+                profit = price - buy
+        return profit
 \end{lstlisting}
 
 \begin{lstlisting}

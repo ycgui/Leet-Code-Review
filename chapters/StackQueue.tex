@@ -365,3 +365,179 @@ class Solution(object):
             return '0'
 \end{lstlisting}
 
+\section{Kth Largest Element in an Array (M)}
+Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.\\
+
+For example,
+Given [3,2,1,5,6,4] and k = 2, return 5.\\
+
+Note:
+You may assume k is always valid, $1 \leq k \leq array's length$.\\
+
+\begin{lstlisting}
+# O(NlogN)
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        nums.sort()
+        return nums[len(nums)-k]
+        
+# O(NlogN + klogN)
+from Queue import PriorityQueue
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        pq = PriorityQueue()
+        # O(NlogN)
+        for num in nums:
+            pq.put(-num)
+        # O(klogN)
+        for i in range(k):
+            res = pq.get()
+        return -res
+\end{lstlisting}
+
+\section{Top K Frequent Elements (M)}
+Given a non-empty array of integers, return the k most frequent elements.\\
+
+For example,
+Given [1,1,1,2,2,3] and k = 2, return [1,2].\\
+
+Note:
+    You may assume k is always valid, $1 \leq k \leq $ number of unique elements.\\
+    Your algorithm's time complexity must be better than O(n log n), where n is the array's size.\\
+
+\begin{lstlisting}
+from Queue import PriorityQueue
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        pq = PriorityQueue()
+        n = len(nums)
+        freq_map, res = {}, []
+        # O(N)
+        for i in range(n):
+            if nums[i] in freq_map:
+                freq_map[nums[i]] += 1
+            else:
+                freq_map.update({nums[i]: 1})
+        # O(MlogM), M is the number of element in freq_map
+        for num, freq in freq_map.items():
+            pq.put((-freq, num))
+        # O(klogM)
+        for i in range(k):
+            freq, num = pq.get()
+            res.append(num)
+        return res
+\end{lstlisting}        
+        
+\begin{lstlisting}
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> m;
+        // Priority queues are a type of container adaptors, specifically designed such that its first element is always the greatest of the elements it contains, according to some strict weak ordering criterion.
+        priority_queue<pair<int, int>> q;
+        vector<int> res;
+        for (auto a : nums) {
+            ++m[a];
+        }
+        for (auto it : m) {
+            q.push({it.second, it.first});
+        }
+        for (int i = 0; i < k; ++i) {
+            res.push_back(q.top().second); 
+            q.pop();
+        }
+        return res;
+    }
+};
+\end{lstlisting}
+
+\section{Kth Smallest Element in a Sorted Matrix (M)}
+Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.\
+
+Note that it is the kth smallest element in the sorted order, not the kth distinct element.\\
+
+Example:\\
+matrix = [
+   [ 1,  5,  9],
+   [10, 11, 13],
+   [12, 13, 15]
+],\\
+k = 8, return 13.\\
+
+Note:
+You may assume k is always valid, $1 \leq k \leq n^2$.\\
+
+\begin{lstlisting}
+from Queue import PriorityQueue
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        pq = PriorityQueue()
+        m, n = len(matrix), len(matrix[0])
+        res = []
+        for i in range(m):
+            for j in range(n):
+                pq.put(matrix[i][j])
+        for i in range(m * n):
+            num = pq.get()
+            res.append(num)
+        return res[k-1]
+\end{lstlisting}
+
+
+\begin{lstlisting}
+// 1. Binary search
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int left = matrix[0][0], right = matrix.back().back();
+        while (left < right) {
+            int mid = left + (right - left) / 2, cnt = 0;
+            // upper_bound(): Returns an iterator pointing to the first element 
+            // in the range [first,last) which compares greater than val.
+            for (int i = 0; i < matrix.size(); ++i) {
+                // get the position of upper_bound compared to mid
+                cnt += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+            }
+            if (cnt < k) left = mid + 1;
+            else right = mid;
+        }
+        return left;
+    }
+};
+
+// 2. Heap
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        priority_queue<int, vector<int>> q;
+        for (int i = 0; i < matrix.size(); ++i) {
+            for (int j = 0; j < matrix[i].size(); ++j) {
+                q.emplace(matrix[i][j]);
+                if (q.size() > k) q.pop();
+            }
+        }
+        return q.top();
+    }
+};
+\end{lstlisting}
+
