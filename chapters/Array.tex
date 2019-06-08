@@ -1067,6 +1067,12 @@ class Solution(object):
                 if dict_nums[another] != index:
                     return [dict_nums[another], index]
             dict_nums[num] = index
+        
+        # Use index()
+        for idx, num in enumerate(nums):
+            another = target - num
+            if another in nums and nums.index(another) != idx:
+                return[idx, nums.index(another)]
 \end{lstlisting}
 
 C++:
@@ -1793,31 +1799,6 @@ public:
 };
 \end{lstlisting}
 
-\section{Merge Intervals (M)}
-Given a collection of intervals, merge all overlapping intervals.
-
-\begin{lstlisting}
-class Solution(object):
-    def merge(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: List[List[int]]
-        """
-        # sort according to the first element of the inner list
-        intervals.sort(key = lambda x: x[0])
-        merged = []
-        for interval in intervals:
-            # if the list of merged intervals is empty or if the current
-            # interval does not overlap with the previous, simply append it.
-            if not merged or merged[-1][-1] < interval[0]:
-                merged.append(interval)
-            else:
-            # otherwise, there is an overlapping
-            # so we merge the current and previous intervals.
-                merged[-1][-1] = max(merged[-1][-1], interval[-1])
-        return merged        
-\end{lstlisting}
-        
 \section{Task Scheduler (M)}
 Given a char array representing tasks CPU need to do. It contains capital letters A to Z where different letters represent different tasks. Tasks could be done without original order. Each task could be done in one interval. For each interval, CPU could finish one task or just be idle.\\
 
@@ -1856,10 +1837,45 @@ class Solution(object):
         return res
 \end{lstlisting}
 
+\section{Merge Intervals (M)}
+Given a collection of intervals, merge all overlapping intervals.
+
+\begin{lstlisting}
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # sort according to the first element of the inner list
+        intervals.sort(key = lambda x: x[0])
+        merged = []
+        for interval in intervals:
+            # if the list of merged intervals is empty or if the current
+            # interval does not overlap with the previous, simply append it.
+            if not merged or merged[-1][-1] < interval[0]:
+                merged.append(interval)
+            else:
+            # otherwise, there is an overlapping
+            # so we merge the current and previous intervals.
+                merged[-1][-1] = max(merged[-1][-1], interval[-1])
+        return merged        
+\end{lstlisting}
+
 \section{Meeting Rooms (E)}
 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si $<$ ei), determine if a person could attend all meetings.\\
 
 For example, given [[0, 30],[5, 10],[15, 20]], return false.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def canAttendMeetings(self, intervals):
+        intervals.sort(key = lambda x: x[0])
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < intervals[i-1][-1]:
+                return False
+        return True
+\begin{lstlisting}
 
 \begin{lstlisting}
 /** 
@@ -1896,6 +1912,24 @@ public:
 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si $<$ ei), find the minimum number of conference rooms required.\\
 
 For example, given [[0, 30],[5, 10],[15, 20]], return 2.\\
+
+\begin{lstlisting}
+class Solution(object):
+	def minMeetingRooms(self, intervals):
+		starts, ends = [], []
+		res, idx = 0, 0
+		for interval in intervals:
+			starts.append(interval[0])
+			ends.append(interval[1])
+		starts.sort()
+		ends.sort()
+		for i in range(len(intervals)):
+			if starts[i] < end[idx]:
+				res += 1
+			else:
+				idx += 1
+		return res
+\end{lstlisting}
 
 \begin{lstlisting}
 // 1. Map
@@ -2250,6 +2284,18 @@ private:
 
 \section{Sparse Matrix Multiplication (M)}
 Given two sparse matrices A and B, return the result of AB. You may assume that A's column number is equal to B's row number.\\
+
+\begin{lstlisting}
+def multiplyMatrix(A, B):
+	m, p, n = len(A), len(B), len(B[0])
+	res = [[0 for i in range(n)] for j in range(m)]
+	for i in range(m):
+		for k in range(p):
+			if A[i][k] != 0:
+				for j in range(n):
+					if B[k][j] != 0: res[i][j] += A[i][k] * B[k][j]
+	return res	
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -2632,11 +2678,11 @@ class Solution(object):
         :rtype: None Do not return anything, modify matrix in-place instead.
         """
         n = len(matrix)
-        for i in range(n):
-            matrix[i].reverse()
+        for row in matrix:
+            row.reverse()
         for i in range(n):
             for j in range(i+1, n):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]             
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]                         
 \end{lstlisting}
 
 \begin{lstlisting}
