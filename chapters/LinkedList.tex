@@ -584,6 +584,37 @@ For example:\\
 Given $1->2->3->4->5->NULL$ and k = 2, return $4->5->1->2->3->NULL$.\\
 
 \begin{lstlisting}
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def rotateRight(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        if not head: return None
+        n = 1
+        cur = head
+        while cur.next:
+            cur = cur.next
+            n += 1
+        # make a cycle list
+        cur.next = head
+        # locate the element before the newhead after rotation
+        m = n - k % n
+        for i in range(m):
+            cur = cur.next
+        newhead = cur.next
+        cur.next = None
+        return newhead
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {

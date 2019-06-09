@@ -1003,6 +1003,28 @@ public:
 Find the total area covered by two rectilinear rectangles in a 2D plane. Each rectangle is defined by its bottom left corner and top right corner as shown in the figure. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def computeArea(self, A, B, C, D, E, F, G, H):
+        """
+        :type A: int
+        :type B: int
+        :type C: int
+        :type D: int
+        :type E: int
+        :type F: int
+        :type G: int
+        :type H: int
+        :rtype: int
+        """
+        width = max(min(C, G) - max(A, E), 0)
+        height = max(min(D, H) - max(B, F), 0)
+        overlap = width * height
+        area1 = (C - A) * (D - B)
+        area2 = (G - E) * (H - F)
+        return area1 + area2 - overlap
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
@@ -1021,6 +1043,24 @@ public:
         return areaA + areaB - overlap;
     }
 };
+\end{lstlisting}
+
+\section{Rectangle Overlap (M)}
+A rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) are the coordinates of its bottom-left corner, and (x2, y2) are the coordinates of its top-right corner.\\
+
+Two rectangles overlap if the area of their intersection is positive.  To be clear, two rectangles that only touch at the corner or edges do not overlap.\\
+
+Given two (axis-aligned) rectangles, return whether they overlap.\\
+\begin{lstlisting}
+class Solution(object):
+    def isRectangleOverlap(self, rec1, rec2):
+        """
+        :type rec1: List[int]
+        :type rec2: List[int]
+        :rtype: bool
+        """
+        return rec1[0] < rec2[2] and rec2[0] < rec1[2] and \
+               rec1[1] < rec2[3] and rec2[1] < rec1[3]
 \end{lstlisting}
 
 
