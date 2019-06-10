@@ -145,255 +145,258 @@
 \BOOKMARK [1][-]{section.5.55}{Rotate Image \(M\)\(Amazon phone screen 2016.9.16\)}{chapter.5}% 145
 \BOOKMARK [0][-]{chapter.6}{String}{}% 146
 \BOOKMARK [1][-]{section.6.1}{Add Binary \(E\)}{chapter.6}% 147
-\BOOKMARK [1][-]{section.6.2}{Multiply Strings \(M\)}{chapter.6}% 148
-\BOOKMARK [1][-]{section.6.3}{Count and Say \(E\)}{chapter.6}% 149
-\BOOKMARK [1][-]{section.6.4}{Length of Last Word \(E\)}{chapter.6}% 150
-\BOOKMARK [1][-]{section.6.5}{Longest Common Prefix \(E\)}{chapter.6}% 151
-\BOOKMARK [1][-]{section.6.6}{Implement strStr\(\) \(E\)}{chapter.6}% 152
-\BOOKMARK [1][-]{section.6.7}{Is Subsequence \(M\)}{chapter.6}% 153
-\BOOKMARK [1][-]{section.6.8}{Ransom Note \(E\)}{chapter.6}% 154
-\BOOKMARK [1][-]{section.6.9}{Find the Difference \(M\)}{chapter.6}% 155
-\BOOKMARK [1][-]{section.6.10}{First Unique Character in a String \(E\)}{chapter.6}% 156
-\BOOKMARK [1][-]{section.6.11}{Permutation in String \(M\)}{chapter.6}% 157
-\BOOKMARK [1][-]{section.6.12}{ZigZag Conversion \(E\)}{chapter.6}% 158
-\BOOKMARK [1][-]{section.6.13}{Group Shifted Strings \(E\)}{chapter.6}% 159
-\BOOKMARK [1][-]{section.6.14}{Compare Version Numbers \(E\)}{chapter.6}% 160
-\BOOKMARK [1][-]{section.6.15}{Additive Number \(M\)}{chapter.6}% 161
-\BOOKMARK [1][-]{section.6.16}{Evaluate Division \(M\)}{chapter.6}% 162
-\BOOKMARK [1][-]{section.6.17}{Restore IP Addresses \(M\)}{chapter.6}% 163
-\BOOKMARK [1][-]{section.6.18}{Simplify Path \(M\)}{chapter.6}% 164
-\BOOKMARK [1][-]{section.6.19}{Longest Absolute File Path \(M\)}{chapter.6}% 165
-\BOOKMARK [1][-]{section.6.20}{Valid Parentheses \(E\)}{chapter.6}% 166
-\BOOKMARK [1][-]{section.6.21}{Generate Parentheses \(M\)}{chapter.6}% 167
-\BOOKMARK [1][-]{section.6.22}{Different Ways to Add Parentheses \(M\)}{chapter.6}% 168
-\BOOKMARK [1][-]{section.6.23}{Longest Valid Parentheses \(H\)}{chapter.6}% 169
-\BOOKMARK [1][-]{section.6.24}{Remove Invalid Parentheses \(H\)}{chapter.6}% 170
-\BOOKMARK [1][-]{section.6.25}{Flip Game \(E\)}{chapter.6}% 171
-\BOOKMARK [1][-]{section.6.26}{Flip Game II \(M\)}{chapter.6}% 172
-\BOOKMARK [1][-]{section.6.27}{Excel Sheet Column Number \(E\)}{chapter.6}% 173
-\BOOKMARK [1][-]{section.6.28}{Excel Sheet Column Title \(E\)}{chapter.6}% 174
-\BOOKMARK [1][-]{section.6.29}{Roman to Integer \(E\)}{chapter.6}% 175
-\BOOKMARK [1][-]{section.6.30}{Integer to Roman \(M\)}{chapter.6}% 176
-\BOOKMARK [1][-]{section.6.31}{Integer to English Words \(H\)}{chapter.6}% 177
-\BOOKMARK [1][-]{section.6.32}{String to Integer \(atoi\) \(E\)}{chapter.6}% 178
-\BOOKMARK [1][-]{section.6.33}{Reverse String \(E\)}{chapter.6}% 179
-\BOOKMARK [1][-]{section.6.34}{Reverse String II \(E\)}{chapter.6}% 180
-\BOOKMARK [1][-]{section.6.35}{Reverse Vowels of a String \(E\)}{chapter.6}% 181
-\BOOKMARK [1][-]{section.6.36}{Reverse Words in a String \(M\)}{chapter.6}% 182
-\BOOKMARK [1][-]{section.6.37}{Reverse Words in a String II \(M\)}{chapter.6}% 183
-\BOOKMARK [1][-]{section.6.38}{Reverse Words in a String III \(E\)}{chapter.6}% 184
-\BOOKMARK [1][-]{section.6.39}{Valid Anagram \(E\)}{chapter.6}% 185
-\BOOKMARK [1][-]{section.6.40}{Group Anagrams \(M\)}{chapter.6}% 186
-\BOOKMARK [1][-]{section.6.41}{Valid Palindrome \(E\)}{chapter.6}% 187
-\BOOKMARK [1][-]{section.6.42}{Valid Palindrome II \(E\)}{chapter.6}% 188
-\BOOKMARK [1][-]{section.6.43}{Palindromic Substrings \(M\)}{chapter.6}% 189
-\BOOKMARK [1][-]{section.6.44}{Longest Palindromic Substring \(M\)}{chapter.6}% 190
-\BOOKMARK [1][-]{section.6.45}{Longest Palindromic Subsequence \(M\)}{chapter.6}% 191
-\BOOKMARK [1][-]{section.6.46}{Palindrome Permutation \(E\)}{chapter.6}% 192
-\BOOKMARK [1][-]{section.6.47}{Palindrome Permutation II \(M\)}{chapter.6}% 193
-\BOOKMARK [1][-]{section.6.48}{Palindrome Partitioning \(M\)}{chapter.6}% 194
-\BOOKMARK [1][-]{section.6.49}{Palindrome Partitioning II \(H\)}{chapter.6}% 195
-\BOOKMARK [1][-]{section.6.50}{Longest Substring Without Repeating Characters \(M\)}{chapter.6}% 196
-\BOOKMARK [1][-]{section.6.51}{Longest Substring with At Least K Repeating Characters \(M\)}{chapter.6}% 197
-\BOOKMARK [1][-]{section.6.52}{Longest Substring with At Most Two Distinct Characters \(H\)}{chapter.6}% 198
-\BOOKMARK [1][-]{section.6.53}{Longest Substring with At Most K Distinct Characters \(H\)}{chapter.6}% 199
-\BOOKMARK [1][-]{section.6.54}{Isomorphic Strings \(E\)}{chapter.6}% 200
-\BOOKMARK [1][-]{section.6.55}{Word Pattern \(E\)}{chapter.6}% 201
-\BOOKMARK [1][-]{section.6.56}{Word Pattern II \(H\)}{chapter.6}% 202
-\BOOKMARK [1][-]{section.6.57}{Word Break \(M\)}{chapter.6}% 203
-\BOOKMARK [1][-]{section.6.58}{Word Break II \(H\)}{chapter.6}% 204
-\BOOKMARK [1][-]{section.6.59}{Word Ladder \(M\)}{chapter.6}% 205
-\BOOKMARK [1][-]{section.6.60}{Word Ladder II \(H\)}{chapter.6}% 206
-\BOOKMARK [1][-]{section.6.61}{Shortest Word Distance \(E\)}{chapter.6}% 207
-\BOOKMARK [1][-]{section.6.62}{Shortest Word Distance II \(M\)}{chapter.6}% 208
-\BOOKMARK [1][-]{section.6.63}{Shortest Word Distance III \(M\)}{chapter.6}% 209
-\BOOKMARK [1][-]{section.6.64}{Strobogrammatic Number \(E\)}{chapter.6}% 210
-\BOOKMARK [1][-]{section.6.65}{Strobogrammatic Number II \(M\)}{chapter.6}% 211
-\BOOKMARK [1][-]{section.6.66}{Strobogrammatic Number III \(M\)}{chapter.6}% 212
-\BOOKMARK [1][-]{section.6.67}{Unique Word Abbreviation \(E\)}{chapter.6}% 213
-\BOOKMARK [1][-]{section.6.68}{Generalized Abbreviation \(M\)}{chapter.6}% 214
-\BOOKMARK [1][-]{section.6.69}{One Edit Distance \(M\)}{chapter.6}% 215
-\BOOKMARK [1][-]{section.6.70}{Edit Distance \(H\)}{chapter.6}% 216
-\BOOKMARK [1][-]{section.6.71}{String Compression \(E\)}{chapter.6}% 217
-\BOOKMARK [1][-]{section.6.72}{Encode and Decode Strings \(M\)}{chapter.6}% 218
-\BOOKMARK [1][-]{section.6.73}{Decode String \(M\)}{chapter.6}% 219
-\BOOKMARK [1][-]{section.6.74}{Read N Characters Given Read4 \(E\)}{chapter.6}% 220
-\BOOKMARK [1][-]{section.6.75}{Read N Characters Given Read4 II \(H\)}{chapter.6}% 221
-\BOOKMARK [1][-]{section.6.76}{Remove Comments \(M\)}{chapter.6}% 222
-\BOOKMARK [0][-]{chapter.7}{Tree}{}% 223
-\BOOKMARK [1][-]{section.7.1}{Binary Tree Construction}{chapter.7}% 224
-\BOOKMARK [2][-]{subsection.7.1.1}{Construct Binary Tree from Preorder and Inorder Traversal \(M\)}{section.7.1}% 225
-\BOOKMARK [2][-]{subsection.7.1.2}{Construct Binary Tree from Inorder and Postorder Traversal \(M\)}{section.7.1}% 226
-\BOOKMARK [2][-]{subsection.7.1.3}{Construct Binary Tree from Preorder and Postorder Traversal \(M\)}{section.7.1}% 227
-\BOOKMARK [2][-]{subsection.7.1.4}{Construct Binary Search Tree from Preorder Traversal \(M\)}{section.7.1}% 228
-\BOOKMARK [2][-]{subsection.7.1.5}{Serialize and Deserialize Binary Tree \(H\)}{section.7.1}% 229
-\BOOKMARK [2][-]{subsection.7.1.6}{Serialize and Deserialize BST \(M\)}{section.7.1}% 230
-\BOOKMARK [2][-]{subsection.7.1.7}{Serialize and Deserialize N-ary Tree \(H\)}{section.7.1}% 231
-\BOOKMARK [2][-]{subsection.7.1.8}{Verify Preorder Serialization of a Binary Tree \(M\)}{section.7.1}% 232
-\BOOKMARK [1][-]{section.7.2}{Binary Tree Traversal}{chapter.7}% 233
-\BOOKMARK [2][-]{subsection.7.2.1}{Binary Tree Preorder Traversal \(M\)}{section.7.2}% 234
-\BOOKMARK [2][-]{subsection.7.2.2}{Binary Tree Inorder Traversal \(M\)}{section.7.2}% 235
-\BOOKMARK [2][-]{subsection.7.2.3}{Binary Tree Postorder Traversal \(H\)}{section.7.2}% 236
-\BOOKMARK [2][-]{subsection.7.2.4}{Binary Tree Level Order Traversal \(E\)}{section.7.2}% 237
-\BOOKMARK [2][-]{subsection.7.2.5}{Binary Tree Level Order Traversal II \(E\)}{section.7.2}% 238
-\BOOKMARK [2][-]{subsection.7.2.6}{Binary Tree Zigzag Level Order Traversal \(M\)}{section.7.2}% 239
-\BOOKMARK [2][-]{subsection.7.2.7}{Binary Tree Vertical Order Traversal \(M\)}{section.7.2}% 240
-\BOOKMARK [2][-]{subsection.7.2.8}{Binary Tree Right Side View \(M\)}{section.7.2}% 241
-\BOOKMARK [2][-]{subsection.7.2.9}{Populating Next Right Pointers in Each Node \(M\)}{section.7.2}% 242
-\BOOKMARK [2][-]{subsection.7.2.10}{Populating Next Right Pointers in Each Node II \(H\)}{section.7.2}% 243
-\BOOKMARK [1][-]{section.7.3}{Binary Tree Recursion}{chapter.7}% 244
-\BOOKMARK [2][-]{subsection.7.3.1}{Same Tree \(E\)}{section.7.3}% 245
-\BOOKMARK [2][-]{subsection.7.3.2}{Symmetric Tree \(E\)}{section.7.3}% 246
-\BOOKMARK [2][-]{subsection.7.3.3}{Invert Binary Tree \(E\)}{section.7.3}% 247
-\BOOKMARK [2][-]{subsection.7.3.4}{Binary Tree Upside Down \(M\)}{section.7.3}% 248
-\BOOKMARK [2][-]{subsection.7.3.5}{Lowest Common Ancestor of a Binary Tree \(M\)}{section.7.3}% 249
-\BOOKMARK [2][-]{subsection.7.3.6}{Binary Tree Longest Consecutive Sequence \(M\)}{section.7.3}% 250
-\BOOKMARK [2][-]{subsection.7.3.7}{Count Univalue Subtrees \(M\)}{section.7.3}% 251
-\BOOKMARK [2][-]{subsection.7.3.8}{Find Leaves of Binary Tree \(M\)}{section.7.3}% 252
-\BOOKMARK [2][-]{subsection.7.3.9}{Flatten Binary Tree to Linked List \(M\)}{section.7.3}% 253
-\BOOKMARK [2][-]{subsection.7.3.10}{Balanced Binary Tree \(E\)}{section.7.3}% 254
-\BOOKMARK [2][-]{subsection.7.3.11}{Count Complete Tree Nodes \(M\)}{section.7.3}% 255
-\BOOKMARK [2][-]{subsection.7.3.12}{Minimum Depth of Binary Tree \(E\)}{section.7.3}% 256
-\BOOKMARK [2][-]{subsection.7.3.13}{Maximum Depth of Binary Tree \(E\)}{section.7.3}% 257
-\BOOKMARK [2][-]{subsection.7.3.14}{Maximum Depth of N-ary Tree \(E\)}{section.7.3}% 258
-\BOOKMARK [2][-]{subsection.7.3.15}{Maximum Width of Binary Tree \(M\)}{section.7.3}% 259
-\BOOKMARK [2][-]{subsection.7.3.16}{Diameter of Binary Tree \(E\)}{section.7.3}% 260
-\BOOKMARK [2][-]{subsection.7.3.17}{Print Binary Tree \(M\)}{section.7.3}% 261
-\BOOKMARK [2][-]{subsection.7.3.18}{Maximum Binary Tree \(M\)}{section.7.3}% 262
-\BOOKMARK [2][-]{subsection.7.3.19}{Maximum Binary Tree II \(M\)}{section.7.3}% 263
-\BOOKMARK [2][-]{subsection.7.3.20}{Binary Tree Paths \(E\)}{section.7.3}% 264
-\BOOKMARK [2][-]{subsection.7.3.21}{Path Sum \(E\)}{section.7.3}% 265
-\BOOKMARK [2][-]{subsection.7.3.22}{Path Sum II \(M\)}{section.7.3}% 266
-\BOOKMARK [2][-]{subsection.7.3.23}{Path Sum III \(E\)}{section.7.3}% 267
-\BOOKMARK [2][-]{subsection.7.3.24}{Sum Root to Leaf Numbers \(M\)}{section.7.3}% 268
-\BOOKMARK [2][-]{subsection.7.3.25}{Binary Tree Maximum Path Sum \(H\)}{section.7.3}% 269
-\BOOKMARK [2][-]{subsection.7.3.26}{Binary Tree Path Sum of Two Nodes \(Philips on-sight 2016.09\)}{section.7.3}% 270
-\BOOKMARK [1][-]{section.7.4}{Binary Search Tree}{chapter.7}% 271
-\BOOKMARK [2][-]{subsection.7.4.1}{Lowest Common Ancestor of a Binary Search Tree \(E\)}{section.7.4}% 272
-\BOOKMARK [2][-]{subsection.7.4.2}{Validate Binary Search Tree \(M\)}{section.7.4}% 273
-\BOOKMARK [2][-]{subsection.7.4.3}{Trim a Binary Search Tree \(M\)}{section.7.4}% 274
-\BOOKMARK [2][-]{subsection.7.4.4}{Binary Search Tree Iterator \(M\)}{section.7.4}% 275
-\BOOKMARK [2][-]{subsection.7.4.5}{Recover Binary Search Tree \(H\)}{section.7.4}% 276
-\BOOKMARK [2][-]{subsection.7.4.6}{Kth Smallest Element in a BST \(M\)}{section.7.4}% 277
-\BOOKMARK [2][-]{subsection.7.4.7}{Verify Preorder Sequence in Binary Search Tree \(M\)}{section.7.4}% 278
-\BOOKMARK [2][-]{subsection.7.4.8}{Inorder Successor in BST \(M\)}{section.7.4}% 279
-\BOOKMARK [2][-]{subsection.7.4.9}{Inorder Successor in BST II \(M\)}{section.7.4}% 280
-\BOOKMARK [2][-]{subsection.7.4.10}{Largest BST Subtree \(M\)}{section.7.4}% 281
-\BOOKMARK [2][-]{subsection.7.4.11}{Unique Binary Search Trees \(M\)}{section.7.4}% 282
-\BOOKMARK [2][-]{subsection.7.4.12}{Unique Binary Search Trees II \(M\)}{section.7.4}% 283
-\BOOKMARK [2][-]{subsection.7.4.13}{Convert Sorted Array to Binary Search Tree \(M\)}{section.7.4}% 284
-\BOOKMARK [2][-]{subsection.7.4.14}{Convert Sorted List to Binary Search Tree \(M\)}{section.7.4}% 285
-\BOOKMARK [2][-]{subsection.7.4.15}{Convert Binary Search Tree to Sorted Doubly Linked List \(M\)}{section.7.4}% 286
-\BOOKMARK [2][-]{subsection.7.4.16}{Closest Binary Search Tree Value \(E\)}{section.7.4}% 287
-\BOOKMARK [2][-]{subsection.7.4.17}{Closest Binary Search Tree Value II \(H\)}{section.7.4}% 288
-\BOOKMARK [0][-]{chapter.8}{Sorting}{}% 289
-\BOOKMARK [1][-]{section.8.1}{Largest Number \(M\)}{chapter.8}% 290
-\BOOKMARK [1][-]{section.8.2}{Sort Colors \(M\)}{chapter.8}% 291
-\BOOKMARK [1][-]{section.8.3}{Wiggle Sort \(M\)}{chapter.8}% 292
-\BOOKMARK [1][-]{section.8.4}{Wiggle Sort II \(M\)}{chapter.8}% 293
-\BOOKMARK [1][-]{section.8.5}{Wiggle Subsequence \(M\)}{chapter.8}% 294
-\BOOKMARK [1][-]{section.8.6}{Sort List \(M\)}{chapter.8}% 295
-\BOOKMARK [1][-]{section.8.7}{Insertion Sort List \(M\)}{chapter.8}% 296
-\BOOKMARK [0][-]{chapter.9}{Binary Search}{}% 297
-\BOOKMARK [1][-]{section.9.1}{First Bad Version \(E\)}{chapter.9}% 298
-\BOOKMARK [1][-]{section.9.2}{Find the Duplicate Number \(H\)}{chapter.9}% 299
-\BOOKMARK [1][-]{section.9.3}{Search for a Range \(M\)}{chapter.9}% 300
-\BOOKMARK [1][-]{section.9.4}{Search Insert Position \(M\)}{chapter.9}% 301
-\BOOKMARK [1][-]{section.9.5}{Find Peak Element \(M\)}{chapter.9}% 302
-\BOOKMARK [1][-]{section.9.6}{Search a 2D Matrix \(M\)}{chapter.9}% 303
-\BOOKMARK [1][-]{section.9.7}{Search a 2D Matrix II \(M\)}{chapter.9}% 304
-\BOOKMARK [1][-]{section.9.8}{Guess Number Higher or Lower \(E\)}{chapter.9}% 305
-\BOOKMARK [1][-]{section.9.9}{Guess Number Higher or Lower II \(M\)}{chapter.9}% 306
-\BOOKMARK [1][-]{section.9.10}{Find Minimum in Rotated Sorted Array \(M\)}{chapter.9}% 307
-\BOOKMARK [1][-]{section.9.11}{Find Minimum in Rotated Sorted Array II \(H\)}{chapter.9}% 308
-\BOOKMARK [1][-]{section.9.12}{Search in Rotated Sorted Array \(M\)}{chapter.9}% 309
-\BOOKMARK [1][-]{section.9.13}{Search in Rotated Sorted Array II \(M\)}{chapter.9}% 310
-\BOOKMARK [1][-]{section.9.14}{Median of Two Sorted Arrays \(H\)}{chapter.9}% 311
-\BOOKMARK [0][-]{chapter.10}{DFS and BFS}{}% 312
-\BOOKMARK [1][-]{section.10.1}{Subset \(M\)}{chapter.10}% 313
-\BOOKMARK [1][-]{section.10.2}{Subset II \(M\)}{chapter.10}% 314
-\BOOKMARK [1][-]{section.10.3}{Permutations \(M\)}{chapter.10}% 315
-\BOOKMARK [1][-]{section.10.4}{Permutations II \(M\)}{chapter.10}% 316
-\BOOKMARK [1][-]{section.10.5}{Next Permutation \(M\)}{chapter.10}% 317
-\BOOKMARK [1][-]{section.10.6}{Permutation Sequence \(M\)}{chapter.10}% 318
-\BOOKMARK [1][-]{section.10.7}{Combinations \(M\)}{chapter.10}% 319
-\BOOKMARK [1][-]{section.10.8}{Combination Sum \(M\)}{chapter.10}% 320
-\BOOKMARK [1][-]{section.10.9}{Combination Sum II \(M\)}{chapter.10}% 321
-\BOOKMARK [1][-]{section.10.10}{Combination Sum III \(M\)}{chapter.10}% 322
-\BOOKMARK [1][-]{section.10.11}{Combination Sum IV \(M\)}{chapter.10}% 323
-\BOOKMARK [1][-]{section.10.12}{Factor Combinations \(M\)}{chapter.10}% 324
-\BOOKMARK [1][-]{section.10.13}{Letter Combinations of a Phone Number \(M\)}{chapter.10}% 325
-\BOOKMARK [1][-]{section.10.14}{Walls and Gates \(M\)}{chapter.10}% 326
-\BOOKMARK [1][-]{section.10.15}{Surrounded Regions \(M\)}{chapter.10}% 327
-\BOOKMARK [1][-]{section.10.16}{Battleships in a Board \(M\)}{chapter.10}% 328
-\BOOKMARK [1][-]{section.10.17}{Number of Islands \(M\)}{chapter.10}% 329
-\BOOKMARK [1][-]{section.10.18}{Number of Islands II \(H\)}{chapter.10}% 330
-\BOOKMARK [1][-]{section.10.19}{Word Search \(M\)}{chapter.10}% 331
-\BOOKMARK [1][-]{section.10.20}{Word Search debugging \(Microsoft phone interview 2019.5.31\)}{chapter.10}% 332
-\BOOKMARK [1][-]{section.10.21}{Word Search II \(H\)}{chapter.10}% 333
-\BOOKMARK [0][-]{chapter.11}{Dynamic Programming}{}% 334
-\BOOKMARK [1][-]{section.11.1}{Gas Station \(M\)}{chapter.11}% 335
-\BOOKMARK [1][-]{section.11.2}{Combination Sum IV \(M\)}{chapter.11}% 336
-\BOOKMARK [1][-]{section.11.3}{Perfect Squares \(M\)}{chapter.11}% 337
-\BOOKMARK [1][-]{section.11.4}{Coin Change \(M\)}{chapter.11}% 338
-\BOOKMARK [1][-]{section.11.5}{Largest Divisible Subset \(M\)}{chapter.11}% 339
-\BOOKMARK [1][-]{section.11.6}{Climbing Stairs \(E\)}{chapter.11}% 340
-\BOOKMARK [1][-]{section.11.7}{Decode Ways \(M\)}{chapter.11}% 341
-\BOOKMARK [1][-]{section.11.8}{Number of ways for mapping integers to alphabets \(The Climate Corporation phone screen 2016.9.22\)}{chapter.11}% 342
-\BOOKMARK [1][-]{section.11.9}{Jump Game \(M\)}{chapter.11}% 343
-\BOOKMARK [1][-]{section.11.10}{Jump Game II \(M\)}{chapter.11}% 344
-\BOOKMARK [1][-]{section.11.11}{Best Time to Buy and Sell Stock \(E\)}{chapter.11}% 345
-\BOOKMARK [1][-]{section.11.12}{Best Time to Buy and Sell Stock II \(E\)}{chapter.11}% 346
-\BOOKMARK [1][-]{section.11.13}{Best Time to Buy and Sell Stock with Cooldown \(M\)}{chapter.11}% 347
-\BOOKMARK [1][-]{section.11.14}{Best Time to Buy and Sell Stock with Transaction Fee \(M\)}{chapter.11}% 348
-\BOOKMARK [1][-]{section.11.15}{Best Time to Buy and Sell Stock III \(H\)}{chapter.11}% 349
-\BOOKMARK [1][-]{section.11.16}{Best Time to Buy and Sell Stock IV \(H\)}{chapter.11}% 350
-\BOOKMARK [1][-]{section.11.17}{House Robber \(E\)}{chapter.11}% 351
-\BOOKMARK [1][-]{section.11.18}{House Robber II \(M\)}{chapter.11}% 352
-\BOOKMARK [1][-]{section.11.19}{House Robber III \(M\)}{chapter.11}% 353
-\BOOKMARK [1][-]{section.11.20}{Paint Fence \(E\)}{chapter.11}% 354
-\BOOKMARK [1][-]{section.11.21}{Paint House \(M\)}{chapter.11}% 355
-\BOOKMARK [1][-]{section.11.22}{Paint House II \(H\)}{chapter.11}% 356
-\BOOKMARK [1][-]{section.11.23}{Pascal's Triangle \(E\)}{chapter.11}% 357
-\BOOKMARK [1][-]{section.11.24}{Pascal's Triangle II \(E\)}{chapter.11}% 358
-\BOOKMARK [1][-]{section.11.25}{Range Sum Query - Immutable \(E\)}{chapter.11}% 359
-\BOOKMARK [1][-]{section.11.26}{Range Sum Query - Mutable \(M\)}{chapter.11}% 360
-\BOOKMARK [1][-]{section.11.27}{Range Sum Query 2D - Immutable \(M\)}{chapter.11}% 361
-\BOOKMARK [1][-]{section.11.28}{Triangle \(M\)}{chapter.11}% 362
-\BOOKMARK [1][-]{section.11.29}{Unique Paths \(M\)}{chapter.11}% 363
-\BOOKMARK [1][-]{section.11.30}{Unique Paths II \(M\)}{chapter.11}% 364
-\BOOKMARK [1][-]{section.11.31}{Minimum Path Sum \(M\)}{chapter.11}% 365
-\BOOKMARK [1][-]{section.11.32}{Dungeon Game \(H\)}{chapter.11}% 366
-\BOOKMARK [1][-]{section.11.33}{Increasing Triplet Subsequence \(M\)}{chapter.11}% 367
-\BOOKMARK [1][-]{section.11.34}{Longest Increasing Subsequence \(M\)}{chapter.11}% 368
-\BOOKMARK [1][-]{section.11.35}{Longest Increasing Path in a Matrix \(M\)}{chapter.11}% 369
-\BOOKMARK [1][-]{section.11.36}{Maximal Square \(M\)}{chapter.11}% 370
-\BOOKMARK [1][-]{section.11.37}{Maximal Rectangle \(H\)}{chapter.11}% 371
-\BOOKMARK [0][-]{chapter.12}{Graph}{}% 372
-\BOOKMARK [1][-]{section.12.1}{Number of Connected Components in an Undirected Graph \(M\)}{chapter.12}% 373
-\BOOKMARK [1][-]{section.12.2}{Graph Valid Tree \(M\)}{chapter.12}% 374
-\BOOKMARK [1][-]{section.12.3}{Copy List with Random Pointer \(M\)}{chapter.12}% 375
-\BOOKMARK [1][-]{section.12.4}{Clone Graph \(M\)}{chapter.12}% 376
-\BOOKMARK [1][-]{section.12.5}{Course Schedule \(M\)}{chapter.12}% 377
-\BOOKMARK [1][-]{section.12.6}{Course Schedule II \(M\)}{chapter.12}% 378
-\BOOKMARK [1][-]{section.12.7}{Minimum Height Trees \(M\)}{chapter.12}% 379
-\BOOKMARK [1][-]{section.12.8}{Reconstruct Itinerary \(M\)}{chapter.12}% 380
-\BOOKMARK [0][-]{chapter.13}{Design and Implementation}{}% 381
-\BOOKMARK [1][-]{section.13.1}{Valid Sudoku \(E\)}{chapter.13}% 382
-\BOOKMARK [1][-]{section.13.2}{Sudoku Solver \(H\)}{chapter.13}% 383
-\BOOKMARK [1][-]{section.13.3}{Boom Enemy \(M\)}{chapter.13}% 384
-\BOOKMARK [1][-]{section.13.4}{Android Unlock Patterns \(M\)}{chapter.13}% 385
-\BOOKMARK [1][-]{section.13.5}{Game of Life \(M\)}{chapter.13}% 386
-\BOOKMARK [1][-]{section.13.6}{Peeking Iterator \(M\)}{chapter.13}% 387
-\BOOKMARK [1][-]{section.13.7}{LRU Cache \(H\)}{chapter.13}% 388
-\BOOKMARK [1][-]{section.13.8}{Design Tic-Tac-Toe \(M\)}{chapter.13}% 389
-\BOOKMARK [1][-]{section.13.9}{Design Snake Game \(M\)}{chapter.13}% 390
-\BOOKMARK [1][-]{section.13.10}{Design Phone Directory \(M\)}{chapter.13}% 391
-\BOOKMARK [1][-]{section.13.11}{Design Twitter \(M\)}{chapter.13}% 392
-\BOOKMARK [1][-]{section.13.12}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.13}% 393
-\BOOKMARK [1][-]{section.13.13}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.13}% 394
-\BOOKMARK [1][-]{section.13.14}{Basic Calculator \(H\)}{chapter.13}% 395
-\BOOKMARK [1][-]{section.13.15}{Basic Calculator II \(M\)}{chapter.13}% 396
-\BOOKMARK [1][-]{section.13.16}{Expression Add Operators \(H\)}{chapter.13}% 397
-\BOOKMARK [1][-]{section.13.17}{Implement Trie \(Prefix Tree\) \(M\)}{chapter.13}% 398
-\BOOKMARK [1][-]{section.13.18}{Add and Search Word - Data structure design \(M\)}{chapter.13}% 399
+\BOOKMARK [1][-]{section.6.2}{Add Strings \(E\)}{chapter.6}% 148
+\BOOKMARK [1][-]{section.6.3}{Multiply Strings \(M\)}{chapter.6}% 149
+\BOOKMARK [1][-]{section.6.4}{Count and Say \(E\)}{chapter.6}% 150
+\BOOKMARK [1][-]{section.6.5}{Length of Last Word \(E\)}{chapter.6}% 151
+\BOOKMARK [1][-]{section.6.6}{Longest Common Prefix \(E\)}{chapter.6}% 152
+\BOOKMARK [1][-]{section.6.7}{Implement strStr\(\) \(E\)}{chapter.6}% 153
+\BOOKMARK [1][-]{section.6.8}{Is Subsequence \(M\)}{chapter.6}% 154
+\BOOKMARK [1][-]{section.6.9}{Ransom Note \(E\)}{chapter.6}% 155
+\BOOKMARK [1][-]{section.6.10}{Find the Difference \(M\)}{chapter.6}% 156
+\BOOKMARK [1][-]{section.6.11}{First Unique Character in a String \(E\)}{chapter.6}% 157
+\BOOKMARK [1][-]{section.6.12}{Permutation in String \(M\)}{chapter.6}% 158
+\BOOKMARK [1][-]{section.6.13}{ZigZag Conversion \(E\)}{chapter.6}% 159
+\BOOKMARK [1][-]{section.6.14}{Group Shifted Strings \(E\)}{chapter.6}% 160
+\BOOKMARK [1][-]{section.6.15}{Compare Version Numbers \(E\)}{chapter.6}% 161
+\BOOKMARK [1][-]{section.6.16}{Additive Number \(M\)}{chapter.6}% 162
+\BOOKMARK [1][-]{section.6.17}{Evaluate Division \(M\)}{chapter.6}% 163
+\BOOKMARK [1][-]{section.6.18}{Restore IP Addresses \(M\)}{chapter.6}% 164
+\BOOKMARK [1][-]{section.6.19}{Simplify Path \(M\)}{chapter.6}% 165
+\BOOKMARK [1][-]{section.6.20}{Longest Absolute File Path \(M\)}{chapter.6}% 166
+\BOOKMARK [1][-]{section.6.21}{Valid Parentheses \(E\)}{chapter.6}% 167
+\BOOKMARK [1][-]{section.6.22}{Generate Parentheses \(M\)}{chapter.6}% 168
+\BOOKMARK [1][-]{section.6.23}{Different Ways to Add Parentheses \(M\)}{chapter.6}% 169
+\BOOKMARK [1][-]{section.6.24}{Longest Valid Parentheses \(H\)}{chapter.6}% 170
+\BOOKMARK [1][-]{section.6.25}{Remove Invalid Parentheses \(H\)}{chapter.6}% 171
+\BOOKMARK [1][-]{section.6.26}{Flip Game \(E\)}{chapter.6}% 172
+\BOOKMARK [1][-]{section.6.27}{Flip Game II \(M\)}{chapter.6}% 173
+\BOOKMARK [1][-]{section.6.28}{Excel Sheet Column Number \(E\)}{chapter.6}% 174
+\BOOKMARK [1][-]{section.6.29}{Excel Sheet Column Title \(E\)}{chapter.6}% 175
+\BOOKMARK [1][-]{section.6.30}{Roman to Integer \(E\)}{chapter.6}% 176
+\BOOKMARK [1][-]{section.6.31}{Integer to Roman \(M\)}{chapter.6}% 177
+\BOOKMARK [1][-]{section.6.32}{Integer to English Words \(H\)}{chapter.6}% 178
+\BOOKMARK [1][-]{section.6.33}{String to Integer \(atoi\) \(E\)}{chapter.6}% 179
+\BOOKMARK [1][-]{section.6.34}{Reverse String \(E\)}{chapter.6}% 180
+\BOOKMARK [1][-]{section.6.35}{Reverse String II \(E\)}{chapter.6}% 181
+\BOOKMARK [1][-]{section.6.36}{Reverse Vowels of a String \(E\)}{chapter.6}% 182
+\BOOKMARK [1][-]{section.6.37}{Reverse Words in a String \(M\)}{chapter.6}% 183
+\BOOKMARK [1][-]{section.6.38}{Reverse Words in a String II \(M\)}{chapter.6}% 184
+\BOOKMARK [1][-]{section.6.39}{Reverse Words in a String III \(E\)}{chapter.6}% 185
+\BOOKMARK [1][-]{section.6.40}{Valid Anagram \(E\)}{chapter.6}% 186
+\BOOKMARK [1][-]{section.6.41}{Group Anagrams \(M\)}{chapter.6}% 187
+\BOOKMARK [1][-]{section.6.42}{Valid Palindrome \(E\)}{chapter.6}% 188
+\BOOKMARK [1][-]{section.6.43}{Valid Palindrome II \(E\)}{chapter.6}% 189
+\BOOKMARK [1][-]{section.6.44}{Palindromic Substrings \(M\)}{chapter.6}% 190
+\BOOKMARK [1][-]{section.6.45}{Longest Palindromic Substring \(M\)}{chapter.6}% 191
+\BOOKMARK [1][-]{section.6.46}{Longest Palindromic Subsequence \(M\)}{chapter.6}% 192
+\BOOKMARK [1][-]{section.6.47}{Palindrome Permutation \(E\)}{chapter.6}% 193
+\BOOKMARK [1][-]{section.6.48}{Palindrome Permutation II \(M\)}{chapter.6}% 194
+\BOOKMARK [1][-]{section.6.49}{Palindrome Partitioning \(M\)}{chapter.6}% 195
+\BOOKMARK [1][-]{section.6.50}{Palindrome Partitioning II \(H\)}{chapter.6}% 196
+\BOOKMARK [1][-]{section.6.51}{Longest Substring Without Repeating Characters \(M\)}{chapter.6}% 197
+\BOOKMARK [1][-]{section.6.52}{Longest Substring with At Least K Repeating Characters \(M\)}{chapter.6}% 198
+\BOOKMARK [1][-]{section.6.53}{Longest Substring with At Most Two Distinct Characters \(H\)}{chapter.6}% 199
+\BOOKMARK [1][-]{section.6.54}{Longest Substring with At Most K Distinct Characters \(H\)}{chapter.6}% 200
+\BOOKMARK [1][-]{section.6.55}{Isomorphic Strings \(E\)}{chapter.6}% 201
+\BOOKMARK [1][-]{section.6.56}{Word Pattern \(E\)}{chapter.6}% 202
+\BOOKMARK [1][-]{section.6.57}{Word Pattern II \(H\)}{chapter.6}% 203
+\BOOKMARK [1][-]{section.6.58}{Word Break \(M\)}{chapter.6}% 204
+\BOOKMARK [1][-]{section.6.59}{Word Break II \(H\)}{chapter.6}% 205
+\BOOKMARK [1][-]{section.6.60}{Word Ladder \(M\)}{chapter.6}% 206
+\BOOKMARK [1][-]{section.6.61}{Word Ladder II \(H\)}{chapter.6}% 207
+\BOOKMARK [1][-]{section.6.62}{Shortest Word Distance \(E\)}{chapter.6}% 208
+\BOOKMARK [1][-]{section.6.63}{Shortest Word Distance II \(M\)}{chapter.6}% 209
+\BOOKMARK [1][-]{section.6.64}{Shortest Word Distance III \(M\)}{chapter.6}% 210
+\BOOKMARK [1][-]{section.6.65}{Strobogrammatic Number \(E\)}{chapter.6}% 211
+\BOOKMARK [1][-]{section.6.66}{Strobogrammatic Number II \(M\)}{chapter.6}% 212
+\BOOKMARK [1][-]{section.6.67}{Strobogrammatic Number III \(M\)}{chapter.6}% 213
+\BOOKMARK [1][-]{section.6.68}{Unique Word Abbreviation \(E\)}{chapter.6}% 214
+\BOOKMARK [1][-]{section.6.69}{Generalized Abbreviation \(M\)}{chapter.6}% 215
+\BOOKMARK [1][-]{section.6.70}{One Edit Distance \(M\)}{chapter.6}% 216
+\BOOKMARK [1][-]{section.6.71}{Edit Distance \(H\)}{chapter.6}% 217
+\BOOKMARK [1][-]{section.6.72}{String Compression \(E\)}{chapter.6}% 218
+\BOOKMARK [1][-]{section.6.73}{Encode and Decode Strings \(M\)}{chapter.6}% 219
+\BOOKMARK [1][-]{section.6.74}{Decode String \(M\)}{chapter.6}% 220
+\BOOKMARK [1][-]{section.6.75}{Read N Characters Given Read4 \(E\)}{chapter.6}% 221
+\BOOKMARK [1][-]{section.6.76}{Read N Characters Given Read4 II \(H\)}{chapter.6}% 222
+\BOOKMARK [1][-]{section.6.77}{Remove Comments \(M\)}{chapter.6}% 223
+\BOOKMARK [0][-]{chapter.7}{Tree}{}% 224
+\BOOKMARK [1][-]{section.7.1}{Binary Tree Construction}{chapter.7}% 225
+\BOOKMARK [2][-]{subsection.7.1.1}{Construct Binary Tree from Preorder and Inorder Traversal \(M\)}{section.7.1}% 226
+\BOOKMARK [2][-]{subsection.7.1.2}{Construct Binary Tree from Inorder and Postorder Traversal \(M\)}{section.7.1}% 227
+\BOOKMARK [2][-]{subsection.7.1.3}{Construct Binary Tree from Preorder and Postorder Traversal \(M\)}{section.7.1}% 228
+\BOOKMARK [2][-]{subsection.7.1.4}{Construct Binary Search Tree from Preorder Traversal \(M\)}{section.7.1}% 229
+\BOOKMARK [2][-]{subsection.7.1.5}{Serialize and Deserialize Binary Tree \(H\)}{section.7.1}% 230
+\BOOKMARK [2][-]{subsection.7.1.6}{Serialize and Deserialize BST \(M\)}{section.7.1}% 231
+\BOOKMARK [2][-]{subsection.7.1.7}{Serialize and Deserialize N-ary Tree \(H\)}{section.7.1}% 232
+\BOOKMARK [2][-]{subsection.7.1.8}{Verify Preorder Serialization of a Binary Tree \(M\)}{section.7.1}% 233
+\BOOKMARK [1][-]{section.7.2}{Binary Tree Traversal}{chapter.7}% 234
+\BOOKMARK [2][-]{subsection.7.2.1}{Binary Tree Preorder Traversal \(M\)}{section.7.2}% 235
+\BOOKMARK [2][-]{subsection.7.2.2}{Binary Tree Inorder Traversal \(M\)}{section.7.2}% 236
+\BOOKMARK [2][-]{subsection.7.2.3}{Binary Tree Postorder Traversal \(H\)}{section.7.2}% 237
+\BOOKMARK [2][-]{subsection.7.2.4}{Binary Tree Level Order Traversal \(E\)}{section.7.2}% 238
+\BOOKMARK [2][-]{subsection.7.2.5}{Binary Tree Level Order Traversal II \(E\)}{section.7.2}% 239
+\BOOKMARK [2][-]{subsection.7.2.6}{Binary Tree Zigzag Level Order Traversal \(M\)}{section.7.2}% 240
+\BOOKMARK [2][-]{subsection.7.2.7}{Binary Tree Vertical Order Traversal \(M\)}{section.7.2}% 241
+\BOOKMARK [2][-]{subsection.7.2.8}{Binary Tree Right Side View \(M\)}{section.7.2}% 242
+\BOOKMARK [2][-]{subsection.7.2.9}{Populating Next Right Pointers in Each Node \(M\)}{section.7.2}% 243
+\BOOKMARK [2][-]{subsection.7.2.10}{Populating Next Right Pointers in Each Node II \(H\)}{section.7.2}% 244
+\BOOKMARK [1][-]{section.7.3}{Binary Tree Recursion}{chapter.7}% 245
+\BOOKMARK [2][-]{subsection.7.3.1}{Same Tree \(E\)}{section.7.3}% 246
+\BOOKMARK [2][-]{subsection.7.3.2}{Symmetric Tree \(E\)}{section.7.3}% 247
+\BOOKMARK [2][-]{subsection.7.3.3}{Invert Binary Tree \(E\)}{section.7.3}% 248
+\BOOKMARK [2][-]{subsection.7.3.4}{Binary Tree Upside Down \(M\)}{section.7.3}% 249
+\BOOKMARK [2][-]{subsection.7.3.5}{Lowest Common Ancestor of a Binary Tree \(M\)}{section.7.3}% 250
+\BOOKMARK [2][-]{subsection.7.3.6}{Binary Tree Longest Consecutive Sequence \(M\)}{section.7.3}% 251
+\BOOKMARK [2][-]{subsection.7.3.7}{Count Univalue Subtrees \(M\)}{section.7.3}% 252
+\BOOKMARK [2][-]{subsection.7.3.8}{Find Leaves of Binary Tree \(M\)}{section.7.3}% 253
+\BOOKMARK [2][-]{subsection.7.3.9}{Flatten Binary Tree to Linked List \(M\)}{section.7.3}% 254
+\BOOKMARK [2][-]{subsection.7.3.10}{Balanced Binary Tree \(E\)}{section.7.3}% 255
+\BOOKMARK [2][-]{subsection.7.3.11}{Count Complete Tree Nodes \(M\)}{section.7.3}% 256
+\BOOKMARK [2][-]{subsection.7.3.12}{Minimum Depth of Binary Tree \(E\)}{section.7.3}% 257
+\BOOKMARK [2][-]{subsection.7.3.13}{Maximum Depth of Binary Tree \(E\)}{section.7.3}% 258
+\BOOKMARK [2][-]{subsection.7.3.14}{Maximum Depth of N-ary Tree \(E\)}{section.7.3}% 259
+\BOOKMARK [2][-]{subsection.7.3.15}{Maximum Width of Binary Tree \(M\)}{section.7.3}% 260
+\BOOKMARK [2][-]{subsection.7.3.16}{Diameter of Binary Tree \(E\)}{section.7.3}% 261
+\BOOKMARK [2][-]{subsection.7.3.17}{Print Binary Tree \(M\)}{section.7.3}% 262
+\BOOKMARK [2][-]{subsection.7.3.18}{Maximum Binary Tree \(M\)}{section.7.3}% 263
+\BOOKMARK [2][-]{subsection.7.3.19}{Maximum Binary Tree II \(M\)}{section.7.3}% 264
+\BOOKMARK [2][-]{subsection.7.3.20}{Binary Tree Paths \(E\)}{section.7.3}% 265
+\BOOKMARK [2][-]{subsection.7.3.21}{Path Sum \(E\)}{section.7.3}% 266
+\BOOKMARK [2][-]{subsection.7.3.22}{Path Sum II \(M\)}{section.7.3}% 267
+\BOOKMARK [2][-]{subsection.7.3.23}{Path Sum III \(E\)}{section.7.3}% 268
+\BOOKMARK [2][-]{subsection.7.3.24}{Sum Root to Leaf Numbers \(M\)}{section.7.3}% 269
+\BOOKMARK [2][-]{subsection.7.3.25}{Binary Tree Maximum Path Sum \(H\)}{section.7.3}% 270
+\BOOKMARK [2][-]{subsection.7.3.26}{Binary Tree Path Sum of Two Nodes \(Philips on-sight 2016.09\)}{section.7.3}% 271
+\BOOKMARK [1][-]{section.7.4}{Binary Search Tree}{chapter.7}% 272
+\BOOKMARK [2][-]{subsection.7.4.1}{Lowest Common Ancestor of a Binary Search Tree \(E\)}{section.7.4}% 273
+\BOOKMARK [2][-]{subsection.7.4.2}{Validate Binary Search Tree \(M\)}{section.7.4}% 274
+\BOOKMARK [2][-]{subsection.7.4.3}{Trim a Binary Search Tree \(M\)}{section.7.4}% 275
+\BOOKMARK [2][-]{subsection.7.4.4}{Binary Search Tree Iterator \(M\)}{section.7.4}% 276
+\BOOKMARK [2][-]{subsection.7.4.5}{Recover Binary Search Tree \(H\)}{section.7.4}% 277
+\BOOKMARK [2][-]{subsection.7.4.6}{Kth Smallest Element in a BST \(M\)}{section.7.4}% 278
+\BOOKMARK [2][-]{subsection.7.4.7}{Verify Preorder Sequence in Binary Search Tree \(M\)}{section.7.4}% 279
+\BOOKMARK [2][-]{subsection.7.4.8}{Inorder Successor in BST \(M\)}{section.7.4}% 280
+\BOOKMARK [2][-]{subsection.7.4.9}{Inorder Successor in BST II \(M\)}{section.7.4}% 281
+\BOOKMARK [2][-]{subsection.7.4.10}{Largest BST Subtree \(M\)}{section.7.4}% 282
+\BOOKMARK [2][-]{subsection.7.4.11}{Unique Binary Search Trees \(M\)}{section.7.4}% 283
+\BOOKMARK [2][-]{subsection.7.4.12}{Unique Binary Search Trees II \(M\)}{section.7.4}% 284
+\BOOKMARK [2][-]{subsection.7.4.13}{Convert Sorted Array to Binary Search Tree \(M\)}{section.7.4}% 285
+\BOOKMARK [2][-]{subsection.7.4.14}{Convert Sorted List to Binary Search Tree \(M\)}{section.7.4}% 286
+\BOOKMARK [2][-]{subsection.7.4.15}{Convert Binary Search Tree to Sorted Doubly Linked List \(M\)}{section.7.4}% 287
+\BOOKMARK [2][-]{subsection.7.4.16}{Closest Binary Search Tree Value \(E\)}{section.7.4}% 288
+\BOOKMARK [2][-]{subsection.7.4.17}{Closest Binary Search Tree Value II \(H\)}{section.7.4}% 289
+\BOOKMARK [0][-]{chapter.8}{Sorting}{}% 290
+\BOOKMARK [1][-]{section.8.1}{Largest Number \(M\)}{chapter.8}% 291
+\BOOKMARK [1][-]{section.8.2}{Sort Colors \(M\)}{chapter.8}% 292
+\BOOKMARK [1][-]{section.8.3}{Wiggle Sort \(M\)}{chapter.8}% 293
+\BOOKMARK [1][-]{section.8.4}{Wiggle Sort II \(M\)}{chapter.8}% 294
+\BOOKMARK [1][-]{section.8.5}{Wiggle Subsequence \(M\)}{chapter.8}% 295
+\BOOKMARK [1][-]{section.8.6}{Sort List \(M\)}{chapter.8}% 296
+\BOOKMARK [1][-]{section.8.7}{Insertion Sort List \(M\)}{chapter.8}% 297
+\BOOKMARK [0][-]{chapter.9}{Binary Search}{}% 298
+\BOOKMARK [1][-]{section.9.1}{First Bad Version \(E\)}{chapter.9}% 299
+\BOOKMARK [1][-]{section.9.2}{Find the Duplicate Number \(H\)}{chapter.9}% 300
+\BOOKMARK [1][-]{section.9.3}{Search for a Range \(M\)}{chapter.9}% 301
+\BOOKMARK [1][-]{section.9.4}{Search Insert Position \(M\)}{chapter.9}% 302
+\BOOKMARK [1][-]{section.9.5}{Find Peak Element \(M\)}{chapter.9}% 303
+\BOOKMARK [1][-]{section.9.6}{Search a 2D Matrix \(M\)}{chapter.9}% 304
+\BOOKMARK [1][-]{section.9.7}{Search a 2D Matrix II \(M\)}{chapter.9}% 305
+\BOOKMARK [1][-]{section.9.8}{Guess Number Higher or Lower \(E\)}{chapter.9}% 306
+\BOOKMARK [1][-]{section.9.9}{Guess Number Higher or Lower II \(M\)}{chapter.9}% 307
+\BOOKMARK [1][-]{section.9.10}{Find Minimum in Rotated Sorted Array \(M\)}{chapter.9}% 308
+\BOOKMARK [1][-]{section.9.11}{Find Minimum in Rotated Sorted Array II \(H\)}{chapter.9}% 309
+\BOOKMARK [1][-]{section.9.12}{Search in Rotated Sorted Array \(M\)}{chapter.9}% 310
+\BOOKMARK [1][-]{section.9.13}{Search in Rotated Sorted Array II \(M\)}{chapter.9}% 311
+\BOOKMARK [1][-]{section.9.14}{Median of Two Sorted Arrays \(H\)}{chapter.9}% 312
+\BOOKMARK [0][-]{chapter.10}{DFS and BFS}{}% 313
+\BOOKMARK [1][-]{section.10.1}{Subset \(M\)}{chapter.10}% 314
+\BOOKMARK [1][-]{section.10.2}{Subset II \(M\)}{chapter.10}% 315
+\BOOKMARK [1][-]{section.10.3}{Permutations \(M\)}{chapter.10}% 316
+\BOOKMARK [1][-]{section.10.4}{Permutations II \(M\)}{chapter.10}% 317
+\BOOKMARK [1][-]{section.10.5}{Next Permutation \(M\)}{chapter.10}% 318
+\BOOKMARK [1][-]{section.10.6}{Permutation Sequence \(M\)}{chapter.10}% 319
+\BOOKMARK [1][-]{section.10.7}{Combinations \(M\)}{chapter.10}% 320
+\BOOKMARK [1][-]{section.10.8}{Combination Sum \(M\)}{chapter.10}% 321
+\BOOKMARK [1][-]{section.10.9}{Combination Sum II \(M\)}{chapter.10}% 322
+\BOOKMARK [1][-]{section.10.10}{Combination Sum III \(M\)}{chapter.10}% 323
+\BOOKMARK [1][-]{section.10.11}{Combination Sum IV \(M\)}{chapter.10}% 324
+\BOOKMARK [1][-]{section.10.12}{Factor Combinations \(M\)}{chapter.10}% 325
+\BOOKMARK [1][-]{section.10.13}{Letter Combinations of a Phone Number \(M\)}{chapter.10}% 326
+\BOOKMARK [1][-]{section.10.14}{Walls and Gates \(M\)}{chapter.10}% 327
+\BOOKMARK [1][-]{section.10.15}{Surrounded Regions \(M\)}{chapter.10}% 328
+\BOOKMARK [1][-]{section.10.16}{Battleships in a Board \(M\)}{chapter.10}% 329
+\BOOKMARK [1][-]{section.10.17}{Number of Islands \(M\)}{chapter.10}% 330
+\BOOKMARK [1][-]{section.10.18}{Number of Islands II \(H\)}{chapter.10}% 331
+\BOOKMARK [1][-]{section.10.19}{Word Search \(M\)}{chapter.10}% 332
+\BOOKMARK [1][-]{section.10.20}{Word Search debugging \(Microsoft phone interview 2019.5.31\)}{chapter.10}% 333
+\BOOKMARK [1][-]{section.10.21}{Word Search II \(H\)}{chapter.10}% 334
+\BOOKMARK [0][-]{chapter.11}{Dynamic Programming}{}% 335
+\BOOKMARK [1][-]{section.11.1}{Gas Station \(M\)}{chapter.11}% 336
+\BOOKMARK [1][-]{section.11.2}{Combination Sum IV \(M\)}{chapter.11}% 337
+\BOOKMARK [1][-]{section.11.3}{Perfect Squares \(M\)}{chapter.11}% 338
+\BOOKMARK [1][-]{section.11.4}{Coin Change \(M\)}{chapter.11}% 339
+\BOOKMARK [1][-]{section.11.5}{Largest Divisible Subset \(M\)}{chapter.11}% 340
+\BOOKMARK [1][-]{section.11.6}{Climbing Stairs \(E\)}{chapter.11}% 341
+\BOOKMARK [1][-]{section.11.7}{Decode Ways \(M\)}{chapter.11}% 342
+\BOOKMARK [1][-]{section.11.8}{Number of ways for mapping integers to alphabets \(The Climate Corporation phone screen 2016.9.22\)}{chapter.11}% 343
+\BOOKMARK [1][-]{section.11.9}{Jump Game \(M\)}{chapter.11}% 344
+\BOOKMARK [1][-]{section.11.10}{Jump Game II \(M\)}{chapter.11}% 345
+\BOOKMARK [1][-]{section.11.11}{Best Time to Buy and Sell Stock \(E\)}{chapter.11}% 346
+\BOOKMARK [1][-]{section.11.12}{Best Time to Buy and Sell Stock II \(E\)}{chapter.11}% 347
+\BOOKMARK [1][-]{section.11.13}{Best Time to Buy and Sell Stock with Cooldown \(M\)}{chapter.11}% 348
+\BOOKMARK [1][-]{section.11.14}{Best Time to Buy and Sell Stock with Transaction Fee \(M\)}{chapter.11}% 349
+\BOOKMARK [1][-]{section.11.15}{Best Time to Buy and Sell Stock III \(H\)}{chapter.11}% 350
+\BOOKMARK [1][-]{section.11.16}{Best Time to Buy and Sell Stock IV \(H\)}{chapter.11}% 351
+\BOOKMARK [1][-]{section.11.17}{House Robber \(E\)}{chapter.11}% 352
+\BOOKMARK [1][-]{section.11.18}{House Robber II \(M\)}{chapter.11}% 353
+\BOOKMARK [1][-]{section.11.19}{House Robber III \(M\)}{chapter.11}% 354
+\BOOKMARK [1][-]{section.11.20}{Paint Fence \(E\)}{chapter.11}% 355
+\BOOKMARK [1][-]{section.11.21}{Paint House \(M\)}{chapter.11}% 356
+\BOOKMARK [1][-]{section.11.22}{Paint House II \(H\)}{chapter.11}% 357
+\BOOKMARK [1][-]{section.11.23}{Pascal's Triangle \(E\)}{chapter.11}% 358
+\BOOKMARK [1][-]{section.11.24}{Pascal's Triangle II \(E\)}{chapter.11}% 359
+\BOOKMARK [1][-]{section.11.25}{Range Sum Query - Immutable \(E\)}{chapter.11}% 360
+\BOOKMARK [1][-]{section.11.26}{Range Sum Query - Mutable \(M\)}{chapter.11}% 361
+\BOOKMARK [1][-]{section.11.27}{Range Sum Query 2D - Immutable \(M\)}{chapter.11}% 362
+\BOOKMARK [1][-]{section.11.28}{Triangle \(M\)}{chapter.11}% 363
+\BOOKMARK [1][-]{section.11.29}{Unique Paths \(M\)}{chapter.11}% 364
+\BOOKMARK [1][-]{section.11.30}{Unique Paths II \(M\)}{chapter.11}% 365
+\BOOKMARK [1][-]{section.11.31}{Minimum Path Sum \(M\)}{chapter.11}% 366
+\BOOKMARK [1][-]{section.11.32}{Dungeon Game \(H\)}{chapter.11}% 367
+\BOOKMARK [1][-]{section.11.33}{Increasing Triplet Subsequence \(M\)}{chapter.11}% 368
+\BOOKMARK [1][-]{section.11.34}{Longest Increasing Subsequence \(M\)}{chapter.11}% 369
+\BOOKMARK [1][-]{section.11.35}{Longest Increasing Path in a Matrix \(M\)}{chapter.11}% 370
+\BOOKMARK [1][-]{section.11.36}{Maximal Square \(M\)}{chapter.11}% 371
+\BOOKMARK [1][-]{section.11.37}{Maximal Rectangle \(H\)}{chapter.11}% 372
+\BOOKMARK [0][-]{chapter.12}{Graph}{}% 373
+\BOOKMARK [1][-]{section.12.1}{Number of Connected Components in an Undirected Graph \(M\)}{chapter.12}% 374
+\BOOKMARK [1][-]{section.12.2}{Graph Valid Tree \(M\)}{chapter.12}% 375
+\BOOKMARK [1][-]{section.12.3}{Copy List with Random Pointer \(M\)}{chapter.12}% 376
+\BOOKMARK [1][-]{section.12.4}{Clone Graph \(M\)}{chapter.12}% 377
+\BOOKMARK [1][-]{section.12.5}{Course Schedule \(M\)}{chapter.12}% 378
+\BOOKMARK [1][-]{section.12.6}{Course Schedule II \(M\)}{chapter.12}% 379
+\BOOKMARK [1][-]{section.12.7}{Minimum Height Trees \(M\)}{chapter.12}% 380
+\BOOKMARK [1][-]{section.12.8}{Reconstruct Itinerary \(M\)}{chapter.12}% 381
+\BOOKMARK [0][-]{chapter.13}{Design and Implementation}{}% 382
+\BOOKMARK [1][-]{section.13.1}{Valid Sudoku \(E\)}{chapter.13}% 383
+\BOOKMARK [1][-]{section.13.2}{Sudoku Solver \(H\)}{chapter.13}% 384
+\BOOKMARK [1][-]{section.13.3}{Boom Enemy \(M\)}{chapter.13}% 385
+\BOOKMARK [1][-]{section.13.4}{Android Unlock Patterns \(M\)}{chapter.13}% 386
+\BOOKMARK [1][-]{section.13.5}{Game of Life \(M\)}{chapter.13}% 387
+\BOOKMARK [1][-]{section.13.6}{Peeking Iterator \(M\)}{chapter.13}% 388
+\BOOKMARK [1][-]{section.13.7}{LRU Cache \(H\)}{chapter.13}% 389
+\BOOKMARK [1][-]{section.13.8}{Design Tic-Tac-Toe \(M\)}{chapter.13}% 390
+\BOOKMARK [1][-]{section.13.9}{Design Snake Game \(M\)}{chapter.13}% 391
+\BOOKMARK [1][-]{section.13.10}{Design Phone Directory \(M\)}{chapter.13}% 392
+\BOOKMARK [1][-]{section.13.11}{Design Twitter \(M\)}{chapter.13}% 393
+\BOOKMARK [1][-]{section.13.12}{Insert Delete GetRandom O\(1\) \(H\)}{chapter.13}% 394
+\BOOKMARK [1][-]{section.13.13}{Insert Delete GetRandom O\(1\) - Duplicates allowed ? \(H\)}{chapter.13}% 395
+\BOOKMARK [1][-]{section.13.14}{Basic Calculator \(H\)}{chapter.13}% 396
+\BOOKMARK [1][-]{section.13.15}{Basic Calculator II \(M\)}{chapter.13}% 397
+\BOOKMARK [1][-]{section.13.16}{Expression Add Operators \(H\)}{chapter.13}% 398
+\BOOKMARK [1][-]{section.13.17}{Implement Trie \(Prefix Tree\) \(M\)}{chapter.13}% 399
+\BOOKMARK [1][-]{section.13.18}{Add and Search Word - Data structure design \(M\)}{chapter.13}% 400
+\BOOKMARK [1][-]{section.13.19}{Design HashSet \(M\)}{chapter.13}% 401
+\BOOKMARK [1][-]{section.13.20}{Design HashMap \(M\)}{chapter.13}% 402
