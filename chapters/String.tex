@@ -1744,6 +1744,45 @@ Follow up:\\
 What if the inputs contain unicode characters? How would you adapt your solution to such case?\\
 
 \begin{lstlisting}
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if len(s) != len(t): return False
+        m = {}
+        for char in s:
+            if char in m:
+                m[char] += 1
+            else:
+                m[char] = 1
+        for char in t:
+            if char in m and m[char] != 0:
+                m[char] -= 1
+            else:
+                return False
+        return True
+ 
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if len(s) != len(t): return False
+        m = [0 for i in range(26)]
+        for i in range(len(s)):
+            m[ord(s[i]) - ord('a')] += 1
+            m[ord(t[i]) - ord('a')] -= 1
+        for v in m:
+            if v != 0: return False
+        return True
+\end{lstlisting}
+
+\begin{lstlisting}
 // unordered_map<Key,T>::iterator it;
 // (*it).first;             // the key value (of type Key)
 // (*it).second;            // the mapped value (of type T)
@@ -1803,6 +1842,24 @@ Return:
 ].\\
 
 Note: All inputs will be in lower-case.\\
+\begin{lstlisting}
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        m, res = {}, []
+        for s in strs:
+            key = ''.join(sorted(s))
+            if key in m:
+                m[key].append(s)
+            else:
+                m[key] = [s]
+        for key in m:
+            res.append(m[key])
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
