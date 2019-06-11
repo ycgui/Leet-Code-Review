@@ -1091,6 +1091,31 @@ Given n non-negative integers representing an elevation map where the width of e
 For example, Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        n = len(height)
+        left, right = 0, n - 1
+        res = 0
+        while left < right:
+            min_bar = min(height[left], height[right])
+            if min_bar == height[left]:
+                left += 1
+                while left < right and height[left] < min_bar:
+                    res += min_bar - height[left]
+                    left += 1
+            else:
+                right -= 1
+                while left < right and height[right] < min_bar:
+                    res += min_bar - height[right]
+                    right -= 1
+        return res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int trap(vector<int>& height) {
@@ -1123,6 +1148,25 @@ Given n non-negative integers representing the histogram's bar height where the 
 For example,
 Given heights = [2,1,5,6,2,3],
 return 10. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def largestRectangleArea(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: int
+        """
+        res = 0
+        n = len(heights)
+        for i in range(n):
+            if i + 1 < n and heights[i] <= heights[i + 1]: continue
+            min_h = heights[i]
+            for j in range(i, -1, -1):
+                min_h = min(min_h, heights[j])
+                area = min_h * (i - j + 1)
+                res = max(res, area)
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
