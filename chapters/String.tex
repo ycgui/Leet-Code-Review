@@ -111,6 +111,23 @@ Note:\\
     You should NOT use internal library such as BigInteger.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        v1, v2 = 0, 0
+        for n1 in num1:
+            v1 = v1 * 10 + ord(n1) - ord('0')
+        for n2 in num2:
+            v2 = v2 * 10 + ord(n2) - ord('0')
+        res = v1 * v2
+        return str(res)
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     string multiply(string num1, string num2) {
