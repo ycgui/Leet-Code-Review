@@ -55,6 +55,49 @@ You are given a helper function bool knows(a, b) which tells you whether A knows
 Note: There will be exactly one celebrity if he/she is in the party. Return the celebrity's label if there is a celebrity in the party. If there is no celebrity, return -1.\\
 
 \begin{lstlisting}
+# Space O(N)
+def findCelebrity(n):
+	candidate = [True for i in range(n)]
+	for i in range(i):
+		for j in range(j):
+			if candidate[i] and i != j:
+				if knows(i, j) or !know(j, i):
+					candidate[i] = False
+					break
+				else:
+					candidate[j] = False
+		if candidate[i]: return i
+	return -1
+
+# Space O(1)
+def findCelebrity(n):
+	candidate = 0
+	
+	# find the possible candidate
+	# note that the selected candidate i does not know anyone after the index i
+	for i in range(n):
+		if knows(candidate, i): candidate = i
+	
+	# if the selected candidate knows anyone or anyone does not know the candidate, 
+	# then the selected candidate is not celebrity 
+	for i in range(n):
+		if candidate != i and (knows(candidate, i) or !know(i, candidate)): 
+			return -1
+	
+	# the above for loop can be optimized by checking two parts separately:
+	# 1. before the selected candidate, check the same conditions as the above for loop
+	# 2. only check if i knows the selected candidate, because it has been verified before that
+	#     the selected candidate must know i
+	for i in range(candidate):
+		if knows(candidate, i) or !knows(i, candidate): return -1
+	for i in range(i + 1, n):
+		if !knows(i, candidate): return -1
+	
+	# otherwise the selected candidate is the celebrity
+	return candidate
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int findCelebrity(int n) {

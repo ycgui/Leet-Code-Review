@@ -1132,6 +1132,51 @@ Remove the minimum number of invalid parentheses in order to make the input stri
 Note: The input string may contain letters other than the parentheses ( and ). \\
 
 \begin{lstlisting}
+class Solution(object):
+    def removeInvalidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        res = []
+        idx = 0
+        cnt1, cnt2 = 0, 0
+        for c in s:
+            if c == '(':
+                cnt1 += 1
+            elif c == ')':
+                if cnt1 == 0: cnt2 += 1  # more ')' than '('
+                else: cnt1 -= 1  # for each vaild pair just reduce cnt1
+        self.bfs(s, idx, cnt1, cnt2, res)
+        return res
+    
+    def bfs(self, s, idx, cnt1, cnt2, res):
+        # if the string is vaild when the excess number of left or right 
+        # parentheses is zero, save that string to res
+        if cnt1 == 0 and cnt2 == 0:
+            if self.isValid(s): res.append(s)
+            return
+        for i in range(idx, len(s)):
+            # skip duplicated parentheses since the result is the same
+            if i != idx and s[i] == s[i-1]: continue
+            # for each excess parenthese, check the string without the it recursively
+            if cnt1 > 0 and s[i] == '(':
+                self.bfs(s[:i] + s[i+1:], i, cnt1 - 1, cnt2, res)
+            if cnt2 > 0 and s[i] == ')':
+                self.bfs(s[:i] + s[i+1:], i, cnt1, cnt2 - 1, res)
+
+    def isValid(self, s):
+        cnt = 0
+        for c in s:
+            if c == '(':
+                cnt += 1
+            elif c == ')':
+                cnt -= 1
+                if cnt < 0: return False
+        return cnt == 0         
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     vector<string> removeInvalidParentheses(string s) {
