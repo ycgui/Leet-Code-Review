@@ -2706,6 +2706,53 @@ public:
 };
 \end{lstlisting}
 
+\section{Minimum Window Substring (H)}
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).\\
+
+Example:\\
+Input: S = "ADOBECODEBANC", T = "ABC"\\
+Output: "BANC"\\
+
+Note:\\
+    If there is no such window in S that covers all characters in T, return the empty string "".\\
+    If there is such window, you are guaranteed that there will always be only one unique minimum window in S.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        res = ''
+        letter_cnt = {}
+        left, cnt = 0, 0
+        min_len = float('inf')
+        for c in t:
+            if c in letter_cnt: letter_cnt[c] += 1
+            else: letter_cnt[c] = 1
+        for i in range(len(s)):
+            # find the substring that contains all chars in t
+            if s[i] in letter_cnt:
+                letter_cnt[s[i]] -= 1
+                if letter_cnt[s[i]] >= 0: cnt += 1
+            # if cnt matches the length of t, then we find the substring
+            while cnt == len(t):
+                # update the substring min_len and res
+                # the current sliding window is from left to i
+                if min_len > i - left + 1:
+                    min_len = i - left + 1
+                    res = s[left : i + 1]
+                # check if s[left] is the char that is in t
+                # if it is, add the hash value back and reduce cnt
+                if s[left] in letter_cnt:
+                    letter_cnt[s[left]] += 1
+                    if letter_cnt[s[left]] > 0: cnt -= 1
+                # move left window
+                left += 1
+        return res
+\end{lstlisting}
 
 \section{Isomorphic Strings (E)}
 Given two strings s and t, determine if they are isomorphic. \\
