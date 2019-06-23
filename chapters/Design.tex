@@ -371,7 +371,7 @@ class LRUCache(object):
         :type capacity: int
         """
         self.capacity = capacity
-        self.cache = {}  # hashmap of cache key and value mappings
+        self.cache = {}  # dict for cache key and value mappings
         self.queue = []  # queue of cache keys
         
     def get(self, key):
@@ -380,8 +380,8 @@ class LRUCache(object):
         :rtype: int
         """
         # if key is in the cache
-        # update its current position to the top of queue
-        # the LRU is stored at the end of queue
+        # update its current position to the end of queue
+        # the LRU is stored at the beginning of queue
         if key in self.cache:
             self.queue.remove(key)
             self.queue.insert(0, key)
@@ -401,11 +401,11 @@ class LRUCache(object):
         if key in self.cache:
             self.queue.remove(key)
         # if key is not in cache and the capacity is full
-        # pop the lru from queue and delete it from cache
+        # pop LRU from queue and delete it from cache
         elif len(self.queue) == self.capacity:
             lru = self.queue.pop()
             del self.cache[lru]
-        # update cache and queue
+        # update both cache and queue
         self.cache[key] = value
         self.queue.insert(0, key)
 
@@ -840,6 +840,64 @@ randomSet.insert(2);\\
 randomSet.getRandom();\\
 
 \begin{lstlisting}
+class RandomizedSet(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.nums = []
+        self.map = {}  # val: idx
+
+    def insert(self, val):
+        """
+        Inserts a value to the set. Returns true if the set did not already contain the specified element.
+        :type val: int
+        :rtype: bool
+        """
+        if val not in self.map:
+            self.nums.append(val)  # O(1)
+            self.map[val] = len(self.nums) - 1  # O(1)
+            return True
+        return False
+        
+
+    def remove(self, val):
+        """
+        Removes a value from the set. Returns true if the set contained the specified element.
+        :type val: int
+        :rtype: bool
+        """
+        if val in self.map:
+            # get the idx of val and the last val in nums
+            idx, last = self.map[val], self.nums[-1]
+            # overwrite nums[idx] by the last val, 
+            # so the last val can be popped from the list with O(1) 
+            self.nums[idx] = last
+            self.nums.pop()
+            # update the map between the original last val and the new idx
+            # then delete val from map
+            self.map[last] = idx
+            del self.map[val]
+            return True
+        return False
+
+    def getRandom(self):
+        """
+        Get a random element from the set.
+        :rtype: int
+        """
+        return self.nums[random.randint(0, len(self.nums)-1)]
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
+\end{lstlisting}
+
+\begin{lstlisting}
 class RandomizedSet {
 public:
     /** Initialize your data structure here. */
@@ -1083,6 +1141,76 @@ Note:
 You may assume that all inputs are consist of lowercase letters a-z. \\
 
 \begin{lstlisting}
+class TrieNode(object):
+    
+    def __init__(self):
+        self.isEnd = False
+        self.children = {} # hash between char and TrieNode 
+        
+        
+class Trie(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.root = TrieNode()
+        
+
+    def insert(self, word):
+        """
+        Inserts a word into the trie.
+        :type word: str
+        :rtype: None
+        """
+        node = self.root
+        # for each char in word, either update node.children or move node to it's TrieNode
+        for c in word:
+            if not c in node.children:
+                node.children[c] = TrieNode()
+            node = node.children[c]
+        node.isEnd = True
+        
+
+    def search(self, word):
+        """
+        Returns if the word is in the trie.
+        :type word: str
+        :rtype: bool
+        """
+        node = self.root
+        # check all chars in word by traversaling all node childrens
+        for c in word:
+            if c in node.children:
+                node = node.children[c]
+            else:
+                return False
+        return node.isEnd
+        
+
+    def startsWith(self, prefix):
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        :type prefix: str
+        :rtype: bool
+        """
+        node = self.root
+        # check all chars in prefix by traversaling all node childrens
+        for c in prefix:
+            if c in node.children:
+                node = node.children[c]
+            else:
+                return False
+        return True
+        
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
+\end{lstlisting}
+
+\begin{lstlisting}
 class TrieNode {
 public:
     // Initialize your data structure here.
@@ -1162,6 +1290,66 @@ search("b..") $->$ true\\
 Note:\\
 You may assume that all words are consist of lowercase letters a-z.\\
 You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first. \\
+
+\begin{lstlisting}
+class TrieNode(object):
+    
+    def __init__(self):
+        self.isEnd = False
+        self.children = {}
+
+class WordDictionary(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.root = TrieNode()
+        
+
+    def addWord(self, word):
+        """
+        Adds a word into the data structure.
+        :type word: str
+        :rtype: None
+        """
+        node = self.root
+        for c in word:
+            if not c in node.children:
+                node.children[c] = TrieNode()
+            node = node.children[c]
+        node.isEnd = True
+        
+
+    def search(self, word):
+        """
+        Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
+        :type word: str
+        :rtype: bool
+        """
+        return self.searchFrom(self.root, word)
+
+    def searchFrom(self, node, word):
+        for i in range(len(word)):
+            c = word[i]
+            # for dot symbol, check if the substring after dot is in Trie
+            if c == '.':
+                for k in node.children:
+                    if self.searchFrom(node.children[k], word[i+1:]):
+                        return True
+                return False
+            elif c not in node.children:
+                return False
+            node = node.children[c]
+        return node.isEnd
+        
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
+\end{lstlisting}
 
 \begin{lstlisting}
 class WordDictionary {
@@ -1321,3 +1509,9 @@ class MyHashMap(object):
 # obj.remove(key)
 \end{lstlisting}
 
+\section{Sparse Vector Dot Product (FB high frequency)}
+How to compute sparse vector dot product efficiently?\\
+Solution:\\
+1. HashMap: O(M*N)\\
+2. Binary Search: O(MlogN), N is the longer vector\\
+3. Sorting + Two pointers: O(M+N)\\

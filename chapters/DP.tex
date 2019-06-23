@@ -1345,6 +1345,38 @@ Given [5, 4, 3, 2, 1],
 return false. \\
 
 \begin{lstlisting}
+# # DP: the same as Longest Increasing Subsequence
+# class Solution(object):
+#     def increasingTriplet(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: bool
+#         """
+#         n = len(nums)
+#         dp = [1] * n
+#         for i in range(n):
+#             for j in range(i):
+#                 if nums[j] < nums[i]:
+#                     dp[i] = max(dp[i], dp[j] + 1)
+#                     if dp[i] == 3: return True
+#         return False
+
+# O(N)
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        mx1 = mx2 = float('inf')
+        for num in nums:
+            if num <= mx1: mx1 = num
+            elif num <= mx2: mx2 = num
+            else: return True
+        return False
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. DP solution: Time O(N^2), Space O(N)
 class Solution {
 public:
@@ -1377,6 +1409,39 @@ public:
 };
 \end{lstlisting}
 
+\section{Longest Continuous Increasing Subsequence (E)}
+ Given an unsorted array of integers, find the length of longest continuous increasing subsequence (subarray).\\
+
+Example 1:\\
+
+Input: [1,3,5,4,7]\\
+Output: 3\\
+Explanation: The longest continuous increasing subsequence is [1,3,5], its length is 3. \\
+Even though [1,3,5,7] is also an increasing subsequence, it's not a continuous one where 5 and 7 are separated by 4. \\
+
+Example 2:\\
+
+Input: [2,2,2,2,2]\\
+Output: 1\\
+Explanation: The longest continuous increasing subsequence is [2], its length is 1. \\
+
+Note: Length of the array will not exceed 10,000. \\
+\begin{lstlisting}
+class Solution(object):
+    def findLengthOfLCIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cnt, res = 0, 0
+        for i in range(len(nums)):
+            if i == 0 or nums[i-1] < nums[i]:
+                cnt += 1
+                res = max(res, cnt)
+            else:
+                cnt = 1 # reset cnt if the continuous increasing stops
+        return res
+\end{lstlisting}
 
 \section{Longest Increasing Subsequence (M)}
 Given an unsorted array of integers, find the length of longest increasing subsequence.\\
@@ -1452,6 +1517,123 @@ public:
 };
 \end{lstlisting}
 
+
+\section{Number of Longest Increasing Subsequence (M)}
+ Given an unsorted array of integers, find the number of longest increasing subsequence.\\
+
+Example 1:\\
+
+Input: [1,3,5,4,7]\\
+Output: 2\\
+Explanation: The two longest increasing subsequence are [1, 3, 4, 7] and [1, 3, 5, 7].\\
+
+Example 2:\\
+
+Input: [2,2,2,2,2]\\
+Output: 5\\
+Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences' length is 1, so output 5.\\
+
+Note: Length of the given array will be not exceed 2000 and the answer is guaranteed to be fit in 32-bit signed int. \\
+\begin{lstlisting}
+class Solution(object):
+    def findNumberOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mx, res = 0, 0
+        n = len(nums)
+        # length of the increasing subsequence (IS) at i
+        length = [1] * n
+        # count of the increasing subsequence at i 
+        cnt = [1] * n
+        for i in range(n):
+            for j in range(i):
+                # skip if not IS
+                if nums[i] <= nums[j]: continue
+                # nums[i] can be added after the IS that is end at nums[j]
+                # cnt[j] can be added into cnt[i]
+                if length[i] == length[j] + 1:
+                    cnt[i] += cnt[j]
+                # a longer IS exists at nums[i], so update length[i]
+                if length[i] < length[j] + 1:
+                    length[i] = length[j] + 1
+                    cnt[i] = cnt[j]
+            if mx == length[i]:
+                res += cnt[i]
+            elif mx < length[i]:
+                mx = length[i]
+                res = cnt[i]
+        return res
+\end{lstlisting}
+
+\section{Longest Consecutive Sequence (H)}
+Given an unsorted array of integers, find the length of the longest consecutive elements sequence.\\
+
+Your algorithm should run in O(n) complexity.\\
+
+Example:\\
+
+Input: [100, 4, 200, 1, 3, 2]\\
+Output: 4\\
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.\\
+
+\begin{lstlisting}
+# # O(N^3)
+# class Solution(object):
+#     def longestConsecutive(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: int
+#         """
+#         longest = 0
+#         for num in nums:
+#             cur_num = num
+#             cur = 1
+#             while cur_num + 1 in nums:
+#                 cur_num += 1
+#                 cur += 1
+#             longest = max(longest, cur)
+#         return longest
+    
+# O(NlogN)
+class Solution(object):
+    def longestConsecutive(self, nums):
+        if not nums: return 0
+        nums.sort()
+        cur, longest = 1, 1
+        for i in range(1, len(nums)):
+            # skip duplicates
+            if nums[i] != nums[i-1]:
+                # find the consecutive sequence
+                if nums[i] == nums[i-1] + 1:
+                    cur += 1
+                # otherwise update longest and reset cur
+                else:
+                    longest = max(longest, cur)
+                    cur = 1
+        return max(longest, cur)
+           
+# O(N)
+class Solution(object):
+    def longestConsecutive(self, nums):
+        longest = 0
+        num_set = set(nums)
+        for num in num_set:
+        # We only attempt to build sequences from numbers that are not already 
+        # part of a longer sequence. This is accomplished by first ensuring that 
+        # the number that would immediately precede the current number in a sequence 
+        # is not present, as that number would necessarily be part of a longer sequence.
+            if num - 1 not in num_set:
+                cur_num = num
+                cur = 1
+                while cur_num + 1 in num_set:
+                    cur_num += 1
+                    cur +=1
+                longest = max(longest, cur)
+        return longest
+\end{lstlisting}
+        
 
 \section{Longest Increasing Path in a Matrix (M)}
 Given an integer matrix, find the length of the longest increasing path. From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).\\

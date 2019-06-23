@@ -118,13 +118,26 @@ class Solution(object):
         :type num2: str
         :rtype: str
         """
-        v1, v2 = 0, 0
-        for n1 in num1:
-            v1 = v1 * 10 + ord(n1) - ord('0')
-        for n2 in num2:
-            v2 = v2 * 10 + ord(n2) - ord('0')
-        res = v1 * v2
-        return str(res)
+        res = ''
+        m, n = len(num1), len(num2)
+        # the length of res is smaller or equal to m + n
+        vals = [0 for i in range(m + n)]
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                mul = (ord(num1[i]) - ord('0')) * (ord(num2[j]) - ord('0'))
+                p1 = i + j  # higher bit
+                p2 = i + j + 1  #lower bit
+                cur_sum = mul + vals[p2]  # add existed lower bit
+                vals[p1] += cur_sum / 10  # update higher bit
+                vals[p2] = cur_sum % 10   # update lower bit
+        # skip leading zeros
+        for val in vals:
+            if res or val != 0: res += str(val)
+        # res could be zero
+        if not res:
+            return '0'
+        else: 
+            return res
 \end{lstlisting}
 
 \begin{lstlisting}
@@ -162,6 +175,33 @@ The count-and-say sequence is the sequence of integers beginning as follows: 1, 
 21 is read off as "one 2, then one 1" or 1211.\\
 
 Given an integer n, generate the nth sequence. The sequence of integers will be represented as a string. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        if n <= 0: return ''
+        res = '1'
+        while n - 1:
+            s = ''
+            m = len(res)
+            j = 0
+            while j < m:
+                cnt = 1
+                # count the same element 
+                while j + 1 < m and res[j] == res[j+1]:
+                    cnt += 1
+                    j += 1
+                # temp string is count + element
+                s += str(cnt) + res[j]
+                j += 1
+            res = s
+            n -= 1
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -257,17 +297,10 @@ class Solution(object):
         :type needle: str
         :rtype: int
         """
-        if not needle: return 0
-        n1 = len(haystack)
-        n2 = len(needle)
-        if n1 < n2: return -1
-        
-        for i in range(n1-n2+1):
-            j = 0
-            while j < n2:
-                if haystack[i+j] != needle[j]: break
-                j += 1
-            if j == n2: return i
+        m, n = len(haystack), len(needle)
+        for i in range(m - n + 1):
+            if haystack[i:i+n] == needle:
+                return i
         return -1
 \end{lstlisting}
 
@@ -1387,7 +1420,7 @@ class Solution(object):
         res = 0
         for i in range(len(s)):
             val = d[s[i]]
-            if (i == len(s) - 1) or (d[s[i+1]] <= d[s[i]]):
+            if (i + 1 == len(s)) or (d[s[i+1]] <= d[s[i]]):
                 res += val
             else:
                 res -= val
@@ -1946,6 +1979,7 @@ class Solution(object):
         :rtype: List[List[str]]
         """
         m, res = {}, []
+        # key: val -> sorted string: list of strings
         for s in strs:
             key = ''.join(sorted(s))
             if key in m:
@@ -2899,6 +2933,26 @@ dict = ["leet", "code"].
 Return true because "leetcode" can be segmented as "leet code". \\
 
 \begin{lstlisting}
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        dp = [False for i in range(len(s)+1)]
+        dp[0] = True
+        for i in range(len(dp)):
+            for j in range(i):
+                # if s[0:j] can be segmented and s[j:i] is in wordDict,
+                # then s[0:i] can be segmented
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i] = True
+                    break
+        return dp[-1]
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool wordBreak(string s, unordered_set<string> &wordDict) {
@@ -3410,6 +3464,38 @@ public:
 Given two strings S and T, determine if they are both one edit distance apart.\\
 
 \begin{lstlisting}
+# based on the definition of one edit distance
+def isOneEditDistance(s, t):
+	m, n = len(s), len(t)
+	diff = abs(m - n)
+	if diff >= 2: 
+		return False
+	elif diff == 1:
+		for i in range( min(m,n) ):
+			if s[i] != t[i]:
+				if m > n: return s[i+1:] == t[i:]
+				elif m < n: return s[i:] == t[i+1:]
+	else:
+		cnt = 0
+		for i in range(n):
+			if s[i] != t[i]:
+				cnt += 1
+		return cnt == 1
+
+# compare each char in s and t
+def isOneEditDistance(s, t):
+	m, n = len(s), len(t)
+	for i in range( min(m,n) ):
+		if s[i] != t[i]:
+			if m == n: return s[i+1:] == t[i+1:]
+			elif m > n: return s[i+1:] == t[i:]
+			else: return s[i:] == t[i+1:]
+	# if all s[i] and t[i] are the same in above loop,
+	# then the abs diff between s and t must be 1 when their edit distance is one
+	return abs(m-n) == 1
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     bool isOneEditDistance(string s, string t) {
@@ -3682,4 +3768,106 @@ class Solution(object):
                 res.append("".join(newline))
         return res
 \end{lstlisting}
-        
+
+\section{Maximum Swap (M)}
+ Given a non-negative integer, you could swap two digits at most once to get the maximum valued number. Return the maximum valued number you could get.\\
+
+Example 1:\\
+Input: 2736\\
+Output: 7236\\
+Explanation: Swap the number 2 and the number 7.\\
+
+Example 2:\\
+Input: 9973\\
+Output: 9973\\
+Explanation: No swap.\\
+
+\begin{lstlisting}
+# O(N): every digit is considered at most once
+class Solution(object):
+    def maximumSwap(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        str_num = str(num)
+        n = len(str_num)
+        dict_num_idx = {}
+        for i in range(n):
+            dict_num_idx[ord(str_num[i]) - ord('0')] = i
+        # when scanning the number from left to right, 
+        # if there is a larger digit in the future, 
+        # we will swap it with the largest such digit; 
+        # if there are multiple such digits, 
+        # we will swap it with the one that occurs the latest.        
+        for i in range(n):
+            for j in range(9, ord(str_num[i]) - ord('0'), -1):
+                if j in dict_num_idx and dict_num_idx[j] > i:
+                    str_num = self.swap(str_num, i, dict_num_idx[j])
+                    return int(str_num)
+        return num
+    # a string has to be converted to a list for swapping
+    def swap(self, string, i, j):
+        l = list(string)
+        l[i], l[j] = l[j], l[i]
+        return ''.join(l)
+\end{lstlisting}
+
+\section{Verifying an Alien Dictionary (E)}
+In an alien language, surprisingly they also use english lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.
+
+Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographicaly in this alien language.
+
+Example 1:
+
+Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
+Output: true
+Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
+
+Example 2:
+
+Input: words = ["word","world","row"], order = "worldabcefghijkmnpqstuvxyz"
+Output: false
+Explanation: As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.
+
+Example 3:
+
+Input: words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"
+Output: false
+Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > 'None', where 'None' is defined as the blank character which is less than any other character (More info).
+
+Note:
+    1 <= words.length <= 100
+    1 <= words[i].length <= 20
+    order.length == 26
+    All characters in words[i] and order are english lowercase letters.
+
+\begin{lstlisting}
+class Solution(object):
+    def isAlienSorted(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
+        order_index = {c: i for i, c in enumerate(order)}
+
+        for i in xrange(len(words) - 1):
+            word1 = words[i]
+            word2 = words[i+1]
+
+            # Find the first difference between word1[k] and word2[k]
+            for k in xrange(min(len(word1), len(word2))):
+                if word1[k] != word2[k]:
+                    # If they compare badly, it's not sorted
+                    if order_index[word1[k]] > order_index[word2[k]]:
+                        return False
+                    break
+                else:
+                    # If we didn't find any difference between word1[k] and word2[k], 
+                    # the words are like ("app", "apple")
+                    if len(word1) > len(word2):
+                        return False
+        return True
+\end{lstlisting}
+

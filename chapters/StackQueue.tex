@@ -386,7 +386,7 @@ class Solution(object):
         nums.sort()
         return nums[len(nums)-k]
         
-# O(NlogN + klogN)
+# O(Nlogk)
 from Queue import PriorityQueue
 class Solution(object):
     def findKthLargest(self, nums, k):
@@ -396,13 +396,11 @@ class Solution(object):
         :rtype: int
         """
         pq = PriorityQueue()
-        # O(NlogN)
+        # O(Nlogk)
         for num in nums:
-            pq.put(-num)
-        # O(klogN)
-        for i in range(k):
-            res = pq.get()
-        return -res
+            pq.put(num)
+            if pq.qsize() == k + 1: pq.get()
+        return pq.get()
 \end{lstlisting}
 
 \section{Top K Frequent Elements (M)}
@@ -433,10 +431,11 @@ class Solution(object):
                 freq_map[nums[i]] += 1
             else:
                 freq_map.update({nums[i]: 1})
-        # O(MlogM), M is the number of element in freq_map
+        # O(Mlogk), M is the number of element in freq_map
         for num, freq in freq_map.items():
-            pq.put((-freq, num))
-        # O(klogM)
+            pq.put((freq, num))
+            if pq.qsize() == k + 1: pq.get()
+        # O(klogk)
         for i in range(k):
             freq, num = pq.get()
             res.append(num)

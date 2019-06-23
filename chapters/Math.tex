@@ -940,6 +940,28 @@ public:
 Implement pow(x, n). \\
 
 \begin{lstlisting}
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        # base case
+        if n == 0: return 1
+        # recursion case 3: n < 0
+        if n < 0: return 1 / self.myPow(x, -n)   
+        # break the main problem
+        half = self.myPow(x, n/2)
+        # recursion case 1: n is even
+        if n % 2 == 0:
+            return half * half
+        # recursion case 2: n is odd
+        else:
+            return half * half * x
+\end{lstlisting}
+
+\begin{lstlisting}
 // x^n = x^(n/2) * x^(n/2) if n is even
 // x^n = x * x^(n/2) * x^(n/2) if n is odd
 class Solution {
@@ -970,6 +992,25 @@ Example2:
 a = 2
 b = [1,0]
 Result: 1024\\
+
+\begin{lstlisting}
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        left, right = 1, x
+        while left <= right:
+            mid = left + (right - left) / 2
+            if x == mid * mid:
+                return mid
+            elif x > mid * mid:
+                left = mid + 1
+            else:
+                right = mid - 1   
+        return right
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1390,3 +1431,37 @@ public:
 };
 \end{lstlisting}
 
+\section{Random Pick Index (M)}
+Given an array of integers with possible duplicates, randomly output the index of a given target number. You can assume that the given target number must exist in the array.\\
+
+Note:
+The array size can be very large. Solution that uses too much extra space will not pass the judge.
+
+\begin{lstlisting}
+class Solution(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.nums = nums
+
+    def pick(self, target):
+        """
+        :type target: int
+        :rtype: int
+        """
+        res = None
+        cnt = 0
+        for i, x in enumerate(self.nums):
+            if x == target:
+                cnt += 1
+                chance = random.randint(1, cnt)
+                if chance == cnt: res = i
+        return res
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.pick(target)
+\end{lstlisting}

@@ -699,6 +699,22 @@ Hint:\\
     A faster approach is to use extra space.\\
 
 \begin{lstlisting}
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        citations.sort()
+        n = len(citations)
+        for i in range(n):
+            if citations[i] >= n-i:
+                return n - i
+        return 0
+\end{lstlisting}
+
+
+\begin{lstlisting}
 // H-index: N papers have received N citations
 // 1. O(NlogN)
 class Solution{
@@ -739,6 +755,27 @@ public:
 Follow up for H-Index: What if the citations array is sorted in ascending order? Could you optimize your algorithm? \\
 
 Hint: Expected runtime complexity is in O(log n) and the input is sorted.\\
+
+\begin{lstlisting}
+# find the min index such that citations[i] >= len(citations) - i, then the answer is len(citations)-i
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        n = len(citations)
+        left, right = 0, n-1
+        while left <= right:
+            mid = (left + right) / 2
+            if citations[mid] == n - mid:
+                return n - mid
+            elif citations[mid] > n - mid:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return n - left
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -1716,6 +1753,27 @@ Given an array of n positive integers and a positive integer s, find the minimal
 For example, given the array [2,3,1,2,4,3] and s = 7, the subarray [4,3] has the minimal length under the problem constraint. \\
 
 \begin{lstlisting}
+class Solution(object):
+    def minSubArrayLen(self, s, nums):
+        """
+        :type s: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        left = 0
+        res = n + 1
+        cur_sum = 0
+        for i in range(n):
+            cur_sum += nums[i]
+            while cur_sum >= s:
+                res = min(res, i - left + 1)
+                cur_sum -= nums[left]
+                left += 1
+        return 0 if res == n + 1 else res
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
@@ -1796,7 +1854,6 @@ Output: True\\
 Explanation: Because [23, 2, 6, 4, 7] is an continuous subarray of size 5 and sums up to 42.\\
 
 \begin{lstlisting}
-# O(N^2)
 class Solution(object):
     def checkSubarraySum(self, nums, k):
         """
@@ -1815,8 +1872,7 @@ class Solution(object):
                     if sum_n == k or (k != 0 and sum_n % k == 0): 
                         return True
         return False
-
-# O(N)
+    
 class Solution(object):
     def checkSubarraySum(self, nums, k):
         """
@@ -1825,7 +1881,7 @@ class Solution(object):
         :rtype: bool
         """    
         cur_sum = 0
-        m = {0:-1} # make sure the subarray size >= 2
+        m = {0:-1}
         for i in range(len(nums)):
             cur_sum += nums[i]
             if k != 0:
@@ -1846,7 +1902,7 @@ For example, given [1,2,3,4], return [24,12,8,6].\\
 Follow up: Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)\\
 
 \begin{lstlisting}
-# Space O(N)
+# Space O(N) 
 class Solution(object):
     def productExceptSelf(self, nums):
         """
@@ -1973,6 +2029,50 @@ class Solution(object):
             # so we merge the current and previous intervals.
                 merged[-1][-1] = max(merged[-1][-1], interval[-1])
         return merged        
+\end{lstlisting}
+
+\section{Insert Intervals (H)}
+Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).\\
+
+You may assume that the intervals were initially sorted according to their start times.\\
+
+Example 1:\\
+Input: intervals = [[1,3],[6,9]], newInterval = [2,5]\\
+Output: [[1,5],[6,9]]\\
+
+Example 2:
+Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]\\
+Output: [[1,2],[3,10],[12,16]]\\
+Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].\\
+
+\begin{lstlisting}
+class Solution(object):
+    def insert(self, intervals, newInterval):
+        """
+        :type intervals: List[List[int]]
+        :type newInterval: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        n = len(intervals)
+        pos = 0  # insert position
+        for i in range(n):
+            # newInterval can be insert after intervals[i]
+            if intervals[i][1] < newInterval[0]:
+                res.append(intervals[i])
+                pos += 1  # update pos
+            # newInterval has already been included before intervals[i]
+            elif intervals[i][0] > newInterval[1]:
+                res.append(intervals[i])
+            # merge intervals[i] and newInterval, update newInterval
+            else:
+                newInterval[0] = min(newInterval[0], intervals[i][0])
+                newInterval[1] = max(newInterval[1], intervals[i][1])
+        # insert newInterval based on pos
+        # note that the overlapping between intervals and the original newInterval
+        # has already been merged together into the new newInterval
+        res.insert(pos, newInterval)
+        return res
 \end{lstlisting}
 
 \section{Meeting Rooms (E)}
@@ -2847,4 +2947,357 @@ public:
 };
 \end{lstlisting}
 
+\section{Flatten Nested List Iterator (M)}
+Given a nested list of integers, implement an iterator to flatten it. Each element is either an integer, or a list -- whose elements may also be integers or other lists.\\
 
+Example 1: Given the list [[1,1],2,[1,1]],\\
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].\\
+
+Example 2: Given the list [1,[4,[6]]],\\
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6]. \\
+ 
+ \begin{lstlisting}
+# """
+# This is the interface that allows for creating nested lists.
+# You should not implement it, or speculate about its implementation
+# """
+#class NestedInteger(object):
+#    def isInteger(self):
+#        """
+#        @return True if this NestedInteger holds a single integer, rather than a nested list.
+#        :rtype bool
+#        """
+#
+#    def getInteger(self):
+#        """
+#        @return the single integer that this NestedInteger holds, if it holds a single integer
+#        Return None if this NestedInteger holds a nested list
+#        :rtype int
+#        """
+#
+#    def getList(self):
+#        """
+#        @return the nested list that this NestedInteger holds, if it holds a nested list
+#        Return None if this NestedInteger holds a single integer
+#        :rtype List[NestedInteger]
+#        """
+
+class NestedIterator(object):
+
+    # append each list/integer in the nested list to a stack
+    def __init__(self, nestedList):
+        """
+        Initialize your data structure here.
+        :type nestedList: List[NestedInteger]
+        """
+        self.stack = []
+        for i in range(len(nestedList) - 1, -1, -1):
+            self.stack.append(nestedList[i])
+        
+    def next(self):
+        """
+        :rtype: int
+        """
+        return self.stack.pop().getInteger()
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        while self.stack:
+            t = self.stack[-1]
+            if t.isInteger():
+                return True
+            # need to pop the element if it's a list
+            # then append integer/list inside the element to the stack
+            self.stack.pop()
+            for i in range(len(t.getList()) - 1, -1, -1):
+                self.stack.append(t.getList()[i])
+        return False
+        
+
+# Your NestedIterator object will be instantiated and called as such:
+# i, v = NestedIterator(nestedList), []
+# while i.hasNext(): v.append(i.next())
+ \end{lstlisting}
+
+\begin{lstlisting}
+/**
+ * // This is the interface that allows for creating nested lists.
+ * // You should not implement it, or speculate about its implementation
+ * class NestedInteger {
+ *   public:
+ *     // Return true if this NestedInteger holds a single integer, rather than a nested list.
+ *     bool isInteger() const;
+ *
+ *     // Return the single integer that this NestedInteger holds, if it holds a single integer
+ *     // The result is undefined if this NestedInteger holds a nested list
+ *     int getInteger() const;
+ *
+ *     // Return the nested list that this NestedInteger holds, if it holds a nested list
+ *     // The result is undefined if this NestedInteger holds a single integer
+ *     const vector<NestedInteger> &getList() const;
+ * };
+ */
+ 
+class NestedIterator {
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        for (int i = nestedList.size() - 1; i >= 0; --i)
+            s.push(nestedList[i]);
+    }
+
+    int next() {
+        NestedInteger n = s.top();
+        s.pop();
+        return n.getInteger();
+    }
+
+    bool hasNext() {
+        while(!s.empty()) {
+            NestedInteger n = s.top();
+            if (n.isInteger())  return true;
+            s.pop();    // pop the current element for the following push
+            // push to s if the current element is a list
+            for (int i = n.getList().size() - 1; i >= 0; --i)   
+                s.push(n.getList()[i]);
+        }
+        return false;
+    }
+    
+private:
+    stack<NestedInteger> s;
+};
+
+/**
+ * Your NestedIterator object will be instantiated and called as such:
+ * NestedIterator i(nestedList);
+ * while (i.hasNext()) cout << i.next();
+ */
+\end{lstlisting}
+
+
+\section{Nested List Weight Sum (E)}
+Given a nested list of integers, return the sum of all integers in the list weighted by their depth. Each element is either an integer, or a list -- whose elements may also be integers or other lists. \\
+
+Example 1:\\
+Given the list [[1,1],2,[1,1]], return 10. (four 1's at depth 2, one 2 at depth 1)\\
+
+Example 2:\\
+Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27) \\
+ 
+\begin{lstlisting}
+class Solution {
+public:
+    int depthSum(vector<NestedInteger>& nestedList) {
+        int res = 0;
+        for (auto l : nestedList)
+            res += getSum(l, 1);
+        return res;
+    }
+        
+    int getSum(NestedInteger nl, int level) {
+        int res = 0;
+        if (nl.isInteger())
+            return level * nl.getInteger();
+        for (auto l : nl.getList())
+            res += getSum(l, level+1);
+        return res;
+    }
+};
+\end{lstlisting}
+
+
+\section{Nested List Weight Sum II (M)}
+Given a nested list of integers, return the sum of all integers in the list weighted by their depth. Each element is either an integer, or a list -- whose elements may also be integers or other lists.\\
+
+Different from the previous question where weight is increasing from root to leaf, now the weight is defined from bottom up. i.e., the leaf level integers have weight 1, and the root level integers have the largest weight. \\
+
+Example 1:\\
+Given the list [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)\\
+
+Example 2:\\
+Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and one 6 at depth 1; 1*3 + 4*2 + 6*1 = 17)  \\
+
+\begin{lstlisting}
+class Solution {
+public:
+    int depthSumInverse(vector<NestedInteger> &nestedList) {
+        int unweighted = 0, weighted = 0;
+        
+        while (!nestedList.empty()) {
+            vector<NestedInteger> nextLevel;
+            for (auto l : nestedList) {
+                if (l.isInteger()) {
+                    unweighted += l.getInteger();       // add all integers of the current level togeter
+                } else {
+                    // insert(position, first, last)
+                    nextLevel.insert(nextLevel.end(), l.getList().begin(), l.getList().end());
+                }
+            }
+            weighted += unweighted;     // add all integers in level n to level n+1 twice
+            nestedList = nextLevel;     // update the nested list
+        }
+        
+        return weighted;
+    }
+};
+\end{lstlisting}
+
+
+\section{Mini Parser (M)}
+Given a nested list of integers represented as a string, implement a parser to deserialize it. Each element is either an integer, or a list -- whose elements may also be integers or other lists.\\
+
+Note: You may assume that the string is well-formed:\\
+    String is non-empty.\\
+    String does not contain white spaces.\\
+    String contains only digits 0-9, [, -, ,, ].\\
+
+Example 1:
+Given s = "324",
+You should return a NestedInteger object which contains a single integer 324.\\
+
+Example 2:
+Given s = "[123,[456,[789]]]",
+Return a NestedInteger object containing a nested list with 2 elements:\\
+1. An integer containing value 123.\\
+2. A nested list containing two elements:\\
+    i.  An integer containing value 456.\\
+    ii. A nested list with one element:\\
+         a. An integer containing value 789.\\
+
+\begin{lstlisting}
+/**
+ * // This is the interface that allows for creating nested lists.
+ * // You should not implement it, or speculate about its implementation
+ * class NestedInteger {
+ *   public:
+ *     // Constructor initializes an empty nested list.
+ *     NestedInteger();
+ *
+ *     // Constructor initializes a single integer.
+ *     NestedInteger(int value);
+ *
+ *     // Return true if this NestedInteger holds a single integer, rather than a nested list.
+ *     bool isInteger() const;
+ *
+ *     // Return the single integer that this NestedInteger holds, if it holds a single integer
+ *     // The result is undefined if this NestedInteger holds a nested list
+ *     int getInteger() const;
+ *
+ *     // Set this NestedInteger to hold a single integer.
+ *     void setInteger(int value);
+ *
+ *     // Set this NestedInteger to hold a nested list and adds a nested integer to it.
+ *     void add(const NestedInteger &ni);
+ *
+ *     // Return the nested list that this NestedInteger holds, if it holds a nested list
+ *     // The result is undefined if this NestedInteger holds a single integer
+ *     const vector<NestedInteger> &getList() const;
+ * };
+ */
+// 1. Recursive solution
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        if (s.empty()) return NestedInteger();
+        if (s[0] != '[') return NestedInteger(stoi(s));
+        if (s.size() <= 2) return NestedInteger();
+        NestedInteger res;
+        int start = 1, cnt = 0;
+        for (int i = 1; i < s.size(); ++i) {
+            if (cnt == 0 && (s[i] == ',' || i == s.size() - 1)) {
+                res.add(deserialize(s.substr(start, i - start)));
+                start = i + 1;
+            } else if (s[i] == '[') ++cnt;
+            else if (s[i] == ']') --cnt;
+        }
+        return res;
+    }
+};
+
+// 2. Iterative solution
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        if (s.empty()) return NestedInteger();
+        if (s[0] != '[') return NestedInteger(stoi(s));
+        stack<NestedInteger> st;
+        int start = 1;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '[') {
+                st.push(NestedInteger());
+                start = i + 1;
+            } else if (s[i] == ',' || s[i] == ']') {
+                if (i > start) {
+                    st.top().add(NestedInteger(stoi(s.substr(start, i - start))));
+                }
+                start = i + 1;
+                if (s[i] == ']') {
+                    if (st.size() > 1) {
+                        NestedInteger t = st.top(); st.pop();
+                        st.top().add(t);
+                    }
+                }
+            }
+        }
+        return st.top();
+    }
+};
+
+// 3. istringstream solution
+class Solution {
+public:
+    NestedInteger deserialize(string s) {
+        istringstream in(s);
+        return deserialize(in);
+    }
+    NestedInteger deserialize(istringstream& in) {
+        int num;
+        if (in >> num) return NestedInteger(num);
+        in.clear();
+        in.get();
+        NestedInteger list;
+        while (in.peek() != ']') {
+            list.add(deserialize(in));
+            if (in.peek() == ',') {
+                in.get();
+            }
+        }
+        in.get();
+        return list;
+    }
+};
+\end{lstlisting}
+
+\section{Brick Wall (M)}
+There is a brick wall in front of you. The wall is rectangular and has several rows of bricks. The bricks have the same height but different width. You want to draw a vertical line from the top to the bottom and cross the least bricks.\\
+
+The brick wall is represented by a list of rows. Each row is a list of integers representing the width of each brick in this row from left to right.\\
+
+If your line go through the edge of a brick, then the brick is not considered as crossed. You need to find out how to draw the line to cross the least bricks and return the number of crossed bricks.\\
+
+You cannot draw a line just along one of the two vertical edges of the wall, in which case the line will obviously cross no bricks. \\
+
+\begin{lstlisting}
+class Solution(object):
+    def leastBricks(self, wall):
+        """
+        :type wall: List[List[int]]
+        :rtype: int
+        """
+        mx = 0
+        idx_freq_map = {}
+        for w in wall:
+            idx = 0
+            n = len(w)
+            for i in range(n-1):
+                idx += w[i]
+                if idx in idx_freq_map:
+                    idx_freq_map[idx] += 1
+                else:
+                    idx_freq_map[idx] = 1
+                mx = max(mx, idx_freq_map[idx])
+        return len(wall) - mx        
+\end{lstlisting}
+        

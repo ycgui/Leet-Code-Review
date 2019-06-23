@@ -16,6 +16,27 @@ If nums = [1,2,3], a solution is:
 ]\\
 
 \begin{lstlisting}
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        out, res = [], []
+        idx = 0
+        self.dfs(nums, idx, out, res)
+        return res
+    def dfs(self, nums, idx, out, res):
+        # always add out to res in recursion to get all subsets
+        res.append(list(out))
+        for i in range(idx, len(nums)):
+            out.append(nums[i])
+            self.dfs(nums, i + 1, out, res)
+            out.pop()
+\end{lstlisting}
+
+\begin{lstlisting}
 // 1. Recursive
 class Solution {
 public:
@@ -68,6 +89,29 @@ If nums = [1,2,2], a solution is:
   [1,2],
   []
 ]\\
+
+\begin{lstlisting}
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        out, res = [], []
+        idx = 0
+        self.dfs(nums, idx, out, res)
+        return res
+    def dfs(self, nums, idx, out, res):
+        # always add out to res in recursion to get all subsets
+        res.append(list(out))
+        for i in range(idx, len(nums)):
+            # skip duplicate
+            if i > idx and nums[i] == nums[i-1]: continue
+            out.append(nums[i])
+            self.dfs(nums, i+1, out, res)
+            out.pop()
+\end{lstlisting}
 
 \begin{lstlisting}
 class Solution {
@@ -641,7 +685,52 @@ class Solution(object):
         return dp[-1]
 \end{lstlisting}
 
+\section{Target Sum (M)}
+ You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.\\
 
+Find out how many ways to assign symbols to make sum of integers equal to target S.\\
+
+Example 1:\\
+
+Input: nums is [1, 1, 1, 1, 1], S is 3. \\
+Output: 5\\
+Explanation: \\
+
+-1+1+1+1+1 = 3\\
++1-1+1+1+1 = 3\\
++1+1-1+1+1 = 3\\
++1+1+1-1+1 = 3\\
++1+1+1+1-1 = 3\\
+
+There are 5 ways to assign symbols to make the sum of nums be target 3.\\
+
+Note:\\
+
+    The length of the given array is positive and will not exceed 20.\\
+    The sum of elements in the given array will not exceed 1000.\\
+    Your output answer is guaranteed to be fitted in a 32-bit integer.\\
+
+\begin{lstlisting}
+# Time: O(2^N)  Space: O(N)
+class Solution(object):
+    def findTargetSumWays(self, nums, S):
+        """
+        :type nums: List[int]
+        :type S: int
+        :rtype: int
+        """
+        idx = 0
+        self.res = 0
+        self.helper(nums, S, idx)
+        return self.res
+    def helper(self, nums, S, idx):
+        if idx == len(nums):
+            if S == 0: self.res += 1
+            return
+        self.helper(nums, S - nums[idx], idx + 1)
+        self.helper(nums, S + nums[idx], idx + 1)
+\end{lstlisting}
+     
 \section{Factor Combinations (M)}
 Numbers can be regarded as product of its factors. For example, 8 = 2 x 2 x 2 = 2 x 4.\\
 
@@ -830,6 +919,28 @@ After running your function, the 2D grid should be:\\
   0  -1   3   4\\
 
 \begin{lstlisting}
+def wallsAndGates(self, rooms):
+	dist = 0
+	for i in range(len(rooms)):
+		for j in range(len(rooms[0])):
+			# start the dfs search from the gate
+			if rooms[i][j] == 0: self.dfs(rooms, i, j, dist)
+def self.dfs(self, rooms, i, j, dist):
+	if i < 0 or i >= len(rooms) or \
+	   j < 0 or j >= len(rooms[0]) or \
+	   rooms[i][j] < dist:
+	   return
+	# update the current room val based on 
+	# the distance between the current room and the gate
+	rooms[i][j] = dist 
+	# search 4 directions from the current room and increase the distance
+	self.dfs(rooms, i + 1, j, dist + 1)
+	self.dfs(rooms, i - 1, j, dist + 1)
+	self.dfs(rooms, i, j + 1, dist + 1)
+	self.dfs(rooms, i, j - 1, dist + 1)
+\end{lstlisting}
+
+\begin{lstlisting}
 class Solution {
 public:
     void wallsAndGates(vector<vector<int>>& rooms) {
@@ -852,6 +963,57 @@ public:
 };
 \end{lstlisting}
 
+\section{Shortest Path in Binary Matrix (M)}
+In an N by N square grid, each cell is either empty (0) or blocked (1). Return the length of the shortest such clear path from top-left to bottom-right.  If such a path does not exist, return -1.\\
+
+\begin{lstlisting}
+class Solution(object):
+    def shortestPathBinaryMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n = len(grid)
+        if grid[0][0] == 1 or grid[n-1][n-1] == 1:
+            return -1
+        q = [(0, 0, 1)]
+        # search cooridantes (i, j) and the depth d with BFS
+        for i, j, d in q:
+            # reach the bottom-right, d is the shortest path
+            if i == n-1 and j == n-1: return d
+            # search 8 directions
+            for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),\
+                         (i,j-1),(i,j+1),\
+                         (i+1,j-1),(i+1,j),(i+1,j+1)):
+                if 0 <= x < n and 0 <= y < n and grid[x][y] == 0:
+                    grid[x][y] = 1 # for visited grid, set its value to 1
+                    q.append((x, y, d+1)) # add the path to q
+        return -1
+            
+# Standard BFS
+class Solution(object):
+    def shortestPathBinaryMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n = len(grid)
+        if grid[0][0] == 1 or grid[n-1][n-1] == 1:
+            return -1
+        q = [(0, 0, 1)]
+        visited = [[False for j in range(n)] for i in range(n)]
+        while q:
+            i, j, d = q.pop()
+            if i == n-1 and j == n-1: return d
+            for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),\
+                         (i,j-1),(i,j+1),\
+                         (i+1,j-1),(i+1,j),(i+1,j+1)):
+                if 0 <= x < n and 0 <= y < n and \
+                   grid[x][y] == 0 and visited[x][y] == False:
+                    visited[x][y] = True 
+                    q.insert(0, (x, y, d+1)) 
+        return -1
+\end{lstlisting}
 
 \section{Surrounded Regions (M)}
 Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'. A region is captured by flipping all 'O's into 'X's in that surrounded region.\\
@@ -1111,7 +1273,7 @@ class Solution(object):
         :rtype: bool
         """
         m, n = len(board), len(board[0])
-        visited = [[0] * n for i in range(m)]
+        visited = [[False for j in range(n)] for i in range(m)]
         idx, res = 0, 0
         for i in range(m):
             for j in range(n):
@@ -1120,14 +1282,16 @@ class Solution(object):
     def search(self, board, word, idx, i, j, visited):
         if idx == len(word): return True
         if i < 0 or i >= len(visited) or j < 0 or j >= len(visited[0]) or \
-           visited[i][j] == 1 or board[i][j] != word[idx]:
+           visited[i][j] or board[i][j] != word[idx]:
             return False
-        visited[i][j] = 1
+        visited[i][j] = True
+        # if we can find the next char in any direction, then res is true
         res = self.search(board, word, idx+1, i+1, j, visited) or \
               self.search(board, word, idx+1, i, j+1, visited) or \
               self.search(board, word, idx+1, i-1, j, visited) or \
               self.search(board, word, idx+1, i, j-1, visited)
-        visited[i][j] = 0  # reset the visited letter
+        # reset visited status
+        visited[i][j] = False
         return res
 \end{lstlisting}
 
@@ -1280,7 +1444,346 @@ public:
 };
 \end{lstlisting}
 
+\section{Accounts Merge (M)}
+Given a list accounts, each element accounts[i] is a list of strings, where the first element accounts[i][0] is a name, and the rest of the elements are emails representing emails of the account.\\
 
+Now, we would like to merge these accounts. Two accounts definitely belong to the same person if there is some email that is common to both accounts. Note that even if two accounts have the same name, they may belong to different people as people could have the same name. A person can have any number of accounts initially, but all of their accounts definitely have the same name.\\
+
+After merging the accounts, return the accounts in the following format: the first element of each account is the name, and the rest of the elements are emails in sorted order. The accounts themselves can be returned in any order.\\
+
+Example 1:\\
+
+Input: \\
+$accounts = [["John", "johnsmith@mail.com", "john00@mail.com"], ["John", "johnnybravo@mail.com"], ["John", "johnsmith@mail.com", "john_newyork@mail.com"], ["Mary", "mary@mail.com"]]
+Output: [["John", 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com'],  ["John", "johnnybravo@mail.com"], ["Mary", "mary@mail.com"]]$\\
+Explanation: \\
+The first and third John's are the same person as they have the common email "johnsmith@mail.com".
+The second John and Mary are different people as none of their email addresses are used by other accounts.\\
+We could return these lists in any order, for example the answer $[['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'], 
+['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']]$ would still be accepted.\\
+
+Note:\\
+The length of accounts will be in the range [1, 1000].\\
+The length of accounts[i] will be in the range [1, 10].\\
+The length of accounts[i][j] will be in the range [1, 30].\\
+
+\begin{lstlisting}
+# 1. Give each account an ID, based on the index of it within the list of accounts.
+# 2. Build an emails_accounts_map that maps an email to a list of accounts, which can be used to track which email is linked to which account. This is essentially our graph.
+# 3. Perform a DFS on each account in accounts list and look up emails_accounts_map to tell which accounts are linked to that particular account via common emails. This will make sure we visit each account only once. This is a recursive process and we should collect all the emails that we encounter along the way.
+# 4 Sort the collected emails and add it to final results, res along with the name.
+class Solution(object):
+    def accountsMerge(self, accounts):
+        """
+        :type accounts: List[List[str]]
+        :rtype: List[List[str]]
+        """
+        visited = [False] * len(accounts)
+        emails_accounts_map = {}
+        res = []
+        # Build the mapping between email and account idx in accounts
+        for idx, account in enumerate(accounts):
+            for j in range(1, len(account)):
+                email = account[j]
+                if email in emails_accounts_map:
+                    emails_accounts_map[email].append(idx)
+                else:
+                    emails_accounts_map[email] = [idx]
+        # Perform DFS for accounts and add to results.
+        for idx, account in enumerate(accounts):
+            if visited[idx]: continue
+            name, emails = account[0], set()
+            self.dfs(idx, emails, visited, accounts, emails_accounts_map)
+            res.append([name] + sorted(emails))
+        return res
+    
+    def dfs(self, i, emails, visited, accounts, emails_accounts_map):
+        if visited[i]: return
+        visited[i] = True
+        for j in range(1, len(accounts[i])):
+            email = accounts[i][j]
+            emails.add(email)
+            for idx in emails_accounts_map[email]:
+                self.dfs(idx, emails, visited, accounts, emails_accounts_map)
+\end{lstlisting}
+
+\section{Course Schedule (M)}
+There are a total of n courses you have to take, labeled from 0 to n-1.
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+
+Example 1:
+
+Input: 2, [[1,0]] 
+Output: true
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0. So it is possible.
+
+Example 2:
+
+Input: 2, [[1,0],[0,1]]
+Output: false
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0, and to take course 0 you should
+             also have finished course 1. So it is impossible.
+
+Note:
+
+    The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+    You may assume that there are no duplicate edges in the input prerequisites.
+
+
+\begin{lstlisting}
+# Detecting if there is a cycle in the directed graph represented by prerequisites
+# We need to transform it to the adjacency-list representation. If course u is a prerequisite of course v, then the adjacency list of u will contain v.
+
+# BFS: the number of visited nodes should be equal to the number of courses,
+# otherwise a cycle exists
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        # create graph and indegree list
+        # graph is a dict that mapping a node and a list of its prerequisites
+        graph = {i: [] for i in range(numCourses)}
+        indegree = [0 for i in range(numCourses) ]
+        # x -> y in graph
+        # so x is the prerequisite of y, and the indegree of y is added by 1
+        for x, y in prerequisites:
+            graph[y].append(x)
+            indegree[x] += 1
+        
+        # create queue that saves all courses without prerequisites
+        # i.e. indegree = 0
+        queue = []
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                queue.insert(0, i)
+        
+        # perform BFS
+        visited = 0        
+        while queue:
+            node = queue.pop()
+            visited += 1
+            for v in graph[node]:
+                # for each visited node, reduce the indegree of all its neighbors by 1
+                indegree[v] -= 1
+                # if any node with 0 indegree, add it to queue
+                if indegree[v] == 0: queue.insert(0, v)
+                    
+        # all nodes should be visited if no cycle, otherwise a cycle exists
+        return visited == numCourses
+    
+    
+# # DFS: in each visit, we start from a node and keep visiting its neighbors, 
+# # if at a time we return to a visited node, there is a cycle. 
+# # Otherwise, start again from another unvisited node and repeat this process.
+# class Solution(object):
+#     def canFinish(self, numCourses, prerequisites):
+#         """
+#         :type numCourses: int
+#         :type prerequisites: List[List[int]]
+#         :rtype: bool
+#         """
+\end{lstlisting}
+
+\section{Course Schedule II (M)}
+There are a total of n courses you have to take, labeled from 0 to n-1.
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.
+
+There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
+
+Example 1:
+
+Input: 2, [[1,0]] 
+Output: [0,1]
+Explanation: There are a total of 2 courses to take. To take course 1 you should have finished   
+             course 0. So the correct course order is [0,1] .
+
+Example 2:
+
+Input: 4, [[1,0],[2,0],[3,1],[3,2]]
+Output: [0,1,2,3] or [0,2,1,3]
+Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both     
+             courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. 
+             So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3] .
+
+Note:
+
+    The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+    You may assume that there are no duplicate edges in the input prerequisites.
+\begin{lstlisting}
+# Detecting if there is a cycle in the directed graph represented by prerequisites
+# We need to transform it to the adjacency-list representation. If course u is a prerequisite of course v, then the adjacency list of u will contain v.
+
+# BFS: the number of visited nodes should be equal to the number of courses,
+# otherwise a cycle exists
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        # create graph and indegree list
+        # graph is a dict that mapping a node and a set of its prerequisites
+        graph = {i: [] for i in range(numCourses)}
+        indegree = [0 for i in range(numCourses) ]
+        # x -> y in graph
+        # so x is the prerequisite of y, and the indegree of y is added by 1
+        for x, y in prerequisites:
+            graph[y].append(x)
+            indegree[x] += 1
+        
+        # create queue that saves all courses without prerequisites
+        # i.e. indegree = 0
+        queue = []
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                queue.insert(0, i)
+        
+        # perform BFS
+        visited = 0 
+        res = []
+        while queue:
+            node = queue.pop()
+            res.append(node)
+            visited += 1
+            for v in graph[node]:
+                # for each visited node, reduce the indegree of all its neighbors by 1
+                indegree[v] -= 1
+                # if any node with 0 indegree, add it to queue
+                if indegree[v] == 0: queue.insert(0, v)
+                    
+        # all nodes should be visited if no cycle, otherwise a cycle exists
+        if visited == numCourses:
+            return res
+        else:
+            return []
+\end{lstlisting}
+
+\section{Course Schedule III (H)}
+There are n different online courses numbered from 1 to n. Each course has some duration(course length) t and closed on dth day. A course should be taken continuously for t days and must be finished before or on the dth day. You will start at the 1st day.
+
+Given n online courses represented by pairs (t,d), your task is to find the maximal number of courses that can be taken.
+
+Example:
+
+Input: [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]
+Output: 3
+Explanation: 
+There're totally 4 courses, but you can take 3 courses at most:
+First, take the 1st course, it costs 100 days so you will finish it on the 100th day, and ready to take the next course on the 101st day.
+Second, take the 3rd course, it costs 1000 days so you will finish it on the 1100th day, and ready to take the next course on the 1101st day. 
+Third, take the 2nd course, it costs 200 days so you will finish it on the 1300th day. 
+The 4th course cannot be taken now, since you will finish it on the 3300th day, which exceeds the closed date.
+
+ 
+
+Note:
+
+    The integer 1 <= d, t, n <= 10,000.
+    You can't take two courses simultaneously.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\section{Alien Dictionary (H)}
+There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.
+
+Example 1:
+
+Input:
+[
+  "wrt",
+  "wrf",
+  "er",
+  "ett",
+  "rftt"
+]
+
+Output: "wertf"
+
+Example 2:
+
+Input:
+[
+  "z",
+  "x"
+]
+
+Output: "zx"
+
+Example 3:
+
+Input:
+[
+  "z",
+  "x",
+  "z"
+] 
+
+Output: "" 
+
+Explanation: The order is invalid, so return "".
+
+Note:
+
+    You may assume all letters are in lowercase.
+    You may assume that if a is a prefix of b, then a must appear before b in the given dictionary.
+    If the order is invalid, return an empty string.
+    There may be multiple valid order of letters, return any one of them is fine.
+\begin{lstlisting}
+class Solution {
+public:
+    string alienOrder(vector<string>& words) {
+        set<pair<char, char>> st;
+        unordered_set<char> ch;
+        vector<int> in(256, 0);
+        queue<char> q;
+        string res = "";
+        for (auto a : words) ch.insert(a.begin(), a.end());
+        for (int i = 0; i < (int)words.size() - 1; ++i) {
+            int mn = min(words[i].size(), words[i + 1].size()), j = 0;
+            for (; j < min(words[i].size(), words[i + 1].size()); ++j) {
+                if (words[i][j] != words[i + 1][j]) {
+                    st.insert(make_pair(words[i][j], words[i + 1][j]));
+                    break;
+                }
+            }
+            if (j == mn && words[i].size() > words[i + 1].size()) return "";
+        }
+        for (auto a : st) ++in[a.second];
+        for (auto a : ch) {
+            if (in[a] == 0) {
+                q.push(a);
+                res += a;
+            } 
+        }
+        while (!q.empty()) {
+            char c = q.front(); q.pop();
+            for (auto a : st) {
+                if (a.first == c) {
+                    --in[a.second];
+                    if (in[a.second] == 0) {
+                        q.push(a.second);
+                        res += a.second;
+                    }
+                }
+            }
+        }
+        return res.size() == ch.size() ? res : "";
+    }
+};
+\end{lstlisting}
 
 
 

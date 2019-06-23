@@ -2425,12 +2425,84 @@ public:
 
 
 \subsection{Binary Tree Path Sum of Two Nodes (Philips on-sight 2016.09)}
-Given a binary tree and two arbitrary nodes, compute the path sum of these two nodes.
+Find distance between two nodes in a binary tree. Distance between two nodes is defined as the number of edges in shortest path from one node to other.
 
 \begin{lstlisting}
-// 1. Find the LCA
-// 2. Compute the leftSum from LCA to target A and the rightSum from LCA to target B 
-// 3. pathSum = leftSum + rightSum - LCA
+class Node:
+
+	# Constructor to create a new node
+	def __init__(self, data):
+		self.data = data
+		self.left = None
+		self.right = None
+
+	def __repr__(self):
+		return str(self.data)
+
+def findLevel(root, node, level):
+	if not root:
+		return None
+
+	if root.data == node:
+		return level + 1
+
+	left = findLevel(root.left, node, level + 1)
+	right = findLevel(root.right, node, level + 1)
+
+	if not left and not right:
+		return None
+	elif left:
+		return left
+	else:
+		return right
+
+# Function to find lowest common ancestor of given nodes n1 and n2 where
+# both n2 and n2 are present in the binary tree.
+def find_lca_node(root, n1, n2):
+	if not root or n1 == root.data or root.data == n2:
+		return root
+
+	lca_left = find_lca_node(root.left, n1, n2)
+	lca_right = find_lca_node(root.right, n1, n2)
+
+	if lca_left and lca_right:
+		return root
+
+	return lca_right if lca_right else lca_left
+
+# Function to find distnce between two nodes in a binary tree
+def findDistance(root, n1, n2):
+	level_n1 = findLevel(root, n1, 0)
+	if not level_n1:
+		print("Node", n1, "does not exists in the binary tree")
+		return
+
+	level_n2 = findLevel(root, n2, 0)
+	if not level_n2:
+		print("Node", n2, "does not exists in the binary tree")
+		return
+
+	lca = find_lca_node(root, n1, n2)
+	level_lca = findLevel(root, lca.data, 0)
+
+	print("The distance between node", n1, "and node", n2, "is", \
+			level_n1 + level_n2 - 2 * level_lca)
+
+if __name__ == '__main__':
+
+	root = Node(1)
+	root.left = Node(2)
+	root.right = Node(3)
+
+	root.left.right = Node(4)
+	root.right.left = Node(5)
+	root.right.right = Node(6)
+
+	root.right.left.left = Node(7)
+	root.right.left.right = Node(8)
+
+	findDistance(root, 7, 6)
+	findDistance(root, 5, 9)
 \end{lstlisting}
 
 
