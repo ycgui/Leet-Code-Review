@@ -496,7 +496,24 @@ Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].\\
 Note: \\
     Each element in the result must be unique.\\
     The result can be in any order.\\
-    
+   
+ \begin{lstlisting} 
+class Solution(object):
+    def intersection(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        s1 = set(nums1)
+        s2 = set(nums2)
+        res = []
+        for n in s2:
+            if n in s1:
+                res.append(n)
+        return res
+\end{lstlisting}
+            
 \begin{lstlisting}
 class Solution {
 public:
@@ -529,6 +546,32 @@ Follow up:\\
     What if the given array is already sorted? How would you optimize your algorithm?\\
     What if nums1's size is small compared to nums2's size? Which algorithm is better?\\
     What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?\\
+
+\begin{lstlisting}
+class Solution(object):
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        nums1.sort()
+        nums2.sort()
+        n1 = len(nums1)
+        n2 = len(nums2)
+        p1, p2 = 0, 0
+        res = []
+        while p1 < n1 and p2 < n2:
+            if nums1[p1] < nums2[p2]:
+                p1 += 1
+            elif nums1[p1] > nums2[p2]:
+                p2 += 1
+            else:
+                res.append(nums1[p1])
+                p1 += 1
+                p2 += 1
+        return res
+\end{lstlisting}
 
 \begin{lstlisting}
 // Sol1: Hash table
@@ -2072,6 +2115,39 @@ class Solution(object):
         # note that the overlapping between intervals and the original newInterval
         # has already been merged together into the new newInterval
         res.insert(pos, newInterval)
+        return res
+\end{lstlisting}
+
+\section{Interval List Intersections (M)}
+Given two lists of closed intervals, each list of intervals is pairwise disjoint and in sorted order.
+
+Return the intersection of these two interval lists.
+
+(Formally, a closed interval [a, b] (with a <= b) denotes the set of real numbers x with a <= x <= b.  The intersection of two closed intervals is a set of real numbers that is either empty, or can be represented as a closed interval.  For example, the intersection of [1, 3] and [2, 4] is [2, 3].)
+
+\begin{lstlisting}
+class Solution(object):
+    def intervalIntersection(self, A, B):
+        """
+        :type A: List[List[int]]
+        :type B: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        res = []
+        i = j = 0
+        # check intersection
+        while i < len(A) and j < len(B):
+            # lowerbound is the largest start point
+            # upperbound is the smallest end point
+            low = max(A[i][0], B[j][0])
+            high = min(A[i][1], B[j][1])
+            if low <= high:
+                res.append([low, high])
+            # check next intersection by removing the smaller endpoint
+            if A[i][1] < B[j][1]:
+                i += 1
+            else:
+                j += 1
         return res
 \end{lstlisting}
 

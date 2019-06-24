@@ -1515,3 +1515,32 @@ Solution:\\
 1. HashMap: O(M*N)\\
 2. Binary Search: O(MlogN), N is the longer vector\\
 3. Sorting + Two pointers: O(M+N)\\
+
+\section{Reservoir Sampling (FB high frequency)}
+Reservoir sampling is a family of randomized algorithms for randomly choosing k samples from a list of n items, where n is either a very large or unknown number. Typically n is large enough that the list doesn’t fit into main memory. For example, a list of search queries in Google and Facebook.
+
+\begin{lstlisting}
+# A function to randomly select k items from stream[0..n-1]. 
+def selectKItems(stream, n, k): 
+        # index for elements in stream[] 
+        i=0;  
+          
+        # reservoir[] is the output array. 
+        # Initialize it with first k elements from stream[] 
+        reservoir = [0]*k; 
+        for i in range(k): 
+            reservoir[i] = stream[i]; 
+          
+        # Iterate from the (k+1)th element to nth element in stream[]
+        while(i < n): 
+            # Pick a random index from 0 to i. 
+            j = random.randrange(i+1); 
+              
+            # If the randomly picked index is smaller than k, 
+            # then replace the element present at the index j with new element from stream i
+            # otherwise we keep reservoir[] as the same
+            if(j < k): 
+                reservoir[j] = stream[i]; 
+            # we keep increasing i until all n items in stream[] are checked
+            i+=1; 
+\end{lstlisting}
