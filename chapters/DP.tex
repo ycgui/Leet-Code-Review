@@ -947,6 +947,32 @@ Note:\\
     There are many calls to sumRange function.\\
 
 \begin{lstlisting}
+class NumArray(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.dp = [0 for i in range(len(nums)+1)]
+        for i in range(len(nums)):
+            self.dp[i+1] = self.dp[i] + nums[i]
+
+    def sumRange(self, i, j):
+        """
+        :type i: int
+        :type j: int
+        :rtype: int
+        """
+        return self.dp[j+1] - self.dp[i]
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(i,j)
+\end{lstlisting}
+
+
+\begin{lstlisting}
 // Your NumArray object will be instantiated and called as such:
 // NumArray numArray(nums);
 // numArray.sumRange(0, 1);
@@ -1074,6 +1100,39 @@ Note:\\
     You may assume that the matrix does not change.\\
     There are many calls to sumRegion function.\\
     You may assume that row1 $\leq$ row2 and col1 $\leq$ col2.\\
+
+\begin{lstlisting}
+class NumMatrix(object):
+
+    def __init__(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        """
+        if len(matrix) == 0 or len(matrix[0]) == 0: return
+        m, n = len(matrix), len(matrix[0])
+        self.dp = [ [0 for j in range(n+1)] for i in range(m+1) ]
+        # note that the index in dp is 1 larger than the index in matrix
+        for row in range(m):
+            for col in range(n):
+                self.dp[row+1][col+1] = self.dp[row+1][col] + self.dp[row][col+1] \
+                                        + matrix[row][col] - self.dp[row][col]
+
+    def sumRegion(self, row1, col1, row2, col2):
+        """
+        :type row1: int
+        :type col1: int
+        :type row2: int
+        :type col2: int
+        :rtype: int
+        """
+        return self.dp[row2 + 1][col2 + 1] - self.dp[row1][col2 + 1] \
+                - self.dp[row2 + 1][col1] + self.dp[row1][col1]       
+
+
+# Your NumMatrix object will be instantiated and called as such:
+# obj = NumMatrix(matrix)
+# param_1 = obj.sumRegion(row1,col1,row2,col2)
+\end{lstlisting}
 
 
 \begin{lstlisting}

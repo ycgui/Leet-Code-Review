@@ -1,4 +1,4 @@
-\chapter{Math}
+\chapter{Math and Probability}
 
 
 \section{Nim Game (E)}
@@ -1464,4 +1464,90 @@ class Solution(object):
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(nums)
 # param_1 = obj.pick(target)
+\end{lstlisting}
+
+\section{Shuffle an Array (M)}
+Shuffle a set of numbers without duplicates.
+
+Example:
+
+// Init an array with set 1, 2, and 3.
+int[] nums = {1,2,3};
+Solution solution = new Solution(nums);
+
+// Shuffle the array [1,2,3] and return its result. Any permutation of [1,2,3] must equally likely to be returned.
+solution.shuffle();
+
+// Resets the array back to its original configuration [1,2,3].
+solution.reset();
+
+// Returns the random shuffling of array [1,2,3].
+solution.shuffle();
+
+\begin{lstlisting}
+class Solution(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.original = list(nums)
+        self.array = nums
+
+    def reset(self):
+        """
+        Resets the array to its original configuration and return it.
+        :rtype: List[int]
+        """
+        self.array = self.original
+        self.original = list(self.original)
+        return self.array
+
+    def shuffle(self):
+        """
+        Returns a random shuffling of the array.
+        :rtype: List[int]
+        """
+        n = len(self.array)
+        for i in range(n):
+            # randomly select an idx from i to n
+            swap_idx = random.randrange(i, n)
+            # swap idx and i, idx could also be i
+            self.array[i], self.array[swap_idx] = self.array[swap_idx], self.array[i]
+        return self.array
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.reset()
+# param_2 = obj.shuffle()
+\end{lstlisting}
+
+\section{Reservoir Sampling (FB high frequency)}
+Reservoir sampling is a family of randomized algorithms for randomly choosing k samples from a list of n items, where n is either a very large or unknown number. Typically n is large enough that the list doesn’t fit into main memory. For example, a list of search queries in Google and Facebook.
+
+\begin{lstlisting}
+# A function to randomly select k items from stream[0..n-1]. 
+def selectKItems(stream, n, k): 
+        # index for elements in stream[] 
+        i=0;  
+          
+        # reservoir[] is the output array. 
+        # Initialize it with first k elements from stream[] 
+        reservoir = [0]*k; 
+        for i in range(k): 
+            reservoir[i] = stream[i]; 
+          
+        # Iterate from the (k+1)th element to nth element in stream[]
+        while(i < n): 
+            # Pick a random index from 0 to i. 
+            j = random.randrange(i+1); 
+              
+            # If the randomly picked index is smaller than k, 
+            # then replace the element present at the index j with new element from stream i
+            # otherwise we keep reservoir[] as the same
+            if(j < k): 
+                reservoir[j] = stream[i]; 
+            # we keep increasing i until all n items in stream[] are checked
+            i+=1; 
 \end{lstlisting}
