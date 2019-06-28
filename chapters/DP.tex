@@ -1667,11 +1667,11 @@ class Solution(object):
                 # find the consecutive sequence
                 if nums[i] == nums[i-1] + 1:
                     cur += 1
+                    longest = max(longest, cur)
                 # otherwise update longest and reset cur
                 else:
-                    longest = max(longest, cur)
                     cur = 1
-        return max(longest, cur)
+        return longest
            
 # O(N)
 class Solution(object):
