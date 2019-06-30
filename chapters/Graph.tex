@@ -133,12 +133,11 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
-        list_dict = {}
+        list_dict = {} # node: new copy node
         return self.helper(head, list_dict)
     def helper(self, node, list_dict):
         if not node: return None
-        # if the random node points to a node that is already in the dict,
-        # then just return the node as the random node
+        # if the copy node existed in list_dict, just return the copy node
         if node in list_dict: 
             return list_dict[node]
         new_node = Node(node.val, None, None)

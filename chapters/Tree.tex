@@ -3004,10 +3004,10 @@ class Solution(object):
                 s.append(q)
                 q = q.left
             else:
-                if s[-1].val == p.val:
-                    flag = 1
                 if flag == 1:
                     return s[-1]
+                if s[-1].val == p.val:
+                    flag = 1
                 q = s[-1].right
                 q.pop()
         return None

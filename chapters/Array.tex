@@ -2118,7 +2118,7 @@ class Solution(object):
         return res
 \end{lstlisting}
 
-\section{Interval List Intersections (M)}
+\section{Interval List Intersections (Facebook 2019.6.28)}
 Given two lists of closed intervals, each list of intervals is pairwise disjoint and in sorted order.
 
 Return the intersection of these two interval lists.
@@ -2141,6 +2141,7 @@ class Solution(object):
             # upperbound is the smallest end point
             low = max(A[i][0], B[j][0])
             high = min(A[i][1], B[j][1])
+            # if low > high, the no intersection
             if low <= high:
                 res.append([low, high])
             # check next intersection by removing the smaller endpoint
@@ -2946,7 +2947,7 @@ You are given an n x n 2D matrix representing an image. Rotate the image by 90 d
 Follow up: Could you do this in-place?\\
 
 \begin{lstlisting}
-# Clockwise 90deg rotation: Vertical flip + Transpose (Diagonal flip)
+# Clockwise 90deg rotation: Vertical flip + Transpose (Off-diagonal flip)
 class Solution(object):
     def rotate(self, matrix):
         """
@@ -2959,7 +2960,7 @@ class Solution(object):
             for j in range(i+1, n):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
                 
-# Counter-clockwise 90deg rotation: Horizontal flip + Transpose (Diagonal flip)
+# Counter-clockwise 90deg rotation: Horizontal flip + Transpose (Off-diagonal flip)
 class Solution(object):
     def rotate(self, matrix):
         """
@@ -2971,7 +2972,7 @@ class Solution(object):
             row.reverse()
         for i in range(n):
             for j in range(i+1, n):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]                         
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]                                
 \end{lstlisting}
 
 \begin{lstlisting}

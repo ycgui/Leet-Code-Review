@@ -1800,7 +1800,7 @@ class Solution(object):
         left = 0
         n = len(s)
         self.reverse(s, 0, n - 1)
-        for i in range(n):
+        for i in range(n+1):
             if i == n or s[i] = ' ':
                 self.reverse(s, left, i - 1)
                 left = i + 1

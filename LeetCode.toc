@@ -88,7 +88,7 @@
 \contentsline {section}{\numberline {4.7}Kth Largest Element in an Array (M)}{86}{section.4.7}
 \contentsline {section}{\numberline {4.8}Top K Frequent Elements (M)}{87}{section.4.8}
 \contentsline {section}{\numberline {4.9}Kth Smallest Element in a Sorted Matrix (M)}{88}{section.4.9}
-\contentsline {section}{\numberline {4.10}K Closest Points to Origin (M)}{89}{section.4.10}
+\contentsline {section}{\numberline {4.10}K Closest Points to Origin (Facebook Onsite 2019.6.28)}{89}{section.4.10}
 \contentsline {chapter}{\numberline {5}Array}{91}{chapter.5}
 \contentsline {section}{\numberline {5.1}Bulls and Cows (E)}{91}{section.5.1}
 \contentsline {section}{\numberline {5.2}Rotate Array (E)}{92}{section.5.2}
@@ -134,7 +134,7 @@
 \contentsline {section}{\numberline {5.42}Task Scheduler (M)}{135}{section.5.42}
 \contentsline {section}{\numberline {5.43}Merge Intervals (M)}{136}{section.5.43}
 \contentsline {section}{\numberline {5.44}Insert Intervals (H)}{136}{section.5.44}
-\contentsline {section}{\numberline {5.45}Interval List Intersections (M)}{137}{section.5.45}
+\contentsline {section}{\numberline {5.45}Interval List Intersections (Facebook 2019.6.28)}{137}{section.5.45}
 \contentsline {section}{\numberline {5.46}Meeting Rooms (E)}{138}{section.5.46}
 \contentsline {section}{\numberline {5.47}Meeting Rooms II (M)}{139}{section.5.47}
 \contentsline {section}{\numberline {5.48}Logger Rate Limiter (E)}{140}{section.5.48}
@@ -144,13 +144,13 @@
 \contentsline {section}{\numberline {5.52}Sparse Matrix Multiplication (M)}{147}{section.5.52}
 \contentsline {section}{\numberline {5.53}Set Matrix Zeroes (M)}{148}{section.5.53}
 \contentsline {section}{\numberline {5.54}Spiral Matrix (M)}{151}{section.5.54}
-\contentsline {section}{\numberline {5.55}Spiral Matrix II (M)}{152}{section.5.55}
+\contentsline {section}{\numberline {5.55}Spiral Matrix II (M)}{153}{section.5.55}
 \contentsline {section}{\numberline {5.56}Spiral Matrix III (M)}{154}{section.5.56}
 \contentsline {section}{\numberline {5.57}Rotate Image (M)(Amazon phone screen 2016.9.16)}{155}{section.5.57}
 \contentsline {section}{\numberline {5.58}Flatten Nested List Iterator (M)}{157}{section.5.58}
 \contentsline {section}{\numberline {5.59}Nested List Weight Sum (E)}{160}{section.5.59}
-\contentsline {section}{\numberline {5.60}Nested List Weight Sum II (M)}{160}{section.5.60}
-\contentsline {section}{\numberline {5.61}Mini Parser (M)}{161}{section.5.61}
+\contentsline {section}{\numberline {5.60}Nested List Weight Sum II (M)}{161}{section.5.60}
+\contentsline {section}{\numberline {5.61}Mini Parser (M)}{162}{section.5.61}
 \contentsline {section}{\numberline {5.62}Brick Wall (M)}{164}{section.5.62}
 \contentsline {chapter}{\numberline {6}String}{166}{chapter.6}
 \contentsline {section}{\numberline {6.1}Add Binary (E)}{166}{section.6.1}
@@ -327,7 +327,7 @@
 \contentsline {section}{\numberline {10.2}Subset II (M)}{353}{section.10.2}
 \contentsline {section}{\numberline {10.3}Permutations (M)}{354}{section.10.3}
 \contentsline {section}{\numberline {10.4}Permutations II (M)}{356}{section.10.4}
-\contentsline {section}{\numberline {10.5}Next Permutation (M)}{358}{section.10.5}
+\contentsline {section}{\numberline {10.5}Next Permutation (Facebook Onsite 2019.6.28)}{358}{section.10.5}
 \contentsline {section}{\numberline {10.6}Permutation Sequence (M)}{359}{section.10.6}
 \contentsline {section}{\numberline {10.7}Combinations (M)}{360}{section.10.7}
 \contentsline {section}{\numberline {10.8}Combination Sum (M)}{361}{section.10.8}
